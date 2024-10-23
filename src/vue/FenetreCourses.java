@@ -1,10 +1,16 @@
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.CheckBox;
 import java.util.Set;
 import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import src.modele.Course;
 
-public class FenetreCourses{
+public class FenetreCourses {
 
     private TextField tfDate;
     private TableView<ObservableList<Course>> prochainesCourses;
@@ -22,7 +28,7 @@ public class FenetreCourses{
     private List<Integer> dossardsPartis;
     private List<Integer> dossardsArrives;
 
-    public FenetreCourses(){
+    public FenetreCourses() {
 
         this.tfDate = new TextField();
         this.prochainesCourses = new TableView<>();
@@ -41,91 +47,142 @@ public class FenetreCourses{
         this.dossardsArrives = new ArrayList<>();
     }
 
-    public TextField getTfDate(){
+    public TextField getTfDate() {
         return this.tfDate;
     }
 
-    public void setTfDate(TextField date){
+    public void setTfDate(TextField date) {
         this.tfDate = date;
     }
 
-    public TableView<> getProchainesCourses(){
+    public TableView<ObservableList<Course>> getProchainesCourses() {
         return this.prochainesCourses;
     }
 
-    public void SetProchainesCourses(TableView<> courses){
+    public void setProchainesCourses(TableView<ObservableList<Course>> courses) {
         this.prochainesCourses = courses;
     }
-    
-    public Button getBNouvelleCourse(){
+
+    public Button getBNouvelleCourse() {
         return this.bNouvelleCourse;
     }
 
-    public void setBNouvelleCourse(Button nouvelleCourse){
+    public void setBNouvelleCourse(Button nouvelleCourse) {
         this.bNouvelleCourse = nouvelleCourse;
     }
 
-    public Button getBAjouterCourse(){
+    public Button getBAjouterCourse() {
         return this.bAjouterCourse;
     }
 
-    public void setBAjouterCourse(Button courseAjoute){
+    public void setBAjouterCourse(Button courseAjoute) {
         this.bAjouterCourse = courseAjoute;
     }
 
-    public Button getBDepart(){
+    public Button getBDepart() {
         return this.bDepart;
     }
 
-    public Button setBDepart(Button boutonDepart){
-        this.bDepart = boutonDepart
+    public void setBDepart(Button boutonDepart) {
+        this.bDepart = boutonDepart;
     }
 
-    public Button getBFinCourse(){
+    public Button getBFinCourse() {
         return this.bFinCourse;
     }
 
-    public ComboBox<> getFormats(){
+    public void setBFinCourse(Button boutonFin) {
+        this.bFinCourse = boutonFin;
+    }
+
+    public ComboBox<String> getFormats() {
         return this.formats;
     }
 
-    public HashSet<> getCategories(){
+    public void setFormats(ComboBox<String> nouveauxFormats) {
+        this.formats = nouveauxFormats;
+    }
+
+    public Set<CheckBox> getCategories() {
         return this.categories;
     }
 
-    public HashSet<> getCategoriesChoisies(){
+    public void setCategories(Set<CheckBox> nouvellesCategories) {
+        this.categories = nouvellesCategories;
+    }
+
+    public Set<CheckBox> getCategoriesChoisies() {
         return this.categoriesChoisies;
     }
 
-    public TextField getNom(){
+    public void setCategoriesChoisies(Set<CheckBox> nouvellesCategoriesChoisies) {
+        this.categoriesChoisies = nouvellesCategoriesChoisies;
+    }
+
+    public TextField getNom() {
         return this.nom;
     }
 
-    public TextField getDate(){
+    public void setNom(TextField nouveauNom) {
+        this.nom = nouveauNom;
+    }
+
+    public TextField getDate() {
         return this.date;
     }
 
-    public TextField getHeure(){
+    public void setDate(TextField nouvelleDate) {
+        this.date = nouvelleDate;
+    }
+
+    public TextField getHeure() {
         return this.heure;
     }
 
-    public ArrayList<> getDossards(){
+    public void setHeure(TextField nouvelleHeure) {
+        this.heure = nouvelleHeure;
+    }
+
+    public List<Integer> getDossards() {
         return this.dossards;
     }
-    
-    public ArrayList<> getDossardsPartis(){
+
+    public void setDossards(List<Integer> nouveauxDossards) {
+        this.dossards = nouveauxDossards;
+    }
+
+    public List<Integer> getDossardsPartis() {
         return this.dossardsPartis;
     }
 
-    public ArrayList<> getDossardsArrives(){
+    public void setDossardsPartis(List<Integer> nouveauxDossardsPartis) {
+        this.dossardsPartis = nouveauxDossardsPartis;
+    }
+
+    public List<Integer> getDossardsArrives() {
         return this.dossardsArrives;
     }
+
+    public void setDossardsArrives(List<Integer> nouveauxDossardsArrives) {
+        this.dossardsArrives = nouveauxDossardsArrives;
+    }
+
+
+
+
+    private void afficheCourses(){
+
+    }
+
+    public void updateCourses(TextField date){
+
+    }
+
+    public void nouvelleCourse(){
+
+    }
+
+    public void chronometre(){
+
+    }
 }
-
-
-
-- afficheCourses():void
-+ getTfDate():TextField
-+ updateCourses(date:String):void
-+ nouvelleCourse():void
-+ chronometre():void

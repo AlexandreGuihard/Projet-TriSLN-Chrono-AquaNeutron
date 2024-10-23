@@ -22,7 +22,7 @@ public class FenetreLogin {
     }
 
     public void setIdentifiant(TextField identifiant) {
-        this.identifier= identifiant
+        this.identifier= identifiant;
     }
 
     public String getMotDePasse() {
@@ -30,7 +30,7 @@ public class FenetreLogin {
     }
 
     public void setMotDePasse(PasswordField motDePasse){
-        this.mdp = motDePasse
+        this.mdp = motDePasse;
     }
 
     public Button getBoutonConnexion() {
@@ -38,7 +38,7 @@ public class FenetreLogin {
     }
 
     public void setBoutonConnexion(Button bouton){
-        this.bConnexion = bouton
+        this.bConnexion = bouton;
     }
 
     public void connecter() {
