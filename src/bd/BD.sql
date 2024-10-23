@@ -56,7 +56,6 @@ CREATE TABLE PARTICIPANT (
     club           VARCHAR(42),
     num_Licence    INT,
     date_Naissance DATE,
-    date_naissance DATE,
     nom_Equipe     VARCHAR(42),
     licence        BOOLEAN,
     PRIMARY KEY (id_Participant)
