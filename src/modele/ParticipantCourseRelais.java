@@ -1,4 +1,4 @@
-package modele;
+package src.modele;
 
 public class ParticipantCourseRelais extends Participant{
     private String nomEquipe;
