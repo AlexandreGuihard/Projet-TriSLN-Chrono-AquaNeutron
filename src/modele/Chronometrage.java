@@ -1,6 +1,6 @@
-package modele;
+package src.modele;
 
-import modele.Exception.ChronoNotStartedException;
+import src.modele.Exceptions.ChronoNotStartedException;
 
 /**
  * La classe Chronometrage permet de mesurer le temps écoulé entre le démarrage
