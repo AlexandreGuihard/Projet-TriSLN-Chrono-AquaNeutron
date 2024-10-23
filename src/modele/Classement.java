@@ -10,7 +10,7 @@ public class Classement extends ArrayList<Participant>{
     private String categorie;
     private char genre;
 
-    public Classement(String categorie, String genre) {
+    public Classement(String categorie, char genre) {
         super();
         this.categorie = categorie;
         this.genre = genre;
@@ -20,7 +20,7 @@ public class Classement extends ArrayList<Participant>{
         return this.categorie;
     }
 
-    public String getGenre(){
+    public char getGenre(){
         return this.genre;
     }
 
