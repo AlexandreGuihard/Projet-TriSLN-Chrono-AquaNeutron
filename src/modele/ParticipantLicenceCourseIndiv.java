@@ -1,3 +1,5 @@
+package modele;
+
 public class ParticipantLicenceCourseIndiv extends Participant{
     private String club;
     private String licence;

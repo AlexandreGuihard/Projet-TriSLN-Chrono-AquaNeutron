@@ -1,3 +1,5 @@
+package modele;
+
 public abstract class Participant{
     private int id;
     private String nom;
