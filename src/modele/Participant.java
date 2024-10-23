@@ -12,7 +12,7 @@ public abstract class Participant{
     private int numTel;
     private Classement classement;
 
-    public Participant(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, Classement classement){
+    public Participant(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel){
         this.id=id;
         this.nom=nom;
         this.prenom=prenom;
@@ -22,7 +22,6 @@ public abstract class Participant{
         this.ville=ville;
         this.certification=certification;
         this.numTel=numTel;
-        this.classement=classement;
     }
 
     public int getId(){
@@ -95,13 +94,5 @@ public abstract class Participant{
 
     public void setTel(int numTel){
         this.numTel=numTel;
-    }
-
-    public Classement getClassement() {
-        return classement;
-    }
-
-    public void setClassement(Classement classement) {
-        this.classement = classement;
     }
 }
