@@ -1,3 +1,5 @@
+package modele;
+
 public class ParticipantCourseRelais extends Participant{
     private String nomEquipe;
     private String licence;

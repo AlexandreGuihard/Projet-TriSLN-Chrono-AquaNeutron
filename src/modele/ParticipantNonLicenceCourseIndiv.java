@@ -1,3 +1,5 @@
+package modele;
+
 public class ParticipantNonLicenceCourseIndiv extends Participant{
     private String dateDeNaissance;
 
