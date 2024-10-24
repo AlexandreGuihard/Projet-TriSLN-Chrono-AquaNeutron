@@ -19,6 +19,31 @@ public class FenetreParticipant extends Application {
     public FenetreParticipant(){
         this.categories = new ArrayList<>();
         this.sousCategories = new ComboBox<String>();
+        this.categorieChoisie = new String();
+    }
+
+    public List<Button> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Button> categories) {
+        this.categories = categories;
+    }
+
+    public ComboBox<String> getSousCategories() {
+        return sousCategories;
+    }
+
+    public void setSousCategories(ComboBox<String> sousCategories) {
+        this.sousCategories = sousCategories;
+    }
+
+    public String getCategorieChoisie() {
+        return categorieChoisie;
+    }
+
+    public void setCategorieChoisie(String categorieChoisie) {
+        this.categorieChoisie = categorieChoisie;
     }
 
     private void afficheCategories(){
@@ -36,7 +61,7 @@ public class FenetreParticipant extends Application {
     public void popUpSeniors(){
         Stage StageVue = new Stage();
         BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpSenior.fxml"));
-        Scene popUp
+        Scene popUp;
         popUp = new Scene(root);
         StageVue.setScene(new Scene(popUp));
         StageVue.show();
@@ -45,7 +70,7 @@ public class FenetreParticipant extends Application {
     public void popUpVeterans(){
         Stage StageVue = new Stage();
         BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpVeteran.fxml"));
-        Scene popUp
+        Scene popUp;
         popUp = new Scene(root);
         StageVue.setScene(new Scene(popUp));
         StageVue.show();
