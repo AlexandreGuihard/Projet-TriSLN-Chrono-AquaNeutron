@@ -169,12 +169,11 @@ public class FenetreCourses {
 
 
 
-
     private void afficheCourses(){
 
     }
 
-    public void updateCourses(TextField date){
+    public void updateCourses(String date){
 
     }
 
