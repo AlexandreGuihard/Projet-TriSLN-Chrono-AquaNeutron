@@ -3,14 +3,18 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -30,9 +34,9 @@
                <children>
                   <VBox prefHeight="134.0" prefWidth="188.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="127.0" text="Dossard arrivé">
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="66.0" text="Nom">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
                         <TextField fx:id="idNom" prefHeight="30.0" prefWidth="188.0">
@@ -42,41 +46,55 @@
                         </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets left="100.0" />
+                        <Insets left="150.0" />
                      </HBox.margin>
                   </VBox>
-                  <Button fx:id="btnAJtCourse1" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Arrivé" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <HBox.margin>
-                        <Insets left="35.0" top="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <TableView prefHeight="134.0" prefWidth="367.0">
-                     <columns>
-                        <TableColumn prefWidth="118.0" text="Dossards partis" />
-                        <TableColumn prefWidth="118.0" text="Dossards arrivés" />
-                        <TableColumn minWidth="0.0" prefWidth="131.0" text="Dossards réstants" />
-                     </columns>
+                  <MenuButton fx:id="idFormat" mnemonicParsing="false" prefHeight="33.0" prefWidth="206.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Format">
+                    <items>
+                      <MenuItem fx:id="btnJeune" mnemonicParsing="false" text="Jeune" />
+                      <MenuItem fx:id="btnXS" mnemonicParsing="false" text="XS" />
+                        <MenuItem fx:id="btnS" mnemonicParsing="false" text="S" />
+                        <MenuItem fx:id="btnM" mnemonicParsing="false" text="M" />
+                    </items>
                      <HBox.margin>
                         <Insets left="200.0" />
                      </HBox.margin>
-                  </TableView>
-                  <VBox prefHeight="134.0" prefWidth="183.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </MenuButton>
+                  <Label text="Départ :">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="150.0" right="50.0" top="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <VBox prefHeight="134.0" prefWidth="243.0">
                      <children>
-                        <Label text="Temps différés">
+                        <Label text="Date">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="idDate" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm:ss">
+                        <TextField fx:id="idDate" prefHeight="30.0" prefWidth="188.0" promptText="jj/mm/aa">
+                           <opaqueInsets>
+                              <Insets left="10.0" />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Heure">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="idHeure" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm">
                            <opaqueInsets>
                               <Insets left="10.0" />
                            </opaqueInsets>
@@ -86,7 +104,7 @@
                         </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets left="50.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
                </children>
@@ -94,32 +112,43 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="0.0" prefWidth="1319.0">
+            <Label text="Catégories :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="150.0" top="50.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="199.0" prefWidth="1319.0">
                <children>
-                  <TableView prefHeight="199.0" prefWidth="630.0">
-                     <columns>
-                        <TableColumn prefWidth="118.0" text="Dossards" />
-                        <TableColumn prefWidth="118.0" text="Top départ" />
-                        <TableColumn minWidth="0.0" prefWidth="131.0" text="Top arrivée" />
-                        <TableColumn minWidth="0.0" prefWidth="131.0" text="Chrono" />
-                        <TableColumn minWidth="0.0" prefWidth="131.0" text="sexe" />
-                     </columns>
-                  </TableView>
-                  <Button fx:id="btnAJtCourse" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Top départ" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                  <GridPane prefHeight="199.0" prefWidth="797.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <CheckBox fx:id="idMinPoussins" mnemonicParsing="false" text="Mini-Poussins" />
+                        <CheckBox fx:id="idBenjamins" mnemonicParsing="false" text="Benjamins" GridPane.columnIndex="1" />
+                        <CheckBox fx:id="idPoussins" mnemonicParsing="false" text="Poussins" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="idMinimes" mnemonicParsing="false" text="Minimes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="idPupilles" mnemonicParsing="false" text="Pupilles" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="idCadets" mnemonicParsing="false" text="Cadets" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="idJunoirs" mnemonicParsing="false" text="Juniors" GridPane.columnIndex="2" />
+                        <CheckBox fx:id="idSeniors" mnemonicParsing="false" text="Seniors" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="idVetran" mnemonicParsing="false" text="Vétéran" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                     </children>
                      <HBox.margin>
-                        <Insets left="100.0" top="270.0" />
+                        <Insets left="150.0" />
                      </HBox.margin>
-                  </Button>
-                  <Button fx:id="btnAJtCourse3" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Fin de course" textFill="WHITE">
+                  </GridPane>
+                  <Button fx:id="btnAJtCourse" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="100.0" prefWidth="241.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Ajouter la course" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -130,32 +159,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <HBox.margin>
-                        <Insets left="50.0" top="270.0" />
+                        <Insets left="100.0" top="50.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
-                     <image>
-                        <Image url="@../../../img/93634.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </Button>
          </children>
       </VBox>
    </center>
@@ -164,7 +172,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -196,7 +204,7 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="62.0">
                            <image>
-                              <Image url="@../../../img/Account-PNG-Image.png" />
+                              <Image url="@../img/Account-PNG-Image.png" />
                            </image>
                            <VBox.margin>
                               <Insets left="17.0" />
@@ -222,7 +230,7 @@
                      <children>
                         <ImageView fitHeight="88.0" fitWidth="90.0">
                            <image>
-                              <Image url="@../../../img/2948025.png" />
+                              <Image url="@../img/2948025.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Accueil">

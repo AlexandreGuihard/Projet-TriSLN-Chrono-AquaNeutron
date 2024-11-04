@@ -33,6 +33,31 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onMouseEntered="#btnPaticipantsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Les paticipants" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnCourses" mnemonicParsing="false" onMouseEntered="#btnCoursesME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Les courses" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#btnClassementsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
@@ -57,25 +82,27 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <Button fx:id="btnConnexion" mnemonicParsing="false" onMouseEntered="#btnConnexionME" prefHeight="126.0" prefWidth="114.0" style="-fx-background-radius: 10; -fx-background-color: lightgrey;">
+            <Button fx:id="btnDeconnexion" mnemonicParsing="false" onMouseEntered="#btnDeconnexionME" prefHeight="121.0" prefWidth="114.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                <graphic>
-                  <VBox prefHeight="118.0" prefWidth="85.0">
+                  <VBox prefHeight="110.0" prefWidth="63.0">
                      <children>
-                        <ImageView fitHeight="79.0" fitWidth="80.0">
+                        <ImageView fitHeight="88.0" fitWidth="90.0">
                            <image>
-                              <Image url="@../../../img/login_icon_137429.png" />
+                              <Image url="@../img/876779.png" />
                            </image>
-                           <VBox.margin>
-                              <Insets left="8.0" />
-                           </VBox.margin>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="104.0" style="-fx-font-weight: bold;" text="Se connecter">
+                        <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Se">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="deconnecter">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -84,7 +111,7 @@
                   </VBox>
                </graphic>
                <HBox.margin>
-                  <Insets left="1000.0" top="20.0" />
+                  <Insets left="1000.0" top="15.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />

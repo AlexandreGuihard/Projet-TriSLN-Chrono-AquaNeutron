@@ -167,8 +167,6 @@ public class FenetreCourses {
         this.dossardsArrives = nouveauxDossardsArrives;
     }
 
-
-
     private void afficheCourses(){
 
     }
