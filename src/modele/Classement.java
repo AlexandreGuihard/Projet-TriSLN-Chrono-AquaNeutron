@@ -5,7 +5,6 @@ import java.util.List;
 
 import modele.Participant;
 import modele.Exceptions.WrongInformationException;
-import modele.Participant;
 
 public class Classement{
     private int id;
@@ -15,12 +14,13 @@ public class Classement{
     private String temps;
     private Participant participant;
 
-    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps){ 
+    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps, Participant participant){ 
         this.id = id;
         this.posGeneral = posGeneral;
         this.posCategorie = posCategorie;
         this.posClub = posClub;
         this.temps = temps;
+        this.participant = participant;
     }
 
     public int getId() {
@@ -63,8 +63,5 @@ public class Classement{
     }
     public void setTemps(String temps) {
         this.temps = temps;
-    }
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
     }
 }
