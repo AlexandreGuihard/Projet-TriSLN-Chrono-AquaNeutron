@@ -147,4 +147,13 @@ public class BdTriSLN{
         addCourse.executeUpdate();
         addCourse.close();
     }
+
+    public boolean verifConnexion(String identifiant, String motDePasse){
+        Statement st=this.connexion.createStatement("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(rs.next()){
+            String motDePasseBd=rs.getString(2);
+            return motDePasseBd.equals(motDePasse);
+        }
+        return false;
+    }
 }
