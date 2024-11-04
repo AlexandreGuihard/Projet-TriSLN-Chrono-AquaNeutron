@@ -35,31 +35,6 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onMouseEntered="#participantsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les paticipants" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnCourses" mnemonicParsing="false" onMouseEntered="#coursesME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les courses" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="50.0" right="50.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#classementsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
