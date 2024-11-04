@@ -1,3 +1,5 @@
+package src.vue;
+
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -21,7 +23,7 @@ public class FenetreClassements {
     private ComboBox<String> genre;
     private String genreChoisie;
 
-    public FenetreClassements(){
+    public FenetreClassements(FXMLLoader loader){
         this.classement = new TableView<>();
         this.souscategories = new ComboBox<>();
         this.categorieChoisie = "";
