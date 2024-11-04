@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
+import src.modele.Chronometrage;
 import src.modele.Course;
 
 public class FenetreCourses {
@@ -170,7 +171,16 @@ public class FenetreCourses {
 
 
     private void afficheCourses(){
-
+        try {
+            Stage StageVue = new Stage();
+            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetGererCourses.fxml"));
+            Scene page;
+            page = new Scene(root);
+            StageVue.setScene(new Scene(page));
+            StageVue.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateCourses(String date){
@@ -178,10 +188,22 @@ public class FenetreCourses {
     }
 
     public void nouvelleCourse(){
-
+        try {
+            Stage StageVue = new Stage();
+            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetNouvelleCourse.fxml"));
+            Scene page;
+            page = new Scene(root);
+            StageVue.setScene(new Scene(page));
+            StageVue.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void chronometre(){
+        Chronometrage chrono = new Chronometrage();
+
+
 
     }
 }
