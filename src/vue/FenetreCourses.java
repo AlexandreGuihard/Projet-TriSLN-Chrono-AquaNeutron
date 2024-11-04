@@ -167,14 +167,11 @@ public class FenetreCourses {
         this.dossardsArrives = nouveauxDossardsArrives;
     }
 
-
-
-
     private void afficheCourses(){
 
     }
 
-    public void updateCourses(TextField date){
+    public void updateCourses(String date){
 
     }
 
