@@ -1,4 +1,4 @@
-package vue;
+package src.vue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +16,10 @@ public class FenetreParticipant extends Application {
     private ComboBox<String> sousCategories;
     private String categorieChoisie;
 
-    public FenetreParticipant(){
+    public FenetreParticipant(FXMLLoader loader){
         this.categories = new ArrayList<>();
-        this.sousCategories = new ComboBox<String>();
-        this.categorieChoisie = new String();
+        this.sousCategories = new ComboBox<>();
+        this.categorieChoisie = "";
     }
 
     public List<Button> getCategories() {
@@ -59,21 +59,29 @@ public class FenetreParticipant extends Application {
     }
 
     public void popUpSeniors(){
-        Stage StageVue = new Stage();
-        BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpSenior.fxml"));
-        Scene popUp;
-        popUp = new Scene(root);
-        StageVue.setScene(new Scene(popUp));
-        StageVue.show();
+        try {
+            Stage StageVue = new Stage();
+            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpSenior.fxml"));
+            Scene popUp;
+            popUp = new Scene(root);
+            StageVue.setScene(new Scene(popUp));
+            StageVue.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void popUpVeterans(){
-        Stage StageVue = new Stage();
-        BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpVeteran.fxml"));
-        Scene popUp;
-        popUp = new Scene(root);
-        StageVue.setScene(new Scene(popUp));
-        StageVue.show();
+        try {
+            Stage StageVue = new Stage();
+            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpVeteran.fxml"));
+            Scene popUp;
+            popUp = new Scene(root);
+            StageVue.setScene(new Scene(popUp));
+            StageVue.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void afficheParticipants(){

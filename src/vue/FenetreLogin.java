@@ -1,3 +1,5 @@
+package src.vue;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -10,7 +12,7 @@ public class FenetreLogin {
     private PasswordField mdp;
     private Button bConnexion;     
 
-    public FenetreLogin(){
+    public FenetreLogin(FXMLLoader loader){
 
         this.identifier = new TextField();       
         this.mdp = new PasswordField();
