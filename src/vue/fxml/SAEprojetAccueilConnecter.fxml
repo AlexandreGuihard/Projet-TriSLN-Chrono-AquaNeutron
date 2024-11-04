@@ -82,7 +82,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -94,7 +94,7 @@
                      <children>
                         <ImageView fitHeight="88.0" fitWidth="90.0">
                            <image>
-                              <Image url="@../../../img/876779.png" />
+                              <Image url="@../img/876779.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Se">
