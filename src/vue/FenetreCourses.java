@@ -1,3 +1,5 @@
+package src.vue;
+
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -29,7 +31,7 @@ public class FenetreCourses {
     private List<Integer> dossardsPartis;
     private List<Integer> dossardsArrives;
 
-    public FenetreCourses() {
+    public FenetreCourses(FXMLLoader loader) {
 
         this.tfDate = new TextField();
         this.prochainesCourses = new TableView<>();

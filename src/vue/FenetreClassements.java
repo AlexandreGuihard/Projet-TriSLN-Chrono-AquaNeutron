@@ -1,8 +1,10 @@
+
+package src.vue;
+
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
@@ -24,7 +26,7 @@ public class FenetreClassements {
     private ComboBox<String> genre;
     private String genreChoisie;
 
-    public FenetreClassements(){
+    public FenetreClassements(FXMLLoader loader){
         this.classement = new TableView<>();
         this.souscategories = new ComboBox<>();
         this.categorieChoisie = "";
