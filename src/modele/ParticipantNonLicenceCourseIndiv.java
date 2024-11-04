@@ -1,4 +1,4 @@
-package modele;
+package src.modele;
 
 public class ParticipantNonLicenceCourseIndiv extends Participant{
     private String dateDeNaissance;

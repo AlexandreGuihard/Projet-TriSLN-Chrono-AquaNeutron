@@ -77,8 +77,4 @@ public class Course {
     public void addParticipants(Participant participant) {
         lesParticipants.add(participant);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 61f9f09f505a7bce30ec3c07c2323dc7e8ee646c

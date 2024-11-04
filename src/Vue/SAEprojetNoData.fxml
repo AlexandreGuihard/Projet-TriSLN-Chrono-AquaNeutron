@@ -42,27 +42,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
-                     <image>
-                        <Image url="@../../../img/93634.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets top="105.0" />
-               </VBox.margin>
-            </Button>
          </children>
       </VBox>
    </center>
@@ -71,7 +50,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -103,7 +82,7 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="62.0">
                            <image>
-                              <Image url="@../../../img/Account-PNG-Image.png" />
+                              <Image url="@../img/Account-PNG-Image.png" />
                            </image>
                            <VBox.margin>
                               <Insets left="17.0" />
@@ -132,7 +111,7 @@
                      <children>
                         <ImageView fitHeight="88.0" fitWidth="90.0">
                            <image>
-                              <Image url="@../../../img/2948025.png" />
+                              <Image url="@../img/2948025.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Accueil">

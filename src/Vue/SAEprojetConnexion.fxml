@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,7 +16,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none solid none;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="TriSLN">
+            <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Connexion">
                <font>
                   <Font size="64.0" />
                </font>
@@ -23,17 +24,39 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="68.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="AquaNeutron">
-               <font>
-                  <Font size="64.0" />
-               </font>
+            <VBox prefHeight="200.0" prefWidth="465.0">
+               <children>
+                  <Label text="Identifiant :">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="idIdentifiant" prefHeight="30.0" prefWidth="188.0" promptText="Username">
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                  </TextField>
+                  <Label text="Mot de passe :">
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="idMdp" prefHeight="30.0" prefWidth="1089.0" promptText="Password">
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
                <VBox.margin>
-                  <Insets top="-30.0" />
+                  <Insets left="400.0" right="400.0" top="50.0" />
                </VBox.margin>
-            </Label>
+            </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#btnClassementsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnConnecter" mnemonicParsing="false" onMouseEntered="#btnConnecterME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Se connecter" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -46,7 +69,7 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets top="170.0" />
+                  <Insets top="50.0" />
                </VBox.margin>
             </HBox>
          </children>
@@ -57,25 +80,25 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <Button fx:id="btnConnexion" mnemonicParsing="false" onMouseEntered="#btnConnexionME" prefHeight="126.0" prefWidth="114.0" style="-fx-background-radius: 10; -fx-background-color: lightgrey;">
+            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="126.0" prefWidth="114.0" style="-fx-background-radius: 10; -fx-background-color: lightgrey;">
                <graphic>
                   <VBox prefHeight="118.0" prefWidth="85.0">
                      <children>
                         <ImageView fitHeight="79.0" fitWidth="80.0">
                            <image>
-                              <Image url="@../../../img/login_icon_137429.png" />
+                              <Image url="@../img/2948025.png" />
                            </image>
                            <VBox.margin>
                               <Insets left="8.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="104.0" style="-fx-font-weight: bold;" text="Se connecter">
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="104.0" style="-fx-font-weight: bold;" text="Accueil">
                            <font>
                               <Font size="14.0" />
                            </font>

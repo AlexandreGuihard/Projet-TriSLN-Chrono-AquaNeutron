@@ -50,7 +50,6 @@ public class Classement{
     public void setId(int id) {
         this.id = id;
     }
-
     public void setPosGeneral(int posGeneral) {
         this.posGeneral = posGeneral;
     }
