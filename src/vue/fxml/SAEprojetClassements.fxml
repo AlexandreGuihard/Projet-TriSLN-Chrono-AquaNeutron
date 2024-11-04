@@ -90,14 +90,14 @@
             </HBox>
             <TableView VBox.vgrow="NEVER">
                <columns>
-                  <TableColumn text="Positions" />
-                  <TableColumn text="Temps" />
-                  <TableColumn text="Nom/Prénom" />
-                  <TableColumn text="Club/Equipe" />
-                  <TableColumn text="Dossard" />
-                  <TableColumn text="Catégorie" />
-                  <TableColumn text="Classements Catégories" />
-                  <TableColumn text="Licence" />
+                  <TableColumn text="Positions" reorderable="false"/>
+                  <TableColumn text="Temps" reorderable="false"/>
+                  <TableColumn text="Nom/Prénom" reorderable="false"/>
+                  <TableColumn text="Club/Equipe" reorderable="false"/>
+                  <TableColumn text="Dossard" reorderable="false"/>
+                  <TableColumn text="Catégorie" reorderable="false"/>
+                  <TableColumn text="Classements Catégories" reorderable="false"/>
+                  <TableColumn text="Licence" reorderable="false"/>
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

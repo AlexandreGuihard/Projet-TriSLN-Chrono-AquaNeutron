@@ -45,11 +45,11 @@
                            <children>
                               <TableView prefHeight="302.0" prefWidth="680.0">
                                  <columns>
-                                    <TableColumn text="Id" />
-                                    <TableColumn text="Nom" />
-                                    <TableColumn text="Format" />
-                                    <TableColumn text="Catégories" />
-                                    <TableColumn text="Départ" />
+                                    <TableColumn text="Id" reorderable="false"/>
+                                    <TableColumn text="Nom" reorderable="false"/>
+                                    <TableColumn text="Format" reorderable="false"/>
+                                    <TableColumn text="Catégories" reorderable="false"/>
+                                    <TableColumn text="Départ" reorderable="false"/>
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
