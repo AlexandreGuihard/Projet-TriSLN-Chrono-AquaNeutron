@@ -3,33 +3,68 @@ package src.modele;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.modele.Participant;
-import src.modele.Exceptions.WrongInformationException;
+import modele.Participant;
+import modele.Exceptions.WrongInformationException;
+import modele.Participant;
 
-public class Classement extends ArrayList<Participant>{
-    private String categorie;
-    private char genre;
+public class Classement{
+    private int id;
+    private int posGeneral;
+    private String posCategorie;
+    private int posClub;
+    private String temps;
+    private Participant participant;
 
-    public Classement(String categorie, char genre) {
-        super();
-        this.categorie = categorie;
-        this.genre = genre;
+    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps){ 
+        this.id = id;
+        this.posGeneral = posGeneral;
+        this.posCategorie = posCategorie;
+        this.posClub = posClub;
+        this.temps = temps;
     }
 
-    public String getCategorie(){
-        return this.categorie;
+    public int getId() {
+        return id;
     }
 
-    public char getGenre(){
-        return this.genre;
+    public int getPosGeneral() {
+        return posGeneral;
     }
 
-    public void ajouter(Participant participant) throws WrongInformationException{
-        if (participant.getCategorie() != this.categorie || this.genre != 'M' && participant.getSexe() != this.genre){
-            throw new WrongInformationException();
-        } else {
-            this.add(participant);
-        }
+    public String getPosCategorie() {
+        return posCategorie;
+    }
 
+    public int getPosClub() {
+        return posClub;
+    }
+
+    public String getTemps() {
+        return temps;
+    }
+
+    public Participant getParticipant() {
+        return participant;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setPosGeneral(int posGeneral) {
+        this.posGeneral = posGeneral;
+    }
+
+    public void setPosCategorie(String posCategorie) {
+        this.posCategorie = posCategorie;
+    }
+
+    public void setPosClub(int posClub) {
+        this.posClub = posClub;
+    }
+    public void setTemps(String temps) {
+        this.temps = temps;
+    }
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
     }
 }

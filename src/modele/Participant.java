@@ -10,6 +10,7 @@ public abstract class Participant{
     private String ville;
     private String certification;
     private int numTel;
+    private Classement classement;
 
     public Participant(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel){
         this.id=id;
