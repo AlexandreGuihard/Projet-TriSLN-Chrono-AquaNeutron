@@ -173,7 +173,6 @@ public class FenetreCourses {
         this.dossardsArrives = nouveauxDossardsArrives;
     }
 
-
     private void afficheCourses(){
         try {
             Stage StageVue = new Stage();

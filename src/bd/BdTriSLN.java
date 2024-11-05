@@ -59,7 +59,8 @@ public class BdTriSLN{
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
                 Chronometrage chronometre=new Chronometrage();
-                Participant participant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, club, numLicence,dateDeNaissance);//,chronometre manque un constructeur qui prend en compte chrono TODO
+
+                Participant participant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, club, numLicence, dateDeNaissance);
                 participantsLicenceCourseIndiv.add(participant);
             }
             catch(SQLException e){
@@ -88,7 +89,9 @@ public class BdTriSLN{
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
                 Chronometrage chronometre=new Chronometrage();
-                Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, dateDeNaissance);//,chronometre chronometre manque un constructeur qui prend en compte chrono TODO
+
+                Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, dateDeNaissance);
+
                 participantsNonLicenceCourseIndividuelles.add(participant);
             }
             catch(SQLException e){

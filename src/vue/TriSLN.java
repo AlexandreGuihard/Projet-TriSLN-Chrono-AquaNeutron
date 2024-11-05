@@ -1,6 +1,5 @@
 package src.vue;
 
-
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -15,9 +14,11 @@ import src.bd.*;
 import src.controleurs.*;
 
 
+
 public class TriSLN extends Application{
     private Stage stage;
     private ConnexionMySQL co;
+
     private static BdTriSLN bd;
     private boolean connecte;
     private Button btnConnexion;
