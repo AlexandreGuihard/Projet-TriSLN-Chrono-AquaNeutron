@@ -31,7 +31,7 @@
                   <Insets top="100.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnImporterExcel" mnemonicParsing="false" onMouseEntered="#btnImporterExcelME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Importer Excel" textFill="WHITE">
+            <Button fx:id="btnImporterExcel" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Importer Excel" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE">
+            <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -94,7 +94,7 @@
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
+            <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="120.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
                <HBox.margin>
                   <Insets left="700.0" top="20.0" />
                </HBox.margin>
@@ -126,7 +126,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilLE" prefHeight="126.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
+            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="126.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
                <graphic>
                   <VBox prefHeight="110.0" prefWidth="63.0">
                      <children>

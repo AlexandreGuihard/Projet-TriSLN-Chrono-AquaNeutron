@@ -33,7 +33,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onMouseEntered="#btnPaticipantsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Les paticipants" textFill="WHITE">
+                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Les paticipants" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -47,7 +47,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnCourses" mnemonicParsing="false" onMouseEntered="#btnCoursesME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Les courses" textFill="WHITE">
+                  <Button fx:id="btnCourses" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Les courses" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -58,7 +58,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#btnClassementsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -88,7 +88,7 @@
                   <Insets bottom="5.0" left="40.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <Button fx:id="btnDeconnexion" mnemonicParsing="false" onMouseEntered="#btnDeconnexionME" prefHeight="121.0" prefWidth="114.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+            <Button fx:id="btnDeconnexion" mnemonicParsing="false" onMouseEntered="#handleBtnAccueil" prefHeight="121.0" prefWidth="114.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                <graphic>
                   <VBox prefHeight="110.0" prefWidth="63.0">
                      <children>
