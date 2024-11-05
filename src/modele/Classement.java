@@ -17,6 +17,7 @@ public class Classement{
     private String temps;
     private Participant participant;
 
+    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps, Participant participant){ 
 
     /**
      * Constructeur de la classe Classement
@@ -27,13 +28,12 @@ public class Classement{
      * @param temps le temps qu'a effectuer le participant
      * @param participant la participant
      */
-
-    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps){ 
         this.id = id;
         this.posGeneral = posGeneral;
         this.posCategorie = posCategorie;
         this.posClub = posClub;
         this.temps = temps;
+        this.participant = participant;
     }
 
     /**
@@ -122,8 +122,5 @@ public class Classement{
      */
     public void setTemps(String temps) {
         this.temps = temps;
-    }
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
     }
 }

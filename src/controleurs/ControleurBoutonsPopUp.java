@@ -1,4 +1,4 @@
-package src.Controleur;
+package src.controleurs;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;

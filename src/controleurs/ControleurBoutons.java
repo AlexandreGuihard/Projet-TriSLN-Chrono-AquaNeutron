@@ -1,4 +1,6 @@
-package src.Controleur;
+package src.controleurs;
+
+import src.vue.TriSLN;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
