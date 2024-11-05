@@ -10,7 +10,7 @@ public class ConnexionMySQL {
 			//Class.forName("com.mysql.jdbc.Driver");
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Driver MySQL non trouvÃ©?");
+			System.out.println("Driver MySQL non trouve\b ?");
 			mysql=null;
 			return;
 		}
