@@ -1,3 +1,5 @@
+package src.vue;
+
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -24,7 +26,7 @@ public class FenetreClassements {
     private ComboBox<String> genre;
     private String genreChoisie;
 
-    public FenetreClassements(){
+    public FenetreClassements(FXMLLoader loader){
         this.classement = new TableView<>();
         this.souscategories = new ComboBox<>();
         this.categorieChoisie = "";
@@ -78,7 +80,8 @@ public class FenetreClassements {
             BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetClassement.fxml"));
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(new Scene(page));
+            StageVue.setScene(page);
+
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();
