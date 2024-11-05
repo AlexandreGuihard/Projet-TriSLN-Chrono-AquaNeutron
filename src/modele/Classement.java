@@ -1,4 +1,10 @@
 package src.modele;
+import java.util.ArrayList;
+import java.util.List;
+
+import src.modele.Participant;
+import src.modele.Exceptions.WrongInformationException;
+import src.modele.Participant;
 
 /**
  * Classe Classement représentant le classement d'un participant
@@ -11,6 +17,7 @@ public class Classement{
     private String temps;
     private Participant participant;
 
+
     /**
      * Constructeur de la classe Classement
      * @param id l'id du classement
@@ -20,13 +27,13 @@ public class Classement{
      * @param temps le temps qu'a effectuer le participant
      * @param participant la participant
      */
-    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps, Participant participant){ 
+
+    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps){ 
         this.id = id;
         this.posGeneral = posGeneral;
         this.posCategorie = posCategorie;
         this.posClub = posClub;
         this.temps = temps;
-        this.participant = participant;
     }
 
     /**
@@ -115,5 +122,8 @@ public class Classement{
      */
     public void setTemps(String temps) {
         this.temps = temps;
+    }
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
     }
 }

@@ -7,6 +7,7 @@ public class ParticipantCourseRelais extends Participant{
     private String nomEquipe;
     private boolean licence;
 
+
     /**
      * Constructeur de la classe ParticipantCourseRelais
      * @param id l'identifiant du participant
@@ -27,10 +28,18 @@ public class ParticipantCourseRelais extends Participant{
         this.licence=licence;
     }
 
+
     /**
      * Getter du nom de l'équipe du participant
      * @return le nom de l'équipe du participant
      */
+
+    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String nomEquipe, int numLicence){
+        super(id, nom, prenom, categorie, sexe, email, ville, certification, numTel);
+        this.nomEquipe=nomEquipe;
+        this.numLicence=numLicence;
+    }
+
     public String getNomEquipe(){
         return this.nomEquipe;
     }
@@ -58,4 +67,15 @@ public class ParticipantCourseRelais extends Participant{
     public void setLicence(boolean licence){
         this.licence=licence;
     }
+
+
+
+    public int getNumLicence() {
+        return numLicence;
+    }
+
+    public void setNumLicence(int numLicence) {
+        this.numLicence = numLicence;
+    }
+
 }

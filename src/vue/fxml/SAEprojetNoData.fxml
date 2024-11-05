@@ -3,17 +3,19 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="827.0" prefWidth="1321.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none solid none;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Les (Participants / Courses)">
                <font>
@@ -42,27 +44,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
-                     <image>
-                        <Image url="@../../../img/93634.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets top="105.0" />
-               </VBox.margin>
-            </Button>
          </children>
       </VBox>
    </center>
@@ -71,7 +52,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -103,7 +84,7 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="62.0">
                            <image>
-                              <Image url="@../../../img/Account-PNG-Image.png" />
+                              <Image url="@../img/Account-PNG-Image.png" />
                            </image>
                            <VBox.margin>
                               <Insets left="17.0" />
@@ -132,7 +113,7 @@
                      <children>
                         <ImageView fitHeight="88.0" fitWidth="90.0">
                            <image>
-                              <Image url="@../../../img/2948025.png" />
+                              <Image url="@../img/2948025.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Accueil">
@@ -153,4 +134,27 @@
          </children>
       </HBox>
    </top>
+   <bottom>
+      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+               <image>
+                  <Image url="@../../../img/93634.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
 </BorderPane>

@@ -1,4 +1,3 @@
-
 package src.vue;
 
 import javafx.scene.control.TextField;
@@ -80,7 +79,8 @@ public class FenetreClassements {
             BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetClassement.fxml"));
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(new Scene(page));
+            StageVue.setScene(page);
+
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();
