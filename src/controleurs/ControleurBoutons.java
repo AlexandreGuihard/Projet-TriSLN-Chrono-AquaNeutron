@@ -11,7 +11,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import src.vue;
+import src.vue.*;
 
 
 public class ControleurBoutons implements EventHandler<ActionEvent>{
