@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 
 public class FenetreClassements {
 
@@ -80,7 +81,6 @@ public class FenetreClassements {
             Scene page;
             page = new Scene(root);
             StageVue.setScene(page);
-
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();

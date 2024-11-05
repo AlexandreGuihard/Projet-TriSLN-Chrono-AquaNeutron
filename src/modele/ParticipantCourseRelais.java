@@ -67,15 +67,4 @@ public class ParticipantCourseRelais extends Participant{
     public void setLicence(boolean licence){
         this.licence=licence;
     }
-
-
-
-    public int getNumLicence() {
-        return numLicence;
-    }
-
-    public void setNumLicence(int numLicence) {
-        this.numLicence = numLicence;
-    }
-
 }

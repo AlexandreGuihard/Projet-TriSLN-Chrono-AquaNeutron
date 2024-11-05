@@ -8,10 +8,10 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.io.File;
+
 import src.vue.*;
 import src.bd.*;
-import src.Controleur.ControleurBoutonCo;
-import src.Controleur.ControleurBoutons;
+import src.controleurs.*;
 
 
 
@@ -37,9 +37,7 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-
-        ConnexionMySQL co = new ConnexionMySQL("servinfo-maria","DBguihard","guihard","guihard");
-        bd = new BdTriSLN(co);
+        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
         this.connecte=false;
     }
     public void start(Stage stage){
@@ -75,7 +73,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonCo(this));
+            loader.setController(new ControleurBoutonsCo(this));
             BorderPane accueilConnecte=(BorderPane)loader.load();
             Scene scene=new Scene(accueilConnecte);
             this.stage.setScene(scene);
