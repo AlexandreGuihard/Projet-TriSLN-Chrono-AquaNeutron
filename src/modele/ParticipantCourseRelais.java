@@ -2,28 +2,19 @@ package src.modele;
 
 public class ParticipantCourseRelais extends Participant{
     private String nomEquipe;
-    private String licence;
-    private int numLicence;
+    private boolean licence;
 
-    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String nomEquipe, String licence){
+    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String nomEquipe, boolean licence){
         super(id, nom, prenom, categorie, sexe, email, ville, certification, numTel);
         this.nomEquipe=nomEquipe;
         this.licence=licence;
     }
 
-    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String nomEquipe, int numLicence){
-        super(id, nom, prenom, categorie, sexe, email, ville, certification, numTel);
-        this.nomEquipe=nomEquipe;
-        this.numLicence=numLicence;
-    }
-
-// choisir entre les deux
-
     public String getNomEquipe(){
         return this.nomEquipe;
     }
 
-    public String getLicence(){
+    public boolean getLicence(){
         return this.licence;
     }
 
@@ -31,18 +22,7 @@ public class ParticipantCourseRelais extends Participant{
         this.nomEquipe=nomEquipe;
     }
 
-    public void setLicence(String licence){
+    public void setLicence(boolean licence){
         this.licence=licence;
     }
-
-
-
-    public int getNumLicence() {
-        return numLicence;
-    }
-
-    public void setNumLicence(int numLicence) {
-        this.numLicence = numLicence;
-    }
-
 }

@@ -36,7 +36,6 @@ public class FenetreCourses {
     private List<Integer> dossardsArrives;
 
     public FenetreCourses(FXMLLoader loader) {
-
         this.tfDate = new TextField();
         this.prochainesCourses = new TableView<>();
         this.bNouvelleCourse = new Button();

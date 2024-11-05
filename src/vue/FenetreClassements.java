@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 
 public class FenetreClassements {
 
@@ -26,6 +27,7 @@ public class FenetreClassements {
     private ComboBox<String> genre;
     private String genreChoisie;
 
+    public FenetreClassements(FXMLLoader loader){
     public FenetreClassements(FXMLLoader loader){
         this.classement = new TableView<>();
         this.souscategories = new ComboBox<>();
@@ -81,7 +83,6 @@ public class FenetreClassements {
             Scene page;
             page = new Scene(root);
             StageVue.setScene(page);
-
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package src.Controleur;
+package src.controleurs;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -22,7 +22,7 @@ private Button btnCourses;
 private Button btnDeconnexion;
 //
 
-public ControleurBoutonCo(TriSLN vue){
+public ControleurBoutonsCo(TriSLN vue){
     this.vue = vue;
     this.vue.setBClassements(this.btnClassements);
     this.vue.setBConnexion(btnConnexion);
