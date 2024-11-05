@@ -16,6 +16,7 @@ public class Chronometrage {
      */
     public Chronometrage() {
         this.tempsDeparts = 0;
+        this.duree = 0;
     }
 
     /**

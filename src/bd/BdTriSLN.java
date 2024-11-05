@@ -27,8 +27,10 @@ public class BdTriSLN{
                 String ville=participants.getString(7);
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
+
                 Chronometrage chronometre=new Chronometrage();
                 Participant participant=new ParticipantCourseRelais(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, nomEquipe, licence);
+
                 participantsCourseRelais.add(participant);
             }
             catch(SQLException e){
@@ -58,6 +60,7 @@ public class BdTriSLN{
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
                 Chronometrage chronometre=new Chronometrage();
+
                 Participant participant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, club, numLicence, dateDeNaissance);
                 participantsLicenceCourseIndiv.add(participant);
             }
@@ -86,7 +89,9 @@ public class BdTriSLN{
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
                 Chronometrage chronometre=new Chronometrage();
+
                 Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, dateDeNaissance);
+
                 participantsNonLicenceCourseIndividuelles.add(participant);
             }
             catch(SQLException e){
@@ -146,5 +151,23 @@ public class BdTriSLN{
         addCourse.setDouble(6, prix);
         addCourse.executeUpdate();
         addCourse.close();
+    }
+
+    public boolean verifConnexion(String identifiant, String motDePasse){
+        try{
+        Statement st=this.connexion.createStatement();
+        ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(rs.next()){
+            String motDePasseBd=rs.getString(2);
+            return motDePasseBd.equals(motDePasse);
+        }
+        return false;
+        }
+        catch (Exception e){
+            System.out.println("erreure");
+            return false;
+        }
+        
+        
     }
 }
