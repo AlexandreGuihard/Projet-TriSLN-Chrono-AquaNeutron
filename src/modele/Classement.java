@@ -1,11 +1,5 @@
 package src.modele;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import modele.Participant;
-import modele.Exceptions.WrongInformationException;
-
 public class Classement{
     private int id;
     private int posGeneral;

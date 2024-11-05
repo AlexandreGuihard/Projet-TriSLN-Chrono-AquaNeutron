@@ -1,7 +1,6 @@
-package modele;
+package src.modele;
 import java.util.ArrayList;
 import java.util.List;
-import modele.Participant;
 
 public class Course {
     private List<Participant> lesParticipants;
