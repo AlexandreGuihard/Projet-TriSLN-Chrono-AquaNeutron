@@ -46,7 +46,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutons(this));
+            loader.setController(new ControleurBoutonsCo(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene = new Scene(accueil);
             this.stage.setScene(scene);
@@ -209,7 +209,12 @@ public class TriSLN extends Application{
         this.connecte=connecte;
     }
 
-    public void changeButtonColor(Button button){
-        button.setStyle("-fx-background-color: #105c74;");
+    public void changeButtonColor(Button button, String color, String otherStyle){
+        if(otherStyle==null){
+            button.setStyle("-fx-background-color: "+color+";");
+        }
+        else{
+            button.setStyle("-fx-background-color: "+color+";"+otherStyle+";");
+        }
     }
 }

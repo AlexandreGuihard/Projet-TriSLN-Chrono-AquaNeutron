@@ -113,12 +113,12 @@ public class ControleurBoutons implements EventHandler<ActionEvent>{
 
     @FXML
     public void handleBtnAccueil(MouseEvent event){
-        try{
-            this.vue.changeButtonColor(this.btnClassements);
-        }
-        catch(Exception e){
-            System.err.println("Erreur");
-        }
+        //try{
+        //    this.vue.changeButtonColor(this.btnClassements);
+        //}
+        //catch(Exception e){
+        //    System.err.println("Erreur");
+        //}
     }
 
     @Override
