@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import src.vue.*;
 import src.bd.*;
+import src.Controleur.*;
 
 
 public class FenetreLogin {

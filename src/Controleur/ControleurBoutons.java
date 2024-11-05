@@ -1,5 +1,4 @@
-package src.vue;
-import src.vue.TriSLN;
+package src.Controleur;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -10,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import src.vue.TriSLN;
 
 
 public class ControleurBoutons implements EventHandler<ActionEvent>{
