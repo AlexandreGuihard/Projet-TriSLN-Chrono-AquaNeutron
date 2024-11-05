@@ -107,12 +107,13 @@ public class TriSLN extends Application{
     }
 
     public void afficheClassements() throws IOException{
-        System.out.println("TATA");
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader);
+            this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -209,6 +210,10 @@ public class TriSLN extends Application{
 
     public void setConnecte(boolean connecte){
         this.connecte=connecte;
+    }
+
+    public void setWindow(Stage stage){
+        this.stage = stage;
     }
 
     public void changeButtonColor(Button button, String color, String otherStyle){

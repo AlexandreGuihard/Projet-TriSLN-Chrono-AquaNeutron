@@ -25,6 +25,7 @@ public class FenetreClassements {
     private String categorieChoisie;
     private ComboBox<String> genre;
     private String genreChoisie;
+    private Stage stage;
 
     public FenetreClassements(FXMLLoader loader){
         this.classement = new TableView<>();
@@ -32,8 +33,8 @@ public class FenetreClassements {
         this.categorieChoisie = "";
         this.genre = new ComboBox<>();
         this.genreChoisie = "";
+        this.stage= new Stage();
         this.afficheClassement(loader);
-        System.out.println("TOTO");
     }
 
     public TableView<ObservableList<Participant>> getClassement(){
@@ -76,14 +77,17 @@ public class FenetreClassements {
         this.genreChoisie = nouveauGenreChoisie;
     }
 
+    public Stage getWindow(){
+        return this.stage;
+    }
+
     private void afficheClassement(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
             BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(page);
-            StageVue.show();
+            this.stage.setScene(page);
+            this.stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

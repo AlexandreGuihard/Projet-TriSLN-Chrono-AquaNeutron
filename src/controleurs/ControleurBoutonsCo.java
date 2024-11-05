@@ -102,7 +102,6 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
         switch(btn.getText()){
             case "Classements":
                 try {
-                    System.out.println("TITI");
                     this.vue.afficheClassements();
                 } 
                 catch (IOException e)
