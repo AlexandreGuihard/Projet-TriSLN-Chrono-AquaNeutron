@@ -4,6 +4,7 @@
         "src/vue"
     ],
     "java.project.referencedLibraries": [
+
         "/usr/share/openjfx/lib/javafx.base.jar",
         "/usr/share/openjfx/lib/javafx.controls.jar",
         "/usr/share/openjfx/lib/javafx.fxml.jar",

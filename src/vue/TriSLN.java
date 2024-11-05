@@ -1,6 +1,5 @@
 package src.vue;
 
-
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -15,9 +14,11 @@ import src.Controleur.ControleurBoutonCo;
 import src.Controleur.ControleurBoutons;
 
 
+
 public class TriSLN extends Application{
     private Stage stage;
     private ConnexionMySQL co;
+
     private static BdTriSLN bd;
     private boolean connecte;
     private Button btnConnexion;
@@ -36,6 +37,7 @@ public class TriSLN extends Application{
     }
 
     public void init(){
+
         ConnexionMySQL co = new ConnexionMySQL("servinfo-maria","DBguihard","guihard","guihard");
         bd = new BdTriSLN(co);
         this.connecte=false;
