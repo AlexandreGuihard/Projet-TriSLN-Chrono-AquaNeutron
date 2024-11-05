@@ -35,9 +35,6 @@ public class Classement{
     public String getPosCategorie() {
         return posCategorie;
     }
-    public String getPosCategorie() {
-        return posCategorie;
-    }
 
     public int getPosClub() {
         return posClub;

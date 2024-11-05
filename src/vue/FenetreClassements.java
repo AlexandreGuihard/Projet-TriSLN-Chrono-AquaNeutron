@@ -28,7 +28,6 @@ public class FenetreClassements {
     private String genreChoisie;
 
     public FenetreClassements(FXMLLoader loader){
-    public FenetreClassements(FXMLLoader loader){
         this.classement = new TableView<>();
         this.souscategories = new ComboBox<>();
         this.categorieChoisie = "";
