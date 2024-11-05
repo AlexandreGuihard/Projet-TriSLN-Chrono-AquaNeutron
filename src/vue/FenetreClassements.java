@@ -81,6 +81,7 @@ public class FenetreClassements {
             Scene page;
             page = new Scene(root);
             StageVue.setScene(page);
+
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();

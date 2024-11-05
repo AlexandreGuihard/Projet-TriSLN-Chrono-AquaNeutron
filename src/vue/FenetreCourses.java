@@ -175,7 +175,6 @@ public class FenetreCourses {
     }
 
 
-
     private void afficheCourses(){
         try {
             Stage StageVue = new Stage();
