@@ -8,8 +8,8 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.io.File;
-
-import src.bd.BdTriSLN;
+import src.vue.*;
+import src.bd.*;
 
 
 public class TriSLN extends Application{
@@ -33,13 +33,13 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN();
+        bd=new BdTriSLN(new ConnexionMySQL("servinfo-maria", "Dbguihard", "guihard", "guihard"));
         this.connecte=false;
     }
     public void start(Stage stage){
         this.stage=new Stage();
         this.stage.setTitle("TriSLN");
-        File file=new File("src/SAEprojetAccueil.fxml");
+        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutons(this));
@@ -54,7 +54,7 @@ public class TriSLN extends Application{
     }
 
     public void afficheLogin(){
-        File file=new File("src/SAEprojetConnexion.fxml");
+        File file=new File("src/vue/fxml/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             this.fenetreLogin=new FenetreLogin(loader);
@@ -66,7 +66,7 @@ public class TriSLN extends Application{
     }
 
     public void afficheAccueilConnecte(){
-        File file=new File("src/SAEprojetAccueilConnecter.fxml");
+        File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutons(this));
@@ -81,7 +81,7 @@ public class TriSLN extends Application{
     }
 
     public void afficheParticipants(){
-        File file=new File("src/SAEprojetParticiperAccueil.fxml");
+        File file=new File("src/vue/fxml/SAEprojetParticiperAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             this.fenetreParticipants=new FenetreParticipant(loader);
@@ -92,7 +92,7 @@ public class TriSLN extends Application{
     }
 
     public void afficheCourses(){
-        File file=new File("src/SAEprojetGererCourses.fxml");
+        File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             this.fenetreCourses=new FenetreCourses(loader);
@@ -103,7 +103,7 @@ public class TriSLN extends Application{
     }
 
     public void afficheClassements(){
-        File file=new File("src/SAEprojetClassements.fxml");
+        File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             this.fenetreClassements=new FenetreClassements(loader);
@@ -158,7 +158,7 @@ public class TriSLN extends Application{
     }
 
     public static BdTriSLN getBd(){
-        return this.bd;
+        return bd;
     }
 
     public void setBConnexion(Button btnConnexion){

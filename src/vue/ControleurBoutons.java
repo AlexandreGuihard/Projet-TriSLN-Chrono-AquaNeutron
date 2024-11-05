@@ -1,4 +1,3 @@
-
 package src.vue;
 import src.vue.TriSLN;
 
@@ -15,18 +14,9 @@ import javafx.scene.input.MouseEvent;
 
 public class ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
-// log accuiel et AccConnecter
+
     @FXML
     private Button btnClassements;
-    @FXML
-    private Button btnConnexion;
-    @FXML
-    private Button btnPaticipants;
-    @FXML
-    private Button btnCourses;
-    @FXML
-    private Button btnDeconnexion;
-//
 
 //Chono
     @FXML
@@ -136,12 +126,6 @@ public class ControleurBoutons implements EventHandler<ActionEvent>{
             case "Classements":
                 System.out.println("Classement");
                 break;
-            
-            case "Classements":
-                System.out.println("Classement");
-                break;
-
-
             default:
                 System.out.println("Accueil");
                 break;

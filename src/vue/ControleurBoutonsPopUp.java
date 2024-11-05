@@ -1,3 +1,4 @@
+package src.Controleur;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
 
 public ControleurBoutonsPopUp(TriSLN vue){
     this.vue = vue;
-    this.vue.setBClassements(this.btnClassements);
+    // this.vue.setBClassements(this.btnClassements);
 }
 
 @Override
@@ -33,12 +34,6 @@ public void handle(ActionEvent event){
         case "Classements":
             System.out.println("Classement");
             break;
-        
-        case "Classements":
-            System.out.println("Classement");
-            break;
-
-
         default:
             System.out.println("Accueil");
             break;
