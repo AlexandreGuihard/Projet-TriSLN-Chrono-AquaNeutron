@@ -106,10 +106,12 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheClassements(){
+    public void afficheClassements() throws IOException{
+        System.out.println("TATA");
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader);
         }
         catch(Exception e){

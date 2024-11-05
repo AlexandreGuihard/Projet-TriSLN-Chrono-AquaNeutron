@@ -1,10 +1,17 @@
 package src.controleurs;
 
 import javafx.event.EventHandler;
+
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
 public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
@@ -94,7 +101,14 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
         Button btn=(Button) event.getSource();
         switch(btn.getText()){
             case "Classements":
-                System.out.println("Classement");
+                try {
+                    System.out.println("TITI");
+                    this.vue.afficheClassements();
+                } 
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                } 
                 break;
             default:
                 System.out.println("Accueil");

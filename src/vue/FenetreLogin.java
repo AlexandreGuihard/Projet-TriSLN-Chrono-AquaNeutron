@@ -26,7 +26,7 @@ public class FenetreLogin {
         this.identifier = new TextField();       
         this.mdp = new PasswordField();
         this.bConnexion = new Button();
-        loader.setController(new ControleurBoutons(new TriSLN()));
+        loader.setController(new ControleurBoutonsClassements(new TriSLN()));
         this.afficheLogin(loader);
     }
 

@@ -32,6 +32,8 @@ public class FenetreClassements {
         this.categorieChoisie = "";
         this.genre = new ComboBox<>();
         this.genreChoisie = "";
+        this.afficheClassement(loader);
+        System.out.println("TOTO");
     }
 
     public TableView<ObservableList<Participant>> getClassement(){
@@ -74,10 +76,10 @@ public class FenetreClassements {
         this.genreChoisie = nouveauGenreChoisie;
     }
 
-    private void afficheClassement(){
+    private void afficheClassement(FXMLLoader loader){
         try {
             Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetClassement.fxml"));
+            BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
             StageVue.setScene(page);

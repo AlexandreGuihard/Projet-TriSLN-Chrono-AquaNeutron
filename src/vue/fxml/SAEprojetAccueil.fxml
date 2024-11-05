@@ -35,7 +35,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnClassements" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
