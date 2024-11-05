@@ -1,4 +1,4 @@
-package vue;
+package src.vue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ public class FenetreParticipant extends Application {
     private ComboBox<String> sousCategories;
     private String categorieChoisie;
 
-    public FenetreParticipant(){
+    public FenetreParticipant(FXMLLoader loader){
         this.categories = new ArrayList<>();
-        this.sousCategories = new ComboBox<String>();
+        this.sousCategories = new ComboBox<>();
         this.categorieChoisie = "";
     }
 
