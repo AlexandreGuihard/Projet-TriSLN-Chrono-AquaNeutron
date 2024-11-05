@@ -124,7 +124,7 @@ public class BdTriSLN{
             String posCategorie=lesClassements.getString(3);
             int posClub=lesClassements.getInt(4);
             String temps=lesClassements.getString(5);
-            Classement classement=new Classement(idC, posGeneral, posCategorie, posClub, temps);//TODO 
+            Classement classement=new Classement(idC, posGeneral, posCategorie, posClub, temps);
             classements.add(classement);
         }
         return classements;

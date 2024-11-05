@@ -1,3 +1,4 @@
+package src.Controleur;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -5,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import src.vue.TriSLN;
 
-public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
+public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
 //pop up senior
@@ -21,7 +22,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     private Button choiceSenSCCB;
 //
 
-public ControleurBoutons(TriSLN vue){
+public ControleurBoutonsPopUp(TriSLN vue){
     this.vue = vue;
     this.vue.setBClassements(this.btnClassements);
 }

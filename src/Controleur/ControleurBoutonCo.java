@@ -1,3 +1,4 @@
+package src.Controleur;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -5,25 +6,30 @@ import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import src.vue.TriSLN;
 
-public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
+public class ControleurBoutonCo implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
-//pop up senior
-    @FXML
-    private Button btnRetourSC;
-    @FXML
-    private Button choiceVetSCCB;
-    @FXML
-    private Button btnValiderSC;
-//
-//pop up veterant
-    @FXML
-    private Button choiceSenSCCB;
+// log accuiel et AccConnecter
+@FXML
+private Button btnClassements;
+@FXML
+private Button btnConnexion;
+@FXML
+private Button btnPaticipants;
+@FXML
+private Button btnCourses;
+@FXML
+private Button btnDeconnexion;
 //
 
-public ControleurBoutonsPopUp(TriSLN vue){
+public ControleurBoutonCo(TriSLN vue){
     this.vue = vue;
     this.vue.setBClassements(this.btnClassements);
+    this.vue.setBConnexion(btnConnexion);
+    this.vue.setBParticipants(btnPaticipants);
+    this.vue.setBCourses(btnCourses);
+    this.vue.setBDeconnexion(btnDeconnexion);
+
 }
 
 @Override

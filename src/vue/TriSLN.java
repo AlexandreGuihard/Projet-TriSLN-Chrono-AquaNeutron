@@ -1,5 +1,6 @@
 package src.vue;
 
+
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -9,12 +10,14 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.io.File;
 
+import src.Controleur.ControleurBoutonCo;
 import src.bd.BdTriSLN;
+import src.bd.ConnexionMySQL;
 
 
 public class TriSLN extends Application{
     private Stage stage;
-
+    private ConnexionMySQL co;
     private static BdTriSLN bd;
     private boolean connecte;
     private Button btnConnexion;
@@ -33,7 +36,8 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN();
+        ConnexionMySQL co = new ConnexionMySQL("servinfo-maria","DBguihard","guihard","guihard");
+        bd = new BdTriSLN(co);
         this.connecte=false;
     }
     public void start(Stage stage){
@@ -42,7 +46,7 @@ public class TriSLN extends Application{
         File file=new File("src/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutons(this));
+            loader.setController(new ControleurBoutonCo(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene = new Scene(accueil);
             this.stage.setScene(scene);
@@ -69,7 +73,7 @@ public class TriSLN extends Application{
         File file=new File("src/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutons(this));
+            loader.setController(new ControleurBoutonCo(this));
             BorderPane accueilConnecte=(BorderPane)loader.load();
             Scene scene=new Scene(accueilConnecte);
             this.stage.setScene(scene);
@@ -158,7 +162,7 @@ public class TriSLN extends Application{
     }
 
     public static BdTriSLN getBd(){
-        return this.bd;
+        return bd;
     }
 
     public void setBConnexion(Button btnConnexion){
