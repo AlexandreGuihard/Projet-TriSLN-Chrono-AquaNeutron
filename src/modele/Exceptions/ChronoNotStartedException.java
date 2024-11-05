@@ -1,4 +1,4 @@
-package modele.Exceptions;
+package src.modele.Exceptions;
 /**
  * Classe pour avertir que le chronomètre n'a pas démarré
  */

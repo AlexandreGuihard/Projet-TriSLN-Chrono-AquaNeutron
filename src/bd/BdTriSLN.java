@@ -58,9 +58,8 @@ public class BdTriSLN{
                 String ville=participants.getString(7);
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
-                Chronometrage chronometre=new Chronometrage();
 
-                Participant participant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, club, numLicence, dateDeNaissance);
+                Participant participant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, club, numLicence, dateDeNaissance);
                 participantsLicenceCourseIndiv.add(participant);
             }
             catch(SQLException e){
@@ -88,9 +87,8 @@ public class BdTriSLN{
                 String ville=participants.getString(7);
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
-                Chronometrage chronometre=new Chronometrage();
 
-                Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, dateDeNaissance);
+                Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, dateDeNaissance);
 
                 participantsNonLicenceCourseIndividuelles.add(participant);
             }
