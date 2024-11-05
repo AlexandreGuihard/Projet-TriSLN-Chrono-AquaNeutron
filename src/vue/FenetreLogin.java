@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import src.vue.*;
+import src.bd.*;
 
 
 public class FenetreLogin {
@@ -57,32 +58,33 @@ public class FenetreLogin {
     }
 
 
-    public void connecter() {
-        String identifiant = getIdentifiant();
-        String motDePasse = getMotDePasse();
-        BdTriSLN bd = TriSLN.getBd();
-        if (bd.verifConnexion(identifiant, motDePasse))
-        {
-            try {
+    public void connecter() {   
+        try {
+            String identifiant = getIdentifiant();
+            String motDePasse = getMotDePasse();
+            BdTriSLN bd = TriSLN.getBd();
+            if (bd.verifConnexion(identifiant, motDePasse)){
                 Stage StageVue = new Stage();
                 this.root = FXMLLoader.load(getClass().getResource("SAEprojetAccueilConnecter.fxml"));
                 Scene scene = new Scene(this.root);
                 StageVue.setScene(scene);
                 StageVue.show();
-            } 
-            catch (Exception e)
-            {
-                e.printStackTrace();
             }
-        }
-        else
+            else
+            {
+                this.mdp.setText("");
+                Text t = new Text("Identifiant ou Mot de passe incorrect.");
+                t.setFill(Color.RED);
+                this.root.getChildren().add(t);
+    
+            }
+        } 
+        catch (Exception e)
         {
-            this.mdp.setText("");
-            Text t = new Text("Identifiant ou Mot de passe incorrect.");
-            t.setFill(Color.RED);
-            this.root.getChildren().add(t);
-
+            e.printStackTrace();
         }
+        
+        
     }
 
     public void afficheLogin(FXMLLoader loader){

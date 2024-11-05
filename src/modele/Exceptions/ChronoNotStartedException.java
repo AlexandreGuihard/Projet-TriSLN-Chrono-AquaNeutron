@@ -1,4 +1,4 @@
-package modele.Exceptions;
+package src.modele.Exceptions;
 
 public class ChronoNotStartedException extends Exception {
     public ChronoNotStartedException(){

@@ -1,4 +1,4 @@
-package modele;
+package src.modele;
 
 public abstract class Participant{
     private int id;

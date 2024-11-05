@@ -64,7 +64,7 @@ public class FenetreParticipant extends Application {
             BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpSenior.fxml"));
             Scene popUp;
             popUp = new Scene(root);
-            StageVue.setScene(new Scene(popUp));
+            StageVue.setScene(popUp);
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class FenetreParticipant extends Application {
             BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpVeteran.fxml"));
             Scene popUp;
             popUp = new Scene(root);
-            StageVue.setScene(new Scene(popUp));
+            StageVue.setScene(popUp);
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();

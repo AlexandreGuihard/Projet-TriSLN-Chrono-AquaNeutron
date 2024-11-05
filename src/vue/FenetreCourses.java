@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 import java.util.Set;
 import java.util.List;
 import java.util.HashSet;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import src.modele.Chronometrage;
 import src.modele.Course;
+import javafx.fxml.FXMLLoader;
 
 public class FenetreCourses {
 
@@ -178,7 +182,7 @@ public class FenetreCourses {
             BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetGererCourses.fxml"));
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(new Scene(page));
+            StageVue.setScene(page);
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,7 +199,7 @@ public class FenetreCourses {
             BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetNouvelleCourse.fxml"));
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(new Scene(page));
+            StageVue.setScene(page);
             StageVue.show();
         } catch (Exception e) {
             e.printStackTrace();

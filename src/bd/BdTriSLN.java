@@ -16,8 +16,8 @@ public class BdTriSLN{
         ResultSet participants=st.executeQuery("select * from PARTICIPANT");
         while(participants.next()){
             try{
-                String licence=participants.getString(13);
-                String nomEquipe=participants.getString(14);
+                boolean licence=participants.getBoolean(14);
+                String nomEquipe=participants.getString(13);
                 int idP=participants.getInt(1);
                 String nom=participants.getString(2);
                 String prenom=participants.getString(3);
@@ -27,8 +27,7 @@ public class BdTriSLN{
                 String ville=participants.getString(7);
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
-                Chronometrage chronometre=new Chronometrage();
-                Participant participant=new ParticipantCourseRelais(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, nomEquipe, licence);
+                Participant participant=new ParticipantCourseRelais(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, nomEquipe, licence);
                 participantsCourseRelais.add(participant);
             }
             catch(SQLException e){
@@ -46,7 +45,7 @@ public class BdTriSLN{
         while(participants.next()){
             try{
                 String club=participants.getString(10);
-                int numLicence=participants.getInt(11);
+                boolean licence=participants.getBoolean(14);
                 String dateDeNaissance=participants.getString(12);
                 int idP=participants.getInt(1);
                 String nom=participants.getString(2);
@@ -57,8 +56,7 @@ public class BdTriSLN{
                 String ville=participants.getString(7);
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
-                Chronometrage chronometre=new Chronometrage();
-                Participant participant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, club, numLicence, dateDeNaissance);
+                Participant participant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, club, licence, dateDeNaissance);
                 participantsLicenceCourseIndiv.add(participant);
             }
             catch(SQLException e){
@@ -85,8 +83,7 @@ public class BdTriSLN{
                 String ville=participants.getString(7);
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
-                Chronometrage chronometre=new Chronometrage();
-                Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, chronometre, dateDeNaissance);
+                Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, dateDeNaissance);
                 participantsNonLicenceCourseIndividuelles.add(participant);
             }
             catch(SQLException e){
@@ -146,5 +143,15 @@ public class BdTriSLN{
         addCourse.setDouble(6, prix);
         addCourse.executeUpdate();
         addCourse.close();
+    }
+
+    public boolean verifConnexion(String identifiant, String motDePasse) throws SQLException{
+        Statement st = this.connexion.createStatement();
+        ResultSet rs = st.executeQuery("select * from UTILISATEUR where identifiants='"+identifiant+"'");
+        if(rs.next()){
+            String motDePasseBd = rs.getString(2);
+            return motDePasseBd.equals(motDePasse);
+        }
+        return false;
     }
 }

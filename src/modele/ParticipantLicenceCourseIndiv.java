@@ -1,11 +1,11 @@
-package modele;
+package src.modele;
 
 public class ParticipantLicenceCourseIndiv extends Participant{
     private String club;
-    private String licence;
+    private boolean licence;
     private String dateDeNaissance;
 
-    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String club, String licence, String dateDeNaissance){
+    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String club, boolean licence, String dateDeNaissance){
         super(id, nom, prenom, categorie, sexe, email, ville, certification, numTel);
         this.club=club;
         this.licence=licence;
@@ -16,7 +16,7 @@ public class ParticipantLicenceCourseIndiv extends Participant{
         return this.club;
     }
 
-    public String getLicence(){
+    public boolean getLicence(){
         return this.licence;
     }
 
@@ -28,7 +28,7 @@ public class ParticipantLicenceCourseIndiv extends Participant{
         this.club=club;
     }
 
-    public void setLicence(String licence){
+    public void setLicence(boolean licence){
         this.licence=licence;
     }
 

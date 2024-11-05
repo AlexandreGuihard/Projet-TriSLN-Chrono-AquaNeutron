@@ -1,8 +1,10 @@
+package src.vue;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import src.vue.TriSLN;
 
 public class ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
