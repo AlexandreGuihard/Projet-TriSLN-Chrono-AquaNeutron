@@ -8,8 +8,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import src.controleurs.ControleurBoutonsParticipants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import java.io.File;
+import java.io.IOException;
 
 public class FenetreParticipant{
     private Stage stage;
@@ -17,6 +20,7 @@ public class FenetreParticipant{
     private List<Button> categories;
     private ComboBox<String> sousCategories;
     private String categorieChoisie;
+    private FXMLLoader loader;
 
     public FenetreParticipant(FXMLLoader loader, Stage stage){
         this.stage=stage;
@@ -24,7 +28,8 @@ public class FenetreParticipant{
         this.categories = new ArrayList<>();
         this.sousCategories = new ComboBox<>();
         this.categorieChoisie = "";
-        this.afficheCategories(loader);
+        this.loader=loader;
+        this.afficheCategories();
     }
 
     public List<Button> getCategories() {
@@ -55,9 +60,17 @@ public class FenetreParticipant{
         return stage;
     }
 
-    private void afficheCategories(FXMLLoader loader){
+    public FXMLLoader getLoader(){
+        return loader;
+    }
+
+    public void setLoader(FXMLLoader loader){
+        this.loader=loader;
+    }
+
+    private void afficheCategories(){
         try{
-            this.root=(BorderPane)loader.load();
+            this.root=(BorderPane)this.loader.load();
             this.stage.setScene(new Scene(this.root));
         }
         catch(Exception e){
@@ -65,37 +78,32 @@ public class FenetreParticipant{
         }
     }
 
-    public void popUpSeniors(){
+    public void popUpSeniors(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpSenior.fxml"));
-            Scene popUp;
-            popUp = new Scene(root);
-            StageVue.setScene(popUp);
-            StageVue.show();
+            this.root = (BorderPane)loader.load();
+            this.stage.setScene(new Scene(this.root));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void popUpVeterans(){
+    public void popUpVeterans(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpVeteran.fxml"));
-            Scene popUp;
-            popUp = new Scene(root);
-            StageVue.setScene(popUp);
-            StageVue.show();
+            this.root = (BorderPane)loader.load();
+            this.stage.setScene(new Scene(this.root));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void afficheParticipants(){
-        if ("Seniors".equals(categorieChoisie)) {
-            popUpSeniors();
-        } else if ("Veterans".equals(categorieChoisie)) {
-            popUpVeterans();
+    public void afficheParticipants(FXMLLoader loader){
+        //TODO: Afficher selon la catégorie choisie
+        try{
+            this.root=(BorderPane)loader.load();
+            this.stage.setScene(new Scene(this.root));
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

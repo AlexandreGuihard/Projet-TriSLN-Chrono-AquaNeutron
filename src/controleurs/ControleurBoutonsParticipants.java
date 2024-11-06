@@ -10,8 +10,11 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import src.vue.*;
+import java.io.File;
+import java.io.IOException;
 
 
 public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
@@ -42,6 +45,8 @@ public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
     private Button btnAccueil;
     @FXML
     private Button btnRetour;
+    @FXML
+    private Button btnRetourCategorie;
 
     public ControleurBoutonsParticipants(TriSLN vue){
         this.vue=vue;
@@ -167,21 +172,41 @@ public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
         this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
     }
 
-    @FXML
-    public void handleBtnAccueil(MouseEvent event){
-        //try{
-        //    this.vue.changeButtonColor(this.btnClassements);
-        //}
-        //catch(Exception e){
-        //    System.err.println("Erreur");
-        //}
-    }
-
     @Override
     public void handle(ActionEvent event){
         Button btn=(Button)event.getSource();
         if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour")){
             this.vue.afficheAccueilConnecte();
+        }
+        else{
+            try{
+                File file=null;
+                FXMLLoader loader=null;
+                switch(btn.getId()){
+                    case "btnV":
+                        file=new File("src/vue/fxml/SAEprojetPopUpVeteran.fxml");
+                        loader=new FXMLLoader(file.toURI().toURL());
+                        this.vue.affichePopUp(loader, "V");
+                        break;
+                    case "btnS":
+                        file=new File("src/vue/fxml/SAEprojetPopUpSenior.fxml");
+                        loader=new FXMLLoader(file.toURI().toURL());
+                        this.vue.affichePopUp(loader, "S");
+                        break;
+                    case "btnCompte":
+                        System.out.println("Compte (Non fait)");
+                        break;
+                    case "btnRetourCategorie":
+                        this.vue.afficheParticipants();
+                        break;    
+                    default:
+                        this.vue.afficheLesParticipants();
+                        break;          
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }
