@@ -98,20 +98,22 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent event){
-        Button btn=(Button) event.getSource();
-        switch(btn.getText()){
-            case "Classements":
-                try {
+        try {
+            Button btn=(Button) event.getSource();
+            switch(btn.getText()){
+                case "Classements":
+                    System.out.println("Classement");
                     this.vue.afficheClassements();
-                } 
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                } 
-                break;
-            default:
-                System.out.println("Accueil");
-                break;
-        }
+                    break;
+                case "Se connecter":
+                        System.out.println("Connexion");
+                        this.vue.afficheLogin();
+                    break;
+                }
+        } 
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        } 
     }
 }
