@@ -43,7 +43,7 @@ public class TriSLN extends Application{
     public void start(Stage stage){
         this.stage=new Stage();
         this.stage.setTitle("TriSLN");
-        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsCo(this));
@@ -98,11 +98,14 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheCourses(){
+    public void afficheCourses() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreCourses=new FenetreCourses(loader);
+            loader.setController(new ControleurBoutonsCo(this));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();

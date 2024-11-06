@@ -106,8 +106,12 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     this.vue.afficheClassements();
                     break;
                 case "Se connecter":
-                        System.out.println("Connexion");
-                        this.vue.afficheLogin();
+                    System.out.println("Connexion");
+                    this.vue.afficheLogin();
+                    break;
+                case "Les courses":
+                    System.out.println("Les courses");
+                    this.vue.afficheCourses();
                     break;
                 }
         } 
