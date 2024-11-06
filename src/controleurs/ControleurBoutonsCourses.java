@@ -4,6 +4,8 @@ import javafx.event.EventHandler;
 
 import java.io.IOException;
 
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -20,10 +22,13 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
 
     @FXML
     private Button btnNvlCourse;
+    @FXML
+    private Button btnAccueil;
 
     public ControleurBoutonsCourses(TriSLN vue){
         this.vue = vue;
         this.vue.setBNvlCourse(this.btnNvlCourse);
+        this.vue.setBAccueil(this.btnAccueil);
     }
 
     @FXML
@@ -72,6 +77,9 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
                     System.out.println("Retour");
                     this.vue.afficheCourses();
                     break;
+                case "btnAccueil":
+                    System.out.println("Accueil");
+                    this.vue.afficheAccueilConnecte();
             }
         } 
         catch (IOException e)
@@ -80,4 +88,3 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
         } 
     }
 }
-

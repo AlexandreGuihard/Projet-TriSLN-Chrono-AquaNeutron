@@ -249,7 +249,7 @@
                   </VBox>
                </graphic>
             </Button>
-            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="126.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
+            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" onAction="#handle" prefHeight="126.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
                <graphic>
                   <VBox prefHeight="110.0" prefWidth="63.0">
                      <children>
