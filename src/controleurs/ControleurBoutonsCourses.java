@@ -30,8 +30,8 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
     public void handleBtnCoursesMouseEntered(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getText()){
-                case "Nouvelle course":
+            switch(btn.getId()){
+                case "btnNvlCourse":
                     this.vue.changeButtonColor(this.btnNvlCourse, "#105c74", null);
                     break;
             }
@@ -43,13 +43,28 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
         }
     }
 
+    @FXML
+    public void handleBtnCoursesMouseExited(MouseEvent event){
+        try{
+            Button btn=(Button)event.getSource();
+            switch(btn.getId()){
+                case "btnNvlCourse":
+                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", null);
+                    break;
+            }
+        }
+        catch(Exception e){
+            System.err.println("Erreur");
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void handle(ActionEvent event){
         try {
             Button btn=(Button) event.getSource();
-            System.out.println("héhé");
-            switch(btn.getText()){
-                case "Nouvelle course":
+            switch(btn.getId()){
+                case "btnNvlCourse":
                     System.out.println("Nouvelle course");
                     this.vue.afficheNvlCourse();
                     break;

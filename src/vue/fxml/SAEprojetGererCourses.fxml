@@ -81,7 +81,7 @@
                               <Insets left="10.0" />
                            </opaqueInsets>
                         </TextField>
-                        <Button fx:id="btnNvlCourse" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="50.0" prefWidth="217.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Nouvelle course" textFill="WHITE">
+                        <Button fx:id="btnNvlCourse" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="50.0" prefWidth="217.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Nouvelle course" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
