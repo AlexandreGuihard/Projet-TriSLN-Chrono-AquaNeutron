@@ -11,15 +11,20 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
-public class FenetreParticipant extends Application {
+public class FenetreParticipant{
+    private Stage stage;
+    private BorderPane root;
     private List<Button> categories;
     private ComboBox<String> sousCategories;
     private String categorieChoisie;
 
-    public FenetreParticipant(FXMLLoader loader){
+    public FenetreParticipant(FXMLLoader loader, Stage stage){
+        this.stage=stage;
+        this.root=new BorderPane();
         this.categories = new ArrayList<>();
         this.sousCategories = new ComboBox<>();
         this.categorieChoisie = "";
+        this.afficheCategories(loader);
     }
 
     public List<Button> getCategories() {
@@ -46,15 +51,17 @@ public class FenetreParticipant extends Application {
         this.categorieChoisie = categorieChoisie;
     }
 
-    private void afficheCategories(){
-        categories.add(new Button("Seniors"));
-        categories.add(new Button("Veterans"));
-        
-        for (Button category : categories) {
-            category.setOnAction(e -> {
-                categorieChoisie = category.getText();
-                afficheParticipants();
-            });
+    public Stage getStage(){
+        return stage;
+    }
+
+    private void afficheCategories(FXMLLoader loader){
+        try{
+            this.root=(BorderPane)loader.load();
+            this.stage.setScene(new Scene(this.root));
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -90,20 +97,5 @@ public class FenetreParticipant extends Application {
         } else if ("Veterans".equals(categorieChoisie)) {
             popUpVeterans();
         }
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        afficheCategories();
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(categories);
-        layout.getChildren().add(sousCategories);
-        Scene scene = new Scene(layout, 400, 300);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
