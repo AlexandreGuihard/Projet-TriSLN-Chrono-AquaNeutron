@@ -1,7 +1,7 @@
 create role administrateur, spectateur, benevol;
 
 create user admin identified by adminMdp;
-create user invite identified by nonosquare;
+create user invite;
 
 
 
