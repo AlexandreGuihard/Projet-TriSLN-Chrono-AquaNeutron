@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Les (Participants / Courses)">
                <font>
@@ -33,12 +33,12 @@
                   <Insets top="100.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnImporterExcel" mnemonicParsing="false" onMouseEntered="#btnImporterExcelME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Importer Excel" textFill="WHITE">
+            <Button fx:id="btnImporterExcel" mnemonicParsing="false" onMouseEntered="#btnImporterExcelME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Importer Excel" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="550.0" top="80.0" />
+                  <Insets top="80.0" />
                </VBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />

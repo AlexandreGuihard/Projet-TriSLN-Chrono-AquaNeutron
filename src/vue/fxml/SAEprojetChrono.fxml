@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="722.0" prefWidth="1321.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
@@ -45,7 +45,7 @@
                                     <TextField fx:id="idNom" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard" />
                                  </children>
                               </VBox>
-                              <Button fx:id="btnAJtCourse1" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Arrivé" textFill="WHITE">
+                              <Button fx:id="btnAJtCourse1" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: #2596BE;" text="Arrivé" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -100,7 +100,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="btnAJtCourse" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Top départ" textFill="WHITE">
+                              <Button fx:id="btnAJtCourse" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Top départ" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -108,7 +108,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button fx:id="btnAJtCourse3" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Fin de course" textFill="WHITE">
+                              <Button fx:id="btnAJtCourse3" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Fin de course" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
