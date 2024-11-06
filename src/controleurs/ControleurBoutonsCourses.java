@@ -68,6 +68,10 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
                     System.out.println("Nouvelle course");
                     this.vue.afficheNvlCourse();
                     break;
+                case "btnRetour":
+                    System.out.println("Retour");
+                    this.vue.afficheCourses();
+                    break;
             }
         } 
         catch (IOException e)
