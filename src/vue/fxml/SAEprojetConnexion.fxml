@@ -58,7 +58,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnConnecter" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Se connecter" textFill="WHITE">
+                  <Button fx:id="btnConnecter" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Se connecter" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -82,19 +82,19 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="5.0" />
                </HBox.margin>
             </ImageView>
-            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="126.0" prefWidth="114.0" style="-fx-background-radius: 10; -fx-background-color: lightgrey;">
+            <Button fx:id="btnAccueil" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="126.0" prefWidth="114.0" style="-fx-background-radius: 10; -fx-background-color: lightgrey;">
                <graphic>
                   <VBox prefHeight="118.0" prefWidth="85.0">
                      <children>
                         <ImageView fitHeight="79.0" fitWidth="80.0">
                            <image>
-                              <Image url="@../img/2948025.png" />
+                              <Image url="@../../../img/2948025.png" />
                            </image>
                            <VBox.margin>
                               <Insets left="8.0" />
@@ -109,7 +109,7 @@
                   </VBox>
                </graphic>
                <HBox.margin>
-                  <Insets left="1000.0" top="20.0" />
+                  <Insets left="940.0" bottom="10.0" top="20.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -119,7 +119,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>

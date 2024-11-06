@@ -114,7 +114,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -139,14 +139,14 @@
             </VBox>
             <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" prefHeight="120.0" prefWidth="114.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                <HBox.margin>
-                  <Insets left="700.0" top="20.0" />
+                  <Insets left="640.0" top="20.0" />
                </HBox.margin>
                <graphic>
                   <VBox prefHeight="110.0" prefWidth="63.0">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="62.0">
                            <image>
-                              <Image url="@../img/Account-PNG-Image.png" />
+                              <Image url="@../../../img/Account-PNG-Image.png" />
                            </image>
                            <VBox.margin>
                               <Insets left="17.0" />
@@ -175,7 +175,7 @@
                      <children>
                         <ImageView fitHeight="88.0" fitWidth="90.0">
                            <image>
-                              <Image url="@../img/2948025.png" />
+                              <Image url="@../../../img/2948025.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Accueil">
