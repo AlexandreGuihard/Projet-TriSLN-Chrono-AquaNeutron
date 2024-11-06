@@ -19,14 +19,16 @@ public class FenetreLogin {
     private BorderPane root;
     private TextField identifier;
     private PasswordField mdp;
-    private Button bConnexion;     
+    private Button bConnexion;
+    private Stage stage;     
 
-    public FenetreLogin(FXMLLoader loader){
+    public FenetreLogin(FXMLLoader loader, Stage stage){
         this.root = new BorderPane();
         this.identifier = new TextField();       
         this.mdp = new PasswordField();
         this.bConnexion = new Button();
-        loader.setController(new ControleurBoutons(new TriSLN()));
+        this.stage = stage;
+        loader.setController(new ControleurBoutonsCo(new TriSLN()));
         this.afficheLogin(loader);
     }
 
@@ -56,6 +58,10 @@ public class FenetreLogin {
 
     public BorderPane getRoot(){
         return this.root;
+    }
+
+    public Stage getWindow(){
+        return this.stage;
     }
 
 
@@ -90,11 +96,11 @@ public class FenetreLogin {
 
     public void afficheLogin(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            this.root =  (BorderPane) loader.load();
-            Scene scene = new Scene(this.root);
-            StageVue.setScene(scene);
-            StageVue.show();
+            this.root = (BorderPane) loader.load();
+            Scene page;
+            page = new Scene(this.root);
+            this.stage.setScene(page);
+            this.stage.show();
         }
         catch (Exception e)
         {

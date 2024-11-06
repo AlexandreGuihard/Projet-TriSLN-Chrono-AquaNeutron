@@ -46,7 +46,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutons(this));
+            loader.setController(new ControleurBoutonsCo(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene = new Scene(accueil);
             this.stage.setScene(scene);
@@ -57,11 +57,14 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLogin(){
+    public void afficheLogin () throws IOException{
         File file=new File("src/vue/fxml/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreLogin=new FenetreLogin(loader);
+            loader.setController(new ControleurBoutonsCo(this));
+            this.fenetreLogin=new FenetreLogin(loader, this.stage);
+            this.stage = this.fenetreLogin.getWindow();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -106,11 +109,14 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheClassements(){
+    public void afficheClassements() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreClassements=new FenetreClassements(loader);
+            loader.setController(new ControleurBoutonsCo(this));
+            this.fenetreClassements=new FenetreClassements(loader, this.stage);
+            this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -209,7 +215,16 @@ public class TriSLN extends Application{
         this.connecte=connecte;
     }
 
-    public void changeButtonColor(Button button){
-        button.setStyle("-fx-background-color: #105c74;");
+    public void setWindow(Stage stage){
+        this.stage = stage;
+    }
+
+    public void changeButtonColor(Button button, String color, String otherStyle){
+        if(otherStyle==null){
+            button.setStyle("-fx-background-color: "+color+";");
+        }
+        else{
+            button.setStyle("-fx-background-color: "+color+";"+otherStyle+";");
+        }
     }
 }

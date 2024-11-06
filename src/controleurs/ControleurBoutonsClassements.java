@@ -11,10 +11,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import src.vue.TriSLN;
+import src.vue.*;
 
 
-public class ControleurBoutons implements EventHandler<ActionEvent>{
+public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     @FXML
@@ -106,19 +106,19 @@ public class ControleurBoutons implements EventHandler<ActionEvent>{
     private Button btnRetour;
 //
 
-    public ControleurBoutons(TriSLN vue){
+    public ControleurBoutonsClassements(TriSLN vue){
         this.vue=vue;
         this.vue.setBClassements(this.btnClassements);
     }
 
     @FXML
     public void handleBtnAccueil(MouseEvent event){
-        try{
-            this.vue.changeButtonColor(this.btnClassements);
-        }
-        catch(Exception e){
-            System.err.println("Erreur");
-        }
+        //try{
+        //    this.vue.changeButtonColor(this.btnClassements);
+        //}
+        //catch(Exception e){
+        //    System.err.println("Erreur");
+        //}
     }
 
     @Override
