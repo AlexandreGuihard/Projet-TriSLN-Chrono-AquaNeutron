@@ -27,6 +27,7 @@ public class TriSLN extends Application{
     private Button btnCourses; // Bouton Courses de la page d'accueil
     private Button btnClassements; // Bouton Classements de la page d'accueil
     private Button btnAccueil;
+    private Button btnNvlCourse;
     private FenetreParticipant fenetreParticipants;
     private FenetreClassements fenetreClassements;
     private FenetreCourses fenetreCourses;
@@ -102,7 +103,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsCourses(this));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
@@ -119,6 +120,20 @@ public class TriSLN extends Application{
             loader.setController(new ControleurBoutonsCo(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheNvlCourse() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCourses(this));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
         }
         catch(Exception e){
@@ -148,6 +163,10 @@ public class TriSLN extends Application{
 
     public Button getBAccueil(){
         return this.btnAccueil;
+    }
+
+    public Button getBNvlCourse(){
+        return this.btnNvlCourse;
     }
 
     public FenetreParticipant getFenetreParticipants(){
@@ -196,6 +215,10 @@ public class TriSLN extends Application{
 
     public void setBAccueil(Button btnAccueil){
         this.btnAccueil=btnAccueil;
+    }
+
+    public void setBNvlCourse(Button btnNvlCourse){
+        this.btnNvlCourse=btnNvlCourse;
     }
 
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){

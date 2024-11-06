@@ -196,14 +196,13 @@ public class FenetreCourses {
 
     }
 
-    public void nouvelleCourse(){
+    public void nouvelleCourse(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetNouvelleCourse.fxml"));
+            BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(page);
-            StageVue.show();
+            this.stage.setScene(page);
+            this.stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
