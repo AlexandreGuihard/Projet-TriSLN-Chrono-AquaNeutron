@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import java.io.IOException;
 
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-import javax.swing.plaf.synth.SynthStyle;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
@@ -18,21 +17,18 @@ import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
 
-public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
+public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML
-    private Button btnNvlCourse;
+    private Button btnAJtCourse;
     @FXML
     private Button btnAccueil;
-    @FXML
-    private Button btnRetour;
 
-    public ControleurBoutonsCourses(TriSLN vue){
+    public ControleurBoutonsNouvelleCourses(TriSLN vue){
         this.vue = vue;
-        this.vue.setBNvlCourse(this.btnNvlCourse);
+        this.vue.setBAJtCourse(this.btnAJtCourse);
         this.vue.setBAccueil(this.btnAccueil);
-        this.vue.setBRetour(this.btnRetour);
     }
 
     @FXML
@@ -40,8 +36,8 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
         try{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
-                case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#105c74", null);
+                case "btnAJtCourse":
+                    this.vue.changeButtonColor(this.btnAJtCourse, "#105c74", null);
                     break;
             }
             
@@ -57,8 +53,8 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
         try{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
-                case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", null);
+                case "btnAJtCourse":
+                    this.vue.changeButtonColor(this.btnAJtCourse, "#2596BE", null);
                     break;
             }
         }
@@ -73,18 +69,17 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
         try {
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
-                case "btnNvlCourse":
-                    System.out.println("Nouvelle Course");
+                case "btnAJtCourse":
+                    System.out.println("Ajouter course");
                     this.vue.afficheNvlCourse();
                     break;
                 case "btnRetour":
                     System.out.println("Retour");
-                    this.vue.afficheAccueilConnecte();
+                    this.vue.afficheCourses();
                     break;
                 case "btnAccueil":
                     System.out.println("Accueil");
                     this.vue.afficheAccueilConnecte();
-                    break;
             }
         } 
         catch (IOException e)

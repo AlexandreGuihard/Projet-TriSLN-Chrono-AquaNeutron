@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
 import java.io.File;
 
 import src.vue.*;
@@ -28,6 +31,8 @@ public class TriSLN extends Application{
     private Button btnClassements; // Bouton Classements de la page d'accueil
     private Button btnAccueil;
     private Button btnNvlCourse;
+    private Button btnAJtCourse;
+    private Button btnRetour;
     private FenetreParticipant fenetreParticipants;
     private FenetreClassements fenetreClassements;
     private FenetreCourses fenetreCourses;
@@ -73,14 +78,13 @@ public class TriSLN extends Application{
         
     }
 
-    public void afficheAccueilConnecte(){
+    public void afficheAccueilConnecte() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsCo(this));
-            BorderPane accueilConnecte=(BorderPane)loader.load();
-            Scene scene=new Scene(accueilConnecte);
-            this.stage.setScene(scene);
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
         }
         catch(Exception e){
@@ -131,7 +135,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCourses(this));
+            loader.setController(new ControleurBoutonsNouvelleCourses(this));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
@@ -167,6 +171,14 @@ public class TriSLN extends Application{
 
     public Button getBNvlCourse(){
         return this.btnNvlCourse;
+    }
+
+    public Button getBAJtCourse(){
+        return this.btnAJtCourse;
+    }
+
+    public Button getBRetour(){
+        return this.btnRetour;
     }
 
     public FenetreParticipant getFenetreParticipants(){
@@ -221,6 +233,14 @@ public class TriSLN extends Application{
         this.btnNvlCourse=btnNvlCourse;
     }
 
+    public void setBAJtCourse(Button btnAJtCourse){
+        this.btnAJtCourse=btnAJtCourse;
+    }
+    
+    public void setBRetour(Button btnRetour){
+        this.btnRetour=btnRetour;
+    }
+    
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){
         this.fenetreParticipants=fenetreParticipants;
     }

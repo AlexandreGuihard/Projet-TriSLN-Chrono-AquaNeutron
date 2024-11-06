@@ -163,7 +163,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="126.0" prefWidth="114.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+            <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="126.0" prefWidth="114.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                <graphic>
                   <VBox prefHeight="110.0" prefWidth="63.0">
                      <children>
@@ -191,7 +191,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -199,7 +199,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+            <ImageView fx:id="btnRetourimg" fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@../../../img/93634.png" />
                </image>
