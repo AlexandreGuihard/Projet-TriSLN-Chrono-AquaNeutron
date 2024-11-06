@@ -142,11 +142,14 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheClassements(){
+    public void afficheClassements() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreClassements=new FenetreClassements(loader);
+            loader.setController(new ControleurBoutonsClassements(this));
+            this.fenetreClassements=new FenetreClassements(loader, this.stage);
+            this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();

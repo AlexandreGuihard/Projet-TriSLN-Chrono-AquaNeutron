@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import src.vue.*;
 
 
-public class ControleurBoutons implements EventHandler<ActionEvent>{
+public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     @FXML
@@ -106,7 +106,7 @@ public class ControleurBoutons implements EventHandler<ActionEvent>{
     private Button btnRetour;
 //
 
-    public ControleurBoutons(TriSLN vue){
+    public ControleurBoutonsClassements(TriSLN vue){
         this.vue=vue;
         this.vue.setBClassements(this.btnClassements);
     }

@@ -25,13 +25,16 @@ public class FenetreClassements {
     private String categorieChoisie;
     private ComboBox<String> genre;
     private String genreChoisie;
+    private Stage stage;
 
-    public FenetreClassements(FXMLLoader loader){
+    public FenetreClassements(FXMLLoader loader, Stage stage){
         this.classement = new TableView<>();
         this.souscategories = new ComboBox<>();
         this.categorieChoisie = "";
         this.genre = new ComboBox<>();
         this.genreChoisie = "";
+        this.stage= stage;
+        this.afficheClassement(loader);
     }
 
     public TableView<ObservableList<Participant>> getClassement(){
@@ -74,14 +77,17 @@ public class FenetreClassements {
         this.genreChoisie = nouveauGenreChoisie;
     }
 
-    private void afficheClassement(){
+    public Stage getWindow(){
+        return this.stage;
+    }
+
+    private void afficheClassement(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetClassement.fxml"));
+            BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(page);
-            StageVue.show();
+            this.stage.setScene(page);
+            this.stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
