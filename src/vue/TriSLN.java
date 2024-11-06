@@ -111,7 +111,7 @@ public class TriSLN extends Application{
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsClassements(this));
-            this.fenetreClassements=new FenetreClassements(loader);
+            this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
             this.stage.show();
         }

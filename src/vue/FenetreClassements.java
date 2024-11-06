@@ -27,13 +27,13 @@ public class FenetreClassements {
     private String genreChoisie;
     private Stage stage;
 
-    public FenetreClassements(FXMLLoader loader){
+    public FenetreClassements(FXMLLoader loader, Stage stage){
         this.classement = new TableView<>();
         this.souscategories = new ComboBox<>();
         this.categorieChoisie = "";
         this.genre = new ComboBox<>();
         this.genreChoisie = "";
-        this.stage= new Stage();
+        this.stage= stage;
         this.afficheClassement(loader);
     }
 
