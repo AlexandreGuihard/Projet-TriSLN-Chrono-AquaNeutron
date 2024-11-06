@@ -89,9 +89,9 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="1248.0" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView prefWidth="1233.0">
+                  <TableView HBox.hgrow="ALWAYS">
                      <columns>
                         <TableColumn reorderable="false" text="Positions" />
                         <TableColumn reorderable="false" text="Temps" />
@@ -143,19 +143,16 @@
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ButtonBar buttonMinWidth="80.0" HBox.hgrow="ALWAYS">
                <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnConnexion" mnemonicParsing="false" onAction="#handle" onMouseExited="#handleBtnClassementDisconnectedMouseExited" onMouseEntered="#handleBtnClassementDisconnectedMouseEntered" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
-                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                        <VBox alignment="CENTER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@../../../img/Account-PNG-Image.png" />
+                                    <Image url="@../../../img/login_icon_137429.png" />
                                  </image>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
                               </ImageView>
-                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Mon compte">
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se connecter">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -167,7 +164,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseExited="#handleBtnClassementDisconnectedMouseExited" onMouseEntered="#handleBtnClassementDisconnectedMouseEntered" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -197,7 +194,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseExited="#handleBtnClassementDisconnectedMouseExited" onMouseEntered="#handleBtnClassementDisconnectedMouseEntered" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -205,7 +202,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+            <ImageView fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@../../../img/93634.png" />
                </image>

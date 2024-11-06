@@ -57,7 +57,7 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLogin () throws IOException{
+    public void afficheLogin() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
@@ -70,6 +70,21 @@ public class TriSLN extends Application{
             e.printStackTrace();
         }
         
+    }
+
+    public void afficheAccueil(){
+        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCo(this));
+            BorderPane accueil=(BorderPane)loader.load();
+            Scene scene=new Scene(accueil);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void afficheAccueilConnecte(){
@@ -122,6 +137,21 @@ public class TriSLN extends Application{
             e.printStackTrace();
         }
     }
+
+    public void afficheClassementsDisconnected() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojetClassementsDisconnected.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsClassementsDisconnected(this));
+            this.fenetreClassements=new FenetreClassements(loader, this.stage);
+            this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     public Button getBConnexion(){
         return this.btnConnexion;

@@ -28,6 +28,8 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     private Button btnCourses;
     @FXML
     private Button btnDeconnexion;
+    @FXML
+    private Button btnAccueil;
 
     public ControleurBoutonsCo(TriSLN vue){
         this.vue = vue;
@@ -36,14 +38,15 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
         this.vue.setBParticipants(this.btnParticipants);
         this.vue.setBCourses(this.btnCourses);
         this.vue.setBDeconnexion(this.btnDeconnexion);
+        this.vue.setBDeconnexion(this.btnAccueil);
     }
 
     @FXML
     public void handleBtnAccueilMouseEntered(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getText()){
-                case "Classements":
+            switch(btn.getId()){
+                case "btnClassements":
                     this.vue.changeButtonColor(this.btnClassements, "#105c74", null);
                     break;
                 case "Participants":
@@ -52,8 +55,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                 case "Courses":
                     this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
                     break;
-                case "Se connecter":
-                    System.out.println(btn.getText());
+                case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
                     break;
                 case "Deconnecter":
@@ -72,8 +74,8 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     public void handleBtnAccueilMouseExited(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getText()){
-                case "Classements":
+            switch(btn.getId()){
+                case "btnClassements":
                     this.vue.changeButtonColor(this.btnClassements, "#2596BE", null);
                     break;
                 case "Participants":
@@ -82,7 +84,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                 case "Courses":
                     this.vue.changeButtonColor(this.btnCourses, "#2596BE", null);    
                     break;
-                case "Se connecter":
+                case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
                     break;
                 case "Deconnecter":
@@ -100,16 +102,15 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     public void handle(ActionEvent event){
         try {
             Button btn=(Button) event.getSource();
-            switch(btn.getText()){
-                case "Classements":
-                    System.out.println("Classement");
-                    this.vue.afficheClassements();
+            switch(btn.getId()){
+                case "btnClassements":
+                    this.vue.afficheClassementsDisconnected();
                     break;
-                case "Se connecter":
-                        System.out.println("Connexion");
-                        this.vue.afficheLogin();
+                case "btnConnexion":
+                    System.out.println("toto");
+                    this.vue.afficheLogin();
                     break;
-                }
+            }
         } 
         catch (IOException e)
         {

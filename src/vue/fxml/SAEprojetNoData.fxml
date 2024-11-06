@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Les (Participants / Courses)">
                <font>
@@ -33,12 +33,12 @@
                   <Insets top="100.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnImporterExcel" mnemonicParsing="false" onMouseEntered="#btnImporterExcelME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE; -fx-background-radius: 15;" text="Importer Excel" textFill="WHITE">
+            <Button fx:id="btnImporterExcel" mnemonicParsing="false" onMouseEntered="#btnImporterExcelME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Importer Excel" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="550.0" top="80.0" />
+                  <Insets top="80.0" />
                </VBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -52,7 +52,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -75,62 +75,59 @@
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
-               <HBox.margin>
-                  <Insets left="700.0" top="20.0" />
-               </HBox.margin>
-               <graphic>
-                  <VBox prefHeight="110.0" prefWidth="63.0">
-                     <children>
-                        <ImageView fitHeight="67.0" fitWidth="62.0">
-                           <image>
-                              <Image url="@../img/Account-PNG-Image.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets left="17.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Mon">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="compte">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilLE" prefHeight="126.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-background-color: lightgrey;">
-               <graphic>
-                  <VBox prefHeight="110.0" prefWidth="63.0">
-                     <children>
-                        <ImageView fitHeight="88.0" fitWidth="90.0">
-                           <image>
-                              <Image url="@../img/2948025.png" />
-                           </image>
-                        </ImageView>
-                        <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Accueil">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </graphic>
-               <HBox.margin>
-                  <Insets left="20.0" top="20.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <ButtonBar buttonMinWidth="80.0" HBox.hgrow="ALWAYS">
+               <buttons>
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../img/Account-PNG-Image.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Mon compte">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilLE" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../img/2948025.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Accueil">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </buttons>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </ButtonBar>
          </children>
       </HBox>
    </top>
