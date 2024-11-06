@@ -35,7 +35,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onMouseEntered="#btnPaticipantsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les paticipants" textFill="WHITE">
+                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les paticipants" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -49,7 +49,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnCourses" mnemonicParsing="false" onMouseEntered="#btnCoursesME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les courses" textFill="WHITE">
+                  <Button fx:id="btnCourses" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les courses" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#btnClassementsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -84,37 +84,34 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <Region HBox.hgrow="ALWAYS" />
-            <ButtonBar prefHeight="186.0" prefWidth="130.0">
-              <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#connectionMouseEntered" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
-                     <graphic>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="80.0">
-                                 <image>
-                                    <Image url="@../../../img/876779.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se déconnecter">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-              </buttons>
+            <Button fx:id="btnDeconnexion" mnemonicParsing="false" text="Deconnecter" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="121.0" prefWidth="114.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+               <graphic>
+                  <VBox prefHeight="110.0" prefWidth="63.0">
+                     <children>
+                        <ImageView fitHeight="88.0" fitWidth="90.0">
+                           <image>
+                              <Image url="@../img/876779.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Se">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Deconnecter">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </graphic>
                <HBox.margin>
                   <Insets />
                </HBox.margin>

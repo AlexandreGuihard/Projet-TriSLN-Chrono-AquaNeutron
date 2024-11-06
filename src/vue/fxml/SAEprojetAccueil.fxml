@@ -35,7 +35,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#classementsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnClassements" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -68,7 +68,7 @@
             <Region HBox.hgrow="ALWAYS" />
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#connectionMouseEntered" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnConnexion" mnemonicParsing="false" text="Se connecter" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
