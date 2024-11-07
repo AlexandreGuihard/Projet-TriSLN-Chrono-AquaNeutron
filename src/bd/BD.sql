@@ -68,6 +68,13 @@ CREATE TABLE PARTICIPER (
     PRIMARY KEY (id_Participant, id_Epreuve)
 );
 
+CREATE TABLE UTILISATEUR (
+    identifiant    VARCHAR(42),
+    role           VARCHAR(42),
+    mot_de_passe   VARCHAR(42),
+    PRIMARY KEY (identifiant)
+);
+
 ALTER TABLE DOSSARD ADD FOREIGN KEY (id_Participant) REFERENCES PARTICIPANT (id_Participant);
 
 ALTER TABLE ENREGISTRER ADD FOREIGN KEY (num_Dossard) REFERENCES DOSSARD (num_Dossard);

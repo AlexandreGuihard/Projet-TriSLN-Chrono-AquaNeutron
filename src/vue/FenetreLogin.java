@@ -19,14 +19,16 @@ public class FenetreLogin {
     private BorderPane root;
     private TextField identifier;
     private PasswordField mdp;
-    private Button bConnexion;     
+    private Button bConnexion;
+    private Stage stage;     
 
-    public FenetreLogin(FXMLLoader loader){
+    public FenetreLogin(FXMLLoader loader, Stage stage){
         this.root = new BorderPane();
         this.identifier = new TextField();       
         this.mdp = new PasswordField();
         this.bConnexion = new Button();
-        loader.setController(new ControleurBoutonsClassements(new TriSLN()));
+        this.stage = stage;
+        loader.setController(new ControleurBoutonsCo(new TriSLN()));
         this.afficheLogin(loader);
     }
 
@@ -58,6 +60,10 @@ public class FenetreLogin {
         return this.root;
     }
 
+    public Stage getWindow(){
+        return this.stage;
+    }
+
 
     public void connecter() {   
         try {
@@ -77,9 +83,8 @@ public class FenetreLogin {
                 Text t = new Text("Identifiant ou Mot de passe incorrect.");
                 t.setFill(Color.RED);
                 this.root.getChildren().add(t);
-    
             }
-        } 
+        }
         catch (Exception e)
         {
             e.printStackTrace();
@@ -90,11 +95,10 @@ public class FenetreLogin {
 
     public void afficheLogin(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            this.root =  (BorderPane) loader.load();
-            Scene scene = new Scene(this.root);
-            StageVue.setScene(scene);
-            StageVue.show();
+            this.root = (BorderPane) loader.load();
+            Scene page = new Scene(this.root);
+            this.stage.setScene(page);
+            this.stage.show();
         }
         catch (Exception e)
         {

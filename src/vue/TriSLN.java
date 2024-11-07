@@ -12,6 +12,7 @@ import java.io.File;
 import src.vue.*;
 import src.bd.*;
 import src.controleurs.*;
+import src.modele.Utilisateur;
 
 
 
@@ -32,12 +33,17 @@ public class TriSLN extends Application{
     private FenetreCourses fenetreCourses;
     private FenetreLogin fenetreLogin;
 
+    private Utilisateur utilisateur;
+
     public static void main(String[] args){
         launch();
     }
 
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
+        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBvoivenel", "voivenel", "voivenel"));
+        this.utilisateur = new Utilisateur();
+        System.out.println(utilisateur.getRole());
+        System.out.println(this.getUtilisateur().getRole());
         this.connecte=false;
     }
     public void start(Stage stage){
@@ -57,16 +63,18 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLogin(){
-        File file=new File("src/vue/fxml/SAEprojetConnexion.fxml");
-        try{
-            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreLogin=new FenetreLogin(loader);
-        }
-        catch(Exception e){
+    public void afficheLogin() throws IOException {
+        File file = new File("src/vue/fxml/SAEprojetConnexion.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCo(this));
+            this.fenetreLogin = new FenetreLogin(loader, this.stage);
+            this.stage = this.fenetreLogin.getWindow();
+            this.stage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
     public void afficheAccueilConnecte(){
@@ -166,6 +174,11 @@ public class TriSLN extends Application{
 
     public static BdTriSLN getBd(){
         return bd;
+    }
+
+    public Utilisateur getUtilisateur(){
+        System.out.println(this.utilisateur.getRole());
+        return this.utilisateur;
     }
 
     public void setBConnexion(Button btnConnexion){

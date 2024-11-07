@@ -1,5 +1,7 @@
 package src.bd;
 import src.modele.*;
+import src.modele.Exceptions.NoSuchUserException;
+
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -193,16 +195,31 @@ public class BdTriSLN{
         Statement st=this.connexion.createStatement();
         ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
-            String motDePasseBd=rs.getString(2);
+            String motDePasseBd=rs.getString(3);
             return motDePasseBd.equals(motDePasse);
         }
         return false;
         }
         catch (Exception e){
-            System.out.println("erreure");
+            System.out.println("erreur");
             return false;
         }
-        
-        
+    }
+
+    public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException{
+        Statement s = this.connexion.createStatement();
+        ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(rs.next()){
+            return rs.getString(2);
+        } else {
+            throw new NoSuchUserException();
+        }
+    }
+
+    public void ajouterBenevole(String identifiant, String mdp) throws SQLException{
+        PreparedStatement ps = this.connexion.prepareStatement("insert into UTILISATEUR values (?,?,?)");
+        ps.setString(1, identifiant);
+        ps.setString(2, "benevol");
+        ps.setString(3, mdp);
     }
 }
