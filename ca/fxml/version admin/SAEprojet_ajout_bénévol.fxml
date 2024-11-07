@@ -19,7 +19,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Connexion">
+            <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Nouveau Bénévol">
                <font>
                   <Font size="64.0" />
                </font>
@@ -79,28 +79,93 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/TriSLN_AquaNeutron.png" />
+                  <Image url="@../../../../img/TriSLN_AquaNeutron.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="5.0" />
                </HBox.margin>
             </ImageView>
+            <VBox prefHeight="164.0" prefWidth="169.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="288.0" style="-fx-font-weight: bold;" text="TriSLN">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="209.0" style="-fx-font-weight: bold;" text="AquaNeutron">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <ButtonBar prefHeight="40.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <ButtonBar prefHeight="150.0" prefWidth="443.0">
                <buttons>
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="118.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fitHeight="79.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../../img/compte.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Mon compte">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="118.0" prefWidth="85.0">
                            <children>
                               <ImageView fitHeight="79.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@../../../img/home.png" />
+                                    <Image url="@../../../../img/home.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                               </ImageView>
                               <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Accueil">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="deconnecter" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="148.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="118.0" prefWidth="85.0">
+                           <children>
+                              <ImageView fitHeight="79.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../../img/log_out.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se déconnecter">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -131,7 +196,7 @@
          <graphic>
             <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
                <image>
-                  <Image url="@../../../img/retour.png" />
+                  <Image url="@../../../../img/retour.png" />
                </image>
             </ImageView>
          </graphic>
