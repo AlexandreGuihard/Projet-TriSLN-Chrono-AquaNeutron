@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import src.vue.*;
 
 
-public class ControleurBoutonsClassementsDisconnected implements EventHandler<ActionEvent>{
+public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     @FXML
@@ -23,14 +23,22 @@ public class ControleurBoutonsClassementsDisconnected implements EventHandler<Ac
     private Button btnAccueil;
     @FXML
     private Button btnRetour;
+    @FXML
+    private Button btnAccueil2;
+    @FXML
+    private Button btnRetour2;
+    @FXML
+    private Button deconnecter;
+    @FXML
+    private Button btnCompte;
 
-    public ControleurBoutonsClassementsDisconnected(TriSLN vue){
+    public ControleurBoutonsClassements(TriSLN vue){
         this.vue=vue;
         this.vue.setBClassements(this.btnConnexion);
     }
 
     @FXML
-    public void handleBtnClassementDisconnectedMouseEntered(MouseEvent event){
+    public void handleBtnClassementMouseEntered(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
@@ -43,6 +51,18 @@ public class ControleurBoutonsClassementsDisconnected implements EventHandler<Ac
                 case "btnRetour":
                     this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
                     break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
+                    break;
             }
             
         }
@@ -53,7 +73,7 @@ public class ControleurBoutonsClassementsDisconnected implements EventHandler<Ac
     }
 
     @FXML
-    public void handleBtnClassementDisconnectedMouseExited(MouseEvent event){
+    public void handleBtnClassementMouseExited(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
@@ -65,6 +85,18 @@ public class ControleurBoutonsClassementsDisconnected implements EventHandler<Ac
                     break;
                 case "btnRetour":
                     this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
                     break;
             }
         }
@@ -83,10 +115,22 @@ public class ControleurBoutonsClassementsDisconnected implements EventHandler<Ac
                     this.vue.afficheAccueil();
                     break;
                 case "btnRetour":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnAccueil2":
                     this.vue.afficheAccueilConnecte();
                     break;
+                case "btnRetour2":
+                    this.vue.afficheAccueilConnecte();
+                    break;   
                 case "btnConnexion":
                     this.vue.afficheLogin();
+                    break;
+                case "deconnecter":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnCompte":
+                    this.vue.afficheMonCompte();
                     break;
             }
         }catch (Exception e){

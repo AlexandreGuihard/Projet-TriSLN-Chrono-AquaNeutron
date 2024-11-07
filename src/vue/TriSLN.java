@@ -47,7 +47,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene = new Scene(accueil);
             this.stage.setScene(scene);
@@ -81,7 +81,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene=new Scene(accueil);
             this.stage.setScene(scene);
@@ -96,7 +96,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueilConnecte=(BorderPane)loader.load();
             Scene scene=new Scene(accueilConnecte);
             this.stage.setScene(scene);
@@ -133,7 +133,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
             this.stage.show();
@@ -147,9 +147,24 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetClassementsDisconnected.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsClassementsDisconnected(this));
+            loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheMonCompte() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojet_Mon_compte_utilisateur.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCompte(this));
+            BorderPane moncompte=(BorderPane)loader.load();
+            Scene scene=new Scene(moncompte);
+            this.stage.setScene(scene);
             this.stage.show();
         }
         catch(Exception e){
