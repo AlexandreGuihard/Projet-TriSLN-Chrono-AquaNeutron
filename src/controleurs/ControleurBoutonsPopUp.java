@@ -53,10 +53,12 @@ public void handle(ActionEvent event){
     switch(btn.getId()){
         case "btnRetourPopUp":
             System.out.println("toto");
-            this.vue.afficheParticipants();
+            this.vue.closePopUpStage();
             break;
         case "btnValiderPopUp":
-            this.vue.afficheLesParticipants();   
+            this.vue.closePopUpStage();
+            this.vue.afficheLesParticipants(); 
+            break;  
     }
 }
 }
