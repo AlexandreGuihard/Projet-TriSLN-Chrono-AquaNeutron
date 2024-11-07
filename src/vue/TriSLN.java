@@ -109,6 +109,21 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheMonCompte() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojet_Mon_compte_utilisateur.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCompte(this));
+            BorderPane moncompte=(BorderPane)loader.load();
+            Scene scene=new Scene(moncompte);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void afficheParticipants(){
         File file=new File("src/vue/fxml/SAEprojetParticiperAccueil.fxml");
         try{

@@ -18,11 +18,9 @@ import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
 
-public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
+public class ControleurBoutonsCompte implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
-    @FXML
-    private Button btnNvlCourse;
     @FXML
     private Button btnAccueil;
     @FXML
@@ -32,9 +30,8 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
     @FXML
     private Button btnCompte;
 
-    public ControleurBoutonsCourses(TriSLN vue){
+    public ControleurBoutonsCompte(TriSLN vue){
         this.vue = vue;
-        this.vue.setBNvlCourse(this.btnNvlCourse);
         this.vue.setBAccueil(this.btnAccueil);
         this.vue.setBRetour(this.btnRetour);
         this.vue.setBDeconnexion(this.btnDeconnexion);
@@ -42,13 +39,10 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
     }
 
     @FXML
-    public void handleBtnCoursesMouseEntered(MouseEvent event){
+    public void handleBtnCompteMouseEntered(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
-                case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#105c74", "");
-                    break;
                 case "btnAccueil":
                     this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
                     break;
@@ -67,13 +61,10 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
     }
 
     @FXML
-    public void handleBtnCoursesMouseExited(MouseEvent event){
+    public void handleBtnCompteMouseExited(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
-                case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", null);
-                    break;
                 case "btnAccueil":
                     this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
                     break;
@@ -96,10 +87,6 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
         try {
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
-                case "btnNvlCourse":
-                    System.out.println("Nouvelle Course");
-                    this.vue.afficheNvlCourse();
-                    break;
                 case "btnRetour":
                     System.out.println("Retour");
                     this.vue.afficheAccueilConnecte();

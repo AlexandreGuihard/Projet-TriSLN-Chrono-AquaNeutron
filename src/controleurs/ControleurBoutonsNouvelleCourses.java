@@ -110,6 +110,7 @@ public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEven
                     break;
                 case "btnCompte":
                     System.out.println("Mon compte");
+                    this.vue.afficheMonCompte();
                     break;
                 case "btnDeconnexion":
                     System.out.println("Déconnexion");
