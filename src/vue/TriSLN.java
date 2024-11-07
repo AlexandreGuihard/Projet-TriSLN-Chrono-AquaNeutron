@@ -41,6 +41,7 @@ public class TriSLN extends Application{
         this.connecte=false;
     }
     public void start(Stage stage){
+        System.out.println("Méthode start() appelée");
         this.stage = stage;
         this.stage.setTitle("TriSLN");
         File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
@@ -61,7 +62,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsLogin(this));
             this.fenetreLogin=new FenetreLogin(loader, this.stage);
             this.stage = this.fenetreLogin.getWindow();
             this.stage.show();
@@ -72,9 +73,11 @@ public class TriSLN extends Application{
         
     }
 
-
     public void afficheAccueil() throws IOException {
-        
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
+            return;
+        }    
         File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());

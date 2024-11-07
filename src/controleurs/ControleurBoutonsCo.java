@@ -107,7 +107,6 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     this.vue.afficheClassementsDisconnected();
                     break;
                 case "btnConnexion":
-                    System.out.println("toto");
                     this.vue.afficheLogin();
                     break;
             }

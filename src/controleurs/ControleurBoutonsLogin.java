@@ -60,7 +60,7 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnConnecter":
-                    this.vue.changeButtonColor(this.btnConnecter, "#105c74", "-fx-background-radius: 15");
+                    this.vue.changeButtonColor(this.btnConnecter, "#2596BE", "-fx-background-radius: 15");
                     break;
                 case "btnAccueil":
                     this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");

@@ -83,7 +83,7 @@ public class ControleurBoutonsClassementsDisconnected implements EventHandler<Ac
                     this.vue.afficheAccueil();
                     break;
                 case "btnRetour":
-                    this.vue.afficheAccueil();
+                    this.vue.afficheAccueilConnecte();
                     break;
                 case "btnConnexion":
                     this.vue.afficheLogin();

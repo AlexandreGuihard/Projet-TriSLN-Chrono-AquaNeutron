@@ -36,7 +36,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onMouseEntered="#btnPaticipantsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les paticipants" textFill="WHITE">
+                  <Button fx:id="btnPaticipants" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les paticipants" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -50,7 +50,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnCourses" mnemonicParsing="false" onMouseEntered="#btnCoursesME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les courses" textFill="WHITE">
+                  <Button fx:id="btnCourses" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Les courses" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -61,7 +61,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnClassements" mnemonicParsing="false" onMouseEntered="#btnClassementsME" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnClassements" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -94,7 +94,7 @@
             <Region HBox.hgrow="ALWAYS" />
             <ButtonBar prefHeight="120.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
               <buttons>
-                  <Button fx:id="deconnecter" mnemonicParsing="false" onMouseEntered="#connectionMouseEntered" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="deconnecter" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
