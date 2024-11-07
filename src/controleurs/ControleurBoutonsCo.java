@@ -53,7 +53,6 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
                     break;
                 case "btnConnexion":
-                    System.out.println(btn.getText());
                     this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
                     break;
                 case "btnDeconnexion":
@@ -112,6 +111,10 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                 case "btnCourses":
                     System.out.println("Les courses");
                     this.vue.afficheCourses();
+                    break;
+                case "btnDeconnexion":
+                    System.out.println("Déconnexion");
+                    this.vue.afficheAccueil();
                     break;
                 }
         } 
