@@ -78,17 +78,21 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent event) {
-        Button btn=(Button) event.getSource();
-        switch(btn.getId()){
-            case "btnConnecter":
-                this.vue.afficheAccueilConnecte();
-                break;
-            case "btnRetour":
-                this.vue.afficheAccueil();
-                break;
-            case "btnAccueil":
-                this.vue.afficheAccueil();
-                break;
+        try{
+            Button btn=(Button) event.getSource();
+            switch(btn.getId()){
+                case "btnConnecter":
+                    this.vue.afficheAccueilConnecte();
+                    break;
+                case "btnRetour":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnAccueil":
+                    this.vue.afficheAccueil();
+                    break;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
