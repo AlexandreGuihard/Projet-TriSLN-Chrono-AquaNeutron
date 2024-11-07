@@ -50,25 +50,35 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     @FXML
     public void handleBtnAccueilMouseEntered(MouseEvent event){
         try{
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#105c74", null);
+                    changedButton=this.btnClassements;
+                    newBtnColor="#105c74";
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#105c74", null);
+                    changedButton=this.btnParticipants;
+                    newBtnColor="#105c74";
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
+                    changedButton=this.btnCourses;
+                    newBtnColor="#105c74"; 
                     break;
                 case "btnConnexion":
-                    this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
+                    changedButton=this.btnConnexion;
+                    newBtnColor="#949494";
+                    otherStyle="-fx-background-radius: 15";
                     break;
                 case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
+                    changedButton=this.btnDeconnexion;
+                    newBtnColor="#949494";
+                    otherStyle="-fx-background-radius: 15";
                     break;
             }
-            
+            this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -79,24 +89,35 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     @FXML
     public void handleBtnAccueilMouseExited(MouseEvent event){
         try{
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#2596BE", null);
+                    changedButton=this.btnClassements;
+                    newBtnColor="#2596BE";
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#2596BE", null);
+                    changedButton=this.btnParticipants;
+                    newBtnColor="#2596BE";
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#2596BE", null);    
+                    changedButton=this.btnCourses;
+                    newBtnColor="#2596BE"; 
                     break;
                 case "btnConnexion":
-                    this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
+                    changedButton=this.btnConnexion;
+                    newBtnColor="lightgrey";
+                    otherStyle="-fx-background-radius: 15";
                     break;
                 case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
+                    changedButton=this.btnDeconnexion;
+                    newBtnColor="lightgrey";
+                    otherStyle="-fx-background-radius: 15";
                     break;
             }
+            this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
         }
         catch(Exception e){
             System.err.println("Erreur");

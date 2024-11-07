@@ -48,7 +48,7 @@
                 <RowConstraints maxHeight="106.0" minHeight="0.0" prefHeight="67.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnMP" mnemonicParsing="false" onMouseDragEntered="#btnMPME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="btnMP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -78,7 +78,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnPO" mnemonicParsing="false" onMouseEntered="#btnPOME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="btnPO" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnPU" mnemonicParsing="false" onMouseEntered="#btnPUME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="btnPU" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -138,7 +138,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnBE" mnemonicParsing="false" onMouseEntered="#btnBEME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="btnBE" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -168,7 +168,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnMI" mnemonicParsing="false" onMouseEntered="#btnMIME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="btnMI" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -198,7 +198,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnCA" mnemonicParsing="false" onMouseEntered="#btnCAME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="btnCA" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -228,7 +228,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnJU" mnemonicParsing="false" onMouseEntered="#btnJUME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="btnJU" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -258,7 +258,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnV" mnemonicParsing="false" onMouseEntered="#btnVME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="btnV" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -288,7 +288,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="tbnS" mnemonicParsing="false" onMouseEntered="#tbnSME" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="btnS" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -352,9 +352,9 @@
                </children>
             </VBox>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+            <ButtonBar buttonMinWidth="80.0">
                <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
@@ -381,7 +381,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onDragEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnParticipantsMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -438,7 +438,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -446,7 +446,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+            <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@../../../img/retour.png" />
                </image>

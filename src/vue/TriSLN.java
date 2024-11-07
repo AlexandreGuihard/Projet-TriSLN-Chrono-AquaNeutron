@@ -131,7 +131,43 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetParticiperAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreParticipants=new FenetreParticipant(loader);
+            loader.setController(new ControleurBoutonsParticipants(this));
+            this.fenetreParticipants=new FenetreParticipant(loader, this.stage);
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheLesParticipants(){
+        File file=new File("src/vue/fxml/SAEprojetParticiperCategorie.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsParticipants(this));
+            this.fenetreParticipants.afficheParticipants(loader);
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void affichePopUp(FXMLLoader loader, String popUpName){
+        try{
+            loader.setController(new ControleurBoutonsPopUp(this));
+            switch(popUpName){
+                case "V":
+                    this.fenetreParticipants.popUpVeterans(loader);
+                    break;
+                case "S":
+                    this.fenetreParticipants.popUpSeniors(loader);
+                    break;    
+            }
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -270,6 +306,10 @@ public class TriSLN extends Application{
         return bd;
     }
 
+    public Stage getStage(){
+        return this.stage;
+    }
+
     public void setBConnexion(Button btnConnexion){
         this.btnConnexion=btnConnexion;
     }
@@ -330,12 +370,12 @@ public class TriSLN extends Application{
         this.connecte=connecte;
     }
 
-    public void setWindow(Stage stage){
-        this.stage = stage;
+    public void setStage(Stage stage){
+        this.stage=stage;
     }
 
     public void changeButtonColor(Button button, String color, String otherStyle){
-        if(otherStyle==null){
+        if(otherStyle.equals("")){
             button.setStyle("-fx-background-color: "+color+";");
         }
         else{
