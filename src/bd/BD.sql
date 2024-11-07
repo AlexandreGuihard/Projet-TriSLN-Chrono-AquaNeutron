@@ -18,7 +18,7 @@ CREATE TABLE CHRONOMETRAGE (
 );
 
 CREATE TABLE CLASSEMENT (
-    id_Classement VARCHAR(42) NOT NULL,
+    id_Classement INT NOT NULL,
     pos_generale INT,
     pos_categorie INT,
     pos_club INT,
@@ -74,8 +74,8 @@ CREATE TABLE PARTICIPANT (
 );
 
 CREATE TABLE PARTICIPER (
-    id_Participant VARCHAR(42) NOT NULL,
-    id_Epreuve     VARCHAR(42) NOT NULL,
+    id_Participant INT NOT NULL,
+    id_Epreuve     INT NOT NULL,
     payee          VARCHAR(42),
     PRIMARY KEY (id_Participant, id_Epreuve)
 );
@@ -90,7 +90,6 @@ ALTER TABLE DOSSARD ADD FOREIGN KEY (id_Participant) REFERENCES PARTICIPANT (id_
 
 ALTER TABLE ENREGISTRER ADD FOREIGN KEY (num_Dossard) REFERENCES DOSSARD (num_Dossard);
 ALTER TABLE ENREGISTRER ADD FOREIGN KEY (id_Chrono) REFERENCES CHRONOMETRAGE (id_Chrono);
-DOSSARD
 ALTER TABLE GENERER ADD FOREIGN KEY (id_Participant) REFERENCES PARTICIPANT (id_Participant);
 ALTER TABLE GENERER ADD FOREIGN KEY (id_Epreuve) REFERENCES EPREUVE (id_Epreuve);
 ALTER TABLE GENERER ADD FOREIGN KEY (id_Classement) REFERENCES CLASSEMENT (id_Classement);
