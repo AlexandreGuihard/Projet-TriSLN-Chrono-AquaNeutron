@@ -42,8 +42,6 @@ public class TriSLN extends Application{
     public void init(){
         bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBvoivenel", "voivenel", "voivenel"));
         this.utilisateur = new Utilisateur();
-        System.out.println(utilisateur.getRole());
-        System.out.println(this.getUtilisateur().getRole());
         this.connecte=false;
     }
     public void start(Stage stage){
@@ -67,7 +65,7 @@ public class TriSLN extends Application{
         File file = new File("src/vue/fxml/SAEprojetConnexion.fxml");
         try {
             FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsLogin(this));
             this.fenetreLogin = new FenetreLogin(loader, this.stage);
             this.stage = this.fenetreLogin.getWindow();
             this.stage.show();
@@ -177,7 +175,6 @@ public class TriSLN extends Application{
     }
 
     public Utilisateur getUtilisateur(){
-        System.out.println(this.utilisateur.getRole());
         return this.utilisateur;
     }
 

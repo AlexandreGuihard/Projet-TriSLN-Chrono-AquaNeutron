@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +38,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     @FXML
     private TextField idIdentifiant;
     @FXML
-    private TextField idMdp;
+    private PasswordField idMdp;
     @FXML
     private Label idInfoLabel;
 
@@ -63,10 +64,6 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     break;
                 case "btnCourses":
                     this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
-                    break;
-                case "btnConnecter":
-                    System.out.println("Entered connection");
-                    this.vue.changeButtonColor(this.btnConnecter, "#105c74", null);
                     break;
                 case "btnCompte":
                     System.out.println("Entered se connecter");
@@ -97,10 +94,6 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     break;
                 case "btnCourses":
                     this.vue.changeButtonColor(this.btnCourses, "#2596BE", null);    
-                    break;
-                case "btnConnecter":
-                    System.out.println("Exited connection");
-                    this.vue.changeButtonColor(this.btnConnecter, "#2596BE", null);
                     break;
                 case "btnCompte":
                     System.out.println("Exited se connecter");
@@ -135,20 +128,6 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     this.vue.afficheLogin();
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                break;
-            case "btnConnecter":
-                System.out.println("Clique connection");
-                this.vue.getUtilisateur().getRole();
-                try {
-                    this.vue.getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
-                    idInfoLabel.setText("Identifié en tant que " + this.idIdentifiant.getText());
-                } 
-                catch (SQLException e) {
-                    e.printStackTrace();
-                } 
-                catch (NoSuchUserException e){
-                    idInfoLabel.setText("Cette utilisateur n'existe pas");
                 }
                 break;
             default:

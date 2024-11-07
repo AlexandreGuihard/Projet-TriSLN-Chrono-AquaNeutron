@@ -22,10 +22,20 @@ public class Utilisateur {
         if (TriSLN.getBd().verifConnexion(identifiant, mdp)){
             this.identifiant = identifiant;
             this.role = TriSLN.getBd().getRoleUtilisateur(identifiant);
+        } else {
+            throw new NoSuchUserException();
         }
     }
 
-    public boolean estConnecte(){
-        return this.role != "spectateur";
+    public boolean estAdmin(){
+        return this.role == "admin";
+    }
+
+    public boolean estBenevol(){
+        return this.role == "benevol";
+    }
+
+    public boolean estSpectateur(){
+        return this.role == "spectateur";
     }
 }
