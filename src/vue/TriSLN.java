@@ -33,6 +33,7 @@ public class TriSLN extends Application{
     private Button btnNvlCourse;
     private Button btnAJtCourse;
     private Button btnRetour;
+    private Button btnCompte;
     private FenetreParticipant fenetreParticipants;
     private FenetreClassements fenetreClassements;
     private FenetreCourses fenetreCourses;
@@ -78,13 +79,14 @@ public class TriSLN extends Application{
         
     }
 
-    public void afficheAccueilConnecte() throws IOException{
+    public void afficheAccueilConnecte(){
         File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsCo(this));
-            this.fenetreCourses=new FenetreCourses(loader, this.stage);
-            this.stage = this.fenetreCourses.getWindow();
+            BorderPane accueilConnecte=(BorderPane)loader.load();
+            Scene scene=new Scene(accueilConnecte);
+            this.stage.setScene(scene);
             this.stage.show();
         }
         catch(Exception e){
@@ -103,7 +105,7 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheCourses() throws IOException{
+    public void afficheCourses(){
         File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
@@ -181,6 +183,10 @@ public class TriSLN extends Application{
         return this.btnRetour;
     }
 
+    public Button getBCompte(){
+        return this.btnCompte;
+    }
+    
     public FenetreParticipant getFenetreParticipants(){
         return this.fenetreParticipants;
     }
@@ -239,6 +245,10 @@ public class TriSLN extends Application{
     
     public void setBRetour(Button btnRetour){
         this.btnRetour=btnRetour;
+    }
+    
+    public void setBCompte(Button btnCompte){
+        this.btnCompte=btnCompte;
     }
     
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){

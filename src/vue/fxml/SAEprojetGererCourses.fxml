@@ -179,7 +179,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="deconnecter" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="809.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="809.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>

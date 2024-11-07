@@ -24,11 +24,21 @@ public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEven
     private Button btnAJtCourse;
     @FXML
     private Button btnAccueil;
+    @FXML
+    private Button btnRetour;
+    @FXML
+    private Button btnDeconnexion;
+    @FXML
+    private Button btnCompte;
+
 
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
         this.vue = vue;
         this.vue.setBAJtCourse(this.btnAJtCourse);
         this.vue.setBAccueil(this.btnAccueil);
+        this.vue.setBRetour(this.btnRetour);
+        this.vue.setBDeconnexion(this.btnDeconnexion);
+        this.vue.setBCompte(this.btnCompte);
     }
 
     @FXML
@@ -39,8 +49,16 @@ public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEven
                 case "btnAJtCourse":
                     this.vue.changeButtonColor(this.btnAJtCourse, "#105c74", null);
                     break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnDeconnexion":
+                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
+                    break;
             }
-            
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -55,6 +73,15 @@ public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEven
             switch(btn.getId()){
                 case "btnAJtCourse":
                     this.vue.changeButtonColor(this.btnAJtCourse, "#2596BE", null);
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnDeconnexion":
+                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
                     break;
             }
         }
@@ -80,6 +107,10 @@ public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEven
                 case "btnAccueil":
                     System.out.println("Accueil");
                     this.vue.afficheAccueilConnecte();
+                    break;
+                case "btnCompte":
+                    System.out.println("Mon compte");
+                    break;
             }
         } 
         catch (IOException e)

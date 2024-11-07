@@ -93,7 +93,7 @@
             <Region HBox.hgrow="ALWAYS" />
             <ButtonBar prefHeight="120.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
               <buttons>
-                  <Button fx:id="deconnecter" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
