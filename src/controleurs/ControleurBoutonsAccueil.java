@@ -14,12 +14,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
-public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
+public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     // log accueil et AccConnecter
     @FXML
     private Button btnClassements;
+    @FXML
+    private Button btnClassements2;
     @FXML
     private Button btnConnexion;
     @FXML
@@ -27,18 +29,21 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     @FXML
     private Button btnCourses;
     @FXML
-    private Button btnDeconnexion;
+    private Button deconnecter;
     @FXML
     private Button btnAccueil;
+    @FXML
+    private Button btnCompte;
 
-    public ControleurBoutonsCo(TriSLN vue){
+    public ControleurBoutonsAccueil(TriSLN vue){
         this.vue = vue;
         this.vue.setBClassements(this.btnClassements);
+        this.vue.setBClassements(this.btnClassements2);
         this.vue.setBConnexion(this.btnConnexion);
         this.vue.setBParticipants(this.btnParticipants);
         this.vue.setBCourses(this.btnCourses);
-        this.vue.setBDeconnexion(this.btnDeconnexion);
-        this.vue.setBDeconnexion(this.btnAccueil);
+        this.vue.setBDeconnexion(this.deconnecter);
+        this.vue.setBAccueil(this.btnAccueil);
     }
 
     @FXML
@@ -49,17 +54,23 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                 case "btnClassements":
                     this.vue.changeButtonColor(this.btnClassements, "#105c74", null);
                     break;
-                case "Participants":
+                case "btnClassements2":
+                    this.vue.changeButtonColor(this.btnClassements2, "#105c74", null);
+                    break;
+                case "btnParticipants":
                     this.vue.changeButtonColor(this.btnParticipants, "#105c74", null);
                     break;
-                case "Courses":
+                case "btnCourses":
                     this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
                     break;
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
                     break;
-                case "Deconnecter":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
                     break;
             }
             
@@ -78,17 +89,23 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                 case "btnClassements":
                     this.vue.changeButtonColor(this.btnClassements, "#2596BE", null);
                     break;
-                case "Participants":
+                case "btnClassements2":
+                    this.vue.changeButtonColor(this.btnClassements2, "#2596BE", null);
+                    break;
+                case "btnParticipants":
                     this.vue.changeButtonColor(this.btnParticipants, "#2596BE", null);
                     break;
-                case "Courses":
+                case "btnCourses":
                     this.vue.changeButtonColor(this.btnCourses, "#2596BE", null);    
                     break;
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
                     break;
-                case "Deconnecter":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
                     break;
             }
         }
@@ -107,10 +124,25 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     this.vue.afficheClassementsDisconnected();
                     break;
                 case "btnConnexion":
-                    System.out.println("toto");
                     this.vue.afficheLogin();
                     break;
+                case "btnClassements2":
+                    this.vue.afficheClassements();
+                    break;
+                // case "btnParticipants":
+
+                //     break;
+                // case "btnCourses":
+
+                //     break;
+                case "deconnecter":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnCompte":
+                    this.vue.afficheMonCompte();
+                    break;
             }
+            
         } 
         catch (IOException e)
         {
