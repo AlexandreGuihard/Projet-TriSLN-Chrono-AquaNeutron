@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.io.File;
+import javafx.scene.control.ComboBox;
 
 import src.vue.*;
 import src.bd.*;
@@ -43,7 +44,7 @@ public class TriSLN extends Application{
     public void start(Stage stage){
         this.stage=new Stage();
         this.stage.setTitle("TriSLN");
-        File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
+        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsCo(this));
@@ -114,7 +115,8 @@ public class TriSLN extends Application{
 
     public void affichePopUp(FXMLLoader loader, String popUpName){
         try{
-            loader.setController(new ControleurBoutonsPopUp(this));
+            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this);
+            loader.setController(controleur);
             switch(popUpName){
                 case "V":
                     this.fenetreParticipants.popUpVeterans(loader);

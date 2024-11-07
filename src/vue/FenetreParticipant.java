@@ -88,6 +88,7 @@ public class FenetreParticipant{
         try {
             this.root = (BorderPane)loader.load();
             this.popUpStage.setScene(new Scene(this.root));
+            this.popUpStage.setTitle("TriSLN");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,6 +98,7 @@ public class FenetreParticipant{
         try {
             this.root = (BorderPane)loader.load();
             this.popUpStage.setScene(new Scene(this.root));
+            this.popUpStage.setTitle("TriSLN");
         } catch (Exception e) {
             e.printStackTrace();
         }
