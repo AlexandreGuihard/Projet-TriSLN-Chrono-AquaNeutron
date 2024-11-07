@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
-public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
+public class ControleurBoutonsCo extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     // log accueil et AccConnecter
@@ -30,12 +30,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     private Button btnDeconnexion;
 
     public ControleurBoutonsCo(TriSLN vue){
-        this.vue = vue;
-        this.vue.setBClassements(this.btnClassements);
-        this.vue.setBConnexion(this.btnConnexion);
-        this.vue.setBParticipants(this.btnParticipants);
-        this.vue.setBCourses(this.btnCourses);
-        this.vue.setBDeconnexion(this.btnDeconnexion);
+        super();
     }
 
     @FXML
@@ -69,7 +64,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     otherStyle="-fx-background-radius: 15";
                     break;
             }
-            this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -108,7 +103,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     otherStyle="-fx-background-radius: 15";
                     break;
             }
-            this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -130,11 +125,9 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                 } 
                 break;
             case "Les participants":
-                System.out.println("Participants");
-                this.vue.afficheParticipants();
+                super.getVue().afficheParticipants();
                 break;
             default:
-                System.out.println("Accueil");
                 break;
         }
     }
