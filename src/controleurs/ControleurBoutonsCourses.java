@@ -18,7 +18,7 @@ import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
 
-public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
+public class ControleurBoutonsCourses extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML
@@ -33,12 +33,21 @@ public class ControleurBoutonsCourses implements EventHandler<ActionEvent> {
     private Button btnCompte;
 
     public ControleurBoutonsCourses(TriSLN vue){
+        super();
         this.vue = vue;
         this.vue.setBNvlCourse(this.btnNvlCourse);
         this.vue.setBAccueil(this.btnAccueil);
         this.vue.setBRetour(this.btnRetour);
         this.vue.setBDeconnexion(this.btnDeconnexion);
         this.vue.setBCompte(this.btnCompte);
+        this.setBoutons();
+    }
+
+    private void setBoutons(){
+        super.setBAccueil(btnAccueil);
+        super.setBCompte(btnCompte);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setBRetour(btnRetour);
     }
 
     @FXML

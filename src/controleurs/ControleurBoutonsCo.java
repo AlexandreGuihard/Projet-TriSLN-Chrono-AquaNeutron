@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
-public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
+public class ControleurBoutonsCo extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     // log accueil et AccConnecter
@@ -28,14 +28,23 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     private Button btnCourses;
     @FXML
     private Button btnDeconnexion;
+    @FXML
+    private Button btnCompte;
 
     public ControleurBoutonsCo(TriSLN vue){
+        super();
         this.vue = vue;
         this.vue.setBClassements(this.btnClassements);
         this.vue.setBConnexion(this.btnConnexion);
         this.vue.setBParticipants(this.btnParticipants);
         this.vue.setBCourses(this.btnCourses);
         this.vue.setBDeconnexion(this.btnDeconnexion);
+        this.setBoutons();
+    }
+
+    private void setBoutons(){
+        super.setBCompte(btnCompte);
+        super.setBDeconnexion(btnDeconnexion);
     }
 
     @FXML

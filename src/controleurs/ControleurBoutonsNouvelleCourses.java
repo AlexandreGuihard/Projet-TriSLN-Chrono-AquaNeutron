@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 
 import java.io.IOException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 import javafx.event.ActionEvent;
@@ -17,7 +18,7 @@ import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
 
-public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEvent> {
+public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML
@@ -33,12 +34,21 @@ public class ControleurBoutonsNouvelleCourses implements EventHandler<ActionEven
 
 
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
+        super();
         this.vue = vue;
         this.vue.setBAJtCourse(this.btnAJtCourse);
         this.vue.setBAccueil(this.btnAccueil);
         this.vue.setBRetour(this.btnRetour);
         this.vue.setBDeconnexion(this.btnDeconnexion);
         this.vue.setBCompte(this.btnCompte);
+        this.setBoutons();
+    }
+
+    private void setBoutons(){
+        super.setBAccueil(btnAccueil);
+        super.setBCompte(btnCompte);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setBRetour(btnRetour);
     }
 
     @FXML

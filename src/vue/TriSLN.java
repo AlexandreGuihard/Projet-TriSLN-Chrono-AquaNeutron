@@ -38,6 +38,8 @@ public class TriSLN extends Application{
     private FenetreClassements fenetreClassements;
     private FenetreCourses fenetreCourses;
     private FenetreLogin fenetreLogin;
+    private String precFXML;
+    private ControleurBoutons precControleur;
 
     public static void main(String[] args){
         launch();
@@ -54,6 +56,7 @@ public class TriSLN extends Application{
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsCo(this));
+            this.precFXML = file.getPath();
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene = new Scene(accueil);
             this.stage.setScene(scene);
@@ -137,9 +140,12 @@ public class TriSLN extends Application{
 
     public void afficheCourses(){
         File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCourses(this));
+            loader.setController(controleur);
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
@@ -165,6 +171,9 @@ public class TriSLN extends Application{
 
     public void afficheNvlCourse() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsNouvelleCourses(this));
@@ -176,6 +185,26 @@ public class TriSLN extends Application{
             e.printStackTrace();
         }
     }
+
+    public void afficheRetour() {
+        if (this.precFXML == null) {
+            System.out.println("Erreur : aucune vue précédente n'a été enregistrée.");
+            return;
+        }
+    
+        File file = new File(this.precFXML); // Utilise le dernier chemin enregistré
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(this.precControleur);
+            BorderPane precedent = loader.load();
+            Scene scene = new Scene(precedent);
+            this.stage.setScene(scene);
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     public Button getBConnexion(){
         return this.btnConnexion;
