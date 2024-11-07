@@ -35,7 +35,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnClassements" onAction="#handle" mnemonicParsing="false" onMouseExited="#handleBtnAccueilMouseExited" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnClassements" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -59,7 +59,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../../../img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@../../../img/TriSLN_AquaNeutron.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -68,13 +68,13 @@
             <Region HBox.hgrow="ALWAYS" />
             <ButtonBar prefHeight="40.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
               <buttons>
-                  <Button fx:id="btnConnexion" onAction="#handle" mnemonicParsing="false" onMouseExited="#handleBtnAccueilMouseExited" onMouseEntered="#handleBtnAccueilMouseEntered" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnConnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@../../../img/login_icon_137429.png" />
+                                    <Image url="@../../../img/login_icon.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se connecter">
