@@ -31,6 +31,12 @@ public class TriSLN extends Application{
     private FenetreClassements fenetreClassements;
     private FenetreCourses fenetreCourses;
     private FenetreLogin fenetreLogin;
+    private Button btnNvlCourse;
+    private Button btnAJtCourse;
+    private Button btnRetour;
+    private Button btnCompte;
+    private String precFXML;
+    private ControleurBoutons precControleur;
 
     public static void main(String[] args){
         launch();
@@ -111,7 +117,59 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetParticiperAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreParticipants=new FenetreParticipant(loader);
+            loader.setController(new ControleurBoutonsParticipants(this));
+            this.fenetreParticipants=new FenetreParticipant(loader, this.stage);
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheLesParticipants(){
+        File file=new File("src/vue/fxml/SAEprojetParticiperCategorie.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsParticipants(this));
+            this.fenetreParticipants.afficheParticipants(loader);
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void affichePopUp(FXMLLoader loader, String popUpName){
+        try{
+            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this);
+            loader.setController(controleur);
+            switch(popUpName){
+                case "V":
+                    this.fenetreParticipants.popUpVeterans(loader);
+                    break;
+                case "S":
+                    this.fenetreParticipants.popUpSeniors(loader);
+                    break;    
+            }
+            this.stage=this.fenetreParticipants.getPopUpStage();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void closePopUpStage(){
+        this.stage.close();
+    }
+
+    public void afficheCourses(){
+        File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            this.fenetreCourses=new FenetreCourses(loader);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -120,9 +178,32 @@ public class TriSLN extends Application{
 
     public void afficheCourses(){
         File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreCourses=new FenetreCourses(loader);
+            loader.setController(controleur);
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheNvlCourse() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsNouvelleCourses(this));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -197,6 +278,22 @@ public class TriSLN extends Application{
         return this.btnAccueil;
     }
 
+    public Button getBNvlCourse(){
+        return this.btnNvlCourse;
+    }
+
+    public Button getBAJtCourse(){
+        return this.btnAJtCourse;
+    }
+
+    public Button getBRetour(){
+        return this.btnRetour;
+    }
+
+    public Button getBCompte(){
+        return this.btnCompte;
+    }
+    
     public FenetreParticipant getFenetreParticipants(){
         return this.fenetreParticipants;
     }
@@ -245,6 +342,22 @@ public class TriSLN extends Application{
         this.btnAccueil=btnAccueil;
     }
 
+    public void setBNvlCourse(Button btnNvlCourse){
+        this.btnNvlCourse=btnNvlCourse;
+    }
+
+    public void setBAJtCourse(Button btnAJtCourse){
+        this.btnAJtCourse=btnAJtCourse;
+    }
+    
+    public void setBRetour(Button btnRetour){
+        this.btnRetour=btnRetour;
+    }
+    
+    public void setBCompte(Button btnCompte){
+        this.btnCompte=btnCompte;
+    }
+    
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){
         this.fenetreParticipants=fenetreParticipants;
     }
@@ -276,5 +389,17 @@ public class TriSLN extends Application{
         else{
             button.setStyle("-fx-background-color: "+color+";"+otherStyle+";");
         }
+    }
+
+    public static BdTriSLN getBd(){
+        return bd;
+    }
+
+    public Stage getStage(){
+        return this.stage;
+    }
+
+    public void setStage(Stage stage){
+        this.stage=stage;
     }
 }
