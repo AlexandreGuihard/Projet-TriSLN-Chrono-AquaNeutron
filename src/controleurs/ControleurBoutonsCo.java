@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
-public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
+public class ControleurBoutonsCo extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     // log accueil et AccConnecter
@@ -28,14 +28,23 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
     private Button btnCourses;
     @FXML
     private Button btnDeconnexion;
+    @FXML
+    private Button btnCompte;
 
     public ControleurBoutonsCo(TriSLN vue){
+        super();
         this.vue = vue;
         this.vue.setBClassements(this.btnClassements);
         this.vue.setBConnexion(this.btnConnexion);
         this.vue.setBParticipants(this.btnParticipants);
         this.vue.setBCourses(this.btnCourses);
         this.vue.setBDeconnexion(this.btnDeconnexion);
+        this.setBoutons();
+    }
+
+    private void setBoutons(){
+        super.setBCompte(btnCompte);
+        super.setBDeconnexion(btnDeconnexion);
     }
 
     @FXML
@@ -118,24 +127,30 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent event){
-        Button btn=(Button) event.getSource();
-        switch(btn.getText()){
-            case "Classements":
-                try {
+        try {
+            Button btn=(Button) event.getSource();
+            switch(btn.getId()){
+                case "btnClassements":
+                    System.out.println("btnClassements");
                     this.vue.afficheClassements();
-                } 
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                } 
-                break;
-            case "Les participants":
-                System.out.println("Participants");
-                this.vue.afficheParticipants();
-                break;
-            default:
-                System.out.println("Accueil");
-                break;
-        }
+                    break;
+                case "btnConnexion":
+                    System.out.println("Connexion");
+                    this.vue.afficheLogin();
+                    break;
+                case "btnCourses":
+                    System.out.println("Les courses");
+                    this.vue.afficheCourses();
+                    break;
+                case "btnDeconnexion":
+                    System.out.println("Déconnexion");
+                    this.vue.afficheAccueil();
+                    break;
+                }
+        } 
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        } 
     }
 }
