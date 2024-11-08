@@ -129,9 +129,9 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
                 case "btnClassements2":
                     this.vue.afficheClassements();
                     break;
-                // case "btnParticipants":
-
-                //     break;
+                case "btnParticipants":
+                    this.vue.afficheParticipants();
+                    break;
                 case "btnCourses":
                     this.vue.afficheCourses();
                     break;

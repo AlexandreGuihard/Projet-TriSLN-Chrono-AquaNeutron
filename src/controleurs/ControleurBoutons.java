@@ -139,19 +139,23 @@ public abstract class ControleurBoutons {
     }
 
     public void handle(Button pressedButton){
-        switch(pressedButton.getId()){
-            case "btnCompte":
-                this.vue.afficheMonCompte();
-                break;
-            case "btnConnexion":
-                this.vue.afficheLogin();
-                break;    
-            case "btnDeconnexion":
-                this.vue.afficheAccueil();
-                break;
-            default:
-                this.vue.afficheAccueilConnecte(); 
-                break;           
-        }
+        try{
+            switch(pressedButton.getId()){
+                case "btnCompte":
+                    this.vue.afficheMonCompte();
+                    break;
+                case "btnConnexion":
+                    this.vue.afficheLogin();
+                    break;    
+                case "btnDeconnexion":
+                    this.vue.afficheAccueil();
+                    break;
+                default:
+                    this.vue.afficheAccueilConnecte(); 
+                    break;           
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        } 
     }
 }

@@ -167,17 +167,6 @@ public class TriSLN extends Application{
 
     public void afficheCourses(){
         File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
-        try{
-            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreCourses=new FenetreCourses(loader);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void afficheCourses(){
-        File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
         this.precFXML = file.getPath();
         ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
         this.precControleur = controleur;
@@ -391,9 +380,6 @@ public class TriSLN extends Application{
         }
     }
 
-    public static BdTriSLN getBd(){
-        return bd;
-    }
 
     public Stage getStage(){
         return this.stage;

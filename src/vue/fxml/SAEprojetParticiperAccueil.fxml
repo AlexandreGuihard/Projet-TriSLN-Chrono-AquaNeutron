@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
@@ -328,7 +328,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@../images/icone.png" />
+                  <Image url="@../../../img/TriSLN_AquaNeutron.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -360,7 +360,7 @@
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@../images/my_account_button.png" />
+                                    <Image url="@../../../img/compte.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -387,10 +387,34 @@
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@../images/home_icon.png" />
+                                    <Image url="@../../../img/home.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Accueil">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="deconnecter" mnemonicParsing="false" onDragEntered="#btnAccueilME" prefHeight="120.0" prefWidth="609.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="112.0" prefWidth="125.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../img/log_out.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se déconnecter">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -424,7 +448,7 @@
          <graphic>
             <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
                <image>
-                  <Image url="@../../../img/93634.png" />
+                  <Image url="@../../../img/retour.png" />
                </image>
             </ImageView>
          </graphic>
