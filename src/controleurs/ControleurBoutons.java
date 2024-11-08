@@ -47,7 +47,7 @@ public abstract class ControleurBoutons {
     public void setVue(TriSLN vue){
         this.vue = vue;
     }
-  
+
     public Button getBDeconnexion(){
         return this.btnDeconnexion;
     }
@@ -140,20 +140,24 @@ public abstract class ControleurBoutons {
         this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
     }
 
-    public void handle(Button pressedButton) throws IOException{
-        switch(pressedButton.getId()){
-            case "btnCompte":
-                this.vue.afficheMonCompte();
-                break;
-            case "btnConnexion":
-                this.vue.afficheLogin();
-                break;    
-            case "btnDeconnexion":
-                this.vue.afficheAccueil();
-                break;
-            default:
-                this.vue.afficheAccueilConnecte(); 
-                break;           
-        }
+    public void handle(Button pressedButton){
+        try{
+            switch(pressedButton.getId()){
+                case "btnCompte":
+                    this.vue.afficheMonCompte();
+                    break;
+                case "btnConnexion":
+                    this.vue.afficheLogin();
+                    break;    
+                case "btnDeconnexion":
+                    this.vue.afficheAccueil();
+                    break;
+                default:
+                    this.vue.afficheAccueilConnecte(); 
+                    break;           
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        } 
     }
 }

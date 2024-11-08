@@ -67,6 +67,9 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
                 case "btnCompte":
                     this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
                     break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
+                    break;
             }
         }
         catch(Exception e){
@@ -81,7 +84,7 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", "");
+                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", null);
                     break;
                 case "btnAccueil":
                     this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
@@ -91,6 +94,9 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
                     break;
                 case "btnCompte":
                     this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
                     break;
             }
         }
@@ -106,23 +112,18 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
                 case "btnNvlCourse":
-                    System.out.println("Nouvelle Course");
                     this.vue.afficheNvlCourse();
                     break;
                 case "btnRetour":
-                    System.out.println("Retour");
                     this.vue.afficheAccueilConnecte();
                     break;
                 case "btnAccueil":
-                    System.out.println("Accueil");
                     this.vue.afficheAccueilConnecte();
                     break;
                 case "btnCompte":
-                    System.out.println("Mon compte");
                     this.vue.afficheMonCompte();
                     break;
                 case "btnDeconnexion":
-                    System.out.println("Déconnexion");
                     this.vue.afficheAccueil();
                     break;
             }

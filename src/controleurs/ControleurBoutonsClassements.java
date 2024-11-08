@@ -18,119 +18,123 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     @FXML
-    private Button btnClassements;
-
-//Chono
-    @FXML
-    private Button btnAJtCourse;
-    @FXML
-    private Button btnAJtCourse1;
-    @FXML
-    private Button btnAJtCourse3;
-    @FXML
-    private Button btnCompte;
+    private Button btnConnexion;
     @FXML
     private Button btnAccueil;
     @FXML
-    private TextField idNom;
-    @FXML
-    private TextField idDate;
-//Connexion
-
-    @FXML
-    private TextField idIdentifiant;
-    @FXML
-    private TextField idMdp;
-    @FXML
-    private Button btnConnecter;
-// gerer_course
-    @FXML
-    private Button btnNvlCourse;
-// no data
-    @FXML
-    private Button btnImporterExcel;
-// nouvelle course
-    @FXML
-    private MenuButton idFormat;
-    @FXML
-    private MenuItem btnJeune;
-    @FXML
-    private MenuItem btnXS;
-    @FXML
-    private MenuItem btnS;
-    @FXML
-    private MenuItem btnM;
-    @FXML
-    private TextField idHeure;
-    @FXML
-    private CheckBox idMinPoussins;
-    @FXML
-    private CheckBox idBenjamins;
-    @FXML
-    private CheckBox idPoussins;
-    @FXML
-    private CheckBox idMinimes;    
-    @FXML
-    private CheckBox idPupilles;    
-    @FXML
-    private CheckBox idCadets;
-    @FXML
-    private CheckBox idJunoirs;
-    @FXML
-    private CheckBox idSeniors;
-    @FXML
-    private CheckBox idVetran;
-//
-//participer acc
-    @FXML
-    private Button btnMP;
-    @FXML
-    private Button btnPO;
-    @FXML
-    private Button btnPU;
-    @FXML
-    private Button btnBE;
-    @FXML
-    private Button btnMI;
-    @FXML
-    private Button btnCA;
-    @FXML
-    private Button btnJU;
-    @FXML
-    private Button btnV;
-    @FXML
-    private Button tbnS;
-//
-//participercategorie
-    @FXML
     private Button btnRetour;
-//
+    @FXML
+    private Button btnAccueil2;
+    @FXML
+    private Button btnRetour2;
+    @FXML
+    private Button deconnecter;
+    @FXML
+    private Button btnCompte;
 
     public ControleurBoutonsClassements(TriSLN vue){
         this.vue=vue;
-        this.vue.setBClassements(this.btnClassements);
+        this.vue.setBClassements(this.btnConnexion);
     }
 
     @FXML
-    public void handleBtnAccueil(MouseEvent event){
-        //try{
-        //    this.vue.changeButtonColor(this.btnClassements);
-        //}
-        //catch(Exception e){
-        //    System.err.println("Erreur");
-        //}
+    public void handleBtnClassementMouseEntered(MouseEvent event){
+        try{
+            Button btn=(Button)event.getSource();
+            switch(btn.getId()){
+                case "btnConnexion":
+                    this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
+                    break;
+            }
+            
+        }
+        catch(Exception e){
+            System.err.println("Erreur");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleBtnClassementMouseExited(MouseEvent event){
+        try{
+            Button btn=(Button)event.getSource();
+            switch(btn.getId()){
+                case "btnConnexion":
+                    this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
+                    break;
+            }
+        }
+        catch(Exception e){
+            System.err.println("Erreur");
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void handle(ActionEvent event){
-        Button btn=(Button) event.getSource();
-        switch(btn.getText()){
-            case "Classements":
-                System.out.println("Classement");
-                break;
-            default:
-                System.out.println("Accueil");
-                break;
+        try{
+            Button btn=(Button) event.getSource();
+            switch(btn.getId()){
+                case "btnAccueil":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnRetour":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnAccueil2":
+                    this.vue.afficheAccueilConnecte();
+                    break;
+                case "btnRetour2":
+                    this.vue.afficheAccueilConnecte();
+                    break;   
+                case "btnConnexion":
+                    this.vue.afficheLogin();
+                    break;
+                case "deconnecter":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnCompte":
+                    this.vue.afficheMonCompte();
+                    break;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

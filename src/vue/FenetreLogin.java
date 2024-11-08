@@ -28,7 +28,10 @@ public class FenetreLogin {
         this.mdp = new PasswordField();
         this.bConnexion = new Button();
         this.stage = stage;
+<<<<<<< HEAD
+=======
         loader.setController(new ControleurBoutonsCo(new TriSLN()));
+>>>>>>> 9b8a38423d52dfda9cc656ea87f563a2b028778e
         this.afficheLogin(loader);
     }
 
@@ -71,11 +74,10 @@ public class FenetreLogin {
             String motDePasse = getMotDePasse();
             BdTriSLN bd = TriSLN.getBd();
             if (bd.verifConnexion(identifiant, motDePasse)){
-                Stage StageVue = new Stage();
                 this.root = FXMLLoader.load(getClass().getResource("SAEprojetAccueilConnecter.fxml"));
                 Scene scene = new Scene(this.root);
-                StageVue.setScene(scene);
-                StageVue.show();
+                this.stage.setScene(scene);
+                this.stage.show();
             }
             else
             {

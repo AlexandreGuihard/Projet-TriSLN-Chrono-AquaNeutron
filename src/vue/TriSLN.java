@@ -51,13 +51,13 @@ public class TriSLN extends Application{
         this.connecte=false;
     }
     public void start(Stage stage){
-        this.stage=new Stage();
+        System.out.println("Méthode start() appelée");
+        this.stage = stage;
         this.stage.setTitle("TriSLN");
         File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
-            this.precFXML = file.getPath();
+            loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene = new Scene(accueil);
             this.stage.setScene(scene);
@@ -72,7 +72,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsLogin(this));
             this.fenetreLogin=new FenetreLogin(loader, this.stage);
             this.stage = this.fenetreLogin.getWindow();
             this.stage.show();
@@ -83,26 +83,15 @@ public class TriSLN extends Application{
         
     }
 
-    public void afficheAccueilConnecte(){
-        File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
-        try{
-            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
-            BorderPane accueilConnecte=(BorderPane)loader.load();
-            Scene scene=new Scene(accueilConnecte);
-            this.stage.setScene(scene);
-            this.stage.show();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void afficheAccueil(){
+    public void afficheAccueil() throws IOException {
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
+            return;
+        }    
         File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene=new Scene(accueil);
             this.stage.setScene(scene);
@@ -113,13 +102,32 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheMonCompte() throws IOException{
-        File file=new File("src/vue/fxml/SAEprojet_Mon_compte_utilisateur.fxml");
+    public void afficheAccueilConnecte(){
+        File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCompte(this));
-            BorderPane moncompte=(BorderPane)loader.load();
-            Scene scene=new Scene(moncompte);
+            loader.setController(new ControleurBoutonsAccueil(this));
+            BorderPane accueilConnecte=(BorderPane)loader.load();
+            Scene scene=new Scene(accueilConnecte);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheAccueil() throws IOException {
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
+            return;
+        }    
+        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsAccueil(this));
+            BorderPane accueil=(BorderPane)loader.load();
+            Scene scene=new Scene(accueil);
             this.stage.setScene(scene);
             this.stage.show();
         }
@@ -197,6 +205,8 @@ public class TriSLN extends Application{
         }
     }
 
+
+
     public void afficheClassements() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
@@ -211,6 +221,14 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheClassementsDisconnected() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojetClassementsDisconnected.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsClassements(this));
+            this.fenetreClassements=new FenetreClassements(loader, this.stage);
+            this.stage = this.fenetreClassements.getWindow();
+
     public void afficheNvlCourse() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
         this.precFXML = file.getPath();
@@ -221,6 +239,21 @@ public class TriSLN extends Application{
             loader.setController(new ControleurBoutonsNouvelleCourses(this));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheMonCompte() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojet_Mon_compte_utilisateur.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCompte(this));
+            BorderPane moncompte=(BorderPane)loader.load();
+            Scene scene=new Scene(moncompte);
+            this.stage.setScene(scene);
             this.stage.show();
         }
         catch(Exception e){
@@ -387,5 +420,14 @@ public class TriSLN extends Application{
         else{
             button.setStyle("-fx-background-color: "+color+";"+otherStyle+";");
         }
+    }
+
+
+    public Stage getStage(){
+        return this.stage;
+    }
+
+    public void setStage(Stage stage){
+        this.stage=stage;
     }
 }

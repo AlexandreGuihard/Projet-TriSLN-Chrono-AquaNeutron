@@ -55,7 +55,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnConnecter" mnemonicParsing="false" onMouseEntered="#btnConnecterME" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2596BE;" text="Se connecter" textFill="WHITE">
+                  <Button fx:id="btnConnecter" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnLoginMouseEntered" onMouseExited="#handleBtnLoginMouseExited" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2596BE;" text="Se connecter" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -85,27 +85,10 @@
                   <Insets bottom="5.0" left="40.0" top="5.0" />
                </HBox.margin>
             </ImageView>
-            <VBox prefHeight="164.0" prefWidth="169.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="288.0" style="-fx-font-weight: bold;" text="TriSLN">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="209.0" style="-fx-font-weight: bold;" text="AquaNeutron">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ButtonBar prefHeight="40.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <buttons>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnLoginMouseEntered" onMouseExited="#handleBtnLoginMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="118.0" prefWidth="85.0">
                            <children>
@@ -138,7 +121,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnLoginMouseEntered" onMouseExited="#handleBtnLoginMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -146,7 +129,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+            <ImageView fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@../../../img/retour.png" />
                </image>
