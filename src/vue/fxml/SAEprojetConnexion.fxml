@@ -48,6 +48,11 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="idMdp" promptText="Password" />
+                  <Button fx:id="btnForgotPassword" mnemonicParsing="false" onAction="#handle" style="-fx-background-color: white;" text="Mot de passe oublié" textFill="MEDIUMBLUE" underline="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <Label fx:id="idInfoLabel">
                      <font>
                         <Font size="24.0" />

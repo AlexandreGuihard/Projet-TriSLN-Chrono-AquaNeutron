@@ -206,6 +206,16 @@ public class BdTriSLN{
         }
     }
 
+    public String getEmail(String identifiant) throws SQLException, NoSuchUserException{
+        Statement s = this.connexion.createStatement();
+        ResultSet rs = s.executeQuery("select email from UTILISATEUR where identifiant = '"+identifiant+"'");
+        if (rs.next()){
+            return rs.getString(1);
+        } else {
+            throw new NoSuchUserException();
+        }
+    }
+
     public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException{
         Statement s = this.connexion.createStatement();
         ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
@@ -216,10 +226,26 @@ public class BdTriSLN{
         }
     }
 
-    public void ajouterBenevole(String identifiant, String mdp) throws SQLException{
-        PreparedStatement ps = this.connexion.prepareStatement("insert into UTILISATEUR values (?,?,?)");
+    public void changePassword(String identifiant, String newPassword) throws SQLException{
+        PreparedStatement ps = this.connexion.prepareStatement("update UTILISATEUR set mot_de_passe = ? where identifiant= ?");
+        ps.setString(1, newPassword);
+        ps.setString(2, identifiant);
+        ps.executeUpdate();
+    }
+
+    public void enregistrerToken(String identifiant, String token) throws SQLException{
+        PreparedStatement ps = this.connexion.prepareStatement("update UTILISATEUR set token_reinit = ? where identifiant = ?");
+        ps.setString(1, token);
+        ps.setString(2, identifiant);
+        ps.executeUpdate();
+    }
+
+    public void ajouterBenevole(String identifiant, String mdp, String email) throws SQLException{
+        PreparedStatement ps = this.connexion.prepareStatement("insert into UTILISATEUR values (?,?,?,?)");
         ps.setString(1, identifiant);
         ps.setString(2, "benevol");
         ps.setString(3, mdp);
+        ps.setString(4, email);
+        ps.executeUpdate();
     }
 }

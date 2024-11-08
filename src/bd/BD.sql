@@ -69,9 +69,11 @@ CREATE TABLE PARTICIPER (
 );
 
 CREATE TABLE UTILISATEUR (
-    identifiant    VARCHAR(42),
-    role           VARCHAR(42),
-    mot_de_passe   VARCHAR(42),
+    identifiant             VARCHAR(42),
+    role                    VARCHAR(42),
+    mot_de_passe            VARCHAR(42),
+    email                   VARCHAR(255),
+    token_reinit            VARCHAR(64) null,
     PRIMARY KEY (identifiant)
 );
 

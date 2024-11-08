@@ -10,8 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import src.modele.Utilisateur;
 import src.modele.Exceptions.NoSuchUserException;
 import src.vue.TriSLN;
+
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 
 public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
     private TriSLN vue;
@@ -26,6 +31,8 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
     private Label idInfoLabel;
     @FXML
     private Button btnConnecter;
+    @FXML
+    private Button btnForgotPassword;
 
     public ControleurBoutonsLogin(TriSLN vue){
         this.vue = vue;
@@ -82,7 +89,14 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
                     idInfoLabel.setText("Cette utilisateur n'existe pas");
                 }
                 break;
-        
+            case "btnForgotPassword":
+                System.out.println("Clique mot de passe oublié");
+                Utilisateur utilisateur = this.vue.getUtilisateur();
+                String email = utilisateur.get;
+                String token = this.vue.getUtilisateur().genererTokenReinitialisation(email);
+                this.vue.getUtilisateur().envoyerEmailDeReinitialisation(email, token);
+                idInfoLabel.setText("Un email de réinitialisation a été envoyé.");
+                break;
             default:
                 break;
         }
