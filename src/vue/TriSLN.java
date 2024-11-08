@@ -7,7 +7,11 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
 import java.io.File;
+import javafx.scene.control.ComboBox;
 
 import src.vue.*;
 import src.bd.*;
@@ -27,14 +31,14 @@ public class TriSLN extends Application{
     private Button btnCourses; // Bouton Courses de la page d'accueil
     private Button btnClassements; // Bouton Classements de la page d'accueil
     private Button btnAccueil;
-    private FenetreParticipant fenetreParticipants;
-    private FenetreClassements fenetreClassements;
-    private FenetreCourses fenetreCourses;
-    private FenetreLogin fenetreLogin;
     private Button btnNvlCourse;
     private Button btnAJtCourse;
     private Button btnRetour;
     private Button btnCompte;
+    private FenetreParticipant fenetreParticipants;
+    private FenetreClassements fenetreClassements;
+    private FenetreCourses fenetreCourses;
+    private FenetreLogin fenetreLogin;
     private String precFXML;
     private ControleurBoutons precControleur;
 
@@ -50,7 +54,7 @@ public class TriSLN extends Application{
         System.out.println("Méthode start() appelée");
         this.stage = stage;
         this.stage.setTitle("TriSLN");
-        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsAccueil(this));
@@ -105,6 +109,25 @@ public class TriSLN extends Application{
             loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueilConnecte=(BorderPane)loader.load();
             Scene scene=new Scene(accueilConnecte);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheAccueil() throws IOException {
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
+            return;
+        }    
+        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsAccueil(this));
+            BorderPane accueil=(BorderPane)loader.load();
+            Scene scene=new Scene(accueil);
             this.stage.setScene(scene);
             this.stage.show();
         }
@@ -182,28 +205,13 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheNvlCourse() throws IOException{
-        File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
-        this.precFXML = file.getPath();
-        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
-        this.precControleur = controleur;
-        try{
-            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsNouvelleCourses(this));
-            this.fenetreCourses=new FenetreCourses(loader, this.stage);
-            this.stage = this.fenetreCourses.getWindow();
-            this.stage.show();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+
 
     public void afficheClassements() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsClassements(this));
+            loader.setController(new ControleurBoutonsCo(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
             this.stage.show();
@@ -220,6 +228,17 @@ public class TriSLN extends Application{
             loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
+
+    public void afficheNvlCourse() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsNouvelleCourses(this));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
         }
         catch(Exception e){
@@ -242,6 +261,25 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheRetour() {
+        if (this.precFXML == null) {
+            System.out.println("Erreur : aucune vue précédente n'a été enregistrée.");
+            return;
+        }
+    
+        File file = new File(this.precFXML); // Utilise le dernier chemin enregistré
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(this.precControleur);
+            BorderPane precedent = loader.load();
+            Scene scene = new Scene(precedent);
+            this.stage.setScene(scene);
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     public Button getBConnexion(){
         return this.btnConnexion;
@@ -307,6 +345,10 @@ public class TriSLN extends Application{
         return bd;
     }
 
+    public Stage getStage(){
+        return this.stage;
+    }
+
     public void setBConnexion(Button btnConnexion){
         this.btnConnexion=btnConnexion;
     }
@@ -367,12 +409,12 @@ public class TriSLN extends Application{
         this.connecte=connecte;
     }
 
-    public void setWindow(Stage stage){
-        this.stage = stage;
+    public void setStage(Stage stage){
+        this.stage=stage;
     }
 
     public void changeButtonColor(Button button, String color, String otherStyle){
-        if(otherStyle==null){
+        if(otherStyle.equals("")){
             button.setStyle("-fx-background-color: "+color+";");
         }
         else{

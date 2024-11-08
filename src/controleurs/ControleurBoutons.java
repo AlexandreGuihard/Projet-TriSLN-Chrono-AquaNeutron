@@ -3,6 +3,7 @@ package src.controleurs;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
+import java.util.ResourceBundle.Control;
 
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import javax.swing.plaf.synth.SynthStyle;
@@ -31,11 +32,12 @@ public abstract class ControleurBoutons {
     private Button btnConnexion;
 
     public ControleurBoutons(){
-        this.btnAccueil = null;
-        this.btnRetour = null;
-        this.btnDeconnexion = null;
-        this.btnCompte = null;
-        this.btnConnexion = null;
+        this.vue=null;
+        this.btnAccueil=null;
+        this.btnRetour=null;
+        this.btnDeconnexion=null;
+        this.btnCompte=null;
+        this.btnConnexion=null;
     }
 
     public TriSLN getVue(){
@@ -77,7 +79,7 @@ public abstract class ControleurBoutons {
     public void setBAccueil(Button btnAccueil){
         this.btnAccueil=btnAccueil;
     }
-    
+
     public void setBRetour(Button btnRetour){
         this.btnRetour=btnRetour;
     }

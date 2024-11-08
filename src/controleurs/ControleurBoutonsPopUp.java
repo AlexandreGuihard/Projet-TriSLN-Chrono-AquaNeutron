@@ -61,7 +61,6 @@ public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
         Button btn=(Button) event.getSource();
         switch(btn.getId()){
             case "btnRetourPopUp":
-                System.out.println("toto");
                 this.vue.closePopUpStage();
                 break;
             case "btnValiderPopUp":
