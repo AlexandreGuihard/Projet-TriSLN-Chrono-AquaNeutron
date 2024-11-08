@@ -52,10 +52,10 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
 
     public ControleurBoutonsParticipants(TriSLN vue){
         super();
-        this.setBoutons();
+        this.setBoutons(vue);
     }
 
-    private void setBoutons(){
+    private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
         super.setBAccueil(btnAccueil);
         super.setBRetour(btnRetour);
@@ -64,7 +64,7 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     }
 
     @FXML
-    public void handleBtnParticipantsMouseEntered(MouseEvent event){
+    public void handleBtnCategorieMouseEntered(MouseEvent event){
         boolean superButton=false;
         Button changedButton=null;
         String newBtnColor="";
@@ -180,11 +180,11 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     @Override
     public void handle(ActionEvent event){
         Button btn=(Button)event.getSource();
-        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
-            super.handle(btn);
-        }
-        else{
-            try{
+        try{
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+                super.handle(btn);
+            }
+            else{
                 File file=null;
                 FXMLLoader loader=null;
                 switch(btn.getId()){
@@ -206,9 +206,9 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                         break;          
                 }
             }
-            catch(Exception e){
-                e.printStackTrace();
-            }
         }
-    }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        }
 }

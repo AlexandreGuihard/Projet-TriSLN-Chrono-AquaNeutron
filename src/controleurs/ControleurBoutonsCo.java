@@ -33,16 +33,11 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
 
     public ControleurBoutonsCo(TriSLN vue){
         super();
-        this.vue = vue;
-        this.vue.setBClassements(this.btnClassements);
-        this.vue.setBConnexion(this.btnConnexion);
-        this.vue.setBParticipants(this.btnParticipants);
-        this.vue.setBCourses(this.btnCourses);
-        this.vue.setBDeconnexion(this.btnDeconnexion);
-        this.setBoutons();
+        this.setBoutons(vue);
     }
 
-    private void setBoutons(){
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
         super.setBCompte(btnCompte);
         super.setBDeconnexion(btnDeconnexion);
     }
@@ -50,6 +45,7 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     @FXML
     public void handleBtnAccueilMouseEntered(MouseEvent event){
         try{
+            boolean otherButton=false;
             Button changedButton=null;
             String newBtnColor="";
             String otherStyle="";
@@ -67,18 +63,16 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     changedButton=this.btnCourses;
                     newBtnColor="#105c74"; 
                     break;
-                case "btnConnexion":
-                    changedButton=this.btnConnexion;
-                    newBtnColor="#949494";
-                    otherStyle="-fx-background-radius: 15";
-                    break;
-                case "btnDeconnexion":
-                    changedButton=this.btnDeconnexion;
-                    newBtnColor="#949494";
-                    otherStyle="-fx-background-radius: 15";
+                default:
+                    otherButton=true;    
                     break;
             }
-            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            if(otherButton){
+                super.handleBtnsMouseEntered(btn);
+            }
+            else{
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -89,6 +83,7 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     @FXML
     public void handleBtnAccueilMouseExited(MouseEvent event){
         try{
+            boolean otherButton=false;
             Button changedButton=null;
             String newBtnColor="";
             String otherStyle="";
@@ -106,18 +101,16 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     changedButton=this.btnCourses;
                     newBtnColor="#2596BE"; 
                     break;
-                case "btnConnexion":
-                    changedButton=this.btnConnexion;
-                    newBtnColor="lightgrey";
-                    otherStyle="-fx-background-radius: 15";
-                    break;
-                case "btnDeconnexion":
-                    changedButton=this.btnDeconnexion;
-                    newBtnColor="lightgrey";
-                    otherStyle="-fx-background-radius: 15";
+                default:
+                    otherButton=true;
                     break;
             }
-            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            if(otherButton){
+                super.handleBtnsMouseExited(btn);
+            }
+            else{
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -132,12 +125,16 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
             switch(btn.getId()){
                 case "btnClassements":
                     System.out.println("btnClassements");
-                    this.vue.afficheClassements();
-                break;
+                    super.getVue().afficheClassements();
+                    break;
                 case "btnParticipants":
                     super.getVue().afficheParticipants();
                     break;
+                case "btnCourses":
+                    super.getVue().afficheCourses();
+                    break;    
                 default:
+                    super.handle(btn);
                     break;
             }
                  

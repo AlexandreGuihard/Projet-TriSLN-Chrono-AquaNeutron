@@ -80,6 +80,14 @@ public abstract class ControleurBoutons {
         this.btnAccueil=btnAccueil;
     }
 
+    public void setBRetour(Button btnRetour){
+        this.btnRetour=btnRetour;
+    }
+    
+    public void setBCompte(Button btnCompte){
+        this.btnCompte=btnCompte;
+    }
+
     public void handleBtnsMouseEntered(Button button){
         Button changedButton=null;
         String newBtnColor="#949494";
@@ -132,7 +140,7 @@ public abstract class ControleurBoutons {
         this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
     }
 
-    public void handle(Button pressedButton){
+    public void handle(Button pressedButton) throws IOException{
         switch(pressedButton.getId()){
             case "btnCompte":
                 this.vue.afficheMonCompte();
@@ -147,14 +155,5 @@ public abstract class ControleurBoutons {
                 this.vue.afficheAccueilConnecte(); 
                 break;           
         }
-    }
-}
-    
-    public void setBRetour(Button btnRetour){
-        this.btnRetour=btnRetour;
-    }
-    
-    public void setBCompte(Button btnCompte){
-        this.btnCompte=btnCompte;
     }
 }

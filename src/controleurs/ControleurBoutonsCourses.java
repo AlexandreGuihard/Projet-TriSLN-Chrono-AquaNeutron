@@ -81,7 +81,7 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", "");
                     break;
                 case "btnAccueil":
                     this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
