@@ -21,42 +21,53 @@ public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
     private Button btnRetourPopUp;
     @FXML
     private Button btnValiderPopUp;
-    // ComboBox des popup
     @FXML
-    private ComboBox<String> choiceSeniorsSCateg;
+    private ComboBox<String> choiceSenSCategSeniors;
     @FXML
     private ComboBox<String> choiceVeterantSCateg;
 
-public ControleurBoutonsPopUp(TriSLN vue){
-    this.vue = vue;
-    this.choiceSeniorsSCateg=new ComboBox<>();
-    this.choiceVeterantSCateg=new ComboBox<>();
-    this.setComboBox();
-}
-
-public void handleBtnValiderMouseEntered(MouseEvent event){
-    this.vue.changeButtonColor(this.btnValiderPopUp, "#105c74", null);
-}
-
-public void handleBtnValiderMouseExited(MouseEvent event){
-    this.vue.changeButtonColor(this.btnValiderPopUp, "#2596BE", null);
-}
-
-private void setComboBox(){
-    this.choiceSeniorsSCateg.getItems().addAll("-- Choisir une sous-catégorie --", "S1", "S2", "S3", "S4");
-    this.choiceVeterantSCateg.getItems().addAll("-- Choisir une sous-catégorie --", "V1", "V2", "V3", "V4", "V5", "V6", "V7");
-}
-
-@Override
-public void handle(ActionEvent event){
-    Button btn=(Button) event.getSource();
-    switch(btn.getId()){
-        case "btnRetourPopUp":
-            System.out.println("toto");
-            this.vue.afficheParticipants();
-            break;
-        case "btnValiderPopUp":
-            this.vue.afficheLesParticipants();   
+    public ControleurBoutonsPopUp(TriSLN vue){
+        this.vue = vue;
     }
-}
+
+    public void handleBtnValiderMouseEntered(MouseEvent event){
+        this.vue.changeButtonColor(this.btnValiderPopUp, "#105c74", "");
+    }
+
+    public void handleBtnValiderMouseExited(MouseEvent event){
+        this.vue.changeButtonColor(this.btnValiderPopUp, "#2596BE", "");
+    }
+
+    public void handleComboBoxSeniors(ActionEvent event){
+        if(!this.choiceSenSCategSeniors.getValue().equals("-- Choisir une sous-catégorie --")){
+            this.btnValiderPopUp.setDisable(false);
+        }
+        else{
+            this.btnValiderPopUp.setDisable(true);
+        }
+    }
+
+    public void handleComboBoxVeterant(ActionEvent event){
+        if(!this.choiceVeterantSCateg.getValue().equals("-- Choisir une sous-catégorie --")){
+            this.btnValiderPopUp.setDisable(false);
+        }
+        else{
+            this.btnValiderPopUp.setDisable(true);
+        }
+    }
+
+    @Override
+    public void handle(ActionEvent event){
+        Button btn=(Button) event.getSource();
+        switch(btn.getId()){
+            case "btnRetourPopUp":
+                System.out.println("toto");
+                this.vue.closePopUpStage();
+                break;
+            case "btnValiderPopUp":
+                this.vue.closePopUpStage();
+                this.vue.afficheLesParticipants(); 
+                break;  
+        }
+    }
 }

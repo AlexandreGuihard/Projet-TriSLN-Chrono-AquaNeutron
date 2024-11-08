@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class FenetreParticipant{
     private Stage stage;
+    private Stage popUpStage;
     private BorderPane root;
     private List<Button> categories;
     private ComboBox<String> sousCategories;
@@ -24,6 +25,7 @@ public class FenetreParticipant{
 
     public FenetreParticipant(FXMLLoader loader, Stage stage){
         this.stage=stage;
+        this.popUpStage=new Stage();
         this.root=new BorderPane();
         this.categories = new ArrayList<>();
         this.sousCategories = new ComboBox<>();
@@ -60,6 +62,10 @@ public class FenetreParticipant{
         return stage;
     }
 
+    public Stage getPopUpStage(){
+        return popUpStage;
+    }
+
     public FXMLLoader getLoader(){
         return loader;
     }
@@ -81,7 +87,8 @@ public class FenetreParticipant{
     public void popUpSeniors(FXMLLoader loader){
         try {
             this.root = (BorderPane)loader.load();
-            this.stage.setScene(new Scene(this.root));
+            this.popUpStage.setScene(new Scene(this.root));
+            this.popUpStage.setTitle("TriSLN");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +97,8 @@ public class FenetreParticipant{
     public void popUpVeterans(FXMLLoader loader){
         try {
             this.root = (BorderPane)loader.load();
-            this.stage.setScene(new Scene(this.root));
+            this.popUpStage.setScene(new Scene(this.root));
+            this.popUpStage.setTitle("TriSLN");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -3,6 +3,7 @@ package src.controleurs;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
+import java.util.ResourceBundle.Control;
 
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import javax.swing.plaf.synth.SynthStyle;
@@ -31,11 +32,12 @@ public abstract class ControleurBoutons {
     private Button btnConnexion;
 
     public ControleurBoutons(){
-        this.btnAccueil = null;
-        this.btnRetour = null;
-        this.btnDeconnexion = null;
-        this.btnCompte = null;
-        this.btnConnexion = null;
+        this.vue=null;
+        this.btnAccueil=null;
+        this.btnRetour=null;
+        this.btnDeconnexion=null;
+        this.btnCompte=null;
+        this.btnConnexion=null;
     }
 
     public TriSLN getVue(){
@@ -45,7 +47,7 @@ public abstract class ControleurBoutons {
     public void setVue(TriSLN vue){
         this.vue = vue;
     }
-
+  
     public Button getBDeconnexion(){
         return this.btnDeconnexion;
     }
@@ -77,6 +79,76 @@ public abstract class ControleurBoutons {
     public void setBAccueil(Button btnAccueil){
         this.btnAccueil=btnAccueil;
     }
+
+    public void handleBtnsMouseEntered(Button button){
+        Button changedButton=null;
+        String newBtnColor="#949494";
+        String otherStyle="-fx-background-radius: 15;";
+        switch(button.getId()){
+            case "btnCompte":
+                changedButton=this.btnCompte;
+                break;
+            case "btnAccueil":
+                changedButton=this.btnAccueil;
+                break;
+            case "btnConnexion":
+                changedButton=this.btnConnexion;
+                break;
+            case "btnDeconnexion":
+                changedButton=this.btnDeconnexion;
+                break;
+            default:
+                changedButton=this.btnRetour;
+                newBtnColor="";
+                otherStyle="";
+                break;             
+        }
+        this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+    }
+
+    public void handleBtnsMouseExited(Button button){
+        Button changedButton=null;
+        String newBtnColor="lightgrey";
+        String otherStyle="-fx-background-radius: 15;";
+        switch(button.getId()){
+            case "btnCompte":
+                changedButton=this.btnCompte;
+                break;
+            case "btnAccueil":
+                changedButton=this.btnAccueil;
+                break;
+            case "btnConnexion":
+                changedButton=this.btnConnexion;
+                break;
+            case "btnDeconnexion":
+                changedButton=this.btnDeconnexion;
+                break;
+            default:
+                changedButton=this.btnRetour;
+                newBtnColor="";
+                otherStyle="";
+                break;             
+        }
+        this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+    }
+
+    public void handle(Button pressedButton){
+        switch(pressedButton.getId()){
+            case "btnCompte":
+                this.vue.afficheMonCompte();
+                break;
+            case "btnConnexion":
+                this.vue.afficheLogin();
+                break;    
+            case "btnDeconnexion":
+                this.vue.afficheAccueil();
+                break;
+            default:
+                this.vue.afficheAccueilConnecte(); 
+                break;           
+        }
+    }
+}
     
     public void setBRetour(Button btnRetour){
         this.btnRetour=btnRetour;

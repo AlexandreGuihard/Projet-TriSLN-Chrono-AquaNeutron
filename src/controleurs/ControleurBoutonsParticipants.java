@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
+public class ControleurBoutonsParticipants extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
     // Catégories
     @FXML
@@ -47,13 +47,25 @@ public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
     private Button btnRetour;
     @FXML
     private Button btnRetourCategorie;
+    @FXML
+    private Button btnDeconnexion;
 
     public ControleurBoutonsParticipants(TriSLN vue){
-        this.vue=vue;
+        super();
+        this.setBoutons();
+    }
+
+    private void setBoutons(){
+        super.setBCompte(btnCompte);
+        super.setBAccueil(btnAccueil);
+        super.setBRetour(btnRetour);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setVue(vue);
     }
 
     @FXML
     public void handleBtnParticipantsMouseEntered(MouseEvent event){
+        boolean superButton=false;
         Button changedButton=null;
         String newBtnColor="";
         String otherStyle="";
@@ -94,29 +106,24 @@ public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
             case "btnS":
                 changedButton=this.btnS;
                 newBtnColor="#105c74";
-                break;
-            case "btnCompte":
-                changedButton=this.btnCompte;
-                newBtnColor="#949494";
-                otherStyle="-fx-background-radius: 15;";
-                break;
-            case "btnAccueil":
-                changedButton=this.btnAccueil;
-                newBtnColor="#949494";
-                otherStyle="-fx-background-radius: 15;";
-                break;
+                break;    
             default:
-                // Bouton Retour
-                changedButton=this.btnRetour;
-                                       
+                superButton=true;
+                break;                 
 
         }
-        this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+        if(superButton){
+            super.handleBtnsMouseEntered(btn);
+        }
+        else{
+            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+        }
         
     }
 
     @FXML
     public void handleBtnCategorieMouseExited(MouseEvent event){
+        boolean superButton=false;
         Button changedButton=null;
         String newBtnColor="";
         String otherStyle="";
@@ -158,25 +165,23 @@ public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
                 changedButton=this.btnS;
                 newBtnColor="#2596BE";
                 break;
-            case "btnCompte":
-                changedButton=this.btnCompte;
-                newBtnColor="lightgrey";
-                otherStyle="-fx-background-radius: 15;";
-                break;
-            case "btnAccueil":
-                changedButton=this.btnAccueil;
-                newBtnColor="lightgrey";
-                otherStyle="-fx-background-radius: 15;";
+            default:
+                superButton=true;
                 break;
         }
-        this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+        if(superButton){
+            super.handleBtnsMouseExited(btn);
+        }
+        else{
+            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+        }
     }
 
     @Override
     public void handle(ActionEvent event){
         Button btn=(Button)event.getSource();
-        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour")){
-            this.vue.afficheAccueilConnecte();
+        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+            super.handle(btn);
         }
         else{
             try{
@@ -186,21 +191,18 @@ public class ControleurBoutonsParticipants implements EventHandler<ActionEvent>{
                     case "btnV":
                         file=new File("src/vue/fxml/SAEprojetPopUpVeteran.fxml");
                         loader=new FXMLLoader(file.toURI().toURL());
-                        this.vue.affichePopUp(loader, "V");
+                        super.getVue().affichePopUp(loader, "V");
                         break;
                     case "btnS":
                         file=new File("src/vue/fxml/SAEprojetPopUpSenior.fxml");
                         loader=new FXMLLoader(file.toURI().toURL());
-                        this.vue.affichePopUp(loader, "S");
-                        break;
-                    case "btnCompte":
-                        System.out.println("Compte (Non fait)");
+                        super.getVue().affichePopUp(loader, "S");
                         break;
                     case "btnRetourCategorie":
-                        this.vue.afficheParticipants();
+                        super.getVue().afficheParticipants();
                         break;    
                     default:
-                        this.vue.afficheLesParticipants();
+                        super.getVue().afficheLesParticipants();
                         break;          
                 }
             }

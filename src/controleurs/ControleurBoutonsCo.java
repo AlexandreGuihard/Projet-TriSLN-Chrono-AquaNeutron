@@ -78,7 +78,7 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     otherStyle="-fx-background-radius: 15";
                     break;
             }
-            this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -117,7 +117,7 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     otherStyle="-fx-background-radius: 15";
                     break;
             }
-            this.vue.changeButtonColor(changedButton, newBtnColor, otherStyle);
+            super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -133,20 +133,14 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                 case "btnClassements":
                     System.out.println("btnClassements");
                     this.vue.afficheClassements();
+                break;
+                case "btnParticipants":
+                    super.getVue().afficheParticipants();
                     break;
-                case "btnConnexion":
-                    System.out.println("Connexion");
-                    this.vue.afficheLogin();
+                default:
                     break;
-                case "btnCourses":
-                    System.out.println("Les courses");
-                    this.vue.afficheCourses();
-                    break;
-                case "btnDeconnexion":
-                    System.out.println("Déconnexion");
-                    this.vue.afficheAccueil();
-                    break;
-                }
+            }
+                 
         } 
         catch (IOException e)
         {

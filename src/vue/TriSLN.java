@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 import java.io.File;
+import javafx.scene.control.ComboBox;
 
 import src.vue.*;
 import src.bd.*;
@@ -157,7 +158,8 @@ public class TriSLN extends Application{
 
     public void affichePopUp(FXMLLoader loader, String popUpName){
         try{
-            loader.setController(new ControleurBoutonsPopUp(this));
+            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this);
+            loader.setController(controleur);
             switch(popUpName){
                 case "V":
                     this.fenetreParticipants.popUpVeterans(loader);
@@ -166,12 +168,16 @@ public class TriSLN extends Application{
                     this.fenetreParticipants.popUpSeniors(loader);
                     break;    
             }
-            this.stage=this.fenetreParticipants.getStage();
+            this.stage=this.fenetreParticipants.getPopUpStage();
             this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void closePopUpStage(){
+        this.stage.close();
     }
 
     public void afficheCourses(){
