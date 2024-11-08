@@ -13,7 +13,7 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Button fx:id="btnRetourPopUp" mnemonicParsing="false" onAction="#handle" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white; -fx-background-radius: 100;">
          <BorderPane.margin>
@@ -22,7 +22,7 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/back_button.png" />
+                  <Image url="@../../../img/retour.png" />
                </image>
             </ImageView>
          </graphic>

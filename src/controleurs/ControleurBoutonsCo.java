@@ -28,9 +28,23 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     private Button btnCourses;
     @FXML
     private Button btnDeconnexion;
+    @FXML
+    private Button btnCompte;
 
     public ControleurBoutonsCo(TriSLN vue){
         super();
+        this.vue = vue;
+        this.vue.setBClassements(this.btnClassements);
+        this.vue.setBConnexion(this.btnConnexion);
+        this.vue.setBParticipants(this.btnParticipants);
+        this.vue.setBCourses(this.btnCourses);
+        this.vue.setBDeconnexion(this.btnDeconnexion);
+        this.setBoutons();
+    }
+
+    private void setBoutons(){
+        super.setBCompte(btnCompte);
+        super.setBDeconnexion(btnDeconnexion);
     }
 
     @FXML
@@ -113,22 +127,24 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
 
     @Override
     public void handle(ActionEvent event){
-        Button btn=(Button) event.getSource();
-        switch(btn.getText()){
-            case "Classements":
-                try {
+        try {
+            Button btn=(Button) event.getSource();
+            switch(btn.getId()){
+                case "btnClassements":
+                    System.out.println("btnClassements");
                     this.vue.afficheClassements();
-                } 
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                } 
                 break;
-            case "Les participants":
-                super.getVue().afficheParticipants();
-                break;
-            default:
-                break;
-        }
+                case "btnParticipants":
+                    super.getVue().afficheParticipants();
+                    break;
+                default:
+                    break;
+            }
+                 
+        } 
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        } 
     }
 }

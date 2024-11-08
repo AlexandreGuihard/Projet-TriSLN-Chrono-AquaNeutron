@@ -44,6 +44,10 @@ public abstract class ControleurBoutons {
         return this.vue;
     }
 
+    public void setVue(TriSLN vue){
+        this.vue = vue;
+    }
+  
     public Button getBDeconnexion(){
         return this.btnDeconnexion;
     }
@@ -64,10 +68,6 @@ public abstract class ControleurBoutons {
         return this.btnConnexion;
     }
 
-    public void setVue(TriSLN vue){
-        this.vue=vue;
-    }
-
     public void setBConnexion(Button btnConnexion){
         this.btnConnexion=btnConnexion;
     }
@@ -78,14 +78,6 @@ public abstract class ControleurBoutons {
 
     public void setBAccueil(Button btnAccueil){
         this.btnAccueil=btnAccueil;
-    }
-
-    public void setBRetour(Button btnRetour){
-        this.btnRetour=btnRetour;
-    }
-
-    public void setBCompte(Button btnCompte){
-        this.btnCompte=btnCompte;
     }
 
     public void handleBtnsMouseEntered(Button button){
@@ -155,5 +147,14 @@ public abstract class ControleurBoutons {
                 this.vue.afficheAccueilConnecte(); 
                 break;           
         }
+    }
+}
+    
+    public void setBRetour(Button btnRetour){
+        this.btnRetour=btnRetour;
+    }
+    
+    public void setBCompte(Button btnCompte){
+        this.btnCompte=btnCompte;
     }
 }
