@@ -54,7 +54,7 @@ public class TriSLN extends Application{
         System.out.println("Méthode start() appelée");
         this.stage = stage;
         this.stage.setTitle("TriSLN");
-        File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
+        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsAccueil(this));
@@ -109,25 +109,6 @@ public class TriSLN extends Application{
             loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueilConnecte=(BorderPane)loader.load();
             Scene scene=new Scene(accueilConnecte);
-            this.stage.setScene(scene);
-            this.stage.show();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void afficheAccueil() throws IOException {
-        if (this.stage == null) {
-            System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
-            return;
-        }    
-        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
-        try{
-            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsAccueil(this));
-            BorderPane accueil=(BorderPane)loader.load();
-            Scene scene=new Scene(accueil);
             this.stage.setScene(scene);
             this.stage.show();
         }
@@ -211,7 +192,7 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
             this.stage.show();
@@ -228,6 +209,12 @@ public class TriSLN extends Application{
             loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void afficheNvlCourse() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
@@ -414,7 +401,7 @@ public class TriSLN extends Application{
     }
 
     public void changeButtonColor(Button button, String color, String otherStyle){
-        if(otherStyle.equals("")){
+        if(otherStyle==null){
             button.setStyle("-fx-background-color: "+color+";");
         }
         else{
@@ -422,12 +409,4 @@ public class TriSLN extends Application{
         }
     }
 
-
-    public Stage getStage(){
-        return this.stage;
-    }
-
-    public void setStage(Stage stage){
-        this.stage=stage;
-    }
 }

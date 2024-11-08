@@ -18,11 +18,7 @@ import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
 
-<<<<<<< HEAD
-public class ControleurBoutonsCompte implements EventHandler<ActionEvent> {
-=======
 public class ControleurBoutonsCompte extends ControleurBoutons implements EventHandler<ActionEvent> {
->>>>>>> 9b8a38423d52dfda9cc656ea87f563a2b028778e
     private TriSLN vue;
 
     @FXML

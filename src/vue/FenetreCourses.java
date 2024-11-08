@@ -210,8 +210,5 @@ public class FenetreCourses {
 
     public void chronometre(){
         Chronometrage chrono = new Chronometrage();
-
-
-
     }
 }
