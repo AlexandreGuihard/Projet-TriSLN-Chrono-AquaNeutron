@@ -52,10 +52,10 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
 
     public ControleurBoutonsParticipants(TriSLN vue){
         super();
-        this.setBoutons();
+        this.setBoutons(vue);
     }
 
-    private void setBoutons(){
+    private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
         super.setBAccueil(btnAccueil);
         super.setBRetour(btnRetour);
@@ -64,7 +64,7 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     }
 
     @FXML
-    public void handleBtnParticipantsMouseEntered(MouseEvent event){
+    public void handleBtnCategorieMouseEntered(MouseEvent event){
         boolean superButton=false;
         Button changedButton=null;
         String newBtnColor="";

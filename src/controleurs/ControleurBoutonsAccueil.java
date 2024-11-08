@@ -52,16 +52,16 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#105c74", null);
+                    this.vue.changeButtonColor(this.btnClassements, "#105c74", "");
                     break;
                 case "btnClassements2":
-                    this.vue.changeButtonColor(this.btnClassements2, "#105c74", null);
+                    this.vue.changeButtonColor(this.btnClassements2, "#105c74", "");
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#105c74", null);
+                    this.vue.changeButtonColor(this.btnParticipants, "#105c74", "");
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
+                    this.vue.changeButtonColor(this.btnCourses, "#105c74", "");    
                     break;
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
@@ -87,16 +87,16 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnClassements, "#2596BE", "");
                     break;
                 case "btnClassements2":
-                    this.vue.changeButtonColor(this.btnClassements2, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnClassements2, "#2596BE", "");
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnParticipants, "#2596BE", "");
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#2596BE", null);    
+                    this.vue.changeButtonColor(this.btnCourses, "#2596BE", "");    
                     break;
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
