@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 import java.util.Set;
 import java.util.List;
 import java.util.HashSet;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import src.modele.Chronometrage;
 import src.modele.Course;
+import javafx.fxml.FXMLLoader;
 
 public class FenetreCourses {
 
@@ -30,9 +34,9 @@ public class FenetreCourses {
     private List<Integer> dossards;
     private List<Integer> dossardsPartis;
     private List<Integer> dossardsArrives;
+    private Stage stage;
 
-    public FenetreCourses(FXMLLoader loader) {
-
+    public FenetreCourses(FXMLLoader loader, Stage stage) {
         this.tfDate = new TextField();
         this.prochainesCourses = new TableView<>();
         this.bNouvelleCourse = new Button();
@@ -48,6 +52,8 @@ public class FenetreCourses {
         this.dossards = new ArrayList<>();
         this.dossardsPartis = new ArrayList<>();
         this.dossardsArrives = new ArrayList<>();
+        this.stage= stage;
+        this.afficheCourses(loader);
     }
 
     public TextField getTfDate() {
@@ -170,16 +176,17 @@ public class FenetreCourses {
         this.dossardsArrives = nouveauxDossardsArrives;
     }
 
+    public Stage getWindow(){
+        return this.stage;
+    }
 
-
-    private void afficheCourses(){
+    private void afficheCourses(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetGererCourses.fxml"));
+            BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(new Scene(page));
-            StageVue.show();
+            this.stage.setScene(page);
+            this.stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -189,14 +196,13 @@ public class FenetreCourses {
 
     }
 
-    public void nouvelleCourse(){
+    public void nouvelleCourse(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetNouvelleCourse.fxml"));
+            BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
-            StageVue.setScene(new Scene(page));
-            StageVue.show();
+            this.stage.setScene(page);
+            this.stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,8 +210,5 @@ public class FenetreCourses {
 
     public void chronometre(){
         Chronometrage chrono = new Chronometrage();
-
-
-
     }
 }
