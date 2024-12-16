@@ -37,7 +37,7 @@ INSERT INTO PARTICIPANT (INT id_Participant,VARCHAR(42) nom,VARCHAR(42) prenom,V
 
 (2, "Pilaf", "mila", "PO","F","mila.Pilaf@yahoo.fr","Orleans",TRUE,0692243352,"SQL",1,TO_DATE('24-MARS-2001','DD-MON-YYYY'),"bleu",FALSE)
 (3, "Sparkis", "devoid", "S","M","devoid.Sparkis@yahoo.fr","Angers",FALSE,0695476132,"Marchal",1,TO_DATE('15-JUN-2001','DD-MON-YYYY'),"jaune",TRUE)
-(4, "Dupont", "Xavier", "MP","F","x.dupont@yahoo.fr","Paris",TRUE,0647882565,"SQL",1,TO_DATE('15-JUN-2001','DD-MON-YYYY'),"rouge",TRUE)
+(4, "Daniel", "Antoine", "MP","F","x.dupont@yahoo.fr","Paris",TRUE,0647882565,"SQL",1,TO_DATE('15-JUN-2001','DD-MON-YYYY'),"rouge",TRUE)
 (5, "Dupont", "Xavier", "MP","F","x.dupont@yahoo.fr","Paris",TRUE,0647882565,"SQL",1,TO_DATE('15-JUN-2001','DD-MON-YYYY'),"noire",TRUE)
 ; 
 
@@ -45,6 +45,8 @@ INSERT INTO PARTICIPANT (INT id_Participant,VARCHAR(42) nom,VARCHAR(42) prenom,V
 
 
 INSERT INTO UTILISATEUR ( VARCHAR(42) identifiant,VARCHAR(42) mot_de_passe) VALUES (
-("test", "test")
+("test", "test"),
+("admin", "admin"),
+("siecle", "siecle")
 ); 
 
