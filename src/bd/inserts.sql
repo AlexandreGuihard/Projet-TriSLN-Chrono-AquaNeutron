@@ -1,8 +1,4 @@
-delete from PARTICIPER;
-delete from PARTICIPANT;
-delete from UTILISATEUR;
-
-
+-- Inserts de toutes les données (générées par IA)
 INSERT INTO PARTICIPANT (id_Participant, nom, prenom, categorie, sexe, email, ville, certification, num_Tel, club, num_Licence, date_Naissance, nom_Equipe, licence) VALUES
 (1, 'Dupont', 'Carle', 'MP', 'F', 'x.carle@yahoo.fr', 'Paris', TRUE, '0647882565', 'SQL', 1, '2001-06-15', 'bleu', TRUE),
 (2, 'Pilaf', 'Mila', 'PO', 'F', 'mila.Pilaf@yahoo.fr', 'Orleans', TRUE, '0692243352', 'SQL', 1, '2001-03-24', 'bleu', FALSE),
@@ -34,10 +30,4 @@ INSERT INTO PARTICIPER (id_Participant, id_Epreuve, payee) VALUES
 INSERT INTO UTILISATEUR (identifiant, mot_de_passe) VALUES
 ("test", "test"),
 ("admin", "admin"),
-("siecle", "siecle"); 
-
-select * from PARTICIPANT;
-select * from EPREUVE;
-select * from PARTICIPER;
-select * from UTILISATEUR;
-
+("siecle", "siecle");

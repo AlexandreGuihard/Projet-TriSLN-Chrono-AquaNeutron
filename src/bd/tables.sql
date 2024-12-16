@@ -1,13 +1,4 @@
-drop TABLE PARTICIPER;
-drop TABLE GENERER;
-drop TABLE CLASSEMENT;
-drop TABLE ENREGISTRER;
-drop TABLE CHRONOMETRAGE;
-drop TABLE DOSSARD;
-drop TABLE PARTICIPANT;
-drop TABLE EPREUVE;
-drop TABLE UTILISATEUR;
-
+-- Création des tables de la bd
 CREATE OR REPLACE TABLE CHRONOMETRAGE (
     id_Chrono     INT NOT NULL,
     temps_depart  TIME,
@@ -67,7 +58,7 @@ CREATE OR REPLACE TABLE PARTICIPANT (
     num_Licence    INT,
     date_Naissance DATE,
     nom_Equipe     VARCHAR(42),
-    licence        BOOLEAN,
+    licence        BOOLEAN,sgfn,jkfe
     PRIMARY KEY (id_Participant)
 );
 
@@ -83,6 +74,7 @@ CREATE OR REPLACE TABLE UTILISATEUR (
     mot_de_passe   VARCHAR(42),
     PRIMARY KEY (identifiant)
 );
+-- Ajout des foreign keys
 
 ALTER TABLE PARTICIPER ADD FOREIGN KEY (id_Epreuve) REFERENCES EPREUVE (id_Epreuve);
 ALTER TABLE PARTICIPER ADD FOREIGN KEY (id_Participant) REFERENCES PARTICIPANT (id_Participant);

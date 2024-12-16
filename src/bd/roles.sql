@@ -3,8 +3,6 @@ create role administrateur, spectateur, benevol;
 create user admin identified by adminMdp;
 create user invite;
 
-
-
 grant all on DBguihard.* to administrateur;
 
 grant select on DBguihard.* to benevol;
