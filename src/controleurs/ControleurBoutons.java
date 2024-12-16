@@ -153,7 +153,7 @@ public abstract class ControleurBoutons {
                     this.vue.afficheAccueil();
                     break;
                 default:
-                    this.vue.afficheAccueilConnecte(); 
+                    this.vue.afficheRetour(); 
                     break;           
             }
         }catch (IOException e){

@@ -29,24 +29,33 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
     private Button btnDeconnexion;
 
     public ControleurBoutonsCompte(TriSLN vue){
-        this.vue = vue;
+        super();
+        this.setBoutons(vue);
+    }
+
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
+        super.setBRetour(btnRetour);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setBAccueil(btnAccueil);
     }
 
     @FXML
     public void handleBtnCompteMouseEntered(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
-                    break;
-            }
+            super.handleBtnsMouseEntered(btn);
+            //switch(btn.getId()){
+            //    case "btnAccueil":
+            //        this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnDeconnexion":
+            //        this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnRetour":
+            //        this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
+            //        break;
+            //}
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -58,17 +67,18 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
     public void handleBtnCompteMouseExited(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
-                    break;
-            }
+            super.handleBtnsMouseExited(btn);
+            //switch(btn.getId()){
+            //    case "btnAccueil":
+            //        this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnDeconnexion":
+            //        this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnRetour":
+            //        this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
+            //        break;
+            //}
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -80,20 +90,20 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
     public void handle(ActionEvent event){
         try {
             Button btn=(Button) event.getSource();
-            switch(btn.getId()){
-                case "btnRetour":
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnAccueil":
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnDeconnexion":
-                    this.vue.afficheAccueil();
-                    break;
-            }
+            super.handle(btn);
+            //switch(btn.getId()){
+            //    case "btnRetour":
+            //        this.vue.afficheAccueilConnecte();
+            //        break;
+            //    case "btnAccueil":
+            //        this.vue.afficheAccueilConnecte();
+            //        break;
+            //    case "btnDeconnexion":
+            //        this.vue.afficheAccueil();
+            //        break;
+            //}
         } 
-        catch (IOException e)
-        {
+        catch (Exception e){
             e.printStackTrace();
         } 
     }

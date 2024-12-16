@@ -167,7 +167,7 @@
                      </children>
                   </VBox>
                   <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="btnAJtCourse" minWidth="250.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" style="-fx-background-color: #2596BE;" text="Ajouter la course" textFill="WHITE">
+                  <Button fx:id="btnAjoutCourse" minWidth="250.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" style="-fx-background-color: #2596BE;" text="Ajouter la course" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -298,7 +298,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>

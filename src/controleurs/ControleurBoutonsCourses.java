@@ -34,16 +34,11 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
 
     public ControleurBoutonsCourses(TriSLN vue){
         super();
-        this.vue = vue;
-        this.vue.setBNvlCourse(this.btnNvlCourse);
-        this.vue.setBAccueil(this.btnAccueil);
-        this.vue.setBRetour(this.btnRetour);
-        this.vue.setBDeconnexion(this.btnDeconnexion);
-        this.vue.setBCompte(this.btnCompte);
-        this.setBoutons();
+        this.setBoutons(vue);
     }
 
-    private void setBoutons(){
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
         super.setBAccueil(btnAccueil);
         super.setBCompte(btnCompte);
         super.setBDeconnexion(btnDeconnexion);
@@ -54,22 +49,11 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     public void handleBtnCoursesMouseEntered(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#105c74", "");
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnNvlCourse")){
+                super.getVue().changeButtonColor(this.btnNvlCourse, "#105c74", "");
+            }
+            else{
+                super.handleBtnsMouseEntered(btn);
             }
         }
         catch(Exception e){
@@ -82,22 +66,11 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     public void handleBtnCoursesMouseExited(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnNvlCourse":
-                    this.vue.changeButtonColor(this.btnNvlCourse, "#2596BE", null);
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnNvlCourse")){
+                super.getVue().changeButtonColor(this.btnNvlCourse, "#2596BE", "");
+            }
+            else{
+                super.handleBtnsMouseExited(btn);
             }
         }
         catch(Exception e){
@@ -110,25 +83,14 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     public void handle(ActionEvent event){
         try {
             Button btn=(Button) event.getSource();
-            switch(btn.getId()){
-                case "btnNvlCourse":
-                    this.vue.afficheNvlCourse();
-                    break;
-                case "btnRetour":
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnAccueil":
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnCompte":
-                    this.vue.afficheMonCompte();
-                    break;
-                case "btnDeconnexion":
-                    this.vue.afficheAccueil();
-                    break;
+            if(btn.getId().equals("btnNvlCourse")){
+                super.getVue().afficheNvlCourse();
+            }
+            else{
+                super.handle(btn);
             }
         } 
-        catch (IOException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         } 

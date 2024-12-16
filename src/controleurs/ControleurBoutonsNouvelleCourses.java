@@ -22,7 +22,7 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     private TriSLN vue;
 
     @FXML
-    private Button btnAJtCourse;
+    private Button btnAjoutCourse;
     @FXML
     private Button btnAccueil;
     @FXML
@@ -35,16 +35,11 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
 
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
         super();
-        this.vue = vue;
-        this.vue.setBAJtCourse(this.btnAJtCourse);
-        this.vue.setBAccueil(this.btnAccueil);
-        this.vue.setBRetour(this.btnRetour);
-        this.vue.setBDeconnexion(this.btnDeconnexion);
-        this.vue.setBCompte(this.btnCompte);
-        this.setBoutons();
+        this.setBoutons(vue);
     }
 
-    private void setBoutons(){
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
         super.setBAccueil(btnAccueil);
         super.setBCompte(btnCompte);
         super.setBDeconnexion(btnDeconnexion);
@@ -55,20 +50,26 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     public void handleBtnCoursesMouseEntered(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAJtCourse":
-                    this.vue.changeButtonColor(this.btnAJtCourse, "#105c74", null);
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnAjoutCourse")){
+                super.getVue().changeButtonColor(this.btnAjoutCourse, "#105c74", "");
             }
+            else{
+                super.handleBtnsMouseEntered(btn);
+            }
+            //switch(btn.getId()){
+            //    case "btnAjoutCourse":
+            //        this.vue.changeButtonColor(this.btnAjoutCourse, "#105c74", null);
+            //        break;
+            //    case "btnAccueil":
+            //        this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnDeconnexion":
+            //        this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnCompte":
+            //        this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
+            //        break;
+            //}
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -80,20 +81,26 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     public void handleBtnCoursesMouseExited(MouseEvent event){
         try{
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAJtCourse":
-                    this.vue.changeButtonColor(this.btnAJtCourse, "#2596BE", null);
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnAjoutCourse")){
+                super.getVue().changeButtonColor(this.btnAjoutCourse, "#2596BE", "");
             }
+            else{
+                super.handleBtnsMouseExited(btn);
+            }
+            //switch(btn.getId()){
+            //    case "btnAjoutCourse":
+            //        this.vue.changeButtonColor(this.btnAjoutCourse, "#2596BE", "");
+            //        break;
+            //    case "btnAccueil":
+            //        this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnDeconnexion":
+            //        this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
+            //        break;
+            //    case "btnCompte":
+            //        this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
+            //        break;
+            //}
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -105,28 +112,35 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     public void handle(ActionEvent event){
         try {
             Button btn=(Button) event.getSource();
-            switch(btn.getId()){
-                case "btnAJtCourse":
-                    System.out.println("Ajouter course");
-                    this.vue.afficheNvlCourse();
-                    break;
-                case "btnRetour":
-                    System.out.println("Retour");
-                    this.vue.afficheCourses();
-                    break;
-                case "btnAccueil":
-                    System.out.println("Accueil");
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnCompte":
-                    System.out.println("Mon compte");
-                    this.vue.afficheMonCompte();
-                    break;
-                case "btnDeconnexion":
-                    System.out.println("Déconnexion");
-                    this.vue.afficheAccueil();
-                    break;
+            if(btn.getId().equals("btnAjoutCourse")){
+                System.out.println("Course ajoutée");
+                super.getVue().afficheCourses();
             }
+            else{
+                super.handle(btn);
+            }
+            //switch(btn.getId()){
+            //    case "btnAjoutCourse":
+            //        System.out.println("Ajouter course");
+            //        this.vue.afficheNvlCourse();
+            //        break;
+            //    case "btnRetour":
+            //        System.out.println("Retour");
+            //        this.vue.afficheCourses();
+            //        break;
+            //    case "btnAccueil":
+            //        System.out.println("Accueil");
+            //        this.vue.afficheAccueilConnecte();
+            //        break;
+            //    case "btnCompte":
+            //        System.out.println("Mon compte");
+            //        this.vue.afficheMonCompte();
+            //        break;
+            //    case "btnDeconnexion":
+            //        System.out.println("Déconnexion");
+            //        this.vue.afficheAccueil();
+            //        break;
+            //}
         } 
         catch (IOException e)
         {
