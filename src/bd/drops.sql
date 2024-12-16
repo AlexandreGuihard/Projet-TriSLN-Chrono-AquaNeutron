@@ -1,8 +1,4 @@
-delete from PARTICIPER;
-delete from EPREUVE;
-delete from PARTICIPANT;
-delete from UTILISATEUR;
-
+-- Drop des tables de la bd
 drop table if exists PARTICIPER;
 drop table if exists GENERER;
 drop table if exists CLASSEMENT;
