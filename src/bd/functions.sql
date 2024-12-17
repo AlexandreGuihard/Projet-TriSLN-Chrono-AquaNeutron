@@ -56,31 +56,34 @@ begin
 end|
 
 -- Vérification des attributs licence,numLicence,club et dateNaissance selon le type de participant
-create or replace trigger checkParticipantsRelais before insert on PARTICIPANT for each row
+-- Fonctions pour savoir le type de participant selon certains attributs
+create or replace function isParticipantsRelais(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    declare msg varchar(100) default "";
-    if new.licence then
-        if new.club!=null or new.nom_Equipe!=null or new.num_Licence!=null then
-            set msg=concat("Le participant ",new.prenom,' ',new.nom," participe à une course relais. Il ne peut avoir de club, de date de naissance et d'équipe");
-            signal SQLSTATE '45000' set MESSAGE_TEXT=msg;
-        end if;
-    end if;
+    return club is null and numLicence is null and nomEquipe is not null and licence;
 end|
 
-create or replace trigger checkParticipantsLicenceIndiv before insert on PARTICIPANT for each row
+create or replace function isParticipantsLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    declare msg varchar(100) default "";
-    if new.nom_Equipe!=null or new.licence!=false then
-        set msg=concat("Le participant ",new.prenom," ",new.nom," participe à une course avec licence individuelle. Il ne peut avoir d'équipe et de licence");
-        signal SQLSTATE '45000' set MESSAGE_TEXT=msg;
-    end if;
+    return club is not null and numLicence is not null and nomEquipe is null and not licence;
 end|
 
-create or replace trigger checkParticipantsNonLicenceIndiv before insert on PARTICIPANT for each row
+create or replace function isParticipantsNonLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    declare msg varchar(100) default "";
-    if new.club!=null or new.licence!=false or new.nom_Equipe!=null or new.num_Licence!=null then
-        set msg=concat("Le participant ",new.prenom," ",new.nom," participe à une course sans licence individuelle. Il ne peut avoir qu'une date de naissance");
-        signal SQLSTATE '45000' set MESSAGE_TEXT=msg;
+    return club is null and nomEquipe is null and not licence and numLicence is null;
+end|
+
+-- Triggers
+create or replace trigger checkParticipant before insert on PARTICIPANT for each row
+begin
+    declare msg varchar(200) default "";
+    declare participantRelais boolean default true;
+    declare participantLicenceIndiv boolean default true;
+    declare participantNonLicenceIndiv boolean default true;
+    select isParticipantsRelais(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantRelais;
+    select isParticipantsLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantLicenceIndiv;
+    select isParticipantsNonLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantNonLicenceIndiv;
+    if not participantRelais and not participantLicenceIndiv and not participantNonLicenceIndiv then
+        set msg=concat("Le participant ", new.prenom, " ", new.nom, " ne correspond à aucun type de participant connu (relais, licence individuelle, sans licence individuelle)");
+        signal SQLSTATE '45000'set MESSAGE_TEXT=msg;
     end if;
-end
+end|
