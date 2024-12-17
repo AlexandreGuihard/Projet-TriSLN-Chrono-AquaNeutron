@@ -1,4 +1,4 @@
-package src.vue;
+package com.trisln.aquaneutron.vue;
 
 import javafx.application.Application;
 import javafx.scene.control.Button;
