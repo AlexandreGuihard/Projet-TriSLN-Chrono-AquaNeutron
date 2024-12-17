@@ -1,4 +1,11 @@
 -- Création des tables de la bd
+create or replace table CATEGORIE(
+    idCategorie int,
+    categorie varchar(42),
+    sousCategorie varchar(42),
+    primary key(idCategorie)
+);
+
 create or replace table CHRONOMETRAGE (
     id_Chrono int not null,
     temps_depart time,
@@ -25,7 +32,7 @@ create or replace table EPREUVE (
     id_Epreuve int,
     nom_Epreuve varchar(42),
     format varchar(42),
-    categorie boolean,
+    idCategorie int,
     heure_Depart time,
     prix int,
     primary key(id_Epreuve)
@@ -35,7 +42,7 @@ create or replace table PARTICIPANT (
     id_Participant int,
     nom varchar(42),
     prenom varchar(42),
-    categorie varchar(42),
+    idCategorie int,
     sexe varchar(42),
     email varchar(42),
     ville varchar(42),
@@ -74,6 +81,7 @@ create or replace table UTILISATEUR (
     mot_de_passe varchar(42),
     primary key(identifiant)
 );
+
 -- Ajout des foreign keys
 
 alter table PARTICIPER add foreign key (id_Epreuve) references EPREUVE (id_Epreuve);
@@ -83,8 +91,11 @@ alter table GENERER add foreign key (id_Participant) references PARTICIPANT (id_
 alter table GENERER add foreign key (id_Epreuve) references EPREUVE (id_Epreuve);
 alter table GENERER add foreign key (id_Classement) references CLASSEMENT (id_Classement);
 
-
 alter table DOSSARD add foreign key (id_Participant) references PARTICIPANT (id_Participant);
 
 alter table ENREGISTRER add foreign key (num_Dossard) references DOSSARD (num_Dossard);
 alter table ENREGISTRER add foreign key (id_Chrono) references CHRONOMETRAGE (id_Chrono);
+
+alter table PARTICIPANT add foreign key (idCategorie) references CATEGORIE (idCategorie);
+
+alter table EPREUVE add foreign key (idCategorie) references CATEGORIE (idCategorie);
