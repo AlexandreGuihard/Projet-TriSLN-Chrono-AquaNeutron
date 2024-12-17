@@ -30,6 +30,8 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     private Button btnDeconnexion;
     @FXML
     private Button btnCompte;
+    @FXML
+    private Button btnClassementsDeco;
 
     public ControleurBoutonsCo(TriSLN vue){
         super();
@@ -53,6 +55,10 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
             switch(btn.getId()){
                 case "btnClassements":
                     changedButton=this.btnClassements;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnClassementsDeco":
+                    changedButton=this.btnClassementsDeco;
                     newBtnColor="#105c74";
                     break;
                 case "btnParticipants":
@@ -93,6 +99,10 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     changedButton=this.btnClassements;
                     newBtnColor="#2596BE";
                     break;
+                case "btnClassementsDeco":
+                    changedButton=this.btnClassementsDeco;
+                    newBtnColor="#2596BE";
+                    break;
                 case "btnParticipants":
                     changedButton=this.btnParticipants;
                     newBtnColor="#2596BE";
@@ -126,6 +136,10 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                 case "btnClassements":
                     System.out.println("btnClassements");
                     super.getVue().afficheClassements();
+                    break;  
+                case "btnClassementsDeco":
+                    System.out.println("btnClassementsDeco");
+                    super.getVue().afficheClassementsDisconnected();
                     break;
                 case "btnParticipants":
                     super.getVue().afficheParticipants();

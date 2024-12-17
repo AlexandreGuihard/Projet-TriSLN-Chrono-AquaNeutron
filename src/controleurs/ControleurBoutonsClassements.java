@@ -41,7 +41,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         super.setBDeconnexion(btnDeconnexion);
         super.setBCompte(btnCompte);
         super.setBRetour(btnRetour);
-        super.setBAccueil(btnAccueilDisconnected);
+        super.setBAccueilDisconnected(btnAccueilDisconnected);
     }
     
     @FXML

@@ -30,6 +30,8 @@ public abstract class ControleurBoutons {
     private Button btnCompte;
     @FXML
     private Button btnConnexion;
+    @FXML
+    private Button btnAccueilDisconnected;
 
     public ControleurBoutons(){
         this.vue=null;
@@ -38,6 +40,7 @@ public abstract class ControleurBoutons {
         this.btnDeconnexion=null;
         this.btnCompte=null;
         this.btnConnexion=null;
+        this.btnAccueilDisconnected=null;
     }
 
     public TriSLN getVue(){
@@ -50,6 +53,10 @@ public abstract class ControleurBoutons {
 
     public Button getBDeconnexion(){
         return this.btnDeconnexion;
+    }
+
+    public Button getBAccueilDisconnected(){
+        return this.btnAccueilDisconnected;
     }
 
     public Button getBAccueil(){
@@ -76,6 +83,10 @@ public abstract class ControleurBoutons {
         this.btnDeconnexion=btnDeconnexion;
     }
 
+    public void setBAccueilDisconnected(Button btnAccueilDisconnected){
+        this.btnAccueilDisconnected = btnAccueilDisconnected;
+    }
+
     public void setBAccueil(Button btnAccueil){
         this.btnAccueil=btnAccueil;
     }
@@ -98,6 +109,9 @@ public abstract class ControleurBoutons {
                 break;
             case "btnAccueil":
                 changedButton=this.btnAccueil;
+                break;
+            case "btnAccueilDisconnected":
+                changedButton=this.btnAccueilDisconnected;
                 break;
             case "btnConnexion":
                 changedButton=this.btnConnexion;
@@ -124,6 +138,9 @@ public abstract class ControleurBoutons {
                 break;
             case "btnAccueil":
                 changedButton=this.btnAccueil;
+                break;
+            case "btnAccueilDisconnected":
+                changedButton=this.btnAccueilDisconnected;
                 break;
             case "btnConnexion":
                 changedButton=this.btnConnexion;
@@ -152,12 +169,15 @@ public abstract class ControleurBoutons {
                 case "btnDeconnexion" :
                     this.vue.afficheAccueil();
                     break;
-                case "btnAccueilDisconnected":
-                    this.vue.afficheAccueil();
-                    break;
+                
                 case "btnAccueil":
                     this.vue.afficheAccueilConnecte();
                     break;
+
+                case "btnAccueilDisconnected":
+                    this.vue.afficheAccueil();
+                    break;
+
                 default:
                     this.vue.afficheRetour(); 
                     break;           
