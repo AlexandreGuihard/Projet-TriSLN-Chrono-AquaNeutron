@@ -47,16 +47,6 @@ public abstract class Participant{
         this.licence = licence;
     }
 
-    public Participant(int id2, String nom2, String prenom2, String categorie, char sexe2, String email2, String ville2,
-            String certification2, int numTel2) {
-        //TODO Auto-generated constructor stub
-    }
-
-    public Participant(int id2, String nom2, String prenom2, String idCategorie2, char sexe2, String email2,
-            String ville2, String certification2, int numTel2, String dateDeNaissance, boolean licence2) {
-        //TODO Auto-generated constructor stub
-    }
-
     /**
      * Getter pour avoir l'id
      * @return l'id du participant

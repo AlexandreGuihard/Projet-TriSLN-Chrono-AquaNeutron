@@ -30,7 +30,7 @@ public class BdTriSLN{
                 String date_naissance = participants.getString(12);
                 String nomEquipe=participants.getString(13);
                 boolean licence=participants.getBoolean(14);
-                Participant participant = new ParticipantCourseRelais(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, nomEquipe, licence);//,chronometre manque un constructeur qui prend en compte chrono TODO
+                Participant participant = new ParticipantCourseRelais(idP, nom, prenom, idCategorie, sexe, email, ville, certification, tel, nomEquipe, licence);//,chronometre manque un constructeur qui prend en compte chrono TODO
                 participantsCourseRelais.add(participant);
             }
             catch(SQLException e){

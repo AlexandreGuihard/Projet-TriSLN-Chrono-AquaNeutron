@@ -21,8 +21,8 @@ public class ParticipantCourseRelais extends Participant{
      * @param nomEquipe le nom de l'équipe du participant
      * @param licence si le participant possède une licence ou non
      */
-    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String nomEquipe, boolean licence){
-        super(id, nom, prenom, categorie, sexe, email, ville, certification, numTel);
+    public ParticipantCourseRelais(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, int numTel, String dateNaissance, boolean licence, String nomEquipe){
+        super(id, nom, prenom, idCategorie, sexe, email, ville, certification, numTel, dateNaissance, licence);
         this.nomEquipe=nomEquipe;
     }
 
