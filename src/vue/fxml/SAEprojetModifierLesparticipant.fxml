@@ -283,7 +283,7 @@
             <Region prefHeight="155.0" prefWidth="321.0" HBox.hgrow="ALWAYS" />
             <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="421.0">
                <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>

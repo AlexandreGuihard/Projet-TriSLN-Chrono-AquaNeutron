@@ -118,7 +118,7 @@ public class TriSLN extends Application{
         this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsAjouterP(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene=new Scene(accueil);
             this.stage.setScene(scene);

@@ -242,11 +242,20 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                         break;
                     case "btnModifierParticipant":
                         super.getVue().afficheParticipants();
+                        break;         
+                    case "btnCompte":
+                        this.vue.afficheMonCompte();
                         break;
-
+                    case "btnConnexion":
+                        this.vue.afficheLogin();
+                        break;    
+                    case "btnDeconnexion":
+                        this.vue.afficheAccueil();
+                        break;
+   
                     default:
                         super.getVue().afficheLesParticipants();
-                        break;          
+
                 }
             }
             catch(Exception e){
