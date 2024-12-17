@@ -287,7 +287,7 @@
          <graphic>
             <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
                <image>
-                  <Image url="@img/93634.png" />
+                  <Image url="@img/retour.png" />
                </image>
             </ImageView>
          </graphic>

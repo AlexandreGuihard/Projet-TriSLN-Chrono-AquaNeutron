@@ -59,7 +59,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@img/3c6b9c1039c0f2ffb95d120efaa7a5d5.png" />
+                  <Image url="@img/TriSLN_AquaNeutron.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -74,7 +74,7 @@
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@img/login_icon_137429.png" />
+                                    <Image url="@img/login_icon.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se connecter">
