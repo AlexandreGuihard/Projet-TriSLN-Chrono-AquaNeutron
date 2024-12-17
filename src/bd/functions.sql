@@ -53,4 +53,34 @@ end|
 create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel int, club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42))
 begin
     update PARTICIPANT set nom=nom, prenom=prenom, categorie=categorie, sexe=sexe, email=email, ville=ville, certification=certification, num_Tel=numTel, club=club, num_Licence=numLicence, date_Naissance=dateNaissance, nom_Equipe=nomEquipe where id_Participant=idParticipant;
+end|
+
+-- Vérification des attributs licence,numLicence,club et dateNaissance selon le type de participant
+create or replace trigger checkParticipantsRelais before insert on PARTICIPANT for each row
+begin
+    declare msg varchar(100) default "";
+    if new.licence then
+        if new.club!=null or new.nom_Equipe!=null or new.num_Licence!=null then
+            set msg=concat("Le participant ",new.prenom,' ',new.nom," participe à une course relais. Il ne peut avoir de club, de date de naissance et d'équipe");
+            signal SQLSTATE '45000' set MESSAGE_TEXT=msg;
+        end if;
+    end if;
+end|
+
+create or replace trigger checkParticipantsLicenceIndiv before insert on PARTICIPANT for each row
+begin
+    declare msg varchar(100) default "";
+    if new.nom_Equipe!=null or new.licence!=false then
+        set msg=concat("Le participant ",new.prenom," ",new.nom," participe à une course avec licence individuelle. Il ne peut avoir d'équipe et de licence");
+        signal SQLSTATE '45000' set MESSAGE_TEXT=msg;
+    end if;
+end|
+
+create or replace trigger checkParticipantsNonLicenceIndiv before insert on PARTICIPANT for each row
+begin
+    declare msg varchar(100) default "";
+    if new.club!=null or new.licence!=false or new.nom_Equipe!=null or new.num_Licence!=null then
+        set msg=concat("Le participant ",new.prenom," ",new.nom," participe à une course sans licence individuelle. Il ne peut avoir qu'une date de naissance");
+        signal SQLSTATE '45000' set MESSAGE_TEXT=msg;
+    end if;
 end
