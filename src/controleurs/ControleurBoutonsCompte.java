@@ -43,19 +43,18 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
     @FXML
     public void handleBtnCompteMouseEntered(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            super.handleBtnsMouseEntered(btn);
-            //switch(btn.getId()){
-            //    case "btnAccueil":
-            //        this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnDeconnexion":
-            //        this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnRetour":
-            //        this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //}
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+                super.handleBtnsMouseEntered(btn);
+            }
+            else{
+                super.handleBtnsMouseExited(btn);
+            }
+
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -66,19 +65,18 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
     @FXML
     public void handleBtnCompteMouseExited(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            super.handleBtnsMouseExited(btn);
-            //switch(btn.getId()){
-            //    case "btnAccueil":
-            //        this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnDeconnexion":
-            //        this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnRetour":
-            //        this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
-            //        break;
-            //}
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+                super.handleBtnsMouseExited(btn);
+            }
+            else{
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -89,19 +87,19 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
     @Override
     public void handle(ActionEvent event){
         try {
-            Button btn=(Button) event.getSource();
-            super.handle(btn);
-            //switch(btn.getId()){
-            //    case "btnRetour":
-            //        this.vue.afficheAccueilConnecte();
-            //        break;
-            //    case "btnAccueil":
-            //        this.vue.afficheAccueilConnecte();
-            //        break;
-            //    case "btnDeconnexion":
-            //        this.vue.afficheAccueil();
-            //        break;
-            //}
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+                super.handle(btn);
+            }
+            else{
+                super.handleBtnsMouseExited(btn);
+            }
+            
+
         } 
         catch (Exception e){
             e.printStackTrace();

@@ -149,8 +149,14 @@ public abstract class ControleurBoutons {
                 case "btnConnexion":
                     this.vue.afficheLogin();
                     break;    
-                case "btnDeconnexion":
+                case "btnDeconnexion" :
                     this.vue.afficheAccueil();
+                    break;
+                case "btnAccueilDisconnected":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnAccueil":
+                    this.vue.afficheAccueilConnecte();
                     break;
                 default:
                     this.vue.afficheRetour(); 

@@ -65,7 +65,7 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
             String otherStyle="";
             Button btn=(Button)event.getSource();
             if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
-                super.handle(btn);
+                super.handleBtnsMouseEntered(btn);
             }
             else{
                 switch(btn.getId()){
@@ -114,7 +114,7 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
             String otherStyle="";
             Button btn=(Button)event.getSource();
             if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
-                super.handle(btn);
+                super.handleBtnsMouseExited(btn);
             }
             else{
                 switch(btn.getId()){
@@ -156,23 +156,25 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
     public void handle(ActionEvent event){
 
         try {Button btn=(Button)event.getSource();
-        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
-                super.handle(btn);
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+                    super.handle(btn);
+            }
+            else{
+                switch(btn.getId()){
+                    case "btnImporterCSV":
+                        System.out.println("importation en cours");
+                        break;
+                    default:
+                        super.getVue().afficheAjouterP();
+                        
+            }
+                
+            }
         }
-        else{
-            switch(btn.getId()){
-                case "btnRetour":
-                    super.getVue().super.getVue().afficheLesParticipants();
-                    break;
-                default:
-                    super.getVue().super.getVue().afficheLesParticipants();
-                    
-        }
-            
-        } 
         catch (IOException e)
         {
             e.printStackTrace();
         } 
     }
 }
+

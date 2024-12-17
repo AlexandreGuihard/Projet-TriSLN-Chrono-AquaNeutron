@@ -24,11 +24,11 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     @FXML
     private Button btnRetour;
     @FXML
-    private Button btnAccueilDisconnected;
-    @FXML
     private Button btnDeconnexion;
     @FXML
     private Button btnCompte;
+    @FXML
+    private Button btnAccueilDisconnected;
 
     public ControleurBoutonsClassements(TriSLN vue){
         super();
@@ -41,41 +41,61 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         super.setBDeconnexion(btnDeconnexion);
         super.setBCompte(btnCompte);
         super.setBRetour(btnRetour);
+        super.setBAccueil(btnAccueilDisconnected);
+    }
+    
+    @FXML
+    public void handleBtnClassementMouseExited(MouseEvent event){
+        try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+                
+                super.handleBtnsMouseExited(btn);
+            }
+            else{
+                switch (btn.getId()) {
+                    
+
+                    default:
+                         superButton=true;
+                        break;
+                    }
+                    super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+                }
+            }
+
+        catch(Exception e){
+            System.err.println("Erreur");
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void handleBtnClassementMouseEntered(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueilDisconnected")){
-                super.getVue().changeButtonColor(btn, "#949494", "-fx-background-radius: 15");
-            }
-            else{
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+                
                 super.handleBtnsMouseEntered(btn);
             }
-            //switch(btn.getId()){
-            //    case "btnConnexion":
-            //        this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnAccueil":
-            //        this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnRetour":
-            //        this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnAccueil2":
-            //        this.vue.changeButtonColor(this.btnAccueilDisconnected, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnRetour2":
-            //        this.vue.changeButtonColor(this.btnRetour2, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "deconnecter":
-            //        this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnCompte":
-            //        this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //}
+            else{
+                switch (btn.getId()) {
+
+                default:
+                        superButton=true;
+                        break;
+                }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
             
         }
         catch(Exception e){
@@ -84,79 +104,29 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         }
     }
 
-    @FXML
-    public void handleBtnClassementMouseExited(MouseEvent event){
-        try{
-            Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueilDisconnected")){
-                super.getVue().changeButtonColor(this.btnAccueilDisconnected, "lightgrey", "-fx-background-radius: 15");
-            }
-            else{
-                super.handleBtnsMouseExited(btn);
-            }
-            //switch(btn.getId()){
-            //    case "btnConnexion":
-            //        this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnAccueil":
-            //        this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnRetour":
-            //        this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnAccueil2":
-            //        this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnRetour2":
-            //        this.vue.changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
-            //        break;
-            //    case "deconnecter":
-            //        this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnCompte":
-            //        this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //}
-        }
-        catch(Exception e){
-            System.err.println("Erreur");
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void handle(ActionEvent event){
         try{
-            Button btn=(Button) event.getSource();
-            if(btn.getId().equals("btnAccueilDisconnected")){
-                super.getVue().afficheAccueil();
-            }
-            else{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
                 super.handle(btn);
             }
-            //switch(btn.getId()){
-            //    case "btnAccueil":
-            //        this.vue.afficheAccueil();
-            //        break;
-            //    case "btnRetour":
-            //        this.vue.afficheAccueil();
-            //        break;
-            //    case "btnAccueil2":
-            //        this.vue.afficheAccueilConnecte();
-            //        break;
-            //    case "btnRetour2":
-            //        this.vue.afficheAccueilConnecte();
-            //        break;   
-            //    case "btnConnexion":
-            //        this.vue.afficheLogin();
-            //        break;
-            //    case "deconnecter":
-            //        this.vue.afficheAccueil();
-            //        break;
-            //    case "btnCompte":
-            //        this.vue.afficheMonCompte();
-            //        break;
-            //}
+            else{
+                switch (btn.getId()) {
+                    default:
+                            superButton=true;
+                            break;
+                    }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
