@@ -212,7 +212,7 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     @Override
     public void handle(ActionEvent event){
         Button btn=(Button)event.getSource();
-        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
             super.handle(btn);
         }
         else{

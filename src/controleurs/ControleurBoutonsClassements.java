@@ -52,8 +52,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             String newBtnColor="";
             String otherStyle="";
             Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
-                
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion") || btn.getId().equals("btnConnexion")){
                 super.handleBtnsMouseExited(btn);
             }
             else{
@@ -82,7 +81,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             String newBtnColor="";
             String otherStyle="";
             Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                 
                 super.handleBtnsMouseEntered(btn);
             }
@@ -113,7 +112,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             String newBtnColor="";
             String otherStyle="";
             Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")){
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                 super.handle(btn);
             }
             else{
