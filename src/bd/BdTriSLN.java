@@ -13,21 +13,23 @@ public class BdTriSLN{
     public List<Participant> getParticipantsCourseRelais() throws SQLException{
         List<Participant> participantsCourseRelais=new ArrayList<>();
         Statement st=this.connexion.createStatement();
-        ResultSet participants=st.executeQuery("select * from PARTICIPANT");
+        ResultSet participants=st.executeQuery("SELECT * FROM PARTICIPANT NATURAL JOIN PARTICIPER JOIN EPREUVE ON PARTICIPER.id_Epreuve = EPREUVE.id_Epreuve WHERE EPREUVE.format = 'relais'");
         while(participants.next()){
             try{
-                boolean licence=participants.getBoolean(13);
-                String nomEquipe=participants.getString(14);
-
                 int idP=participants.getInt(1);
                 String nom=participants.getString(2);
                 String prenom=participants.getString(3);
-                String categorie=participants.getString(4);
+                int idCategorie = participants.getInt(4);
                 char sexe=participants.getString(5).charAt(0);
                 String email=participants.getString(6);
                 String ville=participants.getString(7);
                 String certification=participants.getString(8);
                 int tel=participants.getInt(9);
+                String club = participants.getString(10);
+                int num_licence = participants.getInt(11);
+                String date_naissance = participants.getString(12);
+                String nomEquipe=participants.getString(13);
+                boolean licence=participants.getBoolean(14);
                 Participant participant = new ParticipantCourseRelais(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, nomEquipe, licence);//,chronometre manque un constructeur qui prend en compte chrono TODO
                 participantsCourseRelais.add(participant);
             }
@@ -115,14 +117,6 @@ public class BdTriSLN{
         }
         st.close();
         return courses;
-    }
-
-    public boolean estUnParticipantCourseRelais(boolean licence){
-        return licence;
-    }
-
-    public boolean estUnParticipantLicenceIndividuel(String club){
-        return !club.equals("");
     }
 
     public List<Classement> getClassements() throws SQLException{

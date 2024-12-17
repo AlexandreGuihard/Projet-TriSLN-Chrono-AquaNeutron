@@ -1,98 +1,101 @@
-drop TABLE PARTICIPER;
-drop TABLE GENERER;
-drop TABLE CLASSEMENT;
-drop TABLE ENREGISTRER;
-drop TABLE CHRONOMETRAGE;
-drop TABLE DOSSARD;
-drop TABLE PARTICIPANT;
-drop TABLE EPREUVE;
-drop TABLE UTILISATEUR;
-
-CREATE OR REPLACE TABLE CHRONOMETRAGE (
-    id_Chrono     INT NOT NULL,
-    temps_depart  TIME,
-    temps_arrivee TIME,
-    PRIMARY KEY (id_Chrono)
+-- Création des tables de la bd
+create or replace table CATEGORIE(
+    idCategorie int,
+    categorie varchar(42),
+    sousCategorie varchar(42),
+    primary key(idCategorie)
 );
 
-CREATE OR REPLACE TABLE CLASSEMENT (
-    id_Classement INT NOT NULL,
-    pos_generale  INT,
-    pos_categorie INT,
-    pos_club      INT,
-    temps         TIME,
-    PRIMARY KEY (id_Classement)
+create or replace table CHRONOMETRAGE (
+    id_Chrono int not null,
+    temps_depart time,
+    temps_arrivee time,
+    primary key(id_Chrono)
 );
 
-CREATE OR REPLACE TABLE DOSSARD (
-    num_dossard    INT,
-    id_Participant INT,
-    PRIMARY KEY (num_Dossard)
+create or replace table CLASSEMENT (
+    id_Classement int not null,
+    pos_generale int,
+    pos_categorie int,
+    pos_club int,
+    temps time,
+    primary key(id_Classement)
 );
 
-CREATE OR REPLACE TABLE ENREGISTRER (
-    id_Chrono   INT,
-    num_Dossard INT,
-    PRIMARY KEY (id_Chrono, num_Dossard)
+create or replace table ENREGISTRER (
+    id_Chrono int,
+    num_Dossard int,
+    primary key(id_Chrono, num_Dossard)
 );
 
-CREATE OR REPLACE TABLE EPREUVE (
-    id_Epreuve   INT,
-    nom_Epreuve  VARCHAR(42),
-    format       VARCHAR(42),
-    categorie    BOOLEAN,
-    heure_Depart TIME,
-    prix         INT,
-    PRIMARY KEY (id_Epreuve)
+create or replace table EPREUVE (
+    id_Epreuve int,
+    nom_Epreuve varchar(42),
+    format varchar(42),
+    idCategorie int,
+    heure_Depart time,
+    prix int,
+    primary key(id_Epreuve)
 );
 
-CREATE OR REPLACE TABLE GENERER (
-    id_Classement  INT,
-    id_Epreuve     INT,
-    id_Participant INT,
-    PRIMARY KEY (id_Classement, id_Epreuve, id_Participant)
+create or replace table PARTICIPANT (
+    id_Participant int,
+    nom varchar(42),
+    prenom varchar(42),
+    idCategorie int,
+    sexe varchar(42),
+    email varchar(42),
+    ville varchar(42),
+    certification boolean,
+    num_Tel int,
+    club varchar(42),
+    num_Licence int,
+    date_Naissance date,
+    nom_Equipe varchar(42),
+    licence boolean,
+    primary key(id_Participant)
 );
 
-CREATE OR REPLACE TABLE PARTICIPANT (
-    id_Participant INT,
-    nom            VARCHAR(42),
-    prenom         VARCHAR(42),
-    categorie      VARCHAR(42),
-    sexe           VARCHAR(42),
-    email          VARCHAR(42),
-    ville          VARCHAR(42),
-    certification  BOOLEAN,
-    num_Tel        INT,
-    club           VARCHAR(42),
-    num_Licence    INT,
-    date_Naissance DATE,
-    nom_Equipe     VARCHAR(42),
-    licence        BOOLEAN,
-    PRIMARY KEY (id_Participant)
+create or replace table DOSSARD (
+    num_dossard int,
+    id_Participant int,
+    primary key(num_Dossard)
 );
 
-CREATE OR REPLACE TABLE PARTICIPER (
-    id_Participant INT NOT NULL,
-    id_Epreuve     INT NOT NULL,
-    payee          BOOLEAN,
-    PRIMARY KEY (id_Participant, id_Epreuve)
+create or replace table GENERER (
+    id_Classement int,
+    id_Epreuve int,
+    id_Participant int,
+    primary key(id_Classement, id_Epreuve, id_Participant)
 );
 
-CREATE OR REPLACE TABLE UTILISATEUR (
-    identifiant    VARCHAR(42),
-    mot_de_passe   VARCHAR(42),
-    PRIMARY KEY (identifiant)
+create or replace table PARTICIPER (
+    id_Participant int not null,
+    id_Epreuve int not null,
+    payee boolean,
+    primary key(id_Participant, id_Epreuve)
 );
 
-ALTER TABLE PARTICIPER ADD FOREIGN KEY (id_Epreuve) REFERENCES EPREUVE (id_Epreuve);
-ALTER TABLE PARTICIPER ADD FOREIGN KEY (id_Participant) REFERENCES PARTICIPANT (id_Participant);
+create or replace table UTILISATEUR (
+    identifiant varchar(42),
+    mot_de_passe varchar(42),
+    primary key(identifiant)
+);
 
-ALTER TABLE GENERER ADD FOREIGN KEY (id_Participant) REFERENCES PARTICIPANT (id_Participant);
-ALTER TABLE GENERER ADD FOREIGN KEY (id_Epreuve) REFERENCES EPREUVE (id_Epreuve);
-ALTER TABLE GENERER ADD FOREIGN KEY (id_Classement) REFERENCES CLASSEMENT (id_Classement);
+-- Ajout des foreign keys
 
+alter table PARTICIPER add foreign key (id_Epreuve) references EPREUVE (id_Epreuve);
+alter table PARTICIPER add foreign key (id_Participant) references PARTICIPANT (id_Participant);
 
-ALTER TABLE DOSSARD ADD FOREIGN KEY (id_Participant) REFERENCES PARTICIPANT (id_Participant);
+alter table GENERER add foreign key (id_Participant) references PARTICIPANT (id_Participant);
+alter table GENERER add foreign key (id_Epreuve) references EPREUVE (id_Epreuve);
+alter table GENERER add foreign key (id_Classement) references CLASSEMENT (id_Classement);
 
-ALTER TABLE ENREGISTRER ADD FOREIGN KEY (num_Dossard) REFERENCES DOSSARD (num_Dossard);
-ALTER TABLE ENREGISTRER ADD FOREIGN KEY (id_Chrono) REFERENCES CHRONOMETRAGE (id_Chrono);
+alter table DOSSARD add foreign key (id_Participant) references PARTICIPANT (id_Participant);
+
+alter table ENREGISTRER add foreign key (num_Dossard) references DOSSARD (num_Dossard);
+alter table ENREGISTRER add foreign key (id_Chrono) references CHRONOMETRAGE (id_Chrono);
+
+alter table PARTICIPANT add foreign key (idCategorie) references CATEGORIE (idCategorie);
+
+alter table EPREUVE add foreign key (idCategorie) references CATEGORIE (idCategorie);

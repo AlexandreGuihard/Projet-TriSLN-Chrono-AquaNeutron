@@ -1,43 +1,59 @@
-delete from PARTICIPER;
-delete from PARTICIPANT;
-delete from UTILISATEUR;
+-- Inserts de toutes les données
+insert into CATEGORIE (idCategorie, categorie, sousCategorie) values
+(1, 'MP', null),
+(2, 'PO', null),
+(3, 'PU', null),
+(4, 'BE', null),
+(5, 'MI', null),
+(6, 'CA', null),
+(7, 'JU', null),
+(8, 'S', "S1"),
+(9, 'S', "S2"),
+(10, 'S', "S3"),
+(11, 'S', "S4"),
+(12, 'V', "V1"),
+(13, 'V', "V2"),
+(14, 'V', "V3"),
+(15, 'V', "V4"),
+(16, 'V', "V5"),
+(17, 'V', "V6"),
+(18, 'V', "V7");
 
+insert into PARTICIPANT values
+(1, 'Dupont', 'Carle', 1, 'F', 'x.carle@yahoo.fr', 'Paris', true, '0647882565', 'SQL', 1, '2001-06-15', 'bleu', true),
+(2, 'Pilaf', 'Mila', 2, 'F', 'mila.Pilaf@yahoo.fr', 'Orleans', true, '0692243352', 'SQL', null, '2001-03-24', 'bleu', false),
+(3, 'Sparkis', 'Devoid', 8, 'M', 'devoid.Sparkis@yahoo.fr', 'Angers', false, '0695476132', 'Marchal', 1, '2001-06-15', 'jaune', true),
+(4, 'Daniel', 'Antoine', 1, 'F', 'x.dupont@yahoo.fr', 'Paris', true, '0647882565', 'SQL', 1, '2001-06-15', 'rouge', true),
+(5, 'Dupont', 'Dupon', 1, 'F', 'x.dupon@yahoo.fr', 'Paris', true, '0647882565', 'SQL', 1, '2001-06-15', 'noire', true);
 
-INSERT INTO PARTICIPANT (id_Participant, nom, prenom, categorie, sexe, email, ville, certification, num_Tel, club, num_Licence, date_Naissance, nom_Equipe, licence) VALUES
-(1, 'Dupont', 'Carle', 'MP', 'F', 'x.carle@yahoo.fr', 'Paris', TRUE, '0647882565', 'SQL', 1, '2001-06-15', 'bleu', TRUE),
-(2, 'Pilaf', 'Mila', 'PO', 'F', 'mila.Pilaf@yahoo.fr', 'Orleans', TRUE, '0692243352', 'SQL', 1, '2001-03-24', 'bleu', FALSE),
-(3, 'Sparkis', 'Devoid', 'S', 'M', 'devoid.Sparkis@yahoo.fr', 'Angers', FALSE, '0695476132', 'Marchal', 1, '2001-06-15', 'jaune', TRUE),
-(4, 'Daniel', 'Antoine', 'MP', 'F', 'x.dupont@yahoo.fr', 'Paris', TRUE, '0647882565', 'SQL', 1, '2001-06-15', 'rouge', TRUE),
-(5, 'Dupont', 'Dupon', 'MP', 'F', 'x.dupon@yahoo.fr', 'Paris', TRUE, '0647882565', 'SQL', 1, '2001-06-15', 'noire', TRUE);
+insert into EPREUVE values
+(1, 'Course feur', 'Relais', 3, '12:00:00', 130),
+(2, 'Marathon X', 'S', 6, '08:30:00', 200),
+(3, 'Trail des montagnes', 'XS', 10, '06:00:00', 150),
+(4, 'Sprint 100m', 'M', 5, '10:00:00', 50),
+(5, 'Course nocturne', 'XS', 2, '21:00:00', 100),
+(6, 'Randonnée nature', 'S', 6, '09:00:00', 75),
+(7, 'Ultra-marathon', 'Relais', 9, '04:30:00', 300);
 
-INSERT INTO EPREUVE (id_Epreuve, nom_Epreuve, format, categorie, heure_Depart, prix) VALUES
-(1, 'Course feur', 'format feur', TRUE, '12:00:00', 130),
-(2, 'Marathon X', 'long format', FALSE, '08:30:00', 200),
-(3, 'Trail des montagnes', 'trail', TRUE, '06:00:00', 150),
-(4, 'Sprint 100m', 'sprint', FALSE, '10:00:00', 50),
-(5, 'Course nocturne', 'nocturne', TRUE, '21:00:00', 100),
-(6, 'Randonnée nature', 'découverte', TRUE, '09:00:00', 75),
-(7, 'Ultra-marathon', 'ultra format', FALSE, '04:30:00', 300);
+insert into PARTICIPER values
+(1, 1, true),
+(2, 3, true),
+(3, 2, true),
+(4, 2, true),
+(5, 2, true),
+(2, 2, true),
+(3, 3, false),
+(4, 4, false),
+(5, 5, true);
 
-INSERT INTO PARTICIPER (id_Participant, id_Epreuve, payee) VALUES
-(1, 1, TRUE),
-(2, 1, TRUE),
-(3, 1, TRUE),
-(4, 1, TRUE),
-(5, 1, TRUE),
-(2, 2, TRUE),
-(3, 3, FALSE),
-(4, 4, FALSE),
-(5, 5, TRUE); 
+insert into CLASSEMENT values
+(1, 1, 2, 4, "12:00"),
+(2, 4, 1, 3, "30:00"),
+(3, 2, 3, 1, "15:30"),
+(4, 3, 4, 2, "23:48");
 
 -- numero qui marche 0692243352
-INSERT INTO UTILISATEUR (identifiant, mot_de_passe) VALUES
+insert into UTILISATEUR values
 ("test", "test"),
 ("admin", "admin"),
-("siecle", "siecle"); 
-
-select * from PARTICIPANT;
-select * from EPREUVE;
-select * from PARTICIPER;
-select * from UTILISATEUR;
-
+("siecle", "siecle");
