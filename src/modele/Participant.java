@@ -13,7 +13,7 @@ public abstract class Participant{
     private String email;
     private String ville;
     private boolean certification;
-    private int numTel;
+    private String numTel;
     private String dateNaissance;
     private boolean licence;
     private Classement classement;
@@ -33,7 +33,8 @@ public abstract class Participant{
      * @param dateNaissance la date de naissance du participant
      * @param licence le participant possède ou non une licence
      */
-    public Participant(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, int numTel, String dateNaissance, boolean licence){
+    
+    public Participant(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, boolean licence){
         this.id=id;
         this.nom=nom;
         this.prenom=prenom;
@@ -115,7 +116,7 @@ public abstract class Participant{
      * Getter pour avoir le numéro de téléphone
      * @return le numéro de téléphone du participant
      */
-    public int getTel(){
+    public String getTel(){
         return this.numTel;
     }
 
@@ -203,7 +204,7 @@ public abstract class Participant{
      * Setter du numéro de téléphone
      * @param numTel le nouveau numéro de téléphone du participant
      */
-    public void setTel(int numTel){
+    public void setTel(String numTel){
         this.numTel=numTel;
     }
 
@@ -222,4 +223,9 @@ public abstract class Participant{
     public void setLicence(boolean licence){
         this.licence=licence;
     }
+
+    public String toString() {
+        return "id=" + this.getId() + ", nom='" + this.getNom() + ", prenom='" + this.getPrenom() + ", categorie=" + this.getCategorie()+ ", email='" + this.getEmail();
+}
+
 }

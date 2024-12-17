@@ -21,11 +21,10 @@ public class ParticipantCourseRelais extends Participant{
      * @param nomEquipe le nom de l'équipe du participant
      * @param licence si le participant possède une licence ou non
      */
-    public ParticipantCourseRelais(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, int numTel, String dateNaissance, boolean licence, String nomEquipe){
+    public ParticipantCourseRelais(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, boolean licence, String nomEquipe){
         super(id, nom, prenom, idCategorie, sexe, email, ville, certification, numTel, dateNaissance, licence);
         this.nomEquipe=nomEquipe;
     }
-
 
     /**
      * Getter du nom de l'équipe du participant
@@ -42,4 +41,11 @@ public class ParticipantCourseRelais extends Participant{
     public void setNomEquipe(String nomEquipe){
         this.nomEquipe=nomEquipe;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", nomEquipe='" + this.nomEquipe; 
+}
+
+
 }

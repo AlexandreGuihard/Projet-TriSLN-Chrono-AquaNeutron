@@ -4,7 +4,7 @@ public class ParticipantLicenceCourseIndiv extends Participant{
     private String club;
     private int numLicence;
 
-    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, int numTel, String club, int numLicence, String dateDeNaissance, boolean licence){
+    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, String numTel, String club, int numLicence, String dateDeNaissance, boolean licence){
         super(id, nom, prenom, idCategorie, sexe, email, ville, certification, numTel, dateDeNaissance, licence);
         this.club=club;
         this.numLicence=numLicence;

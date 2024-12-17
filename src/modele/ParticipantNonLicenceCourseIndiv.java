@@ -18,7 +18,7 @@ public class ParticipantNonLicenceCourseIndiv extends Participant{
      * @param numTel le numéro de téléphone du participant
      * @param dateDeNaissance la date de naissance du participant
      */
-    public ParticipantNonLicenceCourseIndiv(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, int numTel, String dateDeNaissance, boolean licence){
+    public ParticipantNonLicenceCourseIndiv(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateDeNaissance, boolean licence){
         super(id, nom, prenom, idCategorie, sexe, email, ville, certification, numTel, dateDeNaissance, licence);
     }
 }
