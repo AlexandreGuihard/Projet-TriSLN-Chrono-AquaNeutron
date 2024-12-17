@@ -47,7 +47,7 @@ create or replace table PARTICIPANT (
     email varchar(42),
     ville varchar(42),
     certification boolean,
-    num_Tel int,
+    num_Tel varchar(10),
     club varchar(42),
     num_Licence int,
     date_Naissance date,
