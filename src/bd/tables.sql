@@ -40,19 +40,19 @@ create or replace table EPREUVE (
 
 create or replace table PARTICIPANT (
     id_Participant int,
-    nom varchar(42),
-    prenom varchar(42),
-    idCategorie int,
-    sexe varchar(42),
+    nom varchar(42) not null,
+    prenom varchar(42) not null,
+    idCategorie int not null,
+    sexe varchar(42) not null,
     email varchar(42),
     ville varchar(42),
-    certification boolean,
-    num_Tel varchar(10),
+    certification boolean not null,
+    num_Tel varchar(10) not null,
     club varchar(42),
     num_Licence int,
-    date_Naissance date,
+    date_Naissance date not null,
     nom_Equipe varchar(42),
-    licence boolean,
+    licence boolean not null,
     primary key(id_Participant)
 );
 
