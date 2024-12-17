@@ -49,6 +49,13 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     private Button btnRetourCategorie;
     @FXML
     private Button btnDeconnexion;
+    // boutons annexes
+    @FXML
+    private Button btnAjouterParticipant;
+    @FXML
+    private Button btnSuprimerParticipant;
+    @FXML
+    private Button btnModifierParticipant;
 
     public ControleurBoutonsParticipants(TriSLN vue){
         super();
@@ -106,7 +113,19 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
             case "btnS":
                 changedButton=this.btnS;
                 newBtnColor="#105c74";
-                break;    
+                break;   
+            case "btnAjouterParticipant":
+                changedButton=this.btnAjouterParticipant;
+                newBtnColor="#105c74";
+                break;
+            case "btnSuprimerParticipant":
+                changedButton=this.btnSuprimerParticipant;
+                newBtnColor="#105c74";
+                break; 
+            case "btnModifierParticipant":
+                changedButton=this.btnModifierParticipant;
+                newBtnColor="#105c74";
+                break;        
             default:
                 superButton=true;
                 break;                 
@@ -165,6 +184,19 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                 changedButton=this.btnS;
                 newBtnColor="#2596BE";
                 break;
+
+            case "btnAjouterParticipant":
+                changedButton=this.btnAjouterParticipant;
+                newBtnColor="#2596BE";
+                break;
+            case "btnSuprimerParticipant":
+                changedButton=this.btnSuprimerParticipant;
+                newBtnColor="#2596BE";
+                break;
+            case "btnModifierParticipant":
+                changedButton=this.btnModifierParticipant;
+                newBtnColor="#2596BE";
+                break;
             default:
                 superButton=true;
                 break;
@@ -200,7 +232,18 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                         break;
                     case "btnRetourCategorie":
                         super.getVue().afficheParticipants();
-                        break;    
+                        break;
+
+                    case "btnAjouterParticipant":
+                        super.getVue().afficheAjouterP();
+                        break;
+                    case "btnSuprimerParticipant":
+                        super.getVue().afficheParticipants();
+                        break;
+                    case "btnModifierParticipant":
+                        super.getVue().afficheParticipants();
+                        break;
+
                     default:
                         super.getVue().afficheLesParticipants();
                         break;          

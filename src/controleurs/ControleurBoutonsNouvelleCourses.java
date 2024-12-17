@@ -33,6 +33,9 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     private Button btnCompte;
 
 
+
+
+
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
         super();
         this.setBoutons(vue);
@@ -44,6 +47,9 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         super.setBCompte(btnCompte);
         super.setBDeconnexion(btnDeconnexion);
         super.setBRetour(btnRetour);
+
+
+        
     }
 
     @FXML

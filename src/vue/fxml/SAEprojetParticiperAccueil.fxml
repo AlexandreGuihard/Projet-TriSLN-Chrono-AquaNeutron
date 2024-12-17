@@ -479,7 +479,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnAjouterParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#btnAP" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnAjouterParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -503,7 +503,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnSuprimerParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#btnSP" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnSuprimerParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -527,7 +527,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnModifierParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#btnSP" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnModifierParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

@@ -107,6 +107,72 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheAjouterP() throws IOException {
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans afficheAjouterP.");
+            return;
+        }    
+        File file=new File("src/vue/fxml/SAEprojetAjouterLesparticipant.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCo controleur = new ControleurBoutonsCo(this);
+        this.precControleur = controleur;
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCo(this));
+            BorderPane accueil=(BorderPane)loader.load();
+            Scene scene=new Scene(accueil);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheSupprimerP() throws IOException {
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans afficheSupprimerP.");
+            return;
+        }    
+        File file=new File("src/vue/fxml/SAEprojetSupprimerLesparticipant.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCo controleur = new ControleurBoutonsCo(this);
+        this.precControleur = controleur;
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCo(this));
+            BorderPane accueil=(BorderPane)loader.load();
+            Scene scene=new Scene(accueil);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void affichemodifierP() throws IOException {
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans affichemodifierP.");
+            return;
+        }    
+        File file=new File("src/vue/fxml/SAEprojetModifierLesparticipant.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCo controleur = new ControleurBoutonsCo(this);
+        this.precControleur = controleur;
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCo(this));
+            BorderPane accueil=(BorderPane)loader.load();
+            Scene scene=new Scene(accueil);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void afficheAccueilConnecte(){
         File file=new File("src/vue/fxml/SAEprojetAccueilConnecter.fxml");
         this.precFXML = file.getPath();
