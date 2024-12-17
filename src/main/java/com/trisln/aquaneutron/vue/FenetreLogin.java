@@ -71,7 +71,7 @@ public class FenetreLogin {
             BdTriSLN bd = TriSLN.getBd();
             if (bd.verifConnexion(identifiant, motDePasse)){
                 Stage StageVue = new Stage();
-                this.root = FXMLLoader.load(getClass().getResource("SAEprojetAccueilConnecter.fxml"));
+                this.root = FXMLLoader.load(getClass().getResource("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueilConnecter.fxml"));
                 Scene scene = new Scene(this.root);
                 StageVue.setScene(scene);
                 StageVue.show();

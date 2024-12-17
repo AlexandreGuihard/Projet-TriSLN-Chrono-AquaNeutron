@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
-public class FenetreParticipant extends Application {
+public class FenetreParticipant {
     private List<Button> categories;
     private ComboBox<String> sousCategories;
     private String categorieChoisie;
@@ -90,20 +90,5 @@ public class FenetreParticipant extends Application {
         } else if ("Veterans".equals(categorieChoisie)) {
             popUpVeterans();
         }
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        afficheCategories();
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(categories);
-        layout.getChildren().add(sousCategories);
-        Scene scene = new Scene(layout, 400, 300);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

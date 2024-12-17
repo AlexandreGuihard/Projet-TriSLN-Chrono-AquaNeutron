@@ -11,8 +11,6 @@ import com.trisln.aquaneutron.vue.TriSLN;
 
 import java.security.SecureRandom;
 import java.math.BigInteger;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 
 // Classes nécessaires pour les mails
 import javax.mail.*;
@@ -106,16 +104,21 @@ public class Utilisateur {
         properties.put("mail.smtp.port", "587");
 
         // Identifiants de ton email
-        String username = "noreply.trislnaquaneutron@gmail.com@gmail.com";
+        String username = "noreply.trislnaquaneutron@gmail.com";
         String password = "L:Ub3[7viH4^8hU$";
 
         // Création de la session
-        Session session = Session.getInstance(properties);
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
 
         try {
             // Création du message
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("noreply.trislnaquaneutron@gmail.com@gmail.com"));  // Adresse d'envoi
+            message.setFrom(new InternetAddress(username));  // Adresse d'envoi
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));  // Destinataire
             message.setSubject(sujet);  // Sujet
             message.setText(contenu);  // Contenu du message

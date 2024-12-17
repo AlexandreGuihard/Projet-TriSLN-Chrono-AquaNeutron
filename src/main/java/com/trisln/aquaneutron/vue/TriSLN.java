@@ -71,7 +71,25 @@ public class TriSLN extends Application{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void afficheAccueil() throws IOException {
+        if (this.stage == null) {
+            System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
+            return;
+        }
+        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsAccueil(this));
+            BorderPane accueil=(BorderPane)loader.load();
+            Scene scene=new Scene(accueil);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void afficheAccueilConnecte(){
@@ -118,6 +136,35 @@ public class TriSLN extends Application{
             loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheClassementsDisconnected() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojetClassementsDisconnected.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsClassements(this));
+            this.fenetreClassements=new FenetreClassements(loader, this.stage);
+            this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheMonCompte() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojet_Mon_compte_utilisateur.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsCompte(this));
+            BorderPane moncompte=(BorderPane)loader.load();
+            Scene scene=new Scene(moncompte);
+            this.stage.setScene(scene);
             this.stage.show();
         }
         catch(Exception e){

@@ -176,7 +176,7 @@ public class FenetreCourses {
     private void afficheCourses(){
         try {
             Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetGererCourses.fxml"));
+            BorderPane root = FXMLLoader.load(getClass().getResource("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetGererCourses.fxml"));
             Scene page;
             page = new Scene(root);
             StageVue.setScene(page);
@@ -193,7 +193,7 @@ public class FenetreCourses {
     public void nouvelleCourse(){
         try {
             Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetNouvelleCourse.fxml"));
+            BorderPane root = FXMLLoader.load(getClass().getResource("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetNouvelleCourse.fxml"));
             Scene page;
             page = new Scene(root);
             StageVue.setScene(page);
@@ -205,8 +205,5 @@ public class FenetreCourses {
 
     public void chronometre(){
         Chronometrage chrono = new Chronometrage();
-
-
-
     }
 }

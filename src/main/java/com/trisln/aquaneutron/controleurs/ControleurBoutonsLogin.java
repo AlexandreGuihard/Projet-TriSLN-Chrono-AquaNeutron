@@ -89,7 +89,8 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
                 System.out.println("Clique mot de passe oublié");
                 Utilisateur utilisateur = this.vue.getUtilisateur();
                 String email = utilisateur.getEmail();
-                String token = this.vue.getUtilisateur().genererTokenReinitialisation(email);
+                //String token = this.vue.getUtilisateur().genererTokenReinitialisation(email);
+                String token = "testToken";
                 this.vue.getUtilisateur().envoyerEmailDeReinitialisation(email, token);
                 idInfoLabel.setText("Un email de réinitialisation a été envoyé.");
                 break;
