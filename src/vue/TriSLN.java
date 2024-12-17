@@ -6,12 +6,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
-import java.io.IOException;
-import java.io.File;
+
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
+import javafx.scene.control.ComboBox;
 
 import src.vue.*;
 import src.bd.*;
 import src.controleurs.*;
+
+import java.io.*;
 
 
 
@@ -27,10 +31,16 @@ public class TriSLN extends Application{
     private Button btnCourses; // Bouton Courses de la page d'accueil
     private Button btnClassements; // Bouton Classements de la page d'accueil
     private Button btnAccueil;
+    private Button btnNvlCourse;
+    private Button btnAJtCourse;
+    private Button btnRetour;
+    private Button btnCompte;
     private FenetreParticipant fenetreParticipants;
     private FenetreClassements fenetreClassements;
     private FenetreCourses fenetreCourses;
     private FenetreLogin fenetreLogin;
+    private String precFXML;
+    private ControleurBoutons precControleur;
 
     public static void main(String[] args){
         launch();
@@ -111,23 +121,72 @@ public class TriSLN extends Application{
         File file=new File("src/vue/fxml/SAEprojetParticiperAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreParticipants=new FenetreParticipant(loader);
+            loader.setController(new ControleurBoutonsParticipants(this));
+            this.fenetreParticipants=new FenetreParticipant(loader, this.stage);
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    public void afficheCourses(){
-        File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
+    public void afficheLesParticipants(){
+        File file=new File("src/vue/fxml/SAEprojetParticiperCategorie.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            this.fenetreCourses=new FenetreCourses(loader);
+            loader.setController(new ControleurBoutonsParticipants(this));
+            this.fenetreParticipants.afficheParticipants(loader);
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
+
+    public void affichePopUp(FXMLLoader loader, String popUpName){
+        try{
+            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this);
+            loader.setController(controleur);
+            switch(popUpName){
+                case "V":
+                    this.fenetreParticipants.popUpVeterans(loader);
+                    break;
+                case "S":
+                    this.fenetreParticipants.popUpSeniors(loader);
+                    break;    
+            }
+            this.stage=this.fenetreParticipants.getPopUpStage();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void closePopUpStage(){
+        this.stage.close();
+    }
+
+    public void afficheCourses(){
+        File file=new File("src/vue/fxml/SAEprojetGererCourses.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(controleur);
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void afficheClassements() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
@@ -157,6 +216,23 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheNvlCourse() throws IOException{
+        File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsNouvelleCourses(this));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void afficheMonCompte() throws IOException{
         File file=new File("src/vue/fxml/SAEprojet_Mon_compte_utilisateur.fxml");
         try{
@@ -172,6 +248,25 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheRetour() {
+        if (this.precFXML == null) {
+            System.out.println("Erreur : aucune vue précédente n'a été enregistrée.");
+            return;
+        }
+    
+        File file = new File(this.precFXML); // Utilise le dernier chemin enregistré
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(this.precControleur);
+            BorderPane precedent = loader.load();
+            Scene scene = new Scene(precedent);
+            this.stage.setScene(scene);
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     public Button getBConnexion(){
         return this.btnConnexion;
@@ -197,6 +292,22 @@ public class TriSLN extends Application{
         return this.btnAccueil;
     }
 
+    public Button getBNvlCourse(){
+        return this.btnNvlCourse;
+    }
+
+    public Button getBAJtCourse(){
+        return this.btnAJtCourse;
+    }
+
+    public Button getBRetour(){
+        return this.btnRetour;
+    }
+
+    public Button getBCompte(){
+        return this.btnCompte;
+    }
+    
     public FenetreParticipant getFenetreParticipants(){
         return this.fenetreParticipants;
     }
@@ -219,6 +330,10 @@ public class TriSLN extends Application{
 
     public static BdTriSLN getBd(){
         return bd;
+    }
+
+    public Stage getStage(){
+        return this.stage;
     }
 
     public void setBConnexion(Button btnConnexion){
@@ -245,6 +360,22 @@ public class TriSLN extends Application{
         this.btnAccueil=btnAccueil;
     }
 
+    public void setBNvlCourse(Button btnNvlCourse){
+        this.btnNvlCourse=btnNvlCourse;
+    }
+
+    public void setBAJtCourse(Button btnAJtCourse){
+        this.btnAJtCourse=btnAJtCourse;
+    }
+
+    public void setBRetour(Button btnRetour){
+        this.btnRetour=btnRetour;
+    }
+
+    public void setBCompte(Button btnCompte){
+        this.btnCompte=btnCompte;
+    }
+
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){
         this.fenetreParticipants=fenetreParticipants;
     }
@@ -265,8 +396,8 @@ public class TriSLN extends Application{
         this.connecte=connecte;
     }
 
-    public void setWindow(Stage stage){
-        this.stage = stage;
+    public void setStage(Stage stage){
+        this.stage=stage;
     }
 
     public void changeButtonColor(Button button, String color, String otherStyle){
@@ -277,4 +408,46 @@ public class TriSLN extends Application{
             button.setStyle("-fx-background-color: "+color+";"+otherStyle+";");
         }
     }
+
+    public void affichePDF(String host, String user, String password, String database, String categorieCode, String genre) {
+        if (host == null || user == null || password == null || database == null || categorieCode == null || genre == null) {
+            System.out.println("Tous les paramètres doivent être fournis.");
+            return;
+        }
+
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder(
+                "python3",
+                "src/bd/generationsPDF.py",
+                host, user, password, database, categorieCode, genre
+            );
+
+            Process process = processBuilder.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            while ((line = errorReader.readLine()) != null) {
+                System.err.println(line);
+            }
+
+            if (process.waitFor() == 0) {
+                System.out.println("Le PDF a été généré.");
+            } else {
+                System.err.println("Erreur lors de la génération du PDF. Code de sortie : " + process.waitFor());
+            }
+
+        } catch (IOException | InterruptedException e) {
+            System.err.println("Erreur lors de l'exécution du script Python : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    
 }

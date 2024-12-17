@@ -5,16 +5,11 @@ import src.vue.TriSLN;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
-import src.vue.*;
+import javafx.fxml.FXML;
 
-
-public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
+public class ControleurBoutonsClassements implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML
@@ -31,17 +26,24 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
     private Button deconnecter;
     @FXML
     private Button btnCompte;
+    @FXML
+    private Button genpdf;
+    @FXML
+    private ComboBox<String> idSC;
+    @FXML
+    private ComboBox<String> idG;
+    @FXML
+    private Button btnValider;
 
-    public ControleurBoutonsClassements(TriSLN vue){
-        this.vue=vue;
-        this.vue.setBClassements(this.btnConnexion);
+    public ControleurBoutonsClassements(TriSLN vue) {
+        this.vue = vue;
     }
 
     @FXML
-    public void handleBtnClassementMouseEntered(MouseEvent event){
-        try{
-            Button btn=(Button)event.getSource();
-            switch(btn.getId()){
+    public void handleBtnClassementMouseEntered(MouseEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            switch (btn.getId()) {
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
                     break;
@@ -63,20 +65,24 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
                 case "btnCompte":
                     this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
                     break;
+                case "genpdf":
+                    this.vue.changeButtonColor(this.genpdf, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnValider":
+                    this.vue.changeButtonColor(this.btnValider, "#949494", "-fx-background-radius: 15");
+                    break;
             }
-            
-        }
-        catch(Exception e){
-            System.err.println("Erreur");
+        } catch (Exception e) {
+            System.err.println("Erreur lors du survol du bouton (handleBtnClassementMouseEntered): " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void handleBtnClassementMouseExited(MouseEvent event){
-        try{
-            Button btn=(Button)event.getSource();
-            switch(btn.getId()){
+    public void handleBtnClassementMouseExited(MouseEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            switch (btn.getId()) {
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
                     break;
@@ -98,19 +104,24 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
                 case "btnCompte":
                     this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
                     break;
+                case "genpdf":
+                    this.vue.changeButtonColor(this.genpdf, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnValider":
+                    this.vue.changeButtonColor(this.btnValider, "lightgrey", "-fx-background-radius: 15");
+                    break;
             }
-        }
-        catch(Exception e){
-            System.err.println("Erreur");
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la sortie du survol du bouton (handleBtnClassementMouseExited): " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @Override
-    public void handle(ActionEvent event){
-        try{
-            Button btn=(Button) event.getSource();
-            switch(btn.getId()){
+    public void handle(ActionEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            switch (btn.getId()) {
                 case "btnAccueil":
                     this.vue.afficheAccueil();
                     break;
@@ -122,7 +133,7 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
                     break;
                 case "btnRetour2":
                     this.vue.afficheAccueilConnecte();
-                    break;   
+                    break;
                 case "btnConnexion":
                     this.vue.afficheLogin();
                     break;
@@ -132,8 +143,23 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
                 case "btnCompte":
                     this.vue.afficheMonCompte();
                     break;
+                case "genpdf":
+                    if (this.idSC.getValue() != null && !this.idSC.getValue().equals("-- Choisir une sous-catégorie --")) {
+                        if (this.idG.getValue() != null && !this.idG.getValue().equals("-- Choisir un genre --")) {
+                            this.vue.affichePDF("servinfo-maria", "guihard", "guihard", "DBguihard", this.idSC.getValue(), this.idG.getValue());
+                        } else {
+                            System.err.println("Erreur: Aucune sélection de genre.");
+                        }
+                    } else {
+                        System.err.println("Erreur: Aucune sélection de sous-catégorie.");
+                    }
+                    break;
+                case "btnValider":
+                    System.out.println("Valider le formulaire");
+                    break;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
+            System.err.println("Erreur dans le gestionnaire d'événements (handle): " + e.getMessage());
             e.printStackTrace();
         }
     }
