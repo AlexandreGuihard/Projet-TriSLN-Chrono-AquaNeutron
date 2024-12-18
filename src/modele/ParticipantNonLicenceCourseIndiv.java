@@ -10,6 +10,7 @@ public class ParticipantNonLicenceCourseIndiv extends Participant{
      * @param nom le nom du participant
      * @param prenom le prenom du participant
      * @param categorie la catégorie du participant
+     * @param sousCategorie la sous catégorie du participant
      * @param sexe le sexe du participant
      * @param email l'email du participant
      * @param ville la ville du participant
@@ -19,5 +20,13 @@ public class ParticipantNonLicenceCourseIndiv extends Participant{
      */
     public ParticipantNonLicenceCourseIndiv(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateDeNaissance){
         super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateDeNaissance);
+    }
+
+    /**
+     * @return la modélisation en chaîne de caractère du participant sans licence
+     */
+    @Override
+    public String toString(){
+        return super.toString();
     }
 }

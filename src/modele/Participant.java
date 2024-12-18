@@ -22,6 +22,7 @@ public abstract class Participant implements IParticipant{
      * @param nom le nom du participant
      * @param prenom le prenom du participant
      * @param categorie la catégorie à la laquelle le participant appartient
+     * @param sousCategorie la sous catégorie du participant
      * @param sexe le sexe du participant
      * @param email l'email du participant
      * @param ville la ville du participant
@@ -221,48 +222,83 @@ public abstract class Participant implements IParticipant{
 
     // Implémentées dans les classes enfants
     /**
-     * 
-     * @return
+     * Implémentée dans une classe enfant
+     * @return null
      */
     @Override
     public String getClub(){
         return null;
     }
 
+    /**
+     * Implémentée dans une classe enfant
+     * @param club 
+     */
     @Override
     public void setClub(String club){
         return;
     }
 
+    /**
+     * Implémentée dans une classe enfant
+     * @return null
+     */
     @Override
     public Integer getNumLicence() {
         // Pas de numéro de licence
         return null;
     }
 
+    /**
+     * Implémentée dans une classe enfant
+     * @param numLicence
+     */
     @Override
     public void setNumLicence(int numLicence) {
         return;
     }
 
-    // Méthodes inutilisées dans cette classe
+    /**
+     * Implémentée dans une classe enfant
+     * @return null
+     */
     @Override
     public String getNomEquipe(){
         return null;
     }
 
+    /**
+     * Implémentée dans une classe enfant
+     * @param nomEquioe
+     */
     @Override
     public void setNomEquipe(String nomEquioe){
         return;
     }
 
+    /**
+     * Implémentée dans une classe enfant
+     * @return null
+     */
     @Override
     public boolean getLicence(){
         return false;
     } 
 
+    /**
+     * Implémentée dans une classe enfant
+     * @param licence
+     */
     @Override
     public void setLicence(boolean licence){
         return;
+    }
+
+    /**
+     * @return la modélisation en chaîne de caractère du participant
+     */
+    @Override
+    public String toString(){
+        return "Participant: "+prenom+nom+", "+sexe+" | Né le: "+dateNaissance+"\nTel: "+numTel+" | Email: "+email+" | Habite à: "+ville+"\nCatégorie: "+categorie+" | "+sousCategorie;
     }
 }
