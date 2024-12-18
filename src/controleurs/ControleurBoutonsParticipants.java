@@ -250,7 +250,7 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                         super.getVue().afficheSupprimerP();
                         break;
                     case "btnModifierParticipant":
-                        super.getVue().afficheParticipants();
+                        super.getVue().afficheModifierP();
                         break;    
    
                     default:

@@ -38,8 +38,9 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     private Button btnModifierParticipant;
 
     @FXML
-    private Button btnImporterCSV;
+    private Button btnEnregistrerModification;
 
+    
     
 
     public ControleurBoutonsModifierP(TriSLN vue){
@@ -82,8 +83,8 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                         newBtnColor="#105c74";
                         break;
 
-                    case "btnImporterCSV":
-                        changedButton=this.btnImporterCSV;
+                    case "btnEnregistrerModification":
+                        changedButton=this.btnEnregistrerModification;
                         newBtnColor="#105c74";
                         break;
                     default:
@@ -125,8 +126,8 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                     changedButton=this.btnModifierParticipant;
                     newBtnColor="#2596BE";
                         break;
-                    case "btnImporterCSV":
-                        changedButton=this.btnImporterCSV;
+                    case "btnEnregistrerModification":
+                        changedButton=this.btnEnregistrerModification;
                         newBtnColor="#2596BE";
                         break;
                     default:
@@ -152,6 +153,9 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
             }
             else{
                 switch(btn.getId()){
+                    case "btnEnregistrerModification":
+                        System.out.println("enregistrer");
+                    break;
                     case "btnSuprimerParticipant":
                         super.getVue().afficheSupprimerP();
                         break;

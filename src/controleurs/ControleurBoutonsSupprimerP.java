@@ -157,6 +157,13 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
                     case "btnAjouterParticipant":
                         super.getVue().afficheAjouterP();
                         break;
+                    case "btnModifierParticipant":
+                        super.getVue().afficheModifierP();
+                        break;
+                    case "btnSuprimerParticipant":
+                        super.getVue().afficheSupprimerP();
+                        break;
+                        
                     default:
                         super.getVue().afficheSupprimerP();
                         

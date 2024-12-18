@@ -161,6 +161,10 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                     case "btnAjouterParticipant":
                         super.getVue().afficheAjouterP();
                         break;
+                    case "btnModifierParticipant":
+                        super.getVue().afficheModifierP();
+                        break;
+                        
                     default:
                         super.getVue().afficheAjouterP();
                         
