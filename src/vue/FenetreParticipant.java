@@ -12,7 +12,10 @@ import javafx.stage.Stage;
 import src.controleurs.ControleurBoutonsParticipants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class FenetreParticipant{
@@ -115,14 +118,15 @@ public class FenetreParticipant{
             e.printStackTrace();
         }
     }
-
+//
     private static void configureFileChooser(final FileChooser fileChooser){                           
         fileChooser.setTitle("liste des pariticpants");
-        fileChooser.setInitialDirectory(
-            new File(System.getProperty("user.home"))
-        ); 
+        //fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))); 
+        fileChooser.setInitialDirectory(new File("./data")); 
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("csv", "*.csv*")
+                new FileChooser.ExtensionFilter("All", "*.csv","*.xls"),
+                new FileChooser.ExtensionFilter("csv", "*.csv"),
+                new FileChooser.ExtensionFilter("xls", "*.xls")
             );
     }
 
@@ -133,5 +137,26 @@ public class FenetreParticipant{
         return fileChooser.showOpenDialog(stage);
           
     }
+
+    public List<String> lectureCSV(File csv) {
+            List<String> result = new ArrayList<String>();
+            try{
+                FileReader fr = new FileReader(csv);
+                BufferedReader br = new BufferedReader(fr);
+                for (String line = br.readLine(); line != null; line = br.readLine()) {
+                    result.add(line);
+                }
+                br.close();
+                fr.close();
+                return result; 
+            }
+
+            catch(IOException e){
+                e.printStackTrace();
+                return result;
+            }
+        
+        }
+    
 
 }

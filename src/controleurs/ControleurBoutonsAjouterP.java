@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
@@ -158,7 +159,14 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                         File file = super.getVue().getFenetreParticipants().reccupererParticipant();
                         if (file != null) {
                             System.out.println(file);
+                            System.out.println("lancement");
+                            List<String> result =super.getVue().getFenetreParticipants().lectureCSV(file);
+                            System.out.println(result);
+                            System.out.println("fin");
+                            
                         }
+                        else{System.out.println("le fichier est null");}
+                        
 
                         break;
                     case "btnSuprimerParticipant":
