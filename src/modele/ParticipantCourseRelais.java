@@ -5,6 +5,7 @@ package src.modele;
  */
 public class ParticipantCourseRelais extends Participant{
     private String nomEquipe;
+    private boolean licence;
 
 
     /**
@@ -21,31 +22,46 @@ public class ParticipantCourseRelais extends Participant{
      * @param nomEquipe le nom de l'équipe du participant
      * @param licence si le participant possède une licence ou non
      */
-    public ParticipantCourseRelais(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, boolean licence, String nomEquipe){
-        super(id, nom, prenom, idCategorie, sexe, email, ville, certification, numTel, dateNaissance, licence);
+    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, String nomEquipe, boolean licence){
+        super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateNaissance);
         this.nomEquipe=nomEquipe;
+        this.licence=licence;
     }
+
 
     /**
      * Getter du nom de l'équipe du participant
      * @return le nom de l'équipe du participant
      */
+    @Override
     public String getNomEquipe(){
         return this.nomEquipe;
+    }
+
+    /**
+     * Getter pour savoir si le participant possède une licence
+     * @return "true" si le partcipant possède une licence et "false" sinon
+     */
+    @Override
+    public boolean getLicence(){
+        return this.licence;
     }
 
     /**
      * Setter du nom de l'équipe du participant
      * @param nomEquipe le nouveau nom de l'équipe du participant
      */
+    @Override
     public void setNomEquipe(String nomEquipe){
         this.nomEquipe=nomEquipe;
     }
 
+    /**
+     * Setter pour savoir si le participant possède une licence
+     * @param licence la modification de la possession (ou non) d'une licence
+     */
     @Override
-    public String toString() {
-        return super.toString() + ", nomEquipe='" + this.nomEquipe; 
-}
-
-
+    public void setLicence(boolean licence){
+        this.licence=licence;
+    }
 }

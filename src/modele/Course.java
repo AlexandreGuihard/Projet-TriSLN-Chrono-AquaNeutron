@@ -144,4 +144,8 @@ public class Course {
     public void addParticipants(Participant participant) {
         lesParticipants.add(participant);
     }
+
+    public String toString(){
+        return "Course n° " + this.id + ", nom= " + this.nom + ", format= " + this.format + ", heure de départ= " + this.heureDepart;
+    }
 }

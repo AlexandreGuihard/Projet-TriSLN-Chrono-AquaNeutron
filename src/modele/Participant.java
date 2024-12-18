@@ -1,51 +1,46 @@
 package src.modele;
 
-import javax.print.DocFlavor.STRING;
-
 /** Classe abstraite participant
  */
-public abstract class Participant{
+public abstract class Participant implements IParticipant{
     private int id;
     private String nom;
     private String prenom;
-    private int idCategorie;
+    private String categorie;
+    private String sousCategorie;
     private char sexe;
     private String email;
     private String ville;
     private boolean certification;
     private String numTel;
     private String dateNaissance;
-    private boolean licence;
     private Classement classement;
 
-
     /**
-     * 
+     * Constructeur de la classe. Appelé par les classes enfants
      * @param id l'id du participant
      * @param nom le nom du participant
      * @param prenom le prenom du participant
-     * @param idCategorie la catégorie à la laquelle le participant appartient
+     * @param categorie la catégorie à la laquelle le participant appartient
      * @param sexe le sexe du participant
      * @param email l'email du participant
      * @param ville la ville du participant
      * @param certification le certificat du participant
      * @param numTel le numéro de téléphone du participant
      * @param dateNaissance la date de naissance du participant
-     * @param licence le participant possède ou non une licence
      */
-    
-    public Participant(int id, String nom, String prenom, int idCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, boolean licence){
+    public Participant(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance){
         this.id=id;
         this.nom=nom;
         this.prenom=prenom;
-        this.idCategorie=idCategorie;
+        this.categorie=categorie;
+        this.sousCategorie=sousCategorie;
         this.sexe=sexe;
         this.email=email;
         this.ville=ville;
         this.certification=certification;
         this.numTel=numTel;
         this.dateNaissance=dateNaissance;
-        this.licence = licence;
     }
 
     /**
@@ -76,8 +71,16 @@ public abstract class Participant{
      * Getter pour avoir la catégorie
      * @return la catégorie du participant
      */
-    public int getCategorie(){
-        return this.idCategorie;
+    public String getCategorie(){
+        return this.categorie;
+    }
+
+    /**
+     * Getter de la sous catégorie du participant
+     * @return la sous catégorie du participant
+     */
+    public String getSousCategorie(){
+        return sousCategorie;
     }
 
     /**
@@ -125,15 +128,7 @@ public abstract class Participant{
      * @return la date de naissance du participant
      */
     public String getDateNaissance(){
-        return this.dateNaissance;
-    }
-
-    /**
-     * Getter pour avoir la licence
-     * @return TRUE si le participant possède une licence et non sinon
-     */
-    public boolean getLicence(){
-        return this.licence;
+        return dateNaissance;
     }
 
     /**
@@ -164,8 +159,16 @@ public abstract class Participant{
      * Setter de la catégorie
      * @param categorie la nouvelle catégorie du participant
      */
-    public void setCategorie(int idCategorie){
-        this.idCategorie=idCategorie;
+    public void setCategorie(String categorie){
+        this.categorie=categorie;
+    }
+
+    /**
+     * Setter de la sous catégorie
+     * @param sousCategorie la nouvelle sous catégorie du participant
+     */
+    public void setSousCategorie(String sousCategorie){
+        this.sousCategorie=sousCategorie;
     }
 
     /**
@@ -202,7 +205,7 @@ public abstract class Participant{
 
     /**
      * Setter du numéro de téléphone
-     * @param numTel le nouveau numéro de téléphone du participant
+     * @param id le nouveau numéro de téléphone du participant
      */
     public void setTel(String numTel){
         this.numTel=numTel;
@@ -216,16 +219,50 @@ public abstract class Participant{
         this.dateNaissance=dateNaissance;
     }
 
+    // Implémentées dans les classes enfants
     /**
-     * Setter de la licence
-     * @param licence le nouveau statut de la licence du participant
+     * 
+     * @return
      */
-    public void setLicence(boolean licence){
-        this.licence=licence;
+    @Override
+    public String getClub(){
+        return null;
     }
 
-    public String toString() {
-        return "id=" + this.getId() + ", nom='" + this.getNom() + ", prenom='" + this.getPrenom() + ", categorie=" + this.getCategorie()+ ", email='" + this.getEmail();
-}
+    @Override
+    public void setClub(String club){
+        return;
+    }
 
+    @Override
+    public Integer getNumLicence() {
+        // Pas de numéro de licence
+        return null;
+    }
+
+    @Override
+    public void setNumLicence(int numLicence) {
+        return;
+    }
+
+    // Méthodes inutilisées dans cette classe
+    @Override
+    public String getNomEquipe(){
+        return null;
+    }
+
+    @Override
+    public void setNomEquipe(String nomEquioe){
+        return;
+    }
+
+    @Override
+    public boolean getLicence(){
+        return false;
+    } 
+
+    @Override
+    public void setLicence(boolean licence){
+        return;
+    }
 }
