@@ -216,6 +216,17 @@ public class BdTriSLN{
         }
     }
 
+    public List<String> getEmailAdresses() throws SQLException{
+        List<String> emails = new ArrayList<>();
+        Statement s = this.connexion.createStatement();
+        ResultSet rs = s.executeQuery("select email from UTILISATEUR");
+        while (rs.next()){
+            String email = rs.getString(1);
+            emails.add(email);
+        }
+        return emails;
+    }
+
     public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException{
         Statement s = this.connexion.createStatement();
         ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");

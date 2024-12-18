@@ -33,6 +33,7 @@ public class TriSLN extends Application{
     private FenetreLogin fenetreLogin;
 
     private Utilisateur utilisateur;
+    private Stage popUpStage;
 
     public static void main(String[] args){
         launch(args);
@@ -73,12 +74,39 @@ public class TriSLN extends Application{
         }
     }
 
+    public void affichePopUpLogin() throws IOException {
+        if (this.popUpStage != null && this.popUpStage.isShowing()) {
+            this.stage.toFront();
+            return;
+        }
+
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpAskEmail.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsPopUpLogin(this));
+            this.popUpStage = new Stage();
+            this.popUpStage.setResizable(false);
+            this.popUpStage.setAlwaysOnTop(true);
+
+            this.fenetreLogin = new FenetreLogin(loader, this.popUpStage);
+
+            // Si on ferme la pop-up
+            this.stage.setOnCloseRequest(event -> {
+                this.popUpStage = null;
+            });
+
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void afficheAccueil() throws IOException {
         if (this.stage == null) {
             System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
             return;
         }
-        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsAccueil(this));

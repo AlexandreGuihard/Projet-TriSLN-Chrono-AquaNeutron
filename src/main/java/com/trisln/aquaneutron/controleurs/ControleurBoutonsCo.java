@@ -115,7 +115,7 @@ public class ControleurBoutonsCo implements EventHandler<ActionEvent>{
                     this.vue.afficheClassements();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } 
+                }
                 break;
             case "btnConnexion":
                 try {

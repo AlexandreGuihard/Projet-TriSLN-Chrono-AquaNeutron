@@ -1,5 +1,6 @@
 package com.trisln.aquaneutron.controleurs;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
@@ -41,7 +42,7 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
             Button btn = (Button) event.getSource();
             switch (btn.getId()) {
                 case "btnConnecter":
-                    System.out.println("Exited connection");
+                    System.out.println("Entered connection");
                     this.vue.changeButtonColor(this.btnConnecter, "#105c74", null);
                     break;
             }
@@ -71,6 +72,14 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
     public void handle(ActionEvent event) {
         Button btn = (Button) event.getSource();
         switch (btn.getId()) {
+            case "btnAccueil":
+                System.out.println("Clique accueil");
+                try {
+                    this.vue.afficheAccueil();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
             case "btnConnecter":
                 System.out.println("Clique connection");
                 try {
@@ -87,12 +96,11 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
                 break;
             case "btnForgotPassword":
                 System.out.println("Clique mot de passe oublié");
-                Utilisateur utilisateur = this.vue.getUtilisateur();
-                String email = utilisateur.getEmail();
-                //String token = this.vue.getUtilisateur().genererTokenReinitialisation(email);
-                String token = "testToken";
-                this.vue.getUtilisateur().envoyerEmailDeReinitialisation(email, token);
-                idInfoLabel.setText("Un email de réinitialisation a été envoyé.");
+                try {
+                    this.vue.affichePopUpLogin();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 break;
