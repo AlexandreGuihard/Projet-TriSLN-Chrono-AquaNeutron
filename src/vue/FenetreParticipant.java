@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import src.controleurs.ControleurBoutonsParticipants;
 import javafx.application.Application;
@@ -114,4 +115,23 @@ public class FenetreParticipant{
             e.printStackTrace();
         }
     }
+
+    private static void configureFileChooser(final FileChooser fileChooser){                           
+        fileChooser.setTitle("liste des pariticpants");
+        fileChooser.setInitialDirectory(
+            new File(System.getProperty("user.home"))
+        ); 
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("csv", "*.csv*")
+            );
+    }
+
+    public File reccupererParticipant(){
+        FileChooser fileChooser = new FileChooser();
+        configureFileChooser(fileChooser);
+        
+        return fileChooser.showOpenDialog(stage);
+          
+    }
+
 }

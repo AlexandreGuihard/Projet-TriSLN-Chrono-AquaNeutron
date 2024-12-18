@@ -2,6 +2,7 @@ package src.controleurs;
 
 import javafx.event.EventHandler;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -154,6 +155,11 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                 switch(btn.getId()){
                     case "btnImporterCSV":
                         System.out.println("importation en cours");
+                        File file = super.getVue().getFenetreParticipants().reccupererParticipant();
+                        if (file != null) {
+                            System.out.println(file);
+                        }
+
                         break;
                     case "btnSuprimerParticipant":
                         super.getVue().afficheSupprimerP();
