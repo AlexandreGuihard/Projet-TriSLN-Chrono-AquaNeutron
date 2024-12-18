@@ -2,6 +2,8 @@ package src.vue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
@@ -138,14 +140,21 @@ public class FenetreParticipant{
           
     }
 
-    public List<String> lectureCSV(File csv) {
-            List<String> result = new ArrayList<String>();
+    public List<List<String>> lectureFichier(File csv) {
+            List<List<String>> result = new ArrayList<List<String>>();
             try{
                 FileReader fr = new FileReader(csv);
                 BufferedReader br = new BufferedReader(fr);
+
+                int i =0;
+                 
                 for (String line = br.readLine(); line != null; line = br.readLine()) {
-                    result.add(line);
+                    System.out.println(result);
+                    result.add(new ArrayList<String>());
+                    result.get(i).add(line);
+                    i++;
                 }
+
                 br.close();
                 fr.close();
                 return result; 

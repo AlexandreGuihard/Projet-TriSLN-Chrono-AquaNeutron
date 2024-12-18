@@ -160,7 +160,7 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                         if (file != null) {
                             System.out.println(file);
                             System.out.println("lancement");
-                            List<String> result =super.getVue().getFenetreParticipants().lectureCSV(file);
+                            List<List<String>> result =super.getVue().getFenetreParticipants().lectureFichier(file);
                             System.out.println(result);
                             System.out.println("fin");
                             

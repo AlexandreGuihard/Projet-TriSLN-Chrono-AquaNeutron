@@ -45,7 +45,7 @@
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="35.0" prefWidth="104.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="525.0" text="Importer  CSV" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="25.0" prefWidth="525.0" text="Importer  Fichier" textFill="WHITE">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
