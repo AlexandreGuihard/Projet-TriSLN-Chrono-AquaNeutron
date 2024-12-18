@@ -229,10 +229,9 @@ public class BdTriSLN{
             String format=getFormat(idFormat);
             int idCategorie=epreuves.getInt(4);
             String categorie=getCategorie(idCategorie);
-            String sousCategorie=getSousCategorie(idCategorie);
             String heureDepart=epreuves.getString(5);
             double prix=epreuves.getDouble(6);
-            Course course=new Course(idE, nom, format, categorie, sousCategorie, heureDepart, prix);
+            Course course=new Course(idE, nom, format, categorie, heureDepart, prix);
             courses.add(course);
         }
         st.close();
@@ -294,21 +293,14 @@ public class BdTriSLN{
      * @param course la course ajoutée dans la bd
      * @throws SQLException
      */
-    public void ajouterCourse(Course course) throws SQLException{
+    public void ajouterCourse(String nomCourse, String format, String categorie, String heureDepart, double prix) throws SQLException{
         PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");
-        String nom=course.getNom();
-        String format=course.getFormat();
-        String categorie=course.getCategorie();
-        String sousCategorie=course.getSousCategorie();
-        String heureDepart=course.getHeureDepart();
-        double prix=course.getPrix();
         
-        addCourse.setString(1, nom);
+        addCourse.setString(1, nomCourse);
         addCourse.setString(2, format);
         addCourse.setString(3, categorie);
-        addCourse.setString(4, sousCategorie);
-        addCourse.setString(5, heureDepart);
-        addCourse.setDouble(6, prix);
+        addCourse.setString(4, heureDepart);
+        addCourse.setDouble(5, prix);
 
         addCourse.executeUpdate();
         addCourse.close();

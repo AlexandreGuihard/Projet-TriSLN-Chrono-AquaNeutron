@@ -40,11 +40,11 @@ insert into PARTICIPANT values
 insert into EPREUVE values
 (1, 'Course feur', 5, 3, '12:00:00', 130),
 (2, 'Marathon X', 3, 6, '08:30:00', 200),
-(3, 'Trail des montagnes', 2, 10, '06:00:00', 150),
+(3, 'Trail des montagnes', 2, 9, '06:00:00', 150),
 (4, 'Sprint 100m', 4, 5, '10:00:00', 50),
 (5, 'Course nocturne', 2, 2, '21:00:00', 100),
 (6, 'Randonnée pour débutants', 3, 6, '09:00:00', 75),
-(7, 'Ultra-marathon', 5, 9, '04:30:00', 300);
+(7, 'Ultra-marathon', 5, 8, '04:30:00', 300);
 
 insert into PARTICIPER values
 (1, 1, true),

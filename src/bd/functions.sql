@@ -58,11 +58,9 @@ begin
 end|
 
 -- Création d'une nouvelle course
-create or replace procedure createEpreuve(nomEpreuve varchar(42), format varchar(42), categorie varchar(42), sousCategorie varchar(42), heureDepart time, prix int)
+create or replace procedure createEpreuve(nomEpreuve varchar(42), format varchar(42), categorie varchar(42), heureDepart time, prix int)
 begin
     declare newId int;
-    declare idCateg int;
-    select getIdCategorie(categorie, sousCategorie) into idCateg;
     select getAvailableIdEpreuve() into newId;
     insert into EPREUVE values(newId, nomEpreuve, format, idCateg, heureDepart, prix);
 end|
