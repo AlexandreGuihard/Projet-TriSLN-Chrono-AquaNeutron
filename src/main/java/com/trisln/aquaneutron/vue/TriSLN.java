@@ -35,7 +35,7 @@ public class TriSLN extends Application{
     private Utilisateur utilisateur;
 
     public static void main(String[] args){
-        launch();
+        launch(args);
     }
 
     public void init(){

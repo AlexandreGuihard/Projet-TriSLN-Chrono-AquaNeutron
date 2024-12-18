@@ -91,18 +91,15 @@
                 <version>0.0.8</version>
                 <executions>
                     <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.trisln.aquaneutron.trislnaquaneutron/com.trisln.aquaneutron.trislnaquaneutron.vue.TriSLN
+                                com.trisln.aquaneutron.vue.TriSLN
                             </mainClass>
-                            <launcher>app</launcher>
-                            <jlinkZipName>app</jlinkZipName>
-                            <jlinkImageName>app</jlinkImageName>
-                            <noManPages>true</noManPages>
-                            <stripDebug>true</stripDebug>
-                            <noHeaderFiles>true</noHeaderFiles>
                         </configuration>
                     </execution>
                 </executions>
