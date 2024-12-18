@@ -95,7 +95,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.trisln.aquaneutron.trislnaquaneutron/com.trisln.aquaneutron.trislnaquaneutron.vue.TriSLN
+                                com.trisln.aquaneutron.vue.TriSLN
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

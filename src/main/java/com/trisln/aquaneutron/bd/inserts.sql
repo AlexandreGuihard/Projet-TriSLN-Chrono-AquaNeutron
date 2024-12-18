@@ -54,6 +54,6 @@ insert into CLASSEMENT values
 
 -- numero qui marche 0692243352
 insert into UTILISATEUR values
-("test", "test"),
-("admin", "admin"),
-("siecle", "siecle");
+("test", "voivenelromain@gmail.com", "test"),
+("admin", "voivenelromain@gmail.com", "admin"),
+("siecle", "voivenelromain@gmail.com", "siecle");

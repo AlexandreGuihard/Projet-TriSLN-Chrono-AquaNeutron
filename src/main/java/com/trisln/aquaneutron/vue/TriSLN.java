@@ -73,12 +73,25 @@ public class TriSLN extends Application{
         }
     }
 
+    public void affichePopUpLogin() throws IOException {
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpAskEmail.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsPopUpLogin(this));
+            this.fenetreLogin = new FenetreLogin(loader, new Stage());
+            this.stage = this.fenetreLogin.getWindow();
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void afficheAccueil() throws IOException {
         if (this.stage == null) {
             System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
             return;
         }
-        File file=new File("src/vue/fxml/SAEprojetAccueil.fxml");
+        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsAccueil(this));
