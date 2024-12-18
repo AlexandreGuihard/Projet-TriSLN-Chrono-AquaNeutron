@@ -4,9 +4,6 @@ import javafx.event.EventHandler;
 
 import java.io.IOException;
 
-import javax.swing.ButtonGroup;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -17,43 +14,50 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
-
-public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implements EventHandler<ActionEvent> {
+public class ControleurBoutonsModifierP extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
+    // log accueil et AccConnecter
+
     @FXML
-    private Button btnAjoutCourse;
-    @FXML
-    private Button btnAccueil;
+    private Button btnConnexion;
     @FXML
     private Button btnRetour;
     @FXML
     private Button btnDeconnexion;
     @FXML
+    private Button btnAccueil;
+    @FXML
     private Button btnCompte;
 
+    @FXML
+    private Button btnAjouterParticipant;
+    @FXML
+    private Button btnSuprimerParticipant;
+    @FXML
+    private Button btnModifierParticipant;
 
+    @FXML
+    private Button btnImporterCSV;
 
+    
 
-
-    public ControleurBoutonsNouvelleCourses(TriSLN vue){
+    public ControleurBoutonsModifierP(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
+
     private void setBoutons(TriSLN vue){
-        super.setVue(vue);
-        super.setBAccueil(btnAccueil);
         super.setBCompte(btnCompte);
-        super.setBDeconnexion(btnDeconnexion);
+        super.setBAccueil(btnAccueil);
         super.setBRetour(btnRetour);
-
-
-        
+        super.setBDeconnexion(btnDeconnexion);
+        super.setVue(vue);
     }
 
     @FXML
-    public void handleBtnCoursesMouseEntered(MouseEvent event){
+    public void handleBtnModifierPMouseEntered(MouseEvent event){
         try{
             boolean superButton=false;
             Button changedButton=null;
@@ -65,19 +69,30 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
             }
             else{
                 switch(btn.getId()){
-
-                    case "btnAjoutCourse":
-                        changedButton=this.btnAjoutCourse;
+                    case "btnAjouterParticipant":
+                        changedButton=this.btnAjouterParticipant;
+                        newBtnColor="#105c74";
+                        break;
+                    case "btnSuprimerParticipant":
+                        changedButton=this.btnSuprimerParticipant;
+                        newBtnColor="#105c74";
+                        break;
+                    case "btnModifierParticipant":
+                        changedButton=this.btnModifierParticipant;
                         newBtnColor="#105c74";
                         break;
 
+                    case "btnImporterCSV":
+                        changedButton=this.btnImporterCSV;
+                        newBtnColor="#105c74";
+                        break;
                     default:
                         superButton=true;
                         break;
+                    }
+                    super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
                 }
-                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
-            }
-
+            
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -86,7 +101,7 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     }
 
     @FXML
-    public void handleBtnCoursesMouseExited(MouseEvent event){
+    public void handleBtnModifierPMouseExited(MouseEvent event){
         try{
             boolean superButton=false;
             Button changedButton=null;
@@ -98,18 +113,28 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
             }
             else{
                 switch(btn.getId()){
-                    case "btnAjoutCourse":
-                        changedButton=this.btnAjoutCourse;
+                    case "btnAjouterParticipant":
+                    changedButton=this.btnAjouterParticipant;
+                    newBtnColor="#2596BE";
+                        break;
+                    case "btnSuprimerParticipant":
+                    changedButton=this.btnSuprimerParticipant;
+                    newBtnColor="#2596BE";
+                        break;
+                    case "btnModifierParticipant":
+                    changedButton=this.btnModifierParticipant;
+                    newBtnColor="#2596BE";
+                        break;
+                    case "btnImporterCSV":
+                        changedButton=this.btnImporterCSV;
                         newBtnColor="#2596BE";
                         break;
-
                     default:
                         superButton=true;
                         break;
-                    }
+                }
                 super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
             }
-            
 
         }
         catch(Exception e){
@@ -120,23 +145,30 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
 
     @Override
     public void handle(ActionEvent event){
-            boolean superButton=false;
-            Button changedButton=null;
-            String newBtnColor="";
-            String otherStyle="";
-            Button btn=(Button)event.getSource();
+
+        try {Button btn=(Button)event.getSource();
             if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
-                super.handle(btn);
+                    super.handle(btn);
             }
             else{
                 switch(btn.getId()){
-                    default:
-                        superButton=true;
+                    case "btnSuprimerParticipant":
+                        super.getVue().afficheSupprimerP();
                         break;
-                }
+                    case "btnAjouterParticipant":
+                        super.getVue().afficheAjouterP();
+                        break;
+                    default:
+                        super.getVue().afficheModifierP();
+                        
             }
-            
+                
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         } 
-
+    }
 }
 

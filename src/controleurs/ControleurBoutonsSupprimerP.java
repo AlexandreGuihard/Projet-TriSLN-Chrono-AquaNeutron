@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
 
-public class ControleurBoutonsAjouterP extends ControleurBoutons implements EventHandler<ActionEvent>{
+public class ControleurBoutonsSupprimerP extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     // log accueil et AccConnecter
@@ -36,13 +36,12 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
     private Button btnSuprimerParticipant;
     @FXML
     private Button btnModifierParticipant;
-
     @FXML
-    private Button btnImporterCSV;
-
+    private Button btnSupprimerParticipantValidation;
+    
     
 
-    public ControleurBoutonsAjouterP(TriSLN vue){
+    public ControleurBoutonsSupprimerP(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
@@ -57,7 +56,7 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
     }
 
     @FXML
-    public void handleBtnAjouterPMouseEntered(MouseEvent event){
+    public void handleBtnSupprimerPMouseEntered(MouseEvent event){
         try{
             boolean superButton=false;
             Button changedButton=null;
@@ -81,9 +80,8 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                         changedButton=this.btnModifierParticipant;
                         newBtnColor="#105c74";
                         break;
-
-                    case "btnImporterCSV":
-                        changedButton=this.btnImporterCSV;
+                    case "btnSupprimerParticipantValidation":
+                        changedButton=this.btnSupprimerParticipantValidation;
                         newBtnColor="#105c74";
                         break;
                     default:
@@ -101,7 +99,7 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
     }
 
     @FXML
-    public void handleBtnAjouterPMouseExited(MouseEvent event){
+    public void handleBtnSupprimerPMouseExited(MouseEvent event){
         try{
             boolean superButton=false;
             Button changedButton=null;
@@ -124,11 +122,12 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                     case "btnModifierParticipant":
                     changedButton=this.btnModifierParticipant;
                     newBtnColor="#2596BE";
-                        break;
-                    case "btnImporterCSV":
-                        changedButton=this.btnImporterCSV;
+                    break;
+                        case "btnSupprimerParticipantValidation":
+                        changedButton=this.btnSupprimerParticipantValidation;
                         newBtnColor="#2596BE";
                         break;
+
                     default:
                         superButton=true;
                         break;
@@ -152,17 +151,14 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
             }
             else{
                 switch(btn.getId()){
-                    case "btnImporterCSV":
-                        System.out.println("importation en cours");
-                        break;
-                    case "btnSuprimerParticipant":
-                        super.getVue().afficheSupprimerP();
+                    case "btnSupprimerParticipantValidation":
+                        System.out.println("supprimer");
                         break;
                     case "btnAjouterParticipant":
                         super.getVue().afficheAjouterP();
                         break;
                     default:
-                        super.getVue().afficheAjouterP();
+                        super.getVue().afficheSupprimerP();
                         
             }
                 

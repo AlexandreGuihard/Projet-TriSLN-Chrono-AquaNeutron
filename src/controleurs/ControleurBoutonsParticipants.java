@@ -77,68 +77,66 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         String newBtnColor="";
         String otherStyle="";
         Button btn=(Button)event.getSource();
-        switch(btn.getId()){
-            case "btnMP":
-                changedButton=this.btnMP;
-                newBtnColor="#105c74";
-                break;
-            case "btnPO":
-                changedButton=this.btnPO;
-                newBtnColor="#105c74";
-                break;
-            case "btnPU":
-                changedButton=this.btnPU;
-                newBtnColor="#105c74";
-                break;
-            case "btnBE":
-                changedButton=this.btnBE;
-                newBtnColor="#105c74";
-                break;
-            case "btnMI":
-                changedButton=this.btnMI;
-                newBtnColor="#105c74";
-                break;
-            case "btnCA":
-                changedButton=this.btnCA;
-                newBtnColor="#105c74";
-                break;
-            case "btnJU":
-                changedButton=this.btnJU;
-                newBtnColor="#105c74";
-                break;
-            case "btnV":
-                changedButton=this.btnV;
-                newBtnColor="#105c74";
-                break;
-            case "btnS":
-                changedButton=this.btnS;
-                newBtnColor="#105c74";
-                break;   
-            case "btnAjouterParticipant":
-                changedButton=this.btnAjouterParticipant;
-                newBtnColor="#105c74";
-                break;
-            case "btnSuprimerParticipant":
-                changedButton=this.btnSuprimerParticipant;
-                newBtnColor="#105c74";
-                break; 
-            case "btnModifierParticipant":
-                changedButton=this.btnModifierParticipant;
-                newBtnColor="#105c74";
-                break;        
-            default:
-                superButton=true;
-                break;                 
-
-        }
-        if(superButton){
+        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
             super.handleBtnsMouseEntered(btn);
         }
         else{
+            switch(btn.getId()){
+                case "btnMP":
+                    changedButton=this.btnMP;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnPO":
+                    changedButton=this.btnPO;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnPU":
+                    changedButton=this.btnPU;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnBE":
+                    changedButton=this.btnBE;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnMI":
+                    changedButton=this.btnMI;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnCA":
+                    changedButton=this.btnCA;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnJU":
+                    changedButton=this.btnJU;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnV":
+                    changedButton=this.btnV;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnS":
+                    changedButton=this.btnS;
+                    newBtnColor="#105c74";
+                    break;   
+                case "btnAjouterParticipant":
+                    changedButton=this.btnAjouterParticipant;
+                    newBtnColor="#105c74";
+                    break;
+                case "btnSuprimerParticipant":
+                    changedButton=this.btnSuprimerParticipant;
+                    newBtnColor="#105c74";
+                    break; 
+                case "btnModifierParticipant":
+                    changedButton=this.btnModifierParticipant;
+                    newBtnColor="#105c74";
+                    break;        
+                default:
+                    superButton=true;
+                    break;   
+            }  
             super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+        }            
         }
-        
-    }
 
     @FXML
     public void handleBtnCategorieMouseExited(MouseEvent event){
@@ -147,67 +145,68 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         String newBtnColor="";
         String otherStyle="";
         Button btn=(Button)event.getSource();
-        switch(btn.getId()){
-            case "btnMP":
-                changedButton=this.btnMP;
-                newBtnColor="#2596BE";
-                break;
-            case "btnPO":
-                changedButton=this.btnPO;
-                newBtnColor="#2596BE";
-                break;
-            case "btnPU":
-                changedButton=this.btnPU;
-                newBtnColor="#2596BE";
-                break;
-            case "btnBE":
-                changedButton=this.btnBE;
-                newBtnColor="#2596BE";
-                break;
-            case "btnMI":
-                changedButton=this.btnMI;
-                newBtnColor="#2596BE";
-                break;
-            case "btnCA":
-                changedButton=this.btnCA;
-                newBtnColor="#2596BE";
-                break;
-            case "btnJU":
-                changedButton=this.btnJU;
-                newBtnColor="#2596BE";
-                break;
-            case "btnV":
-                changedButton=this.btnV;
-                newBtnColor="#2596BE";
-                break;
-            case "btnS":
-                changedButton=this.btnS;
-                newBtnColor="#2596BE";
-                break;
-
-            case "btnAjouterParticipant":
-                changedButton=this.btnAjouterParticipant;
-                newBtnColor="#2596BE";
-                break;
-            case "btnSuprimerParticipant":
-                changedButton=this.btnSuprimerParticipant;
-                newBtnColor="#2596BE";
-                break;
-            case "btnModifierParticipant":
-                changedButton=this.btnModifierParticipant;
-                newBtnColor="#2596BE";
-                break;
-            default:
-                superButton=true;
-                break;
-        }
-        if(superButton){
+        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
             super.handleBtnsMouseExited(btn);
         }
         else{
+            switch(btn.getId()){
+                case "btnMP":
+                    changedButton=this.btnMP;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnPO":
+                    changedButton=this.btnPO;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnPU":
+                    changedButton=this.btnPU;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnBE":
+                    changedButton=this.btnBE;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnMI":
+                    changedButton=this.btnMI;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnCA":
+                    changedButton=this.btnCA;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnJU":
+                    changedButton=this.btnJU;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnV":
+                    changedButton=this.btnV;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnS":
+                    changedButton=this.btnS;
+                    newBtnColor="#2596BE";
+                    break;
+
+                case "btnAjouterParticipant":
+                    changedButton=this.btnAjouterParticipant;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnSuprimerParticipant":
+                    changedButton=this.btnSuprimerParticipant;
+                    newBtnColor="#2596BE";
+                    break;
+                case "btnModifierParticipant":
+                    changedButton=this.btnModifierParticipant;
+                    newBtnColor="#2596BE";
+                    break;
+                default:
+                    superButton=true;
+                    break;
+            }
             super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
         }
     }
+
 
     @Override
     public void handle(ActionEvent event){
@@ -233,16 +232,7 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                     case "btnRetourCategorie":
                         super.getVue().afficheParticipants();
                         break;
-
-                    case "btnAjouterParticipant":
-                        super.getVue().afficheAjouterP();
-                        break;
-                    case "btnSuprimerParticipant":
-                        super.getVue().afficheParticipants();
-                        break;
-                    case "btnModifierParticipant":
-                        super.getVue().afficheParticipants();
-                        break;         
+     
                     case "btnCompte":
                         this.vue.afficheMonCompte();
                         break;
@@ -252,6 +242,16 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                     case "btnDeconnexion":
                         this.vue.afficheAccueil();
                         break;
+
+                    case "btnAjouterParticipant":
+                        super.getVue().afficheAjouterP();
+                        break;
+                    case "btnSuprimerParticipant":
+                        super.getVue().afficheSupprimerP();
+                        break;
+                    case "btnModifierParticipant":
+                        super.getVue().afficheParticipants();
+                        break;    
    
                     default:
                         super.getVue().afficheLesParticipants();
