@@ -2,36 +2,30 @@ package src.modele;
 
 public class ParticipantLicenceCourseIndiv extends Participant{
     private String club;
-    private String dateDeNaissance;
     private int numLicence;
 
-    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String club, int numLicence, String dateDeNaissance){
-        super(id, nom, prenom, categorie, sexe, email, ville, certification, numTel);
+    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String club, int numLicence, String dateDeNaissance){
+        super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateDeNaissance);
         this.club=club;
         this.numLicence=numLicence;
-        this.dateDeNaissance=dateDeNaissance;
     }
 
+    @Override
     public String getClub(){
         return this.club;
     }
 
-    public String getDateDeNaissance(){
-        return this.dateDeNaissance;
-    }
-
+    @Override
     public void setClub(String club){
         this.club=club;
     }
 
-    public void setDateDeNaissance(String dateDeNaissance){
-        this.dateDeNaissance=dateDeNaissance;
-    }
-
-    public int getNumLicence() {
+    @Override
+    public Integer getNumLicence() {
         return numLicence;
     }
 
+    @Override
     public void setNumLicence(int numLicence) {
         this.numLicence = numLicence;
     }

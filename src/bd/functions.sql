@@ -33,6 +33,22 @@ begin
     return idCateg;
 end|
 
+-- Getter de la catégorie à partir de l'id de la catégorie
+create or replace function getCategorieFromId(idCategorie int) returns varchar(42)
+begin
+    declare categ varchar(42);
+    select categorie into categ from CATEGORIE where idCategorie=idCategorie;
+    return categ;
+end|
+
+-- Getter de la sous catégorie à partir de l'id de la catégorie
+create or replace function getSousCategorieFromId(idCategorie int) returns varchar(42)
+begin
+    declare sousCateg varchar(42);
+    select sousCategorie into sousCateg from CATEGORIE where idCategorie=idCategorie;
+    return sousCateg;
+end|
+
 -- Création d'une nouvelle course
 create or replace procedure createEpreuve(nomEpreuve varchar(42), format varchar(42), categorie varchar(42), sousCategorie varchar(42), heureDepart time, prix int)
 begin
@@ -58,7 +74,7 @@ begin
     declare idCateg int;
     select getAvailableIdParticipant() into newId;
     select getIdCategorie(categorie, sousCategorie) into idCateg;
-    insert into PARTICIPANT values(newId, nom, prenom, idCateg, sexe, email, ville, certification, numTel, club, numLicence, dateNaissance, nomEquipe, licence);
+    insert into PARTICIPANT values(newId, nom, prenom, idCateg, sexe, email, ville, certification, numTel, club, realNumLicence, dateNaissance, nomEquipe, licence);
 end|
 
 create or replace procedure deleteParticipant(idParticipant int)

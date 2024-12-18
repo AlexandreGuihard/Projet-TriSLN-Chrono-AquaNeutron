@@ -8,11 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import src.vue.TriSLN;
 
-import javax.swing.plaf.synth.SynthStyle;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 
 public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
     private TriSLN vue;
