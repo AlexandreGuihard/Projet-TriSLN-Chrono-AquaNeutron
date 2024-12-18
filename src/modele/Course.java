@@ -11,6 +11,7 @@ public class Course {
     private String nom;
     private String format;
     private String categorie;
+    private String sousCategorie;
     private String heureDepart;
     private double prix;
     
@@ -18,16 +19,17 @@ public class Course {
      * Constructeur de la classe Course
      * @param id l'id de la course
      * @param nom le nom de la course
-     * @param format le format de la course
-     * @param categorie la catégorie de la course
+     * @param idFormat le format de la course
+     * @param idCategorie la catégorie de la course
      * @param heureDepart l'heure de départ de la course
      * @param prix le prix pour participer à la course
      */
-    public Course(int id, String nom, String format, String categorie, String heureDepart, double prix){
+    public Course(int id, String nom, String format, String categorie, String sousCategorie, String heureDepart, double prix){
         this.id = id;
         this.nom = nom;
         this.format = format;
         this.categorie = categorie;
+        this.sousCategorie=sousCategorie;
         this.heureDepart = heureDepart;
         this.prix = prix;
         this.lesParticipants = new ArrayList<Participant>();
@@ -63,6 +65,10 @@ public class Course {
      */
     public String getCategorie() {
         return categorie;
+    }
+
+    public String getSousCategorie(){
+        return sousCategorie;
     }
 
     /**
@@ -119,6 +125,10 @@ public class Course {
      */
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+
+    public void setSousCategorie(String sousCategorie){
+        this.sousCategorie=sousCategorie;
     }
 
     /**

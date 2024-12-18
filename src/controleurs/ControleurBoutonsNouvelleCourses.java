@@ -56,20 +56,6 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
             else{
                 super.handleBtnsMouseEntered(btn);
             }
-            //switch(btn.getId()){
-            //    case "btnAjoutCourse":
-            //        this.vue.changeButtonColor(this.btnAjoutCourse, "#105c74", null);
-            //        break;
-            //    case "btnAccueil":
-            //        this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnDeconnexion":
-            //        this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnCompte":
-            //        this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
-            //        break;
-            //}
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -87,20 +73,6 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
             else{
                 super.handleBtnsMouseExited(btn);
             }
-            //switch(btn.getId()){
-            //    case "btnAjoutCourse":
-            //        this.vue.changeButtonColor(this.btnAjoutCourse, "#2596BE", "");
-            //        break;
-            //    case "btnAccueil":
-            //        this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnDeconnexion":
-            //        this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //    case "btnCompte":
-            //        this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
-            //        break;
-            //}
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -119,28 +91,6 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
             else{
                 super.handle(btn);
             }
-            //switch(btn.getId()){
-            //    case "btnAjoutCourse":
-            //        System.out.println("Ajouter course");
-            //        this.vue.afficheNvlCourse();
-            //        break;
-            //    case "btnRetour":
-            //        System.out.println("Retour");
-            //        this.vue.afficheCourses();
-            //        break;
-            //    case "btnAccueil":
-            //        System.out.println("Accueil");
-            //        this.vue.afficheAccueilConnecte();
-            //        break;
-            //    case "btnCompte":
-            //        System.out.println("Mon compte");
-            //        this.vue.afficheMonCompte();
-            //        break;
-            //    case "btnDeconnexion":
-            //        System.out.println("Déconnexion");
-            //        this.vue.afficheAccueil();
-            //        break;
-            //}
         } 
         catch (IOException e)
         {

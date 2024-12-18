@@ -9,3 +9,4 @@ drop table if exists PARTICIPANT;
 drop table if exists EPREUVE;
 drop table if exists UTILISATEUR;
 drop table if exists CATEGORIE;
+drop table if exists FORMATCOURSE;

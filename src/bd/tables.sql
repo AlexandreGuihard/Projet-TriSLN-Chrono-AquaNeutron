@@ -6,6 +6,12 @@ create or replace table CATEGORIE(
     primary key(idCategorie)
 );
 
+create or replace table FORMATCOURSE(
+    idFormat int,
+    format varchar(42),
+    primary key(idFormat)
+);
+
 create or replace table CHRONOMETRAGE (
     id_Chrono int not null,
     temps_depart time,
@@ -31,7 +37,7 @@ create or replace table ENREGISTRER (
 create or replace table EPREUVE (
     id_Epreuve int,
     nom_Epreuve varchar(42),
-    format varchar(42),
+    idFormat int,
     idCategorie int,
     heure_Depart time,
     prix int,
@@ -99,3 +105,4 @@ alter table ENREGISTRER add foreign key (id_Chrono) references CHRONOMETRAGE (id
 alter table PARTICIPANT add foreign key (idCategorie) references CATEGORIE (idCategorie);
 
 alter table EPREUVE add foreign key (idCategorie) references CATEGORIE (idCategorie);
+alter table EPREUVE add foreign key (idFormat) references FORMATCOURSE (idFormat);

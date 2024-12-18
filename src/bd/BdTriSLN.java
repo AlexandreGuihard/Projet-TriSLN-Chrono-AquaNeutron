@@ -47,6 +47,16 @@ public class BdTriSLN{
         return sousCategorie;
     }
 
+    public String getFormat(int idFormat) throws SQLException{
+        String format=null;
+        Statement st=connexion.createStatement();
+        ResultSet leFormat=st.executeQuery("select getFormat("+idFormat+")");
+        if(leFormat.next()){
+            format=leFormat.getString(1);
+        }
+        return format;
+    }
+
     /**
      * @param club le club du participant (null dans le cas d'un participant relais)
      * @param nomEquipe le nom d'équipe du participant
@@ -215,11 +225,14 @@ public class BdTriSLN{
         while(epreuves.next()){
             int idE=epreuves.getInt(1);
             String nom=epreuves.getString(2);
-            String format=epreuves.getString(3);
-            String categorie=epreuves.getString(4);
+            int idFormat=epreuves.getInt(3);
+            String format=getFormat(idFormat);
+            int idCategorie=epreuves.getInt(4);
+            String categorie=getCategorie(idCategorie);
+            String sousCategorie=getSousCategorie(idCategorie);
             String heureDepart=epreuves.getString(5);
             double prix=epreuves.getDouble(6);
-            Course course=new Course(idE, nom, format, categorie, heureDepart, prix);
+            Course course=new Course(idE, nom, format, categorie, sousCategorie, heureDepart, prix);
             courses.add(course);
         }
         st.close();
@@ -286,15 +299,17 @@ public class BdTriSLN{
         String nom=course.getNom();
         String format=course.getFormat();
         String categorie=course.getCategorie();
-        // TODO Rajouter la sous catég
+        String sousCategorie=course.getSousCategorie();
         String heureDepart=course.getHeureDepart();
         double prix=course.getPrix();
+        
         addCourse.setString(1, nom);
         addCourse.setString(2, format);
         addCourse.setString(3, categorie);
-        // souscateg
+        addCourse.setString(4, sousCategorie);
         addCourse.setString(5, heureDepart);
         addCourse.setDouble(6, prix);
+
         addCourse.executeUpdate();
         addCourse.close();
     }
