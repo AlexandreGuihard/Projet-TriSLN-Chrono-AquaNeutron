@@ -5,132 +5,162 @@ import com.trisln.aquaneutron.vue.TriSLN;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
-import com.trisln.aquaneutron.vue.*;
+import javafx.fxml.FXML;
 
-
-public class ControleurBoutonsClassements implements EventHandler<ActionEvent>{
+public class ControleurBoutonsClassements implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML
-    private Button btnClassements;
-
-//Chono
-    @FXML
-    private Button btnAJtCourse;
-    @FXML
-    private Button btnAJtCourse1;
-    @FXML
-    private Button btnAJtCourse3;
-    @FXML
-    private Button btnCompte;
+    private Button btnConnexion;
     @FXML
     private Button btnAccueil;
     @FXML
-    private TextField idNom;
-    @FXML
-    private TextField idDate;
-//Connexion
-
-    @FXML
-    private TextField idIdentifiant;
-    @FXML
-    private TextField idMdp;
-    @FXML
-    private Button btnConnecter;
-// gerer_course
-    @FXML
-    private Button btnNvlCourse;
-// no data
-    @FXML
-    private Button btnImporterExcel;
-// nouvelle course
-    @FXML
-    private MenuButton idFormat;
-    @FXML
-    private MenuItem btnJeune;
-    @FXML
-    private MenuItem btnXS;
-    @FXML
-    private MenuItem btnS;
-    @FXML
-    private MenuItem btnM;
-    @FXML
-    private TextField idHeure;
-    @FXML
-    private CheckBox idMinPoussins;
-    @FXML
-    private CheckBox idBenjamins;
-    @FXML
-    private CheckBox idPoussins;
-    @FXML
-    private CheckBox idMinimes;    
-    @FXML
-    private CheckBox idPupilles;    
-    @FXML
-    private CheckBox idCadets;
-    @FXML
-    private CheckBox idJunoirs;
-    @FXML
-    private CheckBox idSeniors;
-    @FXML
-    private CheckBox idVetran;
-//
-//participer acc
-    @FXML
-    private Button btnMP;
-    @FXML
-    private Button btnPO;
-    @FXML
-    private Button btnPU;
-    @FXML
-    private Button btnBE;
-    @FXML
-    private Button btnMI;
-    @FXML
-    private Button btnCA;
-    @FXML
-    private Button btnJU;
-    @FXML
-    private Button btnV;
-    @FXML
-    private Button tbnS;
-//
-//participercategorie
-    @FXML
     private Button btnRetour;
-//
+    @FXML
+    private Button btnAccueil2;
+    @FXML
+    private Button btnRetour2;
+    @FXML
+    private Button deconnecter;
+    @FXML
+    private Button btnCompte;
+    @FXML
+    private Button genpdf;
+    @FXML
+    private ComboBox<String> idSC;
+    @FXML
+    private ComboBox<String> idG;
+    @FXML
+    private Button btnValider;
 
-    public ControleurBoutonsClassements(TriSLN vue){
-        this.vue=vue;
-        this.vue.setBClassements(this.btnClassements);
+    public ControleurBoutonsClassements(TriSLN vue) {
+        this.vue = vue;
     }
 
     @FXML
-    public void handleBtnAccueil(MouseEvent event){
-        //try{
-        //    this.vue.changeButtonColor(this.btnClassements);
-        //}
-        //catch(Exception e){
-        //    System.err.println("Erreur");
-        //}
+    public void handleBtnClassementMouseEntered(MouseEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            switch (btn.getId()) {
+                case "btnConnexion":
+                    this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "genpdf":
+                    this.vue.changeButtonColor(this.genpdf, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnValider":
+                    this.vue.changeButtonColor(this.btnValider, "#949494", "-fx-background-radius: 15");
+                    break;
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors du survol du bouton (handleBtnClassementMouseEntered): " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleBtnClassementMouseExited(MouseEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            switch (btn.getId()) {
+                case "btnConnexion":
+                    this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "genpdf":
+                    this.vue.changeButtonColor(this.genpdf, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnValider":
+                    this.vue.changeButtonColor(this.btnValider, "lightgrey", "-fx-background-radius: 15");
+                    break;
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la sortie du survol du bouton (handleBtnClassementMouseExited): " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void handle(ActionEvent event){
-        Button btn=(Button) event.getSource();
-        switch(btn.getText()){
-            case "Classements":
-                System.out.println("Classement");
-                break;
-            default:
-                System.out.println("Accueil");
-                break;
+    public void handle(ActionEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            switch (btn.getId()) {
+                case "btnAccueil":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnRetour":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnAccueil2":
+                    this.vue.afficheAccueilConnecte();
+                    break;
+                case "btnRetour2":
+                    this.vue.afficheAccueilConnecte();
+                    break;
+                case "btnConnexion":
+                    this.vue.afficheLogin();
+                    break;
+                case "deconnecter":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnCompte":
+                    this.vue.afficheMonCompte();
+                    break;
+                case "genpdf":
+                    if (this.idSC.getValue() != null && !this.idSC.getValue().equals("-- Choisir une sous-catégorie --")) {
+                        if (this.idG.getValue() != null && !this.idG.getValue().equals("-- Choisir un genre --")) {
+                            this.vue.affichePDF("servinfo-maria", "guihard", "guihard", "DBguihard", this.idSC.getValue(), this.idG.getValue());
+                        } else {
+                            System.err.println("Erreur: Aucune sélection de genre.");
+                        }
+                    } else {
+                        System.err.println("Erreur: Aucune sélection de sous-catégorie.");
+                    }
+                    break;
+                case "btnValider":
+                    System.out.println("Valider le formulaire");
+                    break;
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur dans le gestionnaire d'événements (handle): " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

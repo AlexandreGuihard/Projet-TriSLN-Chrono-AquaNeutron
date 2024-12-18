@@ -10,7 +10,7 @@ import com.trisln.aquaneutron.vue.TriSLN;
 import java.io.IOException;
 
 
-public class ControleurBoutonsCompte implements EventHandler<ActionEvent> {
+public class ControleurBoutonsCompte extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML

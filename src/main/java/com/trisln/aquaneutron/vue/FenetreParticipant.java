@@ -8,18 +8,30 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import src.controleurs.ControleurBoutonsParticipants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import java.io.File;
+import java.io.IOException;
 
-public class FenetreParticipant {
+public class FenetreParticipant{
+    private Stage stage;
+    private Stage popUpStage;
+    private BorderPane root;
     private List<Button> categories;
     private ComboBox<String> sousCategories;
     private String categorieChoisie;
+    private FXMLLoader loader;
 
-    public FenetreParticipant(FXMLLoader loader){
+    public FenetreParticipant(FXMLLoader loader, Stage stage){
+        this.stage=stage;
+        this.popUpStage=new Stage();
+        this.root=new BorderPane();
         this.categories = new ArrayList<>();
         this.sousCategories = new ComboBox<>();
         this.categorieChoisie = "";
+        this.loader=loader;
+        this.afficheCategories();
     }
 
     public List<Button> getCategories() {
@@ -46,49 +58,60 @@ public class FenetreParticipant {
         this.categorieChoisie = categorieChoisie;
     }
 
+    public Stage getStage(){
+        return stage;
+    }
+
+    public Stage getPopUpStage(){
+        return popUpStage;
+    }
+
+    public FXMLLoader getLoader(){
+        return loader;
+    }
+
+    public void setLoader(FXMLLoader loader){
+        this.loader=loader;
+    }
+
     private void afficheCategories(){
-        categories.add(new Button("Seniors"));
-        categories.add(new Button("Veterans"));
-        
-        for (Button category : categories) {
-            category.setOnAction(e -> {
-                categorieChoisie = category.getText();
-                afficheParticipants();
-            });
+        try{
+            this.root=(BorderPane)this.loader.load();
+            this.stage.setScene(new Scene(this.root));
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 
-    public void popUpSeniors(){
+    public void popUpSeniors(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpSenior.fxml"));
-            Scene popUp;
-            popUp = new Scene(root);
-            StageVue.setScene(popUp);
-            StageVue.show();
+            this.root = (BorderPane)loader.load();
+            this.popUpStage.setScene(new Scene(this.root));
+            this.popUpStage.setTitle("TriSLN");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void popUpVeterans(){
+    public void popUpVeterans(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("SAEprojetPopUpVeteran.fxml"));
-            Scene popUp;
-            popUp = new Scene(root);
-            StageVue.setScene(popUp);
-            StageVue.show();
+            this.root = (BorderPane)loader.load();
+            this.popUpStage.setScene(new Scene(this.root));
+            this.popUpStage.setTitle("TriSLN");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void afficheParticipants(){
-        if ("Seniors".equals(categorieChoisie)) {
-            popUpSeniors();
-        } else if ("Veterans".equals(categorieChoisie)) {
-            popUpVeterans();
+    public void afficheParticipants(FXMLLoader loader){
+        //TODO: Afficher selon la catégorie choisie
+        try{
+            this.root=(BorderPane)loader.load();
+            this.stage.setScene(new Scene(this.root));
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

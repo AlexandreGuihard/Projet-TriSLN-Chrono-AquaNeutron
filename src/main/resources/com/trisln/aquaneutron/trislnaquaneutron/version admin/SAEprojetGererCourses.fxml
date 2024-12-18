@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1250" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="747.0" prefWidth="1321.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="Gérer Courses" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="64.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="335.0" prefWidth="1321.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" text="Courses suivantes :">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="70.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox VBox.vgrow="SOMETIMES">
+                           <children>
+                              <TableView prefHeight="302.0" prefWidth="680.0">
+                                 <columns>
+                                    <TableColumn reorderable="false" text="Id" />
+                                    <TableColumn reorderable="false" text="Nom" />
+                                    <TableColumn reorderable="false" text="Format" />
+                                    <TableColumn reorderable="false" text="Catégories" />
+                                    <TableColumn reorderable="false" text="Départ" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <HBox.margin>
+                                    <Insets left="70.0" />
+                                 </HBox.margin>
+                              </TableView>
+                              <ScrollBar orientation="VERTICAL" prefWidth="13.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="294.0" prefWidth="230.0">
+                     <children>
+                        <Label text="Ajouter une course :">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="35.0" prefWidth="61.0" text="Date">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textfield" prefHeight="26.0" prefWidth="449.0" promptText="jj/mm/aa">
+                           <opaqueInsets>
+                              <Insets left="10.0" />
+                           </opaqueInsets>
+                        </TextField>
+                        <Button fx:id="btnNvlCourse" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onMouseEntered="#btnNvlCourseME" prefHeight="50.0" prefWidth="217.0" style="-fx-background-color: #2596BE;" text="Nouvelle course" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Region prefHeight="200.0" prefWidth="60.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox prefHeight="85.0" prefWidth="1321.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="140.0" fitWidth="140.0">
+               <image>
+                  <Image url="@../../../../img/TriSLN_AquaNeutron.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="40.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <VBox prefHeight="164.0" prefWidth="169.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="288.0" style="-fx-font-weight: bold;" text="TriSLN">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="209.0" style="-fx-font-weight: bold;" text="AquaNeutron">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="576.0">
+               <buttons>
+                  <Button fx:id="Bbenevole" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="156.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../../img/iconeajouter.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Ajout bénévole">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../../img/compte.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Mon compte">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../../img/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Accueil">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>  
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="deconnecter" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@../../../../img/log_out.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se déconnecter">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </buttons>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </ButtonBar>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+               <image>
+                  <Image url="@../../../../img/retour.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Button>
+   </bottom>
+</BorderPane>
