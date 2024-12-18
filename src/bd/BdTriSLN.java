@@ -14,35 +14,6 @@ public class BdTriSLN{
         this.connexion=connexion;
     }
 
-    //public List<Participant> getParticipantsCourseRelais() throws SQLException{
-    //    List<Participant> participantsCourseRelais=new ArrayList<>();
-    //    Statement st=this.connexion.createStatement();
-    //    ResultSet participants=st.executeQuery("select * from PARTICIPANT");
-    //    while(participants.next()){
-    //        try{
-    //            boolean licence=participants.getBoolean(13);
-    //            String nomEquipe=participants.getString(14);
-//
-    //            int idP=participants.getInt(1);
-    //            String nom=participants.getString(2);
-    //            String prenom=participants.getString(3);
-    //            String categorie=participants.getString(4);
-    //            char sexe=participants.getString(5).charAt(0);
-    //            String email=participants.getString(6);
-    //            String ville=participants.getString(7);
-    //            String certification=participants.getString(8);
-    //            int tel=participants.getInt(9);
-    //            Participant participant = new ParticipantCourseRelais(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, nomEquipe, licence);//,chronometre manque un constructeur qui prend en compte chrono TODO
-    //            participantsCourseRelais.add(participant);
-    //        }
-    //        catch(SQLException e){
-    //            System.err.println(e);
-    //        }
-    //    }
-    //    st.close();
-    //    return participantsCourseRelais;
-    //}
-
     /**
      * Getter de la catégorie à partir de son id
      * @param idCategorie l'id de la catégorie
