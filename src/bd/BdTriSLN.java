@@ -32,6 +32,23 @@ public class BdTriSLN{
     }
 
     /**
+     * Getter de l'id de la catégorie à partir de son nom de catégorie
+     * @param categorie le nom de la catégorie
+     * @return l'id de la catégorie
+     * @throws SQLException
+     */
+    public int getIdCategorie(String categorie) throws SQLException{
+        int idCategorie = 0;
+        Statement st=connexion.createStatement();
+        ResultSet categ=st.executeQuery("select getIdCategorie('"+categorie+"', null)");
+        if(categ.next()){
+            idCategorie=categ.getInt(1);
+        }
+        st.close();
+        return idCategorie;
+    }
+
+    /**
      * Getter de la sous catégorie à partir de son id
      * @param idCategorie l'id de la catégorie
      * @return la sous catégorie
@@ -54,7 +71,19 @@ public class BdTriSLN{
         if(leFormat.next()){
             format=leFormat.getString(1);
         }
+        st.close();
         return format;
+    }
+
+    public Integer getIdFormat(String format) throws SQLException{
+        Integer idFormat = null;
+        Statement st=connexion.createStatement();
+        ResultSet leFormat=st.executeQuery("select getIdFormatFromFormat('"+format+"')");
+        if(leFormat.next()){
+            idFormat=leFormat.getInt(1);
+        }
+        st.close();
+        return idFormat;
     }
 
     /**
@@ -294,13 +323,28 @@ public class BdTriSLN{
      * @throws SQLException
      */
     public void ajouterCourse(String nomCourse, String format, String categorie, String heureDepart, double prix) throws SQLException{
+        int newId = 1;
+        Statement stmt = this.connexion.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT MAX(id_Epreuve) FROM EPREUVE");
+        if (rs.next()){
+            newId = rs.getInt(1) + 1;
+        }
+        Statement stmtDeux = this.connexion.createStatement();
+        ResultSet rsDeux = stmtDeux.executeQuery("SELECT * FROM FORMATCOURSE where format='"+format+"'");
+        int idFormat = 0;
+        if (rsDeux.next()){
+            idFormat = rsDeux.getInt(1);
+        }
+        int idCategorie = this.getIdCategorie(categorie);
+        // int idFormat = this.getIdFormat(format);
         PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");
         
-        addCourse.setString(1, nomCourse);
-        addCourse.setString(2, format);
-        addCourse.setString(3, categorie);
-        addCourse.setString(4, heureDepart);
-        addCourse.setDouble(5, prix);
+        addCourse.setInt(1, newId);
+        addCourse.setString(2, nomCourse);
+        addCourse.setInt(3, idFormat);
+        addCourse.setInt(4, idCategorie);
+        addCourse.setString(5, heureDepart);
+        addCourse.setDouble(6, prix);
 
         addCourse.executeUpdate();
         addCourse.close();

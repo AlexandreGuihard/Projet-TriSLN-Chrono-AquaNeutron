@@ -21,25 +21,40 @@ begin
     return idMax+1;
 end|
 
--- Getter du format de la course à partir du format
-create or replace function getFormatFromId(idFormat int) returns varchar(42)
+-- Getter du format de la course à partir de l'id format
+create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
 begin
-    declare leFormat int;
-    select format into leFormat from FORMATCOURSE where idFormat=idFormat;
+    declare leFormat varchar(42);
+    select format into leFormat from FORMATCOURSE where idFormat=idDuFormat;
     return leFormat;
 end|
+
+-- Getter de l'id du format à partir du nom du format
+
+CREATE OR REPLACE FUNCTION getIdFormatFromFormat(formatInput VARCHAR(42)) 
+RETURNS INT
+BEGIN
+    DECLARE idFormat INT;
+
+    -- Recherche dans la table FORMATCOURSE avec la colonne format
+    SELECT idFormat INTO idFormat
+    FROM FORMATCOURSE
+    WHERE format = formatInput;
+
+    RETURN idFormat;
+END |
 
 -- Getter de l'id de la catégorie à partir de la catégorie et de la sous catégorie si non null
 create or replace function getIdCategorie(categorie varchar(42), sousCategorie varchar(42)) returns int
 begin
     declare idCateg int;
     if sousCategorie is null then
-        select idCategorie into idCateg from CATEGORIE where categorie=categorie;
+        select min(idCategorie) into idCateg from CATEGORIE where categorie=categorie;
     else
         select idCategorie into idCateg from CATEGORIE where categorie=categorie and sousCategorie=sousCategorie;
     end if;
     return idCateg;
-end|
+end| 
 
 -- Getter de la catégorie à partir de l'id de la catégorie
 create or replace function getCategorieFromId(idCategorie int) returns varchar(42)

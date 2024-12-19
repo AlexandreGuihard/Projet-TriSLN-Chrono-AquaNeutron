@@ -47,7 +47,7 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
+        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBdelahaye", "delahaye", "delahaye"));
         this.connecte=false;
     }
     public void start(Stage stage){

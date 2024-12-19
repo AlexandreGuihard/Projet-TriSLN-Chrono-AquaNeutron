@@ -3,6 +3,7 @@ package src.controleurs;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
@@ -17,6 +18,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import src.vue.FenetreCourses;
 import src.vue.TriSLN;
 
 
@@ -93,8 +95,16 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         try {
             Button btn=(Button) event.getSource();
             if(btn.getId().equals("btnAjoutCourse")){
-                formatCourse.getItems().
-                TriSLN.getBd().ajouterCourse(nomCourse, )
+                String nom = this.nomCourse.getText();
+                // La récupération de la catégorie est à refaire au niveau du FXML
+                // Que fait-on avec la date ?
+                String heure = this.heureCourse.getText();
+                // faire avec le format
+                try {
+                    super.getVue().getBd().ajouterCourse(nom, "XS", "S" , heure, 1);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 super.getVue().afficheCourses();
                 System.out.println("Course ajoutée");
             }
