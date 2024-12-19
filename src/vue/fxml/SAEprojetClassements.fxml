@@ -4,10 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,6 +16,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -33,61 +34,66 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <MenuBar style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="-- Choisir une sous-catégorie --">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="Mini-poussins (MP)" />
-                            <MenuItem mnemonicParsing="false" text="Poussins (PO)" />
-                              <MenuItem mnemonicParsing="false" text="Pupilles (PU)" />
-                              <MenuItem mnemonicParsing="false" text="Benjamins (BE)" />
-                              <MenuItem mnemonicParsing="false" text="Minimes (MI)" />
-                              <MenuItem mnemonicParsing="false" text="Cadets (CA)" />
-                              <MenuItem mnemonicParsing="false" text="Juniors (JU)" />
-                              <Menu mnemonicParsing="false" text="Séniors (S)">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Séniors 1 (S1)" />
-                                    <MenuItem mnemonicParsing="false" text="Séniors 2 (S2)" />
-                                    <MenuItem mnemonicParsing="false" text="Séniors 3 (S3)" />
-                                    <MenuItem mnemonicParsing="false" text="Séniors 4 (S4)" />
-                                </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Vétérans (V)">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Vétérans 1 (V1)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 2 (V2)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 3 (V3)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 4 (V4)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 5 (V5)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 6 (V6)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 7 (V7)" />
-                                </items>
-                              </Menu>
-                        </items>
-                      </Menu>
-                    </menus>
+                  <ComboBox fx:id="idSC" onAction="#handleComboBoxCategorie" prefHeight="26.0" prefWidth="219.0" promptText="-- Choisir une sous-catégorie --" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="-- Choisir une sous-catégorie --"/>
+                           <String fx:value="toutes"/>
+                           <String fx:value="MP"/>
+                           <String fx:value="PO"/>
+                           <String fx:value="BE"/>
+                           <String fx:value="MI"/>
+                           <String fx:value="CA"/>
+                           <String fx:value="JU"/>
+                           <String fx:value="S1"/>
+                           <String fx:value="S2"/>
+                           <String fx:value="S3"/>
+                           <String fx:value="S4"/>
+                           <String fx:value="V1"/>
+                           <String fx:value="V2"/>
+                           <String fx:value="V3"/>
+                           <String fx:value="V4"/>
+                           <String fx:value="V5"/>
+                           <String fx:value="V6"/>
+                        </FXCollections>
+                     </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ComboBox>
+                  <ComboBox fx:id="idG" onAction="#handleComboBoxGenre"  prefHeight="26.0" prefWidth="219.0" promptText="-- Choisir un genre --" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="-- Choisir un genre --"/>
+                           <String fx:value="homme"/>
+                           <String fx:value="femme"/>
+                           <String fx:value="mixte"/>
+                        </FXCollections>
+                     </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="200.0" />
                      </HBox.margin>
-                  </MenuBar>
-                  <MenuBar style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="-- Choisir un genre --">
-                        <items>
-                              <MenuItem mnemonicParsing="false" text="homme" />
-                              <MenuItem mnemonicParsing="false" text="femme" />
-                              <MenuItem mnemonicParsing="false" text="mixte" />
-                        </items>
-                      </Menu>
-                    </menus>
+                  </ComboBox>
+                  <Button fx:id="btnValider" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: lightgrey; -fx-background-radius: 15;" text="Valider">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                      <HBox.margin>
-                        <Insets left="250.0" />
+                        <Insets left="100.0" />
                      </HBox.margin>
-                  </MenuBar>
+                  </Button>
+                  <Button fx:id="genpdf" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="28.0" prefWidth="138.0" style="-fx-background-color: lightgrey; -fx-background-radius: 15;" text="générer pdf">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="1248.0" VBox.vgrow="ALWAYS">
                <children>
@@ -167,7 +173,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil2" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -188,7 +194,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="120.0" prefWidth="631.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="deconnecter" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="120.0" prefWidth="631.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -218,7 +224,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour2" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -226,7 +232,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
+            <ImageView fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@../../../img/retour.png" />
                </image>

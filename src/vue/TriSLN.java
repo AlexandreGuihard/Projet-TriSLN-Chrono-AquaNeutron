@@ -17,6 +17,7 @@ import src.vue.*;
 import src.bd.*;
 import src.controleurs.*;
 
+import java.io.*;
 
 
 public class TriSLN extends Application{
@@ -268,9 +269,6 @@ public class TriSLN extends Application{
 
     public void afficheClassements() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetClassements.fxml");
-        this.precFXML = file.getPath();
-        ControleurBoutonsClassements controleur = new ControleurBoutonsClassements(this);
-        this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsClassements(this));
@@ -285,14 +283,12 @@ public class TriSLN extends Application{
 
     public void afficheClassementsDisconnected() throws IOException{
         File file=new File("src/vue/fxml/SAEprojetClassementsDisconnected.fxml");
-        this.precFXML = file.getPath();
-        ControleurBoutonsClassements controleur = new ControleurBoutonsClassements(this);
-        this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsClassements(this));
             this.fenetreClassements=new FenetreClassements(loader, this.stage);
             this.stage = this.fenetreClassements.getWindow();
+            this.stage.show();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -337,7 +333,7 @@ public class TriSLN extends Application{
             return;
         }
     
-        File file = new File(this.precFXML); // Utilise le dernier chemin enregistré
+        File file = new File(this.precFXML);
         try {
             FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
             loader.setController(this.precControleur);
@@ -408,6 +404,41 @@ public class TriSLN extends Application{
         }
         else{
             button.setStyle("-fx-background-color: "+color+";"+otherStyle+";");
+        }
+    }
+
+    public void affichePDF(String host, String user, String password, String database, String categorieCode, String genre) {
+        if (host == null || user == null || password == null || database == null || categorieCode == null || genre == null) {
+            return;
+        }
+
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder(
+                "python3",
+                "src/bd/generationsPDF.py",
+                host, user, password, database, categorieCode, genre
+            );
+
+            Process process = processBuilder.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            while ((line = errorReader.readLine()) != null) {
+                System.err.println(line);
+            }
+
+            if (process.waitFor() != 0) {
+                System.err.println("Code de sortie : " + process.waitFor());
+            }
+
+        } catch (IOException | InterruptedException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }
