@@ -1,4 +1,4 @@
-package src.vue;
+package com.trisln.aquaneutron.vue;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -9,9 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import src.vue.*;
-import src.bd.*;
-import src.controleurs.*;
+import com.trisln.aquaneutron.vue.*;
+import com.trisln.aquaneutron.bd.*;
+import com.trisln.aquaneutron.controleurs.*;
 
 
 public class FenetreLogin {

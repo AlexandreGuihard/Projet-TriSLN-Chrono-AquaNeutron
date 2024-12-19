@@ -1,4 +1,4 @@
-package src.vue;
+package com.trisln.aquaneutron.vue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import src.controleurs.ControleurBoutonsParticipants;
+import com.trisln.aquaneutron.controleurs.ControleurBoutonsParticipants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 

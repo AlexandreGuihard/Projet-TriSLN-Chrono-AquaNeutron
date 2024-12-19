@@ -1,4 +1,4 @@
-package src.vue;
+package com.trisln.aquaneutron.vue;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -9,9 +9,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
 import java.util.Set;
 import javafx.fxml.FXMLLoader;
-import javax.print.DocFlavor.STRING;
-import javax.swing.ComboBoxEditor;
-import src.modele.*;
+
+import com.trisln.aquaneutron.modele.*;
 import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;

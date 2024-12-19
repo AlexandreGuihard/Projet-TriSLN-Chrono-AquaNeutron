@@ -1,6 +1,6 @@
 package com.trisln.aquaneutron.bd;
 import com.trisln.aquaneutron.modele.*;
-import com.trisln.aquaneutron.modele.exceptions.NoSuchUserException;
+import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
 import java.sql.*;
 import java.util.List;

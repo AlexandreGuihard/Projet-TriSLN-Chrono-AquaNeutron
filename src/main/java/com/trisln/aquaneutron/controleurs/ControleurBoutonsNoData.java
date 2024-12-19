@@ -1,6 +1,6 @@
-package src.controleurs;
+package com.trisln.aquaneutron.controleurs;
 
-import src.vue.TriSLN;
+import com.trisln.aquaneutron.vue.TriSLN;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
-import src.vue.*;
+import com.trisln.aquaneutron.vue.*;
 import java.io.File;
 import java.io.IOException;
 

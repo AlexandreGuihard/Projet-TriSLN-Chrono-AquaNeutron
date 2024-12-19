@@ -1,4 +1,4 @@
-package src.controleurs;
+package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
 
@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import src.vue.TriSLN;
+import com.trisln.aquaneutron.vue.TriSLN;
 
 public class ControleurBoutonsLogin extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;

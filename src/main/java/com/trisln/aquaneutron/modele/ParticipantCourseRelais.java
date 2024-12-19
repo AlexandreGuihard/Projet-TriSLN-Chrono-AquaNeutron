@@ -1,4 +1,4 @@
-package src.modele;
+package com.trisln.aquaneutron.modele;
 
 /**
  * Classe ParticipantCourseRelais représentant un participant à une course de relais

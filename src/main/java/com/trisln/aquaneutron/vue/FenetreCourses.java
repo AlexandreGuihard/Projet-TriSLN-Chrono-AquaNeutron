@@ -1,4 +1,4 @@
-package src.vue;
+package com.trisln.aquaneutron.vue;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
-import src.modele.Chronometrage;
-import src.modele.Course;
+import com.trisln.aquaneutron.modele.Chronometrage;
+import com.trisln.aquaneutron.modele.Course;
 import javafx.fxml.FXMLLoader;
 
 public class FenetreCourses {

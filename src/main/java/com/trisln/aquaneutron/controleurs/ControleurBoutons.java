@@ -1,12 +1,11 @@
-package src.controleurs;
+package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
 
 import java.io.IOException;
 import java.util.ResourceBundle.Control;
 
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-import javax.swing.plaf.synth.SynthStyle;
+
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import src.vue.TriSLN;
+import com.trisln.aquaneutron.vue.TriSLN;
 
 public abstract class ControleurBoutons {
     private TriSLN vue;

@@ -1,4 +1,4 @@
-package src.modele.Exceptions;
+package com.trisln.aquaneutron.modele.Exceptions;
 /**
  * Classe pour avertir que le chronomètre n'a pas démarré
  */

@@ -1,4 +1,4 @@
-package src.modele;
+package com.trisln.aquaneutron.modele;
 
 public class ParticipantLicenceCourseIndiv extends Participant{
     private String club;
