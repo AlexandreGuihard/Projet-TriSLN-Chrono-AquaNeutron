@@ -47,7 +47,7 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("localhost", "DBTriSLN", "kracocks", "kLcSQm7%9j"));
+        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
         this.utilisateur = new Utilisateur();
         this.connecte=false;
     }
@@ -57,7 +57,7 @@ public class TriSLN extends Application{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueil.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueil=(BorderPane)loader.load();
             Scene scene = new Scene(accueil);
             this.stage.setScene(scene);
@@ -100,11 +100,25 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheLesParticipants(){
+        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetParticiperCategorie.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsParticipants(this));
+            this.fenetreParticipants.afficheParticipants(loader);
+            this.stage=this.fenetreParticipants.getStage();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void afficheAccueilConnecte(){
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueilConnecter.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsCo(this));
+            loader.setController(new ControleurBoutonsAccueil(this));
             BorderPane accueilConnecte=(BorderPane)loader.load();
             Scene scene=new Scene(accueilConnecte);
             this.stage.setScene(scene);
@@ -131,11 +145,14 @@ public class TriSLN extends Application{
 
     public void afficheCourses(){
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetGererCourses.fxml");
+        this.precFXML = file.getPath();
+        ControleurBoutonsCourses controleur = new ControleurBoutonsCourses(this);
+        this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsParticipants(this));
-            this.fenetreParticipants.afficheParticipants(loader);
-            this.stage=this.fenetreParticipants.getStage();
+            loader.setController(controleur);
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
         }
         catch(Exception e){

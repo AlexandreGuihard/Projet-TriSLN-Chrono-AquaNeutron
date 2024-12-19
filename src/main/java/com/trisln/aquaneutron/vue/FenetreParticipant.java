@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import src.controleurs.ControleurBoutonsParticipants;
+import com.trisln.aquaneutron.controleurs.ControleurBoutonsParticipants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import java.io.File;

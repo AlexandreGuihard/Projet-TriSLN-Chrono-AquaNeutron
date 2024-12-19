@@ -4,8 +4,6 @@ import javafx.event.EventHandler;
 
 import java.io.IOException;
 
-import javax.swing.ButtonGroup;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;

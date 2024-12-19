@@ -116,12 +116,14 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
+                    System.out.println("1");
                     this.vue.afficheClassementsDisconnected();
                     break;
                 case "btnConnexion":
                     this.vue.afficheLogin();
                     break;
                 case "btnClassements2":
+                    System.out.println("2");
                     this.vue.afficheClassements();
                     break;
                 case "btnParticipants":

@@ -1,6 +1,7 @@
 package com.trisln.aquaneutron.controleurs;
 
 import java.sql.SQLException;
+import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +30,8 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
     private Button btnConnecter;
     @FXML
     private Button btnForgotPassword;
+    @FXML
+    private Button btnRetour;
 
     public ControleurBoutonsLogin(TriSLN vue){
         this.vue = vue;
@@ -41,8 +44,13 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
             Button btn = (Button) event.getSource();
             switch (btn.getId()) {
                 case "btnConnecter":
-                    System.out.println("Exited connection");
-                    this.vue.changeButtonColor(this.btnConnecter, "#105c74", null);
+                    this.vue.changeButtonColor(this.btnConnecter, "#105c74", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
                     break;
             }
         } catch (Exception e) {
@@ -57,8 +65,13 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
             Button btn = (Button) event.getSource();
             switch (btn.getId()) {
                 case "btnConnecter":
-                    System.out.println("Exited connection");
-                    this.vue.changeButtonColor(this.btnConnecter, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnConnecter, "#2596BE", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
                     break;
             }
         } catch (Exception e) {
@@ -71,8 +84,23 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
     public void handle(ActionEvent event) {
         Button btn = (Button) event.getSource();
         switch (btn.getId()) {
+            case "btnRetour":
+                try {
+                    this.vue.afficheAccueil();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "btnAccueil":
+                try {
+                    this.vue.afficheAccueil();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                } 
+                break;
             case "btnConnecter":
-                System.out.println("Clique connection");
                 try {
                     this.vue.getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
                     idInfoLabel.setText("Identifié en tant que " + this.vue.getUtilisateur().getRole());

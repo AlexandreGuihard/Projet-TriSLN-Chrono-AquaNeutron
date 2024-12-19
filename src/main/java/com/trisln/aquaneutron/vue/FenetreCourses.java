@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
-import com.trisln.aquaneutron.modele.Chronometrage;
-import com.trisln.aquaneutron.modele.Course;
+import com.trisln.aquaneutron.modele.*;
 import javafx.fxml.FXMLLoader;
 
 public class FenetreCourses {
@@ -182,8 +181,7 @@ public class FenetreCourses {
 
     private void afficheCourses(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetGererCourses.fxml"));
+            BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
             this.stage.setScene(page);
@@ -199,8 +197,7 @@ public class FenetreCourses {
 
     public void nouvelleCourse(FXMLLoader loader){
         try {
-            Stage StageVue = new Stage();
-            BorderPane root = FXMLLoader.load(getClass().getResource("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetNouvelleCourse.fxml"));
+            BorderPane root = (BorderPane) loader.load();
             Scene page;
             page = new Scene(root);
             this.stage.setScene(page);

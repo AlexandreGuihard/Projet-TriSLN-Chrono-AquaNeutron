@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import com.trisln.aquaneutron.vue.TriSLN;
 
-import javax.swing.plaf.synth.SynthStyle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

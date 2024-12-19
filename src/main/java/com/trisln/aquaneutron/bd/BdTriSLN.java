@@ -192,7 +192,9 @@ public class BdTriSLN{
 
     public boolean verifConnexion(String identifiant, String motDePasse){
         try{
+            System.out.println("here1");
         Statement st=this.connexion.createStatement();
+        System.out.println("here2");
         ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
             String motDePasseBd=rs.getString(2);
@@ -201,7 +203,7 @@ public class BdTriSLN{
         return false;
         }
         catch (Exception e){
-            System.out.println("erreur");
+            e.printStackTrace();
             return false;
         }
     }
@@ -214,6 +216,17 @@ public class BdTriSLN{
         } else {
             throw new NoSuchUserException();
         }
+    }
+
+    public List<String> getEmailAdresses() throws SQLException{
+        List<String> emails = new ArrayList<>();
+        Statement s = this.connexion.createStatement();
+        ResultSet rs = s.executeQuery("select email from UTILISATEUR");
+        while (rs.next()){
+            String email = rs.getString(1);
+            emails.add(email);
+        }
+        return emails;
     }
 
     public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException{

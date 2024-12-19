@@ -12,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
-import src.vue.*;
+
+import com.trisln.aquaneutron.vue.*;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -189,12 +191,12 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                 FXMLLoader loader=null;
                 switch(btn.getId()){
                     case "btnV":
-                        file=new File("src/vue/fxml/SAEprojetPopUpVeteran.fxml");
+                        file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpVeteran.fxml");
                         loader=new FXMLLoader(file.toURI().toURL());
                         super.getVue().affichePopUp(loader, "V");
                         break;
                     case "btnS":
-                        file=new File("src/vue/fxml/SAEprojetPopUpSenior.fxml");
+                        file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpSenior.fxml");
                         loader=new FXMLLoader(file.toURI().toURL());
                         super.getVue().affichePopUp(loader, "S");
                         break;
