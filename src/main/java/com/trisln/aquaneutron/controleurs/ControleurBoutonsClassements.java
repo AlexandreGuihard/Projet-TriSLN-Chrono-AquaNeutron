@@ -1,15 +1,20 @@
-package com.trisln.aquaneutron.controleurs;
+package src.controleurs;
 
-import com.trisln.aquaneutron.vue.TriSLN;
+import src.vue.TriSLN;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import src.vue.*;
 
-public class ControleurBoutonsClassements implements EventHandler<ActionEvent> {
+
+public class ControleurBoutonsClassements extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     @FXML
@@ -19,147 +24,109 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent> {
     @FXML
     private Button btnRetour;
     @FXML
-    private Button btnAccueil2;
-    @FXML
-    private Button btnRetour2;
-    @FXML
-    private Button deconnecter;
+    private Button btnDeconnexion;
     @FXML
     private Button btnCompte;
     @FXML
-    private Button genpdf;
-    @FXML
-    private ComboBox<String> idSC;
-    @FXML
-    private ComboBox<String> idG;
-    @FXML
-    private Button btnValider;
+    private Button btnAccueilDisconnected;
 
-    public ControleurBoutonsClassements(TriSLN vue) {
-        this.vue = vue;
+    public ControleurBoutonsClassements(TriSLN vue){
+        super();
+        this.setBoutons(vue);
     }
 
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
+        super.setBAccueil(btnAccueil);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setBCompte(btnCompte);
+        super.setBRetour(btnRetour);
+        super.setBAccueilDisconnected(btnAccueilDisconnected);
+    }
+    
     @FXML
-    public void handleBtnClassementMouseEntered(MouseEvent event) {
-        try {
-            Button btn = (Button) event.getSource();
-            switch (btn.getId()) {
-                case "btnConnexion":
-                    this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnAccueil2":
-                    this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour2":
-                    this.vue.changeButtonColor(this.btnRetour2, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "deconnecter":
-                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "genpdf":
-                    this.vue.changeButtonColor(this.genpdf, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnValider":
-                    this.vue.changeButtonColor(this.btnValider, "#949494", "-fx-background-radius: 15");
-                    break;
+    public void handleBtnClassementMouseExited(MouseEvent event){
+        try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion") || btn.getId().equals("btnConnexion")){
+                super.handleBtnsMouseExited(btn);
             }
-        } catch (Exception e) {
-            System.err.println("Erreur lors du survol du bouton (handleBtnClassementMouseEntered): " + e.getMessage());
+            else{
+                switch (btn.getId()) {
+                    
+
+                    default:
+                         superButton=true;
+                        break;
+                    }
+                    super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+                }
+            }
+
+        catch(Exception e){
+            System.err.println("Erreur");
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void handleBtnClassementMouseExited(MouseEvent event) {
-        try {
-            Button btn = (Button) event.getSource();
-            switch (btn.getId()) {
-                case "btnConnexion":
-                    this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
-                    break;
-                case "btnAccueil2":
-                    this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour2":
-                    this.vue.changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
-                    break;
-                case "deconnecter":
-                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "genpdf":
-                    this.vue.changeButtonColor(this.genpdf, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnValider":
-                    this.vue.changeButtonColor(this.btnValider, "lightgrey", "-fx-background-radius: 15");
-                    break;
+    public void handleBtnClassementMouseEntered(MouseEvent event){
+        try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                
+                super.handleBtnsMouseEntered(btn);
             }
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la sortie du survol du bouton (handleBtnClassementMouseExited): " + e.getMessage());
+            else{
+                switch (btn.getId()) {
+
+                default:
+                        superButton=true;
+                        break;
+                }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
+            
+        }
+        catch(Exception e){
+            System.err.println("Erreur");
             e.printStackTrace();
         }
     }
+
 
     @Override
-    public void handle(ActionEvent event) {
-        try {
-            Button btn = (Button) event.getSource();
-            switch (btn.getId()) {
-                case "btnAccueil":
-                    this.vue.afficheAccueil();
-                    break;
-                case "btnRetour":
-                    this.vue.afficheAccueil();
-                    break;
-                case "btnAccueil2":
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnRetour2":
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnConnexion":
-                    this.vue.afficheLogin();
-                    break;
-                case "deconnecter":
-                    this.vue.afficheAccueil();
-                    break;
-                case "btnCompte":
-                    this.vue.afficheMonCompte();
-                    break;
-                case "genpdf":
-                    if (this.idSC.getValue() != null && !this.idSC.getValue().equals("-- Choisir une sous-catégorie --")) {
-                        if (this.idG.getValue() != null && !this.idG.getValue().equals("-- Choisir un genre --")) {
-                            this.vue.affichePDF("servinfo-maria", "guihard", "guihard", "DBguihard", this.idSC.getValue(), this.idG.getValue());
-                        } else {
-                            System.err.println("Erreur: Aucune sélection de genre.");
-                        }
-                    } else {
-                        System.err.println("Erreur: Aucune sélection de sous-catégorie.");
-                    }
-                    break;
-                case "btnValider":
-                    System.out.println("Valider le formulaire");
-                    break;
+    public void handle(ActionEvent event){
+        try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") ||btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handle(btn);
             }
-        } catch (Exception e) {
-            System.err.println("Erreur dans le gestionnaire d'événements (handle): " + e.getMessage());
+            else{
+                switch (btn.getId()) {
+                    default:
+                            superButton=true;
+                            break;
+                    }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
+
+
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

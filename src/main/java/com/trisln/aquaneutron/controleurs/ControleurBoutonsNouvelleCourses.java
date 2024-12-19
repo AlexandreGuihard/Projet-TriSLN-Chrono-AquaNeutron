@@ -1,9 +1,11 @@
-package com.trisln.aquaneutron.controleurs;
+package src.controleurs;
 
 import javafx.event.EventHandler;
 
 import java.io.IOException;
 
+import javax.swing.ButtonGroup;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
@@ -13,14 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import com.trisln.aquaneutron.vue.TriSLN;
+import src.vue.TriSLN;
 
 
 public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML
-    private Button btnAJtCourse;
+    private Button btnAjoutCourse;
     @FXML
     private Button btnAccueil;
     @FXML
@@ -31,42 +33,51 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     private Button btnCompte;
 
 
+
+
+
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
         super();
-        this.vue = vue;
-        this.vue.setBAJtCourse(this.btnAJtCourse);
-        this.vue.setBAccueil(this.btnAccueil);
-        this.vue.setBRetour(this.btnRetour);
-        this.vue.setBDeconnexion(this.btnDeconnexion);
-        this.vue.setBCompte(this.btnCompte);
-        this.setBoutons();
+        this.setBoutons(vue);
     }
 
-    private void setBoutons(){
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
         super.setBAccueil(btnAccueil);
         super.setBCompte(btnCompte);
         super.setBDeconnexion(btnDeconnexion);
         super.setBRetour(btnRetour);
+
+
+        
     }
 
     @FXML
     public void handleBtnCoursesMouseEntered(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAJtCourse":
-                    this.vue.changeButtonColor(this.btnAJtCourse, "#105c74", null);
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handleBtnsMouseEntered(btn);
             }
+            else{
+                switch(btn.getId()){
+
+                    case "btnAjoutCourse":
+                        changedButton=this.btnAjoutCourse;
+                        newBtnColor="#105c74";
+                        break;
+
+                    default:
+                        superButton=true;
+                        break;
+                }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -77,21 +88,29 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     @FXML
     public void handleBtnCoursesMouseExited(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAJtCourse":
-                    this.vue.changeButtonColor(this.btnAJtCourse, "#2596BE", null);
-                    break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handleBtnsMouseExited(btn);
             }
+            else{
+                switch(btn.getId()){
+                    case "btnAjoutCourse":
+                        changedButton=this.btnAjoutCourse;
+                        newBtnColor="#2596BE";
+                        break;
+
+                    default:
+                        superButton=true;
+                        break;
+                    }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+            
+
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -101,34 +120,23 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
 
     @Override
     public void handle(ActionEvent event){
-        try {
-            Button btn=(Button) event.getSource();
-            switch(btn.getId()){
-                case "btnAJtCourse":
-                    System.out.println("Ajouter course");
-                    this.vue.afficheNvlCourse();
-                    break;
-                case "btnRetour":
-                    System.out.println("Retour");
-                    this.vue.afficheCourses();
-                    break;
-                case "btnAccueil":
-                    System.out.println("Accueil");
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnCompte":
-                    System.out.println("Mon compte");
-                    this.vue.afficheMonCompte();
-                    break;
-                case "btnDeconnexion":
-                    System.out.println("Déconnexion");
-                    this.vue.afficheAccueil();
-                    break;
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handle(btn);
             }
+            else{
+                switch(btn.getId()){
+                    default:
+                        superButton=true;
+                        break;
+                }
+            }
+            
         } 
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        } 
-    }
+
 }
+

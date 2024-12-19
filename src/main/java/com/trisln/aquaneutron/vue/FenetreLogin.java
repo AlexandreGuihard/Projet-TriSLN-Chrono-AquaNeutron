@@ -1,4 +1,4 @@
-package com.trisln.aquaneutron.vue;
+package src.vue;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -9,9 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import com.trisln.aquaneutron.vue.*;
-import com.trisln.aquaneutron.bd.*;
-import com.trisln.aquaneutron.controleurs.*;
+import src.vue.*;
+import src.bd.*;
+import src.controleurs.*;
 
 
 public class FenetreLogin {
@@ -70,11 +70,10 @@ public class FenetreLogin {
             String motDePasse = getMotDePasse();
             BdTriSLN bd = TriSLN.getBd();
             if (bd.verifConnexion(identifiant, motDePasse)){
-                Stage StageVue = new Stage();
-                this.root = FXMLLoader.load(getClass().getResource("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueilConnecter.fxml"));
+                this.root = FXMLLoader.load(getClass().getResource("SAEprojetAccueilConnecter.fxml"));
                 Scene scene = new Scene(this.root);
-                StageVue.setScene(scene);
-                StageVue.show();
+                this.stage.setScene(scene);
+                this.stage.show();
             }
             else
             {
@@ -82,8 +81,9 @@ public class FenetreLogin {
                 Text t = new Text("Identifiant ou Mot de passe incorrect.");
                 t.setFill(Color.RED);
                 this.root.getChildren().add(t);
+    
             }
-        }
+        } 
         catch (Exception e)
         {
             e.printStackTrace();
@@ -95,7 +95,8 @@ public class FenetreLogin {
     public void afficheLogin(FXMLLoader loader){
         try {
             this.root = (BorderPane) loader.load();
-            Scene page = new Scene(this.root);
+            Scene page;
+            page = new Scene(this.root);
             this.stage.setScene(page);
             this.stage.show();
         }

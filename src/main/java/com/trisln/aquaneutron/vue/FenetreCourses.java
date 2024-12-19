@@ -1,4 +1,4 @@
-package com.trisln.aquaneutron.vue;
+package src.vue;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
-import com.trisln.aquaneutron.modele.*;
+import src.modele.Chronometrage;
+import src.modele.Course;
 import javafx.fxml.FXMLLoader;
 
 public class FenetreCourses {
@@ -209,5 +210,8 @@ public class FenetreCourses {
 
     public void chronometre(){
         Chronometrage chrono = new Chronometrage();
+
+
+
     }
 }

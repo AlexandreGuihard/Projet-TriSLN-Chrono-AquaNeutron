@@ -1,13 +1,18 @@
-package com.trisln.aquaneutron.controleurs;
+package src.controleurs;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import com.trisln.aquaneutron.vue.TriSLN;
 
 import java.io.IOException;
+
+import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import src.vue.TriSLN;
 
 public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
     private TriSLN vue;
@@ -47,16 +52,16 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#105c74", null);
+                    this.vue.changeButtonColor(this.btnClassements, "#105c74", "");
                     break;
                 case "btnClassements2":
-                    this.vue.changeButtonColor(this.btnClassements2, "#105c74", null);
+                    this.vue.changeButtonColor(this.btnClassements2, "#105c74", "");
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#105c74", null);
+                    this.vue.changeButtonColor(this.btnParticipants, "#105c74", "");
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
+                    this.vue.changeButtonColor(this.btnCourses, "#105c74", "");    
                     break;
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
@@ -82,16 +87,16 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
             Button btn=(Button)event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnClassements, "#2596BE", "");
                     break;
                 case "btnClassements2":
-                    this.vue.changeButtonColor(this.btnClassements2, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnClassements2, "#2596BE", "");
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#2596BE", null);
+                    this.vue.changeButtonColor(this.btnParticipants, "#2596BE", "");
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#2596BE", null);    
+                    this.vue.changeButtonColor(this.btnCourses, "#2596BE", "");    
                     break;
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
@@ -116,14 +121,12 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    System.out.println("1");
                     this.vue.afficheClassementsDisconnected();
                     break;
                 case "btnConnexion":
                     this.vue.afficheLogin();
                     break;
                 case "btnClassements2":
-                    System.out.println("2");
                     this.vue.afficheClassements();
                     break;
                 case "btnParticipants":

@@ -1,17 +1,23 @@
-package com.trisln.aquaneutron.vue;
+package src.vue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import com.trisln.aquaneutron.controleurs.ControleurBoutonsParticipants;
+import src.controleurs.ControleurBoutonsParticipants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class FenetreParticipant{
@@ -114,4 +120,52 @@ public class FenetreParticipant{
             e.printStackTrace();
         }
     }
+//
+    private static void configureFileChooser(final FileChooser fileChooser){                           
+        fileChooser.setTitle("liste des pariticpants");
+        //fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))); 
+        fileChooser.setInitialDirectory(new File("./data")); 
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All", "*.csv","*.xls"),
+                new FileChooser.ExtensionFilter("csv", "*.csv"),
+                new FileChooser.ExtensionFilter("xls", "*.xls")
+            );
+    }
+
+    public File reccupererParticipant(){
+        FileChooser fileChooser = new FileChooser();
+        configureFileChooser(fileChooser);
+        
+        return fileChooser.showOpenDialog(stage);
+          
+    }
+
+    public List<List<String>> lectureFichier(File csv) {
+            List<List<String>> result = new ArrayList<List<String>>();
+            try{
+                FileReader fr = new FileReader(csv);
+                BufferedReader br = new BufferedReader(fr);
+
+                int i =0;
+                 
+                for (String line = br.readLine(); line != null; line = br.readLine()) {
+                    System.out.println(result);
+                    result.add(new ArrayList<String>());
+                    result.get(i).add(line);
+                    i++;
+                }
+
+                br.close();
+                fr.close();
+                return result; 
+            }
+
+            catch(IOException e){
+                e.printStackTrace();
+                return result;
+            }
+        
+        }
+    
+
 }

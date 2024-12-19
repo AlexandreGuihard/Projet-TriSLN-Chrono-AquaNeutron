@@ -1,4 +1,4 @@
-package com.trisln.aquaneutron.modele;
+package src.modele;
 
 /**
  * Classe Participant NonLicenceCourseIndiv représantant un participant à une course individuelle sans licence

@@ -1,8 +1,12 @@
-package com.trisln.aquaneutron.controleurs;
+package src.controleurs;
+
 import javafx.event.EventHandler;
 
 import java.io.IOException;
 import java.util.ResourceBundle.Control;
+
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+import javax.swing.plaf.synth.SynthStyle;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
@@ -12,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import com.trisln.aquaneutron.vue.TriSLN;
+import src.vue.TriSLN;
 
 public abstract class ControleurBoutons {
     private TriSLN vue;
@@ -26,6 +30,8 @@ public abstract class ControleurBoutons {
     private Button btnCompte;
     @FXML
     private Button btnConnexion;
+    @FXML
+    private Button btnAccueilDisconnected;
 
     public ControleurBoutons(){
         this.vue=null;
@@ -34,6 +40,7 @@ public abstract class ControleurBoutons {
         this.btnDeconnexion=null;
         this.btnCompte=null;
         this.btnConnexion=null;
+        this.btnAccueilDisconnected=null;
     }
 
     public TriSLN getVue(){
@@ -46,6 +53,10 @@ public abstract class ControleurBoutons {
 
     public Button getBDeconnexion(){
         return this.btnDeconnexion;
+    }
+
+    public Button getBAccueilDisconnected(){
+        return this.btnAccueilDisconnected;
     }
 
     public Button getBAccueil(){
@@ -72,6 +83,10 @@ public abstract class ControleurBoutons {
         this.btnDeconnexion=btnDeconnexion;
     }
 
+    public void setBAccueilDisconnected(Button btnAccueilDisconnected){
+        this.btnAccueilDisconnected = btnAccueilDisconnected;
+    }
+
     public void setBAccueil(Button btnAccueil){
         this.btnAccueil=btnAccueil;
     }
@@ -94,6 +109,9 @@ public abstract class ControleurBoutons {
                 break;
             case "btnAccueil":
                 changedButton=this.btnAccueil;
+                break;
+            case "btnAccueilDisconnected":
+                changedButton=this.btnAccueilDisconnected;
                 break;
             case "btnConnexion":
                 changedButton=this.btnConnexion;
@@ -121,6 +139,9 @@ public abstract class ControleurBoutons {
             case "btnAccueil":
                 changedButton=this.btnAccueil;
                 break;
+            case "btnAccueilDisconnected":
+                changedButton=this.btnAccueilDisconnected;
+                break;
             case "btnConnexion":
                 changedButton=this.btnConnexion;
                 break;
@@ -145,11 +166,20 @@ public abstract class ControleurBoutons {
                 case "btnConnexion":
                     this.vue.afficheLogin();
                     break;    
-                case "btnDeconnexion":
+                case "btnDeconnexion" :
                     this.vue.afficheAccueil();
                     break;
+                
+                case "btnAccueil":
+                    this.vue.afficheAccueilConnecte();
+                    break;
+
+                case "btnAccueilDisconnected":
+                    this.vue.afficheAccueil();
+                    break;
+
                 default:
-                    this.vue.afficheAccueilConnecte(); 
+                    this.vue.afficheRetour(); 
                     break;           
             }
         }catch (IOException e){

@@ -17,14 +17,14 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox alignment="CENTER" prefHeight="484.0" prefWidth="1250.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Connexion">
                <font>
                   <Font size="64.0" />
                </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="30.0" />
                </VBox.margin>
             </Label>
             <VBox prefHeight="200.0" prefWidth="465.0">
@@ -48,16 +48,6 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="idMdp" promptText="Password" />
-                  <Button fx:id="btnForgotPassword" mnemonicParsing="false" onAction="#handle" style="-fx-background-color: white;" text="Mot de passe oublié" textFill="MEDIUMBLUE" underline="true">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label fx:id="idInfoLabel">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
                </children>
                <VBox.margin>
                   <Insets left="400.0" right="400.0" top="50.0" />
@@ -82,9 +72,6 @@
                </VBox.margin>
             </HBox>
          </children>
-         <BorderPane.margin>
-            <Insets top="30.0" />
-         </BorderPane.margin>
       </VBox>
    </center>
    <top>
@@ -92,10 +79,10 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@img/TriSLN_AquaNeutron.png" />
+                  <Image url="@../../../img/TriSLN_AquaNeutron.png" />
                </image>
                <HBox.margin>
-                  <Insets bottom="5.0" left="40.0" top="10.0" />
+                  <Insets bottom="5.0" left="40.0" top="5.0" />
                </HBox.margin>
             </ImageView>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
@@ -107,7 +94,7 @@
                            <children>
                               <ImageView fitHeight="79.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@img/home.png" />
+                                    <Image url="@../../../img/home.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -127,17 +114,14 @@
                   </Button>
                </buttons>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets right="10.0" />
                </padding>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </ButtonBar>
          </children>
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnLoginMouseEntered" onMouseExited="#handleBtnLoginMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -147,7 +131,7 @@
          <graphic>
             <ImageView fitHeight="75.0" fitWidth="75.0">
                <image>
-                  <Image url="@img/retour.png" />
+                  <Image url="@../../../img/retour.png" />
                </image>
             </ImageView>
          </graphic>

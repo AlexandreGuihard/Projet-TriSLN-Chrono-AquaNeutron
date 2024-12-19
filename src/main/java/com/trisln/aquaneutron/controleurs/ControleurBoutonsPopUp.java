@@ -1,4 +1,4 @@
-package com.trisln.aquaneutron.controleurs;
+package src.controleurs;
 
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -6,8 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
-import com.trisln.aquaneutron.vue.TriSLN;
+import src.vue.TriSLN;
 
+import javax.swing.plaf.synth.SynthStyle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

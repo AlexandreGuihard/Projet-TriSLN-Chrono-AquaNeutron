@@ -1,4 +1,4 @@
-package com.trisln.aquaneutron.modele;
+package src.modele;
 import java.util.ArrayList;
 import java.util.List;
 

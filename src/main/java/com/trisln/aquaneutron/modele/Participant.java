@@ -1,4 +1,4 @@
-package com.trisln.aquaneutron.modele;
+package src.modele;
 
 /** Classe abstraite participant
  */
@@ -176,7 +176,7 @@ public abstract class Participant{
 
     /**
      * Setter du numéro de téléphone
-     * @param numTel le nouveau numéro de téléphone du participant
+     * @param id le nouveau numéro de téléphone du participant
      */
     public void setTel(int numTel){
         this.numTel=numTel;

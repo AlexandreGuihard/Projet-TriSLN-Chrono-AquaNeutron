@@ -1,10 +1,10 @@
-package com.trisln.aquaneutron.modele;
+package src.modele;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.trisln.aquaneutron.modele.Participant;
-import com.trisln.aquaneutron.modele.exceptions.WrongInformationException;
-import com.trisln.aquaneutron.modele.Participant;
+import src.modele.Participant;
+import src.modele.Exceptions.WrongInformationException;
+import src.modele.Participant;
 
 /**
  * Classe Classement représentant le classement d'un participant

@@ -35,7 +35,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnClassements" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
+                  <Button fx:id="btnClassementsDeco" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="100.0" prefWidth="208.0" style="-fx-background-color: #2596BE;" text="Classements" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -59,7 +59,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@img/TriSLN_AquaNeutron.png" />
+                  <Image url="@../../../img/TriSLN_AquaNeutron.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -74,7 +74,7 @@
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@img/login_icon.png" />
+                                    <Image url="@../../../img/login_icon.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se connecter">

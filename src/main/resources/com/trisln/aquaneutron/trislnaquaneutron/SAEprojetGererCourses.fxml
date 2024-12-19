@@ -81,7 +81,7 @@
                               <Insets left="10.0" />
                            </opaqueInsets>
                         </TextField>
-                           <Button fx:id="btnNvlCourse" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#handle" onMouseExited="#handleBtnCoursesMouseExited" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="50.0" prefWidth="217.0" style="-fx-background-color: #2596BE;" text="Nouvelle course" textFill="WHITE">
+                        <Button fx:id="btnNvlCourse" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#handle" onMouseExited="#handleBtnCoursesMouseExited" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="50.0" prefWidth="217.0" style="-fx-background-color: #2596BE;" text="Nouvelle course" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -108,7 +108,7 @@
          <children>
             <ImageView fitHeight="140.0" fitWidth="140.0">
                <image>
-                  <Image url="@img/TriSLN_AquaNeutron.png" />
+                  <Image url="@../../../img/TriSLN_AquaNeutron.png" />
                </image>
                <HBox.margin>
                   <Insets bottom="5.0" left="40.0" top="10.0" />
@@ -140,7 +140,7 @@
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@img/compte.png" />
+                                    <Image url="@../../../img/compte.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets />
@@ -158,13 +158,13 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                     <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@img/home.png" />
+                                    <Image url="@../../../img/home.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Accueil">
@@ -185,7 +185,7 @@
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@img/log_out.png" />
+                                    <Image url="@../../../img/log_out.png" />
                                  </image>
                               </ImageView>
                               <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se déconnecter">
@@ -219,7 +219,7 @@
          <graphic>
             <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
                <image>
-                  <Image url="@img/retour.png" />
+                  <Image url="@../../../img/retour.png" />
                </image>
             </ImageView>
          </graphic>
