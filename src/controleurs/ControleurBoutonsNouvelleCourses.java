@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.TriSLN;
@@ -31,6 +33,12 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     private Button btnDeconnexion;
     @FXML
     private Button btnCompte;
+    @FXML
+    private TextField nomCourse;
+    @FXML
+    private MenuButton formatCourse;
+    @FXML
+    private TextField heureCourse;
 
 
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
@@ -85,8 +93,10 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         try {
             Button btn=(Button) event.getSource();
             if(btn.getId().equals("btnAjoutCourse")){
-                System.out.println("Course ajoutée");
+                formatCourse.getItems().
+                TriSLN.getBd().ajouterCourse(nomCourse, )
                 super.getVue().afficheCourses();
+                System.out.println("Course ajoutée");
             }
             else{
                 super.handle(btn);

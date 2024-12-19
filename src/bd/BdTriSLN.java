@@ -50,7 +50,7 @@ public class BdTriSLN{
     public String getFormat(int idFormat) throws SQLException{
         String format=null;
         Statement st=connexion.createStatement();
-        ResultSet leFormat=st.executeQuery("select getFormat("+idFormat+")");
+        ResultSet leFormat=st.executeQuery("select getFormatFromId("+idFormat+")");
         if(leFormat.next()){
             format=leFormat.getString(1);
         }

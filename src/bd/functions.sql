@@ -25,7 +25,7 @@ end|
 create or replace function getFormatFromId(idFormat int) returns varchar(42)
 begin
     declare leFormat int;
-    select format into leFormat from FORMATCOURSE where idF;
+    select format into leFormat from FORMATCOURSE where idFormat=idFormat;
     return leFormat;
 end|
 
