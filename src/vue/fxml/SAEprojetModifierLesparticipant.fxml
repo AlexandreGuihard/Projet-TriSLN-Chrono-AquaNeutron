@@ -59,7 +59,7 @@
                               <Insets />
                            </VBox.margin>
                         </VBox>
-                        <Button fx:id="btnEnregistrerModification" onAction="#handle" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;" VBox.vgrow="ALWAYS">
+                        <Button fx:id="btnEnregistrerModification"  alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

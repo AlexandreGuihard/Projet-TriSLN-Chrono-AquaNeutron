@@ -354,7 +354,7 @@
             <Region prefHeight="155.0" prefWidth="321.0" HBox.hgrow="ALWAYS" />
             <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="677.0">
                <buttons>
-                  <Button fx:id="Bbenevole" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="146.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="Bbenevole" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="146.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="112.0" prefWidth="140.0">
                            <children>
@@ -408,7 +408,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onDragEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -506,7 +506,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnAjouterParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#btnAP" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnAjouterParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -530,7 +530,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnSuprimerParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#btnSP" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnSuprimerParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -554,7 +554,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnModifierParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#btnSP" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnModifierParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

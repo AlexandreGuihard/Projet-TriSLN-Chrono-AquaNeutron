@@ -226,7 +226,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fitHeight="75.0" fitWidth="75.0">
+            <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@../../../img/retour.png" />
                </image>

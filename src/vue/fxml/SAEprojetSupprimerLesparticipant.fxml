@@ -62,7 +62,7 @@
                               <Insets />
                            </VBox.margin>
                         </VBox>
-                        <Button fx:id="btnSupprimerParticipantValidation" alignment="CENTER" onAction="#handle" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#handleBtnSupprimerPMouseEntered" onMouseExited="#handleBtnSupprimerPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;" VBox.vgrow="ALWAYS">
+                        <Button fx:id="btnSupprimerParticipantValidation" alignment="CENTER"  contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnSupprimerPMouseEntered" onMouseExited="#handleBtnSupprimerPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

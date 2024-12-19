@@ -55,7 +55,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnConnecter" mnemonicParsing="false" onMouseEntered="#btnConnecterME" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2596BE;" text="Se connecter" textFill="WHITE">
+                  <Button fx:id="btnConnecter" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAjoutBenevolMouseEntered" onMouseExited="#handleBtnAjoutBenevolMouseExited" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2596BE;" text="Se connecter" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -105,7 +105,7 @@
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ButtonBar prefHeight="150.0" prefWidth="443.0">
                <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAjoutBenevolMouseEntered" onMouseExited="#handleBtnAjoutBenevolMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="118.0" prefWidth="85.0">
                            <children>
@@ -129,7 +129,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAjoutBenevolMouseEntered" onMouseExited="#handleBtnAjoutBenevolMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="118.0" prefWidth="85.0">
                            <children>
@@ -153,7 +153,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="deconnecter" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="148.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAjoutBenevolMouseEntered" onMouseExited="#handleBtnAjoutBenevolMouseExited" prefHeight="120.0" prefWidth="631.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="118.0" prefWidth="85.0">
                            <children>
@@ -186,7 +186,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAjoutBenevolMouseEntered" onMouseExited="#handleBtnAjoutBenevolMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -194,7 +194,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+            <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@../../../../img/retour.png" />
                </image>
