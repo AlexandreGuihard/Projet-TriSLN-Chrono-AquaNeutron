@@ -1,6 +1,7 @@
 package com.trisln.aquaneutron.controleurs;
 
 import com.trisln.aquaneutron.bd.BdTriSLN;
+import com.trisln.aquaneutron.modele.Utilisateur;
 import com.trisln.aquaneutron.vue.TriSLN;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +30,7 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         Button btn = (Button) event.getSource();
         BdTriSLN bd = TriSLN.getBd();
+        System.out.println(btn.getText());
         switch (btn.getId()) {
             case "btnValiderEmail":
                 System.out.println("Clique valider email");
@@ -47,12 +49,13 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
                         // Vérifier si l'email existe dans la base de données
                         if (bd.getEmailAdresses().contains(fieldEmail)) {
                             this.infoEmailLabel.setText("Un email vous a été envoyé.");
+                            Utilisateur u = this.vue.getUtilisateur();
 
                             // Générer un token pour l'email de réinitialisation
-                            String token = "";
+                            String token = u.genererTokenReinitialisation();
 
                             // Appeler la méthode pour envoyer l'email avec le token
-                            this.vue.getUtilisateur().envoyerEmailDeReinitialisation(fieldEmail, token);
+                            u.envoyerEmailDeReinitialisation(fieldEmail, token);
                         } else {
                             this.infoEmailLabel.setText("L'email n'existe pas dans la base de données.");
                         }
