@@ -14,35 +14,6 @@ public class BdTriSLN{
         this.connexion=connexion;
     }
 
-    //public List<Participant> getParticipantsCourseRelais() throws SQLException{
-    //    List<Participant> participantsCourseRelais=new ArrayList<>();
-    //    Statement st=this.connexion.createStatement();
-    //    ResultSet participants=st.executeQuery("select * from PARTICIPANT");
-    //    while(participants.next()){
-    //        try{
-    //            boolean licence=participants.getBoolean(13);
-    //            String nomEquipe=participants.getString(14);
-//
-    //            int idP=participants.getInt(1);
-    //            String nom=participants.getString(2);
-    //            String prenom=participants.getString(3);
-    //            String categorie=participants.getString(4);
-    //            char sexe=participants.getString(5).charAt(0);
-    //            String email=participants.getString(6);
-    //            String ville=participants.getString(7);
-    //            String certification=participants.getString(8);
-    //            int tel=participants.getInt(9);
-    //            Participant participant = new ParticipantCourseRelais(idP, nom, prenom, categorie, sexe, email, ville, certification, tel, nomEquipe, licence);//,chronometre manque un constructeur qui prend en compte chrono TODO
-    //            participantsCourseRelais.add(participant);
-    //        }
-    //        catch(SQLException e){
-    //            System.err.println(e);
-    //        }
-    //    }
-    //    st.close();
-    //    return participantsCourseRelais;
-    //}
-
     /**
      * Getter de la catégorie à partir de son id
      * @param idCategorie l'id de la catégorie
@@ -74,6 +45,16 @@ public class BdTriSLN{
             sousCategorie=sousCateg.getString(1);
         }
         return sousCategorie;
+    }
+
+    public String getFormat(int idFormat) throws SQLException{
+        String format=null;
+        Statement st=connexion.createStatement();
+        ResultSet leFormat=st.executeQuery("select getFormatFromId("+idFormat+")");
+        if(leFormat.next()){
+            format=leFormat.getString(1);
+        }
+        return format;
     }
 
     /**
@@ -233,27 +214,34 @@ public class BdTriSLN{
         return participantsNonLicenceCourseIndividuelles;
     }
 
-    /**
-     * @return la liste des courses de la bd
-     * @throws SQLException
-     */
-    public List<Course> getCourses() throws SQLException{
-        List<Course> courses=new ArrayList<>();
-        Statement st=this.connexion.createStatement();
-        ResultSet epreuves=st.executeQuery("select * from EPREUVE");
-        while(epreuves.next()){
-            int idE=epreuves.getInt(1);
-            String nom=epreuves.getString(2);
-            String format=epreuves.getString(3);
-            String categorie=epreuves.getString(4);
-            String heureDepart=epreuves.getString(5);
-            double prix=epreuves.getDouble(6);
-            Course course=new Course(idE, nom, format, categorie, heureDepart, prix);
+    public List<Course> getCourses() throws SQLException {
+        List<Course> courses = new ArrayList<>();
+        String query = """
+            SELECT E.id_Epreuve, E.nom_Epreuve, F.format, C.categorie, E.heure_Depart, E.prix
+            FROM EPREUVE E
+            JOIN FORMATCOURSE F ON E.idFormat = F.idFormat
+            JOIN CATEGORIE C ON E.idCategorie = C.idCategorie
+        """;
+    
+        Statement st = this.connexion.createStatement();
+        ResultSet epreuves = st.executeQuery(query);
+    
+        while (epreuves.next()) {
+            int idE = epreuves.getInt(1);
+            String nom = epreuves.getString(2);
+            String format = epreuves.getString(3);
+            String categorie = epreuves.getString(4);
+            String heureDepart = epreuves.getString(5);
+            double prix = epreuves.getDouble(6);
+    
+            Course course = new Course(idE, nom, format, categorie, heureDepart, prix);
             courses.add(course);
         }
+    
         st.close();
         return courses;
     }
+    
 
     /**
      * @return la liste des classements de la bd
@@ -310,20 +298,15 @@ public class BdTriSLN{
      * @param course la course ajoutée dans la bd
      * @throws SQLException
      */
-    public void ajouterCourse(Course course) throws SQLException{
+    public void ajouterCourse(String nomCourse, String format, String categorie, String heureDepart, double prix) throws SQLException{
         PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");
-        String nom=course.getNom();
-        String format=course.getFormat();
-        String categorie=course.getCategorie();
-        // TODO Rajouter la sous catég
-        String heureDepart=course.getHeureDepart();
-        double prix=course.getPrix();
-        addCourse.setString(1, nom);
+        
+        addCourse.setString(1, nomCourse);
         addCourse.setString(2, format);
         addCourse.setString(3, categorie);
-        // souscateg
-        addCourse.setString(5, heureDepart);
-        addCourse.setDouble(6, prix);
+        addCourse.setString(4, heureDepart);
+        addCourse.setDouble(5, prix);
+
         addCourse.executeUpdate();
         addCourse.close();
     }

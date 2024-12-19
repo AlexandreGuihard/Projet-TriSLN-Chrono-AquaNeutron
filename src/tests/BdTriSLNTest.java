@@ -19,45 +19,37 @@ public class BdTriSLNTest {
     private BdTriSLN bdTriSLN;
 
     public BdTriSLNTest(){
-        this.bdTriSLN = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard") );
+        this.bdTriSLN = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBdelahaye", "delahaye", "delahaye") );
     }
 
-    // @Test
-    // public void testGetParticipantsCourseRelais() throws SQLException{
-    //     boolean licence= false;
-    //     String nomEquipe="bleu";
-    //     int idP= 1;
-    //     String Categorie = "1";
-    //     String nom= "Dupont";
-    //     String prenom="Carle";
-    //     char sexe= 'F';
-    //     String email="x.carle@yahoo.fr";
-    //     String ville="Paris";
-    //     boolean certification= true;
-    //     String tel="0647882565";
-    //     String dateDeNaissance = "2001-06-15";
-    //     Participant participant = new ParticipantCourseRelais(idP, nom, prenom, Categorie, sexe, email, ville, certification, tel, dateDeNaissance, licence, nomEquipe);
-    //     List<Participant> resultatUn =new ArrayList<>();
-    //     List<Participant> resultatDeux =new ArrayList<>();
-    //     resultatDeux = this.bdTriSLN.getParticipantsCourseRelais();
-    //     resultatUn.add(participant);
-    //     String compareUn = "";
-    //     String compareDeux = "";
-    //     for(Participant particip: resultatUn){
-    //         compareUn = compareUn + particip.toString();
-    //     }
-    //     for(Participant particip: resultatDeux){
-    //         compareDeux = compareDeux + particip.toString();
-    //     }
-    //     assertEquals(compareUn, compareDeux);
-    // }
-
+    @Test
+    public void testGetParticipantsCourseRelais() throws SQLException{
+        Participant participantUn = new ParticipantCourseRelais(1, "Dupont", "Carle", "MP", null, 'F', "x.carle@yahoo.fr", "Paris", true, "0647882565", "2001-01-20", "bleu", true);
+        Participant participantDeux = new ParticipantCourseRelais(3, "Sparkis", "Devoid", "S", "S1", 'M', "devoid.Sparkis@yahoo.fr", "Angers", false, "0695476132", "2001-02-03", "jaune", true);
+        Participant participantTrois = new ParticipantCourseRelais(9, "Pdf", "Amine", "CA", null, 'M', "gen@gmail.com", "Orleans", true, "0638991660", "2002-01-18", "rouge", true);
+        List<Participant> listeParticipants =new ArrayList<>();
+        List<Participant> listeParticipantReel =new ArrayList<>();
+        listeParticipantReel = this.bdTriSLN.getParticipantsCourseRelais();
+        listeParticipants.add(participantUn);
+        listeParticipants.add(participantDeux);
+        listeParticipants.add(participantTrois);
+        String compareReel = "";
+        String compareVoulu = "";
+        for(Participant particip: listeParticipants){
+            compareVoulu = compareVoulu + particip.toString() + "\n";
+        }
+        for(Participant particip: listeParticipantReel){
+            compareReel = compareReel + particip.toString() + "\n";
+        }
+        assertEquals(compareVoulu, compareReel);
+    }
+    
     @Test
     public void testGetCourses() throws SQLException{
         List<Course> listeCourses = new ArrayList<>();
         Course courseUn = new Course(1, "Course feur", "Relais", "PU", "12:00:00", 130);
         Course courseDeux = new Course(2, "Marathon X", "S", "CA", "08:30:00", 200);
-        Course courseTrois = new Course(3, "Trail des montagnes", "XS", "S", "06:00:00", 150);
+        Course courseTrois = new Course(3, "Trail des montagnes", "xs", "S", "06:00:00", 150);
         Course courseQuatre = new Course(4, "Sprint 100m", "M", "MI", "10:00:00", 50);
         Course courseCinq = new Course(5, "Course nocturne", "XS", "PO", "21:00:00", 100);
         Course courseSix = new Course(6, "Randonnée pour débutants", "S", "CA", "09:00:00", 75);
@@ -74,10 +66,10 @@ public class BdTriSLNTest {
         String compareReel = "";
         String compareVoulu = "";
         for(Course course: listeCourses){
-            compareVoulu = compareVoulu + course.toString();
+            compareVoulu = compareVoulu + course.toString() + "\n";
         }
         for(Course course: lesCoursesReelles){
-            compareReel = compareReel + course.toString();
+            compareReel = compareReel + course.toString()+ "\n";
         }
         assertEquals(compareVoulu, compareReel);
     }
@@ -85,7 +77,7 @@ public class BdTriSLNTest {
     @Test
     public void testGetClassements(){
         List<Classement> listeClassements = new ArrayList<>();
-        
+
 
     }
 

@@ -1,4 +1,11 @@
--- Inserts de toutes les donnÃ©es
+-- Inserts de toutes les données
+insert into FORMATCOURSE values
+(1, 'Jeune'),
+(2, 'XS'),
+(3, 'S'),
+(4, 'M'),
+(5, 'Relais');
+
 insert into CATEGORIE (idCategorie, categorie, sousCategorie) values
 (1, 'MP', null),
 (2, 'PO', null),
@@ -31,13 +38,13 @@ insert into PARTICIPANT values
 (9, 'Pdf', 'Amine', 6, 'M', 'gen@gmail.com', 'Orleans', true, '0638991660', null, null, '2002-01-18', 'rouge', true);-- Relais
 
 insert into EPREUVE values
-(1, 'Course feur', 'Relais', 3, '12:00:00', 130),
-(2, 'Marathon X', 'S', 6, '08:30:00', 200),
-(3, 'Trail des montagnes', 'XS', 10, '06:00:00', 150),
-(4, 'Sprint 100m', 'M', 5, '10:00:00', 50),
-(5, 'Course nocturne', 'XS', 2, '21:00:00', 100),
-(6, 'RandonnÃ©e pour dÃ©butants', 'S', 6, '09:00:00', 75),
-(7, 'Ultra-marathon', 'Relais', 9, '04:30:00', 300);
+(1, 'Course feur', 5, 3, '12:00:00', 130),
+(2, 'Marathon X', 3, 6, '08:30:00', 200),
+(3, 'Trail des montagnes', 2, 9, '06:00:00', 150),
+(4, 'Sprint 100m', 4, 5, '10:00:00', 50),
+(5, 'Course nocturne', 2, 2, '21:00:00', 100),
+(6, 'Randonnée pour débutants', 3, 6, '09:00:00', 75),
+(7, 'Ultra-marathon', 5, 8, '04:30:00', 300);
 
 insert into PARTICIPER values
 (1, 1, true),

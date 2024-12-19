@@ -14,6 +14,7 @@ public class ParticipantCourseRelais extends Participant{
      * @param nom le nom du participant
      * @param prenom le prénom du participant
      * @param categorie la catégorie du participant
+     * @param sousCategorie la sous catégorie du participant
      * @param sexe le sexe du participant
      * @param email l'email du participant
      * @param ville la ville où habite le participant
@@ -63,5 +64,13 @@ public class ParticipantCourseRelais extends Participant{
     @Override
     public void setLicence(boolean licence){
         this.licence=licence;
+    }
+
+    /**
+     * @return la modélisation en chaîne de caractère du participant à une course avec relais
+     */
+    @Override
+    public String toString(){
+        return super.toString()+"\nNom d'équipe: "+nomEquipe;
     }
 }
