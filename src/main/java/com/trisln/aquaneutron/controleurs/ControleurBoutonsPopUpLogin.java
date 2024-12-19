@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
@@ -21,9 +22,19 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
     private Label infoEmailLabel;
     @FXML
     private Button btnValiderEmail;
+    @FXML
+    private TextField verifCodeField;
+    @FXML
+    private Label infoCodeLabel;
+    @FXML
+    private Button btnValiderCode;
+
+    private String token;
+    private int nbEssai = 3;
 
     public ControleurBoutonsPopUpLogin(TriSLN vue) {
         this.vue = vue;
+        this.token = null;
     }
 
     @Override
@@ -52,19 +63,41 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
                             Utilisateur u = this.vue.getUtilisateur();
 
                             // Générer un token pour l'email de réinitialisation
-                            String token = u.genererTokenReinitialisation();
+                            this.token = u.genererTokenReinitialisation();
 
                             // Appeler la méthode pour envoyer l'email avec le token
                             u.envoyerEmailDeReinitialisation(fieldEmail, token);
+                            this.btnValiderEmail.setDisable(true);
+                            this.vue.affichePopUpCode(token, this);
                         } else {
                             this.infoEmailLabel.setText("L'email n'existe pas dans la base de données.");
                         }
                     } catch (SQLException e) {
                         this.infoEmailLabel.setText("Un problème est survenu dans la base de données.");
                         e.printStackTrace(); // Loguer l'exception pour le débogage
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
                 break;
+
+            case "btnValiderCode":
+                System.out.println("Clique valider code");
+                String fieldCode = verifCodeField.getText();
+                if (nbEssai != 0) {
+                    if (!token.equals(fieldCode)) {
+                        this.nbEssai--;
+                        this.infoCodeLabel.setText("Mauvais code. Tentatives restantes : " + this.nbEssai);
+                        System.out.println(nbEssai);
+                    } else if (token == null || token.isEmpty()) {
+                        this.infoCodeLabel.setText("/!\\Problème : Aucun token. Veuillez recommencer le processus");
+                    } else {
+                        System.out.println("Code bon");
+                    }
+                } else {
+                    this.token = null;
+                    this.infoCodeLabel.setText("Vous n'avez plus de tentative. Veuillez recommencer le processus.");
+                }
         }
     }
 }
