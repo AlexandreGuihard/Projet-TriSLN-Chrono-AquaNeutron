@@ -146,7 +146,15 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     break;
                 case "btnCourses":
                     super.getVue().afficheCourses();
-                    break;    
+                    break;
+                case "btnConnexion":
+                    System.out.println("Clique se connecter");
+                    super.getVue().afficheLogin();
+                    break;
+                break;
+            default:
+                System.out.println("Accueil");
+                break;
                 default:
                     super.handle(btn);
                     break;

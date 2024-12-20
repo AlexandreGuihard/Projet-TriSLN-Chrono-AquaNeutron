@@ -1,8 +1,8 @@
 package com.trisln.aquaneutron.controleurs;
 
-import javafx.event.EventHandler;
-
 import java.io.IOException;
+import java.sql.SQLException;
+import javafx.event.EventHandler;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
@@ -71,17 +71,41 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
 
     @Override
     public void handle(ActionEvent event) {
-        try{
-            Button btn=(Button) event.getSource();
-            if(btn.getId().equals("btnConnecter")){
-                super.getVue().afficheAccueilConnecte();
-            }
-            else{
-                super.handle(btn);
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
+        Button btn = (Button) event.getSource();
+        switch (btn.getId()) {
+            case "btnAccueil":
+                System.out.println("Clique accueil");
+                try {
+                    super.getVue.afficheAccueil();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "btnConnecter":
+                System.out.println("Clique connection");
+                try {
+                    super.getVue().getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
+                    idInfoLabel.setText("Identifié en tant que " + this.vue.getUtilisateur().getRole());
+                    super.getVue().afficheAccueilConnecte();
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                } 
+                catch (NoSuchUserException e){
+                    idInfoLabel.setText("Cette utilisateur n'existe pas");
+                }
+                break;
+            case "btnForgotPassword":
+                System.out.println("Clique mot de passe oublié");
+                try {
+                    super.getVue().affichePopUpLogin();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                super.handle(btn)
+                break;
         }
     }
 }

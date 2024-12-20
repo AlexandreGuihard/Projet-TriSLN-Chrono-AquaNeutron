@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 import com.trisln.aquaneutron.vue.TriSLN;
@@ -61,67 +62,50 @@ public class Utilisateur {
         TriSLN.getBd().changePassword(this.identifiant, newPassword);
     }
 
-    public String genererTokenReinitialisation(String email) {
+    public String genererTokenReinitialisation() {
         // Génère un token sécurisé de 32 caractères
         SecureRandom random = new SecureRandom();
         String token = new BigInteger(130, random).toString(32);
-
-        // Sauvegarde le token et l'email dans la base de données avec une expiration
-        // éventuelle
-        // Exemple : cette partie dépend de la manière dont tu gères les tokens dans ta
-        // base de données.
-        // Tu pourrais sauvegarder ce token avec une date d'expiration, associée à
-        // l'email dans la table User.
-
-        // Assurons-nous que le token est valide et unique dans ta base de données (code
-        // à adapter selon ta BD).
-        try {
-            // Cette méthode doit être implémentée dans ton modèle Utilisateur pour
-            // enregistrer le token
-            this.enregistrerToken(email, token);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        System.out.println("Token fait");
         return token;
     }
 
-    public void enregistrerToken(String email, String token) throws SQLException {
-        TriSLN.getBd().enregistrerToken(email, token);
-    }
-
-    // TODO modifier les info ainsi que creer une adresse email
-    public void envoyerEmailDeReinitialisation(String email, String token) {
-        String lienReinitialisation = "http://localhost:8080/reset-password?token=" + token;
+    public void envoyerEmailDeReinitialisation(String emailTo, String token) {
+        Dotenv dotenv = Dotenv.configure().filename("src/main/java/com/trisln/aquaneutron/modele/.env").load();
+        String password = dotenv.get("EMAIL_PASSWORD");
+        String emailFrom = "noreply.trislnaquaneutron@gmail.com";
+        System.out.println("Envoie d'email");
         String sujet = "Réinitialisation de votre mot de passe";
-        String contenu = "Cliquez sur le lien suivant pour réinitialiser votre mot de passe : " + lienReinitialisation;
+        String contenu = "Entrez le token suivant dans votre application pour modifier votre mot de passe : " + token;
 
         // Propriétés pour l'email
         Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
-        // Identifiants de ton email
-        String username = "noreply.trislnaquaneutron@gmail.com";
-        String password = "L:Ub3[7viH4^8hU$";
-
-        // Création de la session
-        Session session = Session.getInstance(properties, new Authenticator() {
-            @Override
+        Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(emailFrom, password);
             }
         });
 
+        System.out.println("Created session");
+
+        // Identifiants de ton email
+        Message message = new MimeMessage(session);
+        System.out.println("Message made");
+
+
         try {
             // Création du message
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));  // Adresse d'envoi
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));  // Destinataire
+            message.setFrom(new InternetAddress(emailFrom));  // Adresse d'envoi
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo));  // Destinataire
             message.setSubject(sujet);  // Sujet
             message.setText(contenu);  // Contenu du message
+            System.out.println("Attribute of message made");
 
             // Envoi de l'email
             Transport.send(message);

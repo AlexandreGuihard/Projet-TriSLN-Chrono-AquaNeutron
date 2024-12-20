@@ -2,6 +2,7 @@ package com.trisln.aquaneutron.vue;
 
 import javafx.application.Application;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -40,6 +41,10 @@ public class TriSLN extends Application{
     private FenetreClassements fenetreClassements;
     private FenetreCourses fenetreCourses;
     private FenetreLogin fenetreLogin;
+
+    private Utilisateur utilisateur;
+    private Stage popUpStage;
+  
     private String precFXML;
     private ControleurBoutons precControleur;
 
@@ -84,6 +89,57 @@ public class TriSLN extends Application{
             e.printStackTrace();
         }
         
+    }
+
+    public void affichePopUpLogin() throws IOException {
+        if (this.popUpStage != null && this.popUpStage.isShowing()) {
+            this.stage.toFront();
+            return;
+        }
+
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpAskEmail.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsPopUpLogin(this));
+            this.popUpStage = new Stage();
+            this.popUpStage.setResizable(false);
+            this.popUpStage.setAlwaysOnTop(true);
+
+            this.fenetreLogin = new FenetreLogin(loader, this.popUpStage);
+
+            // Si on ferme la pop-up
+            this.stage.setOnCloseRequest(event -> {
+                this.popUpStage = null;
+            });
+
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void affichePopUpCode(String token, ControleurBoutonsPopUpLogin controleur) throws IOException {
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpAskCode.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(controleur);
+            BorderPane page = (BorderPane) loader.load();
+            Scene scene = new Scene(page);
+            this.popUpStage.setScene(scene);
+            this.popUpStage.setResizable(false);
+            this.popUpStage.setAlwaysOnTop(true);
+
+//            this.fenetreLogin = new FenetreLogin(loader, this.popUpStage);
+
+            // Si on ferme la pop-up
+            this.stage.setOnCloseRequest(event -> {
+                this.popUpStage = null;
+            });
+
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void afficheAccueil() throws IOException {
