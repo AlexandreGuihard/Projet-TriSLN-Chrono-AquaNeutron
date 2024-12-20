@@ -415,7 +415,7 @@ public class TriSLN extends Application{
         try {
             ProcessBuilder processBuilder = new ProcessBuilder(
                 "python3",
-                "src/bd/generationsPDF.py",
+                "src/main/java/com/trisln/aquaneutron/bd/generationsPDF.py",
                 host, user, password, database, categorieCode, genre
             );
 

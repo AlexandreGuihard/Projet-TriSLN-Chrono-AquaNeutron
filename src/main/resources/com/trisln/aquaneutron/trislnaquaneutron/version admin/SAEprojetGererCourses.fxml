@@ -114,7 +114,7 @@
                   <Insets bottom="5.0" left="40.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <VBox prefHeight="164.0" prefWidth="169.0">
+            <VBox prefHeight="164.0" prefWidth="169.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" prefHeight="35.0" prefWidth="288.0" style="-fx-font-weight: bold;" text="TriSLN">
                      <font>
@@ -132,8 +132,32 @@
                </children>
             </VBox>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+            <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="576.0">
                <buttons>
+                  <Button fx:id="Bbenevole" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="156.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@img/iconeajouter.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Ajout bénévole">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">

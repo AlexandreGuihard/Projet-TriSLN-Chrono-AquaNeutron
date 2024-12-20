@@ -78,7 +78,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnPO" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                 <Button fx:id="btnPO" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="68.0" prefWidth="169.0" style="-fx-background-color: #2596BE;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -352,8 +352,35 @@
                </children>
             </VBox>
             <Region prefHeight="155.0" prefWidth="321.0" HBox.hgrow="ALWAYS" />
-            <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="420.0">
+            <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="677.0">
                <buttons>
+                  <Button fx:id="Bbenevole" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="146.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="112.0" prefWidth="140.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@img/iconeajouter.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Ajout bénévole">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                     <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
@@ -405,7 +432,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  	      <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -479,7 +506,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnAjouterParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnAjouterParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -499,14 +526,11 @@
                            </children>
                         </VBox>
                      </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnSuprimerParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnSuprimerParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -526,14 +550,11 @@
                            </children>
                         </VBox>
                      </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnModifierParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnModifierParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -553,9 +574,6 @@
                            </children>
                         </VBox>
                      </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>

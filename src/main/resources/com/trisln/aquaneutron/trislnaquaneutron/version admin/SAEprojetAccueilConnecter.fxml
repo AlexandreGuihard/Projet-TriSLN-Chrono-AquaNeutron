@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="827.0" prefWidth="1321.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="65.0" style="-fx-font-weight: bold;" text="TriSLN">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="TriSLN">
                <font>
                   <Font size="64.0" />
                </font>
@@ -25,7 +25,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="68.0" style="-fx-font-weight: bold;" text="AquaNeutron">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="68.0" prefWidth="1321.0" style="-fx-font-weight: bold;" text="AquaNeutron">
                <font>
                   <Font size="64.0" />
                </font>
@@ -91,23 +91,20 @@
                </HBox.margin>
             </ImageView>
             <Region HBox.hgrow="ALWAYS" />
-            <ButtonBar prefHeight="120.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
+            <ButtonBar prefHeight="155.0" prefWidth="282.0">
               <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="Bbenevole" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnAccueilMouseEntered" onMouseExited="#handleBtnAccueilMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
-                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                        <VBox alignment="CENTER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0">
                                  <image>
-                                    <Image url="@img/compte.png" />
+                                    <Image url="@img/iconeajouter.png" />
                                  </image>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
                               </ImageView>
-                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Mon compte">
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Ajout bénévole">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="13.0" />
                                  </font>
                               </Label>
                            </children>
