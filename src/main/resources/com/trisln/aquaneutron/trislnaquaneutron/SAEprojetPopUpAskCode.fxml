@@ -31,7 +31,10 @@
             </Label>
             <TextField fx:id="verifCodeField" promptText="code de vérification" />
             <Label fx:id="infoCodeLabel" />
-            <Button fx:id="btnValiderCode" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="75.0" style="fx-background-radius: 0; -fx-background-color: #2596BE;" text="Valider" textFill="WHITE" />
+            <Button fx:id="btnValiderCode" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="75.0" style="fx-background-radius: 0; -fx-background-color: #2596BE;" text="Valider" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </VBox>
    </center>

@@ -22,6 +22,7 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
     private Label infoEmailLabel;
     @FXML
     private Button btnValiderEmail;
+
     @FXML
     private TextField verifCodeField;
     @FXML
@@ -29,8 +30,24 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
     @FXML
     private Button btnValiderCode;
 
+    @FXML
+    private TextField newMDPField;
+    @FXML
+    private Button btnViewNewMDP;
+    @FXML
+    private TextField confirmMDPField;
+    @FXML
+    private Button btnViewConfMDP;
+    @FXML
+    private Label infoMDPLabel;
+    @FXML
+    private Button btnValiderNewMDP;
+
     private String token;
     private int nbEssai = 3;
+
+    private boolean isNewVisible;
+    private boolean isConfVisible;
 
     public ControleurBoutonsPopUpLogin(TriSLN vue) {
         this.vue = vue;
@@ -97,6 +114,16 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
                 } else {
                     this.token = null;
                     this.infoCodeLabel.setText("Vous n'avez plus de tentative. Veuillez recommencer le processus.");
+                }
+
+            case "btnValiderNewMDP":
+                System.out.println("Clique valider mdp");
+                String fieldNewMDP = newMDPField.getText();
+                String fieldConfirmMDP = confirmMDPField.getText();
+                if (fieldNewMDP.isEmpty() || fieldConfirmMDP.isEmpty()) {
+                    if (fieldNewMDP.equals(fieldConfirmMDP)) {
+                        System.out.println("OK");
+                    }
                 }
         }
     }
