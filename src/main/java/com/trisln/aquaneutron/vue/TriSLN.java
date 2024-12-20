@@ -1,5 +1,6 @@
 package com.trisln.aquaneutron.vue;
 
+import com.trisln.aquaneutron.modele.Utilisateur;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
@@ -53,7 +54,8 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
+        bd = new BdTriSLN(new ConnexionMySQL("localhost", "DBTriSLN", "kracocks", "kLcSQm7%9j"));
+        this.utilisateur = new Utilisateur();
         this.connecte=false;
     }
     public void start(Stage stage){
@@ -428,6 +430,10 @@ public class TriSLN extends Application{
 
     public Stage getStage(){
         return this.stage;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return this.utilisateur;
     }
     
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){

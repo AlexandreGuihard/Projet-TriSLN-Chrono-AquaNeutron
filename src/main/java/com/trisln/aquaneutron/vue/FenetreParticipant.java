@@ -123,8 +123,8 @@ public class FenetreParticipant{
 //
     private static void configureFileChooser(final FileChooser fileChooser){                           
         fileChooser.setTitle("liste des pariticpants");
-        //fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))); 
-        fileChooser.setInitialDirectory(new File("./data")); 
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        //fileChooser.setInitialDirectory(new File("./data"));
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All", "*.csv","*.xls"),
                 new FileChooser.ExtensionFilter("csv", "*.csv"),

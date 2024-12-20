@@ -192,12 +192,10 @@ public class BdTriSLN{
 
     public boolean verifConnexion(String identifiant, String motDePasse){
         try{
-            System.out.println("here1");
         Statement st=this.connexion.createStatement();
-        System.out.println("here2");
         ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
-            String motDePasseBd=rs.getString(2);
+            String motDePasseBd=rs.getString(3);
             return motDePasseBd.equals(motDePasse);
         }
         return false;

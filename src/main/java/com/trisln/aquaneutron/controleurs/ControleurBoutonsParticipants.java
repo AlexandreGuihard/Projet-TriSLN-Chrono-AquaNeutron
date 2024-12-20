@@ -220,12 +220,12 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                 FXMLLoader loader=null;
                 switch(btn.getId()){
                     case "btnV":
-                        file=new File("src/vue/fxml/SAEprojetPopUpVeteran.fxml");
+                        file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpVeteran.fxml");
                         loader=new FXMLLoader(file.toURI().toURL());
                         super.getVue().affichePopUp(loader, "V");
                         break;
                     case "btnS":
-                        file=new File("src/vue/fxml/SAEprojetPopUpSenior.fxml");
+                        file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpSenior.fxml");
                         loader=new FXMLLoader(file.toURI().toURL());
                         super.getVue().affichePopUp(loader, "S");
                         break;

@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import javafx.event.EventHandler;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -13,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
+import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
 public class ControleurBoutonsLogin extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
@@ -23,6 +26,12 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
     private Button btnAccueil;
     @FXML
     private Button btnRetour;
+    @FXML
+    private TextField idIdentifiant;
+    @FXML
+    private TextField idMdp;
+    @FXML
+    private Label idInfoLabel;
 
     public ControleurBoutonsLogin(TriSLN vue){
         super();
@@ -76,7 +85,7 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
             case "btnAccueil":
                 System.out.println("Clique accueil");
                 try {
-                    super.getVue.afficheAccueil();
+                    super.getVue().afficheAccueil();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -85,7 +94,7 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
                 System.out.println("Clique connection");
                 try {
                     super.getVue().getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
-                    idInfoLabel.setText("Identifié en tant que " + this.vue.getUtilisateur().getRole());
+                    idInfoLabel.setText("Identifié en tant que " + super.getVue().getUtilisateur().getRole());
                     super.getVue().afficheAccueilConnecte();
                 }
                 catch (SQLException e) {
@@ -104,7 +113,7 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
                 }
                 break;
             default:
-                super.handle(btn)
+                super.handle(btn);
                 break;
         }
     }
