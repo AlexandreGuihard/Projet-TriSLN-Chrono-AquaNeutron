@@ -1,6 +1,6 @@
 package com.trisln.aquaneutron.bd;
 import com.trisln.aquaneutron.modele.*;
-import com.trisln.aquaneutron.modele.exceptions.NoSuchUserException;
+import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
 import java.sql.*;
 import java.util.List;
@@ -192,7 +192,9 @@ public class BdTriSLN{
 
     public boolean verifConnexion(String identifiant, String motDePasse){
         try{
+            System.out.println("here1");
         Statement st=this.connexion.createStatement();
+        System.out.println("here2");
         ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
             String motDePasseBd=rs.getString(2);
@@ -201,7 +203,7 @@ public class BdTriSLN{
         return false;
         }
         catch (Exception e){
-            System.out.println("erreur");
+            e.printStackTrace();
             return false;
         }
     }

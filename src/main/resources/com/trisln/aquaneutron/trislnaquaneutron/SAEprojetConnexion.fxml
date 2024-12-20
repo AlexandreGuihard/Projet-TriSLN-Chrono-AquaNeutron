@@ -48,16 +48,6 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="idMdp" promptText="Password" />
-                  <Button fx:id="btnForgotPassword" mnemonicParsing="false" onAction="#handle" style="-fx-background-color: white;" text="Mot de passe oublié" textFill="MEDIUMBLUE" underline="true">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label fx:id="idInfoLabel">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
                </children>
                <VBox.margin>
                   <Insets left="400.0" right="400.0" top="50.0" />
@@ -131,7 +121,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnLoginMouseEntered" onMouseExited="#handleBtnLoginMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>

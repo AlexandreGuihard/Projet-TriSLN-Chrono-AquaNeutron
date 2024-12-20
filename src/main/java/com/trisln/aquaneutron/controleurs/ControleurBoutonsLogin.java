@@ -2,51 +2,51 @@ package com.trisln.aquaneutron.controleurs;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javafx.event.EventHandler;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import com.trisln.aquaneutron.modele.Utilisateur;
-import com.trisln.aquaneutron.modele.exceptions.NoSuchUserException;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
-public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
+public class ControleurBoutonsLogin extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     @FXML
-    private Button btnAccueil;
-    @FXML
-    private TextField idIdentifiant;
-    @FXML
-    private PasswordField idMdp;
-    @FXML
-    private Label idInfoLabel;
-    @FXML
     private Button btnConnecter;
     @FXML
-    private Button btnForgotPassword;
+    private Button btnAccueil;
+    @FXML
+    private Button btnRetour;
 
     public ControleurBoutonsLogin(TriSLN vue){
-        this.vue = vue;
-        this.vue.setBAccueil(this.btnAccueil);
+        super();
+        this.setBoutons(vue);
+    }
+
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
+        super.setBRetour(btnRetour);
+        super.setBAccueil(btnAccueil);
     }
 
     @FXML
     public void handleBtnLoginMouseEntered(MouseEvent event){
-        try {
-            Button btn = (Button) event.getSource();
-            switch (btn.getId()) {
-                case "btnConnecter":
-                    System.out.println("Entered connection");
-                    this.vue.changeButtonColor(this.btnConnecter, "#105c74", null);
-                    break;
+        try{
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnConnecter")){
+                super.getVue().changeButtonColor(this.btnConnecter, "#105c74", "");
             }
-        } catch (Exception e) {
+            else{
+                super.handleBtnsMouseEntered(btn);
+            }
+        }
+        catch(Exception e){
             System.err.println("Erreur");
             e.printStackTrace();
         }
@@ -54,15 +54,16 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
 
     @FXML
     public void handleBtnLoginMouseExited(MouseEvent event){
-        try {
-            Button btn = (Button) event.getSource();
-            switch (btn.getId()) {
-                case "btnConnecter":
-                    System.out.println("Exited connection");
-                    this.vue.changeButtonColor(this.btnConnecter, "#2596BE", null);
-                    break;
+        try{
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnConnecter")){
+                super.getVue().changeButtonColor(this.btnConnecter, "#2596BE", "");
             }
-        } catch (Exception e) {
+            else{
+                super.handleBtnsMouseExited(btn);
+            }
+        }
+        catch(Exception e){
             System.err.println("Erreur");
             e.printStackTrace();
         }
@@ -75,7 +76,7 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
             case "btnAccueil":
                 System.out.println("Clique accueil");
                 try {
-                    this.vue.afficheAccueil();
+                    super.getVue.afficheAccueil();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -83,9 +84,9 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
             case "btnConnecter":
                 System.out.println("Clique connection");
                 try {
-                    this.vue.getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
+                    super.getVue().getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
                     idInfoLabel.setText("Identifié en tant que " + this.vue.getUtilisateur().getRole());
-                    this.vue.afficheAccueilConnecte();
+                    super.getVue().afficheAccueilConnecte();
                 }
                 catch (SQLException e) {
                     e.printStackTrace();
@@ -97,14 +98,14 @@ public class ControleurBoutonsLogin implements EventHandler<ActionEvent>{
             case "btnForgotPassword":
                 System.out.println("Clique mot de passe oublié");
                 try {
-                    this.vue.affichePopUpLogin();
+                    super.getVue().affichePopUpLogin();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
             default:
+                super.handle(btn)
                 break;
         }
     }
-    
 }

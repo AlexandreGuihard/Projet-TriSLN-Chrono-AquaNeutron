@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.trisln.aquaneutron.modele.Participant;
-import com.trisln.aquaneutron.modele.exceptions.WrongInformationException;
+import com.trisln.aquaneutron.modele.Exceptions.WrongInformationException;
 import com.trisln.aquaneutron.modele.Participant;
 
 /**

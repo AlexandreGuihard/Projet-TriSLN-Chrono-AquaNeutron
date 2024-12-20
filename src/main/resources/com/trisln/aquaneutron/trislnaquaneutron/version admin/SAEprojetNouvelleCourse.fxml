@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Nouvelle Course" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="64.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="134.0" prefWidth="188.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" text="Nom">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="idNom" prefHeight="30.0" prefWidth="188.0">
+                           <opaqueInsets>
+                              <Insets left="10.0" />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Format">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <MenuButton fx:id="idFormat" mnemonicParsing="false" prefHeight="33.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="-- Choisir un format --">
+                          <items>
+                            <MenuItem fx:id="btnJeune" mnemonicParsing="false" text="Jeune" />
+                            <MenuItem fx:id="btnXS" mnemonicParsing="false" text="XS" />
+                              <MenuItem fx:id="btnS" mnemonicParsing="false" text="S" />
+                              <MenuItem fx:id="btnM" mnemonicParsing="false" text="M" />
+                          </items>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </MenuButton>
+                     </children>
+                  </VBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Départ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <VBox alignment="BOTTOM_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Date">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="idDate" prefHeight="30.0" prefWidth="188.0" promptText="jj/mm/aa">
+                                       <opaqueInsets>
+                                          <Insets left="10.0" />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <VBox alignment="BOTTOM_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Heure">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="idHeure" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm">
+                                       <opaqueInsets>
+                                          <Insets left="10.0" />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Catégories :">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <GridPane prefWidth="602.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <CheckBox fx:id="idMinPoussins" mnemonicParsing="false" text="Mini-Poussins" />
+                              <CheckBox fx:id="idBenjamins" mnemonicParsing="false" text="Benjamins" GridPane.columnIndex="1" />
+                              <CheckBox fx:id="idPoussins" mnemonicParsing="false" text="Poussins" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="idMinimes" mnemonicParsing="false" text="Minimes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="idPupilles" mnemonicParsing="false" text="Pupilles" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="idCadets" mnemonicParsing="false" text="Cadets" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="idJunoirs" mnemonicParsing="false" text="Juniors" GridPane.columnIndex="2" />
+                              <CheckBox fx:id="idSeniors" mnemonicParsing="false" text="Seniors" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="idVetran" mnemonicParsing="false" text="Vétéran" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnAjoutCourse" minWidth="250.0" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" style="-fx-background-color: #2596BE;" text="Ajouter la course" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <HBox prefHeight="85.0" prefWidth="1321.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="140.0" fitWidth="140.0">
+               <image>
+                  <Image url="@img/TriSLN_AquaNeutron.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="40.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <VBox prefHeight="164.0" prefWidth="169.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="288.0" style="-fx-font-weight: bold;" text="TriSLN">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="209.0" style="-fx-font-weight: bold;" text="AquaNeutron">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="579.0">
+               <buttons>
+                  <Button fx:id="Bbenevole" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="136.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@img/iconeajouter.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Ajout bénévole">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@img/compte.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Mon compte">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@img/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Accueil">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCoursesMouseEntered" onMouseExited="#handleBtnCoursesMouseExited" prefHeight="120.0" prefWidth="804.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0">
+                                 <image>
+                                    <Image url="@img/log_out.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Se déconnecter">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </buttons>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </ButtonBar>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
+               <image>
+                  <Image url="@img/retour.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Button>
+   </bottom>
+</BorderPane>

@@ -1,16 +1,23 @@
 package com.trisln.aquaneutron.controleurs;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import com.trisln.aquaneutron.vue.TriSLN;
 
 import java.io.IOException;
 
 
-public class ControleurBoutonsCompte implements EventHandler<ActionEvent> {
+
+import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import com.trisln.aquaneutron.vue.TriSLN;
+
+
+public class ControleurBoutonsCompte extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
     @FXML
@@ -21,24 +28,32 @@ public class ControleurBoutonsCompte implements EventHandler<ActionEvent> {
     private Button btnDeconnexion;
 
     public ControleurBoutonsCompte(TriSLN vue){
-        this.vue = vue;
+        super();
+        this.setBoutons(vue);
+    }
+
+    private void setBoutons(TriSLN vue){
+        super.setVue(vue);
+        super.setBRetour(btnRetour);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setBAccueil(btnAccueil);
     }
 
     @FXML
     public void handleBtnCompteMouseEntered(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handleBtnsMouseEntered(btn);
             }
+            else{
+                super.handleBtnsMouseExited(btn);
+            }
+
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -49,18 +64,18 @@ public class ControleurBoutonsCompte implements EventHandler<ActionEvent> {
     @FXML
     public void handleBtnCompteMouseExited(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnDeconnexion":
-                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-                    break;
-                case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
-                    break;
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handleBtnsMouseExited(btn);
             }
+            else{
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -71,19 +86,21 @@ public class ControleurBoutonsCompte implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event){
         try {
-            Button btn=(Button) event.getSource();
-            switch(btn.getId()){
-                case "btnRetour":
-                case "btnAccueil":
-                    this.vue.afficheAccueilConnecte();
-                    break;
-                case "btnDeconnexion":
-                    this.vue.afficheAccueil();
-                    break;
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
+            Button btn=(Button)event.getSource();
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handle(btn);
             }
+            else{
+                super.handleBtnsMouseExited(btn);
+            }
+            
+
         } 
-        catch (IOException e)
-        {
+        catch (Exception e){
             e.printStackTrace();
         } 
     }

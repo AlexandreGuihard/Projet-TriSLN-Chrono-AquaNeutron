@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import io.github.cdimascio.dotenv.Dotenv;
 
-import com.trisln.aquaneutron.modele.exceptions.NoSuchUserException;
+import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 import java.security.SecureRandom;
