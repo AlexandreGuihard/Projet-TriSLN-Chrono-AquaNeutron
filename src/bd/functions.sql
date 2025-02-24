@@ -64,7 +64,7 @@ END |
 create or replace function getCategorieFromId(idCategorie int) returns varchar(42)
 begin
     declare categ varchar(42);
-    select categorie into categ from CATEGORIE where idCategorie=idCategorie;
+    select categorie into categ from CATEGORIE where idCategorie=idCategorie LIMIT 1;
     return categ;
 end|
 

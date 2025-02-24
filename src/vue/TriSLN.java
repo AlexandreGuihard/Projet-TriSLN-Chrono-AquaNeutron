@@ -233,7 +233,7 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheNvlCourse() throws IOException{
+    public void afficheNvlCourse() throws IOException, Exception{
         File file=new File("src/vue/fxml/SAEprojetNouvelleCourse.fxml");
         this.precFXML = "src/vue/fxml/SAEprojetGererCourses.fxml";
         this.precControleur = new ControleurBoutonsCourses(this);
