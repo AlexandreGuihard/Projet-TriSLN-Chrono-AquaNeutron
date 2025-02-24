@@ -28,6 +28,10 @@ def generate_pdf_classement(host, user, password, database, genre, categorie):
         categorie_condition = ""
         
         if genre.lower() != "mixte":
+            if genre.lower() == "homme":
+                genre = "M"
+            else:
+                genre = "F"
             genre_condition = f"AND P.sexe = '{genre}'"
         
         if categorie.lower() != "toutes":

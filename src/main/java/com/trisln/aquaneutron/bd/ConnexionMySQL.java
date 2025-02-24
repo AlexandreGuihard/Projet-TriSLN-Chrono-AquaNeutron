@@ -8,7 +8,7 @@ public class ConnexionMySQL {
 	public ConnexionMySQL(String nomServeur, String nomBase, String nomLogin, String motDePasse) {
 		try {
 			//Class.forName("com.mysql.jdbc.Driver");
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver MySQL non trouvÃ©?");
 			mysql=null;
@@ -16,7 +16,7 @@ public class ConnexionMySQL {
 		}
 		try {
 			mysql = DriverManager.getConnection(
-					"jdbc:mysql://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
+					"jdbc:mariadb://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
 			connecte=true;
 		} catch (SQLException e) {
 			System.out.println("Echec de connexion!"); 
