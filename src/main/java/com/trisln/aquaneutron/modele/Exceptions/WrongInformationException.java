@@ -1,4 +1,4 @@
-package com.trisln.aquaneutron.modele.exceptions;
+package com.trisln.aquaneutron.modele.Exceptions;
 /**
  * Classe pour avertir que les informations saisies sont mauvaises
  */

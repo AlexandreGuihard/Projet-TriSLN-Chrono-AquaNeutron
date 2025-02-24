@@ -1,6 +1,6 @@
 package com.trisln.aquaneutron.bd;
 import com.trisln.aquaneutron.modele.*;
-import com.trisln.aquaneutron.modele.exceptions.NoSuchUserException;
+import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
 import java.sql.*;
 import java.util.List;
@@ -195,13 +195,13 @@ public class BdTriSLN{
         Statement st=this.connexion.createStatement();
         ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
-            String motDePasseBd=rs.getString(2);
+            String motDePasseBd=rs.getString(3);
             return motDePasseBd.equals(motDePasse);
         }
         return false;
         }
         catch (Exception e){
-            System.out.println("erreur");
+            e.printStackTrace();
             return false;
         }
     }
@@ -232,6 +232,17 @@ public class BdTriSLN{
         ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
             return rs.getString(2);
+        } else {
+            throw new NoSuchUserException();
+        }
+    }
+
+    public String getIdentifiantByEmail(String email) throws SQLException, NoSuchUserException{
+        PreparedStatement ps = this.connexion.prepareStatement("select identifiant from UTILISATEUR where email = ?");
+        ps.setString(1, email);
+        ResultSet  rs = ps.executeQuery();
+        if(rs.next()){
+            return rs.getString(1);
         } else {
             throw new NoSuchUserException();
         }

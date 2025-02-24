@@ -1,6 +1,6 @@
 package com.trisln.aquaneutron.modele;
 
-import com.trisln.aquaneutron.modele.exceptions.ChronoNotStartedException;
+import com.trisln.aquaneutron.modele.Exceptions.ChronoNotStartedException;
 
 /**
  * La classe Chronometrage permet de mesurer le temps écoulé entre le démarrage

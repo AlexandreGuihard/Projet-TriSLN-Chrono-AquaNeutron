@@ -1,15 +1,20 @@
 package com.trisln.aquaneutron.controleurs;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import com.trisln.aquaneutron.vue.TriSLN;
 
 import java.io.IOException;
 
-public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
+import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import com.trisln.aquaneutron.vue.TriSLN;
+
+public class ControleurBoutonsAccueil extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
     // log accueil et AccConnecter
@@ -24,49 +29,71 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
     @FXML
     private Button btnCourses;
     @FXML
-    private Button deconnecter;
+    private Button btnDeconnexion;
     @FXML
     private Button btnAccueil;
     @FXML
     private Button btnCompte;
 
     public ControleurBoutonsAccueil(TriSLN vue){
-        this.vue = vue;
-        this.vue.setBClassements(this.btnClassements);
-        this.vue.setBClassements(this.btnClassements2);
-        this.vue.setBConnexion(this.btnConnexion);
-        this.vue.setBParticipants(this.btnParticipants);
-        this.vue.setBCourses(this.btnCourses);
-        this.vue.setBDeconnexion(this.deconnecter);
-        this.vue.setBAccueil(this.btnAccueil);
+        super();
+        this.setBoutons(vue);
+    }
+
+    private void setBoutons(TriSLN vue){
+        super.setBCompte(btnCompte);
+        super.setBAccueil(btnAccueil);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setVue(vue);
     }
 
     @FXML
     public void handleBtnAccueilMouseEntered(MouseEvent event){
         try{
+            boolean superButton=false;
+            Button changedButton=null;
+            String newBtnColor="";
+            String otherStyle="";
             Button btn=(Button)event.getSource();
-            switch(btn.getId()){
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+                super.handleBtnsMouseEntered(btn);
+            }
+            else{
+                switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#105c74", null);
+                changedButton=this.btnClassements;
+                newBtnColor="#105c74";
                     break;
                 case "btnClassements2":
-                    this.vue.changeButtonColor(this.btnClassements2, "#105c74", null);
+                changedButton=this.btnClassements2;
+                newBtnColor="#105c74";
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#105c74", null);
+                changedButton=this.btnParticipants;
+                        newBtnColor="#105c74";
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#105c74", null);    
+                changedButton=this.btnCourses;
+                newBtnColor="#105c74";   
                     break;
                 case "btnConnexion":
-                    this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
+                changedButton=this.btnConnexion;
+                newBtnColor="#105c74";
                     break;
-                case "deconnecter":
-                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
+                case "btnDeconnexion":
+                changedButton=this.btnDeconnexion;
+                newBtnColor="#105c74";
                     break;
                 case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
+                changedButton=this.btnCompte;
+                newBtnColor="#105c74";
                     break;
+                default:
+                    superButton=true;
+                    break;
+                }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            
             }
             
         }
@@ -79,29 +106,49 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
     @FXML
     public void handleBtnAccueilMouseExited(MouseEvent event){
         try{
-            Button btn=(Button)event.getSource();
+        boolean superButton=false;
+        Button changedButton=null;
+        String newBtnColor="";
+        String otherStyle="";
+        Button btn=(Button)event.getSource();
+        if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+            super.handleBtnsMouseExited(btn);
+        }
+        else{
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.changeButtonColor(this.btnClassements, "#2596BE", null);
+                changedButton=this.btnClassements;
+                newBtnColor="#2596BE";
                     break;
                 case "btnClassements2":
-                    this.vue.changeButtonColor(this.btnClassements2, "#2596BE", null);
+                changedButton=this.btnClassements2;
+                newBtnColor="#2596BE";
                     break;
                 case "btnParticipants":
-                    this.vue.changeButtonColor(this.btnParticipants, "#2596BE", null);
+                changedButton=this.btnParticipants;
+                        newBtnColor="#2596BE";
                     break;
                 case "btnCourses":
-                    this.vue.changeButtonColor(this.btnCourses, "#2596BE", null);    
+                changedButton=this.btnCourses;
+                newBtnColor="#2596BE";   
                     break;
                 case "btnConnexion":
-                    this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
+                changedButton=this.btnConnexion;
+                newBtnColor="#2596BE";
                     break;
-                case "deconnecter":
-                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
+                case "btnDeconnexion":
+                changedButton=this.btnDeconnexion;
+                newBtnColor="#2596BE";
                     break;
                 case "btnCompte":
-                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
+                changedButton=this.btnCompte;
+                newBtnColor="#2596BE";
                     break;
+                default:
+                    superButton=true;
+                    break;
+                }
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
             }
         }
         catch(Exception e){
@@ -124,18 +171,22 @@ public class ControleurBoutonsAccueil implements EventHandler<ActionEvent>{
                 case "btnClassements2":
                     this.vue.afficheClassements();
                     break;
-                // case "btnParticipants":
-
-                //     break;
-                // case "btnCourses":
-
-                //     break;
+                case "btnParticipants":
+                    this.vue.afficheParticipants();
+                    break;
+                case "btnCourses":
+                    this.vue.afficheCourses();
+                    break;
                 case "deconnecter":
                     this.vue.afficheAccueil();
                     break;
                 case "btnCompte":
                     this.vue.afficheMonCompte();
                     break;
+                default:
+                    this.vue.afficheAccueil();
+                break;
+
             }
             
         } 

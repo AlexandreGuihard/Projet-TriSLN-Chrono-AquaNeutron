@@ -6,6 +6,7 @@ module com.trisln.aquaneutron.trislnaquaneutron {
     requires java.sql;
     requires java.mail;
     requires mysql.connector.j;
+    requires java.dotenv;
 
     exports com.trisln.aquaneutron.bd;
     exports com.trisln.aquaneutron.controleurs;
