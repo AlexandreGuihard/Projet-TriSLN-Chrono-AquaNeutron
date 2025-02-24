@@ -370,12 +370,11 @@ public class TriSLN extends Application{
 
     public void afficheNvlCourse() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetNouvelleCourse.fxml");
-        this.precFXML = "src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetGererCourses.fxml";
-        this.precControleur = new ControleurBoutonsCourses(this);
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsNouvelleCourses(this));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            System.out.println("C'est de la faute de Romain");
             this.stage = this.fenetreCourses.getWindow();
             this.stage.show();
         }

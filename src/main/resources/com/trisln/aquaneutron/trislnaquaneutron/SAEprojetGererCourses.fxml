@@ -43,7 +43,7 @@
                         </Label>
                         <HBox VBox.vgrow="SOMETIMES">
                            <children>
-                              <TableView prefHeight="302.0" prefWidth="680.0">
+                              <TableView fx:id="tableViewCourses" prefHeight="302.0" prefWidth="680.0">
                                  <columns>
                                     <TableColumn reorderable="false" text="Id" />
                                     <TableColumn reorderable="false" text="Nom" />
