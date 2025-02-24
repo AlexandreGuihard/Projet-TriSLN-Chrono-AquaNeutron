@@ -385,6 +385,20 @@ public class TriSLN extends Application{
         }
     }
 
+    public void afficheDemarerCourse() throws IOException{
+        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetChrono.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsDebutCourse(this));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage=this.fenetreCourses.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void afficheMonCompte() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojet_Mon_compte_utilisateur.fxml");
         try{
