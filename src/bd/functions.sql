@@ -30,7 +30,6 @@ begin
 end|
 
 -- Getter de l'id du format à partir du nom du format
-
 CREATE OR REPLACE FUNCTION getIdFormatFromFormat(formatInput VARCHAR(42)) 
 RETURNS INT
 BEGIN
@@ -45,16 +44,21 @@ BEGIN
 END |
 
 -- Getter de l'id de la catégorie à partir de la catégorie et de la sous catégorie si non null
-create or replace function getIdCategorie(categorie varchar(42), sousCategorie varchar(42)) returns int
-begin
-    declare idCateg int;
-    if sousCategorie is null then
-        select min(idCategorie) into idCateg from CATEGORIE where categorie=categorie;
-    else
-        select idCategorie into idCateg from CATEGORIE where categorie=categorie and sousCategorie=sousCategorie;
-    end if;
-    return idCateg;
-end| 
+CREATE OR REPLACE FUNCTION getIdCategorie(categorie VARCHAR(42), sousCategorie VARCHAR(42)) 
+RETURNS INT
+BEGIN
+    DECLARE idCateg INT;
+    IF sousCategorie IS NULL THEN
+        SELECT idCategorie INTO idCateg FROM CATEGORIE WHERE CATEGORIE.categorie = categorie LIMIT 1;
+    ELSE
+        SELECT idCategorie INTO idCateg FROM CATEGORIE WHERE CATEGORIE.categorie = categorie AND CATEGORIE.sousCategorie = sousCategorie LIMIT 1;
+    END IF;
+    IF idCateg IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Catégorie ou sous-catégorie introuvable';
+    END IF;
+    RETURN idCateg;
+END |
 
 -- Getter de la catégorie à partir de l'id de la catégorie
 create or replace function getCategorieFromId(idCategorie int) returns varchar(42)

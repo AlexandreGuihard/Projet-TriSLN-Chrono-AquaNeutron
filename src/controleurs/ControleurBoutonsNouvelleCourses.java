@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.CheckBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import src.vue.FenetreCourses;
@@ -41,6 +42,25 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     private MenuButton formatCourse;
     @FXML
     private TextField heureCourse;
+    @FXML
+    private CheckBox idMinPoussins;
+    @FXML
+    private CheckBox idBenjamins;
+    @FXML
+    private CheckBox idPoussins;
+    @FXML
+    private CheckBox idMinimes;
+    @FXML
+    private CheckBox idPupilles;
+    @FXML
+    private CheckBox idCadets;
+    @FXML
+    private CheckBox idJunoirs;
+    @FXML
+    private CheckBox idSeniors;
+    @FXML
+    private CheckBox idVetran;
+
 
 
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
@@ -99,9 +119,36 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
                 // La récupération de la catégorie est à refaire au niveau du FXML
                 // Que fait-on avec la date ?
                 String heure = this.heureCourse.getText();
-                // faire avec le format
+                String categorie = "";
+                if (this.idMinPoussins.isSelected()) {
+                    categorie = "MP";
+                }
+                if (this.idBenjamins.isSelected()) {
+                    categorie = "BE";
+                }
+                if (this.idPoussins.isSelected()) {
+                    categorie = "PO";
+                }
+                if (this.idMinimes.isSelected()) {
+                    categorie = "MI";
+                }
+                if (this.idPupilles.isSelected()) {
+                    categorie = "PU";
+                }
+                if (this.idCadets.isSelected()) {
+                    categorie = "CA";
+                }
+                if (this.idJunoirs.isSelected()) {
+                    categorie = "JU";
+                }
+                if (this.idSeniors.isSelected()) {
+                    categorie = "Senior";
+                }
+                if (this.idVetran.isSelected()) {
+                    categorie = "Veteran";
+                }
                 try {
-                    super.getVue().getBd().ajouterCourse(nom, "XS", "S" , heure, 1);
+                    super.getVue().getBd().ajouterCourse(nom, "XS", categorie , heure, 1);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

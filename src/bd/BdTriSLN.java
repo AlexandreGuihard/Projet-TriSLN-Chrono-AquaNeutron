@@ -330,12 +330,19 @@ public class BdTriSLN{
             newId = rs.getInt(1) + 1;
         }
         Statement stmtDeux = this.connexion.createStatement();
-        ResultSet rsDeux = stmtDeux.executeQuery("SELECT * FROM FORMATCOURSE where format='"+format+"'");
+        ResultSet rsDeux = stmtDeux.executeQuery("SELECT * FROM FORMATCOURSE where format='" + format + "' LIMIT 1");
         int idFormat = 0;
-        if (rsDeux.next()){
+        if (rsDeux.next()) {
             idFormat = rsDeux.getInt(1);
+            if (rsDeux.next()) {
+                // Si une deuxième ligne est trouvée, il y a un problème, et tu peux gérer cela ici
+                System.err.println("Erreur : plusieurs formats trouvés pour le même format.");
+            }
+        } else {
+            System.err.println("Aucun format trouvé pour : " + format);
         }
         int idCategorie = this.getIdCategorie(categorie);
+        System.out.println(idCategorie);
         // int idFormat = this.getIdFormat(format);
         PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");
         
