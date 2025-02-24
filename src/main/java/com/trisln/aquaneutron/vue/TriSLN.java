@@ -8,11 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
-import java.io.IOException;
-
-
-
-import java.io.File;
 import javafx.scene.control.ComboBox;
 
 import com.trisln.aquaneutron.vue.*;
@@ -54,7 +49,7 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("localhost", "DBTriSLN", "kracocks", "kLcSQm7%9j"));
+        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
         this.utilisateur = new Utilisateur();
         this.connecte=false;
     }
