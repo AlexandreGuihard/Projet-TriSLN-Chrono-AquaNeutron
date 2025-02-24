@@ -54,7 +54,7 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("localhost", "DBTriSLN", "kracocks", "kLcSQm7%9j"));
+        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
         this.utilisateur = new Utilisateur();
         this.connecte=false;
     }
@@ -78,7 +78,7 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLogin () throws IOException{
+    public void afficheLogin() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());

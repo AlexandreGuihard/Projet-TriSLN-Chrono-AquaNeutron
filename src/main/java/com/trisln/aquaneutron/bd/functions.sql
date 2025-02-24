@@ -26,9 +26,9 @@ create or replace function getIdCategorie(categorie varchar(42), sousCategorie v
 begin
     declare idCateg int;
     if sousCategorie is null then
-        select idCategorie into idCateg from CATEGORIE where categorie=categorie;
+        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
     else
-        select idCategorie into idCateg from CATEGORIE where categorie=categorie and sousCategorie=sousCategorie;
+        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
     end if;
     return idCateg;
 end|
@@ -37,7 +37,7 @@ end|
 create or replace function getCategorieFromId(idCategorie int) returns varchar(42)
 begin
     declare categ varchar(42);
-    select categorie into categ from CATEGORIE where idCategorie=idCategorie;
+    select categorie into categ from CATEGORIE where CATEGORIE.idCategorie=idCategorie limit 1;
     return categ;
 end|
 
@@ -45,7 +45,7 @@ end|
 create or replace function getSousCategorieFromId(idCategorie int) returns varchar(42)
 begin
     declare sousCateg varchar(42);
-    select sousCategorie into sousCateg from CATEGORIE where idCategorie=idCategorie;
+    select sousCategorie into sousCateg from CATEGORIE where CATEGORIE.idCategorie=idCategorie limit 1;
     return sousCateg;
 end|
 

@@ -14,6 +14,7 @@ public class ParticipantCourseRelais extends Participant{
      * @param nom le nom du participant
      * @param prenom le prénom du participant
      * @param categorie la catégorie du participant
+     * @param sousCategorie la sous catégorie du participant
      * @param sexe le sexe du participant
      * @param email l'email du participant
      * @param ville la ville où habite le participant
@@ -22,8 +23,8 @@ public class ParticipantCourseRelais extends Participant{
      * @param nomEquipe le nom de l'équipe du participant
      * @param licence si le participant possède une licence ou non
      */
-    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, char sexe, String email, String ville, String certification, int numTel, String nomEquipe, boolean licence){
-        super(id, nom, prenom, categorie, sexe, email, ville, certification, numTel);
+    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, String nomEquipe, boolean licence){
+        super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateNaissance);
         this.nomEquipe=nomEquipe;
         this.licence=licence;
     }
@@ -33,6 +34,7 @@ public class ParticipantCourseRelais extends Participant{
      * Getter du nom de l'équipe du participant
      * @return le nom de l'équipe du participant
      */
+    @Override
     public String getNomEquipe(){
         return this.nomEquipe;
     }
@@ -41,6 +43,7 @@ public class ParticipantCourseRelais extends Participant{
      * Getter pour savoir si le participant possède une licence
      * @return "true" si le partcipant possède une licence et "false" sinon
      */
+    @Override
     public boolean getLicence(){
         return this.licence;
     }
@@ -49,6 +52,7 @@ public class ParticipantCourseRelais extends Participant{
      * Setter du nom de l'équipe du participant
      * @param nomEquipe le nouveau nom de l'équipe du participant
      */
+    @Override
     public void setNomEquipe(String nomEquipe){
         this.nomEquipe=nomEquipe;
     }
@@ -57,7 +61,16 @@ public class ParticipantCourseRelais extends Participant{
      * Setter pour savoir si le participant possède une licence
      * @param licence la modification de la possession (ou non) d'une licence
      */
+    @Override
     public void setLicence(boolean licence){
         this.licence=licence;
+    }
+
+    /**
+     * @return la modélisation en chaîne de caractère du participant à une course avec relais
+     */
+    @Override
+    public String toString(){
+        return super.toString()+"\nNom d'équipe: "+nomEquipe;
     }
 }

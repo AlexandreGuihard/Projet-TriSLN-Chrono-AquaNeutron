@@ -15,6 +15,15 @@ import javafx.scene.input.MouseEvent;
 import com.trisln.aquaneutron.vue.*;
 import java.io.File;
 import java.io.IOException;
+import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import com.trisln.aquaneutron.modele.*;
+import java.util.List;
+import javafx.scene.control.TableColumn;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 
 
 public class ControleurBoutonsParticipants extends ControleurBoutons implements EventHandler<ActionEvent>{
@@ -56,10 +65,50 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     private Button btnSuprimerParticipant;
     @FXML
     private Button btnModifierParticipant;
+    // TableViews
+    @FXML
+    private TableView<Participant> tableViewMasculin;
+    @FXML
+    private TableView<Participant> tableViewFeminin;
 
     public ControleurBoutonsParticipants(TriSLN vue){
         super();
         this.setBoutons(vue);
+    }
+
+    @FXML
+    public void initialize() {
+        if(tableViewMasculin!=null && tableViewFeminin!=null){
+            TableColumn<Participant, String> colNom = new TableColumn<>("Nom");
+            colNom.setCellValueFactory(cellData -> {
+                return new SimpleStringProperty(cellData.getValue().getNom());
+            });
+            TableColumn<Participant, String> colPrenom = new TableColumn<>("Prénom");
+            colPrenom.setCellValueFactory(cellData -> {
+                return new SimpleStringProperty(cellData.getValue().getPrenom());
+            });
+            TableColumn<Participant, String> colClub = new TableColumn<>("Club");
+            colClub.setCellValueFactory(cellData -> {
+                return new SimpleStringProperty(cellData.getValue().getClub());
+            });
+            TableColumn<Participant, Boolean> colLicence = new TableColumn<>("Licence");
+            colLicence.setCellValueFactory(cellData -> {
+                return new SimpleBooleanProperty(cellData.getValue().getLicence());
+            });
+            TableColumn<Participant, Integer> colDossard = new TableColumn<>("Dossard");
+            colDossard.setCellValueFactory(cellData -> {
+                return new SimpleIntegerProperty(cellData.getValue().getId()).asObject();
+            });
+            System.out.println(tableViewMasculin);
+            tableViewMasculin.getColumns().setAll(colNom, colPrenom, colClub, colLicence, colDossard);
+            try {
+                // Récupération des participants depuis la base de données
+                List<Participant> listeParticipants = TriSLN.getBd().getParticipantsCourseRelais();
+                tableViewMasculin.setItems(FXCollections.observableArrayList(listeParticipants));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setBoutons(TriSLN vue){
