@@ -69,13 +69,13 @@ public class ControleurBoutonsClassements implements EventHandler<ActionEvent> {
                     this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
                     break;
                 case "btnRetour":
-                    this.vue.changeButtonColor(this.btnRetour, "lightgrey", "-fx-background-radius: 15");
+                    this.vue.changeButtonColor(this.btnRetour, "white", "");
                     break;
                 case "btnAccueil2":
                     this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
                     break;
                 case "btnRetour2":
-                    this.vue.changeButtonColor(this.btnRetour2, "lightgrey", "-fx-background-radius: 15");
+                    this.vue.changeButtonColor(this.btnRetour2, "white", "");
                     break;
                 case "deconnecter":
                     this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
