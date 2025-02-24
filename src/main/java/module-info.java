@@ -5,7 +5,7 @@ module com.trisln.aquaneutron.trislnaquaneutron {
     requires org.controlsfx.controls;
     requires java.sql;
     requires java.mail;
-    requires mysql.connector.j;
+    requires org.mariadb.jdbc;
     requires java.dotenv;
 
     exports com.trisln.aquaneutron.bd;
