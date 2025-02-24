@@ -92,9 +92,9 @@ public class BdTriSLN{
      * @return true si c'est un participant Ã  un relais sinon false
      * @throws SQLException
      */
-    public boolean isParticipantsRelais(String club, String nomEquipe, boolean licence, int numLicence) throws SQLException{
+    public boolean isParticipantsRelais(String club, String nomEquipe, boolean licence) throws SQLException{
         Statement st=connexion.createStatement();
-        ResultSet isParticipRelais=st.executeQuery("select isParticipantsRelais('"+club+"','"+nomEquipe+"',"+ licence+","+numLicence+")");
+        ResultSet isParticipRelais=st.executeQuery("select isParticipantsRelais('"+club+"','"+nomEquipe+"',"+ licence+")");
         if(isParticipRelais.next()){
             return isParticipRelais.getBoolean(1);
         }
@@ -160,8 +160,10 @@ public class BdTriSLN{
             String dateNaissance = participants.getString(12);
             String nomEquipe=participants.getString(13);
             boolean licence=participants.getBoolean(14);
-            if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
+            System.out.println(club+" "+nomEquipe+" "+licence+" "+numLicence);
+            if(isParticipantsRelais(club, nomEquipe, licence) && numLicence == 0){
                 Participant participant = new ParticipantCourseRelais(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateNaissance, nomEquipe, licence);
+                System.out.println(participant);
                 participantsCourseRelais.add(participant);
             }
         }
@@ -231,6 +233,7 @@ public class BdTriSLN{
                 boolean licence=participants.getBoolean(14);
                 if(isParticipantsNonLicenceIndiv(club, nomEquipe, licence, numLicence)){
                     Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateNaissance);
+                    System.out.println(participant);
                     participantsNonLicenceCourseIndividuelles.add(participant);
                 }
             }
@@ -289,7 +292,7 @@ public class BdTriSLN{
                 String nomEquipe=participant.getString(13);
                 boolean licence=participant.getBoolean(14);
 
-                if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
+                if(isParticipantsRelais(club, nomEquipe, licence)){
                     leParticipant=new ParticipantCourseRelais(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateDeNaissance, nomEquipe, licence);
                 }
                 else if(isParticipantsLicenceIndiv(club, nomEquipe, licence, numLicence)){
@@ -332,7 +335,7 @@ public class BdTriSLN{
         Statement st=this.connexion.createStatement();
         ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
-            String motDePasseBd=rs.getString(2);
+            String motDePasseBd=rs.getString(3);
             return motDePasseBd.equals(motDePasse);
         }
         return false;
