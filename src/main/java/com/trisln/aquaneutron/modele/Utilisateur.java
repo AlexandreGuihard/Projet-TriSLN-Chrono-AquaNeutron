@@ -58,6 +58,46 @@ public class Utilisateur {
         return this.role == "spectateur";
     }
 
+    public boolean verifierMDPMinuscule(String mdp){
+        String minuscules = "abcdefghijklmnopqrstuvwxyz";
+        for (char c : minuscules.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPMajuscule(String mdp){
+        String majuscules = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (char c : majuscules.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPSpecial(String mdp){
+        String specials = "&é\"'(-è_çà)=~#{[|`\\^@]}°+^¨$£¤%ùµ*,;:!?./§";
+        for (char c : specials.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPNombre(String mdp){
+        String nombres = "0123456789";
+        for (char c : nombres.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void changePassword(String email, String newPassword) throws SQLException, NoSuchUserException {
         TriSLN.getBd().changePassword(TriSLN.getBd().getIdentifiantByEmail(email), newPassword);
     }
