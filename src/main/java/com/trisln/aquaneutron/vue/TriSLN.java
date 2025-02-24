@@ -376,7 +376,9 @@ public class TriSLN extends Application{
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             System.out.println("C'est de la faute de Romain");
             this.stage = this.fenetreCourses.getWindow();
+            System.out.println("Fonctionne là");
             this.stage.show();
+            System.out.println("Jusqu'au bout");
         }
         catch(Exception e){
             e.printStackTrace();
