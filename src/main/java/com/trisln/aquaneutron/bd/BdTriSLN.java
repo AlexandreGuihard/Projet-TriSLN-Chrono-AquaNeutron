@@ -237,6 +237,17 @@ public class BdTriSLN{
         }
     }
 
+    public String getIdentifiantByEmail(String email) throws SQLException, NoSuchUserException{
+        PreparedStatement ps = this.connexion.prepareStatement("select identifiant from UTILISATEUR where email = ?");
+        ps.setString(1, email);
+        ResultSet  rs = ps.executeQuery();
+        if(rs.next()){
+            return rs.getString(1);
+        } else {
+            throw new NoSuchUserException();
+        }
+    }
+
     public void changePassword(String identifiant, String newPassword) throws SQLException{
         PreparedStatement ps = this.connexion.prepareStatement("update UTILISATEUR set mot_de_passe = ? where identifiant= ?");
         ps.setString(1, newPassword);

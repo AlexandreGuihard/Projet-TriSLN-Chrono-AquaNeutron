@@ -58,8 +58,8 @@ public class Utilisateur {
         return this.role == "spectateur";
     }
 
-    public void changePassword(String newPassword) throws SQLException{
-        TriSLN.getBd().changePassword(this.identifiant, newPassword);
+    public void changePassword(String email, String newPassword) throws SQLException, NoSuchUserException {
+        TriSLN.getBd().changePassword(TriSLN.getBd().getIdentifiantByEmail(email), newPassword);
     }
 
     public String genererTokenReinitialisation() {
