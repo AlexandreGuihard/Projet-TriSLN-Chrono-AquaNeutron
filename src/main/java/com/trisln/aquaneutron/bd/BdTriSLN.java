@@ -2,9 +2,14 @@ package com.trisln.aquaneutron.bd;
 import com.trisln.aquaneutron.modele.*;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BdTriSLN{
     private ConnexionMySQL connexion;
@@ -189,6 +194,153 @@ public class BdTriSLN{
         addCourse.executeUpdate();
         addCourse.close();
     }
+
+    public void lectureFichier(File fichier) {
+        try{
+            if(fichier.getName().toLowerCase().endsWith(".csv")){
+                traitementCSV(fichier);
+            }
+
+            else if(fichier.getName().toLowerCase().endsWith(".xls")){
+                traitementXLS(fichier);
+            }
+
+            else if(fichier.getName().toLowerCase().endsWith(".xlsx")){
+                traitementXLSX( fichier);
+            }
+
+            System.out.println("fichier non traiter pour le moment");
+
+        }
+
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    
+    }
+
+    public void traitementCSV(File csv) throws IOException {
+    try{
+        System.out.println("traitement CSV");
+        FileReader fr = new FileReader(csv);
+        BufferedReader br = new BufferedReader(fr);
+        List<String> donneesEntete = new ArrayList<>(Arrays.asList("id_Participant,nom,prenom,idCategorie,sexe,email,ville,certification,num_Tel,club,num_Licence,date_Naissance,nom_Equipe".split(",")));
+        boolean estPremiereLigne = false;
+        for (String line = br.readLine().toLowerCase(); line != null; line = br.readLine()) {
+            System.out.println(line +"\n");
+            if (!estPremiereLigne) {
+                estPremiereLigne = true;
+                }
+            else{
+                List<String> partiedecoupe = new ArrayList<>(Arrays.asList(line.split(",")));
+                for ( int i =0; i < partiedecoupe.size();i++  ){
+                    if ("".equals(partiedecoupe.get(i))) {
+                        partiedecoupe.set(i ,"null");
+                    }
+                }
+
+                PreparedStatement addParticipant = this.connexion.prepareStatement("insert into PARTICIPANT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                int id_Participant = Integer.parseInt(partiedecoupe.get(0));
+                String nom =        partiedecoupe.get(1);
+                String prenom =     partiedecoupe.get(2);
+                String idCategorie= partiedecoupe.get(3);
+                String sexe =       partiedecoupe.get(4);
+                String email =      partiedecoupe.get(5);
+                String ville =      partiedecoupe.get(6);
+
+                boolean certification = false;
+                if (partiedecoupe.get(7) == "null") {
+                    certification = false;
+                }
+                else{
+                    certification = true;
+                }
+
+                String num_Tel = partiedecoupe.get(8);
+                String club =    partiedecoupe.get(9);
+
+                int num_Licence =  Integer.valueOf(partiedecoupe.get(10));
+
+                String date_Naissance = partiedecoupe.get(11);
+                String nom_Equipe =  partiedecoupe.get(12);
+
+                boolean licence = false;
+
+                if (partiedecoupe.get(13) == "null") {
+                    licence = false;
+                }
+                else{
+                    licence = true;
+                }
+
+
+                addParticipant.setInt(1, id_Participant);
+                addParticipant.setString(2, nom);
+                addParticipant.setString(3, prenom);
+                addParticipant.setString(4, idCategorie);
+                addParticipant.setString(5, sexe);
+                addParticipant.setString(6, email);
+                addParticipant.setString(7, ville);
+                addParticipant.setBoolean(8, certification);
+                addParticipant.setString(9, num_Tel);
+                addParticipant.setString(10, club);
+                addParticipant.setInt(11, num_Licence);
+                addParticipant.setString(12, date_Naissance);
+                addParticipant.setString(13, nom_Equipe);
+                addParticipant.setBoolean(14, licence);
+                addParticipant.executeUpdate();
+                addParticipant.close();
+                }           
+        }
+            br.close();
+            fr.close();
+        } catch(SQLException e){
+            e.printStackTrace();
+
+        }   
+    }
+
+
+    public void traitementXLS(File csv) {
+        try{
+            System.out.println("traitement XLS");
+            FileReader fr = new FileReader(csv);
+            BufferedReader br = new BufferedReader(fr);
+            int i =0;
+
+            for (String line = br.readLine(); line != null; line = br.readLine()) {
+                System.out.println("wait");
+                
+            }
+            br.close();
+            fr.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void traitementXLSX(File csv) {
+        try{
+
+            System.out.println("traitement XLSX");
+            FileReader fr = new FileReader(csv);
+            BufferedReader br = new BufferedReader(fr);
+            
+            for (String line = br.readLine(); line != null; line = br.readLine()) {
+                System.out.println("wait");
+            }
+
+            br.close();
+            fr.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
 
     public boolean verifConnexion(String identifiant, String motDePasse){
         try{
