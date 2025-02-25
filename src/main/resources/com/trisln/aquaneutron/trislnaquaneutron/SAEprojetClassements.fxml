@@ -97,17 +97,20 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="1248.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tableViewClassements" VBox.vgrow="NEVER">
+                  <TableView fx:id="tableViewClassements" prefWidth="1233.0">
                      <columns>
-                        <TableColumn text="Positions" />
-                        <TableColumn text="Temps" />
-                        <TableColumn text="Nom/Prénom" />
-                        <TableColumn text="Club/Equipe" />
-                        <TableColumn text="Dossard" />
-                        <TableColumn text="Catégorie" />
-                        <TableColumn text="Classements Catégories" />
-                        <TableColumn text="Licence" />
+                        <TableColumn reorderable="false" text="Positions" />
+                        <TableColumn reorderable="false" text="Temps" />
+                        <TableColumn reorderable="false" text="Nom/Prénom" />
+                        <TableColumn reorderable="false" text="Club/Equipe" />
+                        <TableColumn reorderable="false" text="Dossard" />
+                        <TableColumn reorderable="false" text="Catégorie" />
+                        <TableColumn reorderable="false" text="Classements Catégories" />
+                        <TableColumn reorderable="false" text="Licence" />
                      </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <ScrollBar orientation="VERTICAL" />
                </children>
