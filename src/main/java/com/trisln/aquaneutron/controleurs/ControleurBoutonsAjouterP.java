@@ -161,7 +161,6 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                             System.out.println(file);
                             System.out.println("lancement");
                             List<List<String>> result =super.getVue().getFenetreParticipants().lectureFichier(file);
-                            System.out.println(result);
                             System.out.println("fin");
                             
                         }

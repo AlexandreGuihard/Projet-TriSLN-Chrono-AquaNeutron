@@ -140,32 +140,106 @@ public class FenetreParticipant{
           
     }
 
-    public List<List<String>> lectureFichier(File csv) {
+    public List<List<String>> lectureFichier(File fichier) {
             List<List<String>> result = new ArrayList<List<String>>();
             try{
-                FileReader fr = new FileReader(csv);
-                BufferedReader br = new BufferedReader(fr);
-
-                int i =0;
-                 
-                for (String line = br.readLine(); line != null; line = br.readLine()) {
-                    System.out.println(result);
-                    result.add(new ArrayList<String>());
-                    result.get(i).add(line);
-                    i++;
+                if(fichier.getName().toLowerCase().endsWith(".csv")){
+                    return traitementCSV(fichier,result);
                 }
 
-                br.close();
-                fr.close();
+                else if(fichier.getName().toLowerCase().endsWith(".xls")){
+                    return traitementXLS(fichier,result);
+                }
+
+                else if(fichier.getName().toLowerCase().endsWith(".xlsx")){
+                    return traitementXLSX( fichier,result);
+                }
+
+                System.out.println("fichier non traiter pour le moment");
                 return result; 
             }
 
-            catch(IOException e){
+            catch(Exception e){
                 e.printStackTrace();
                 return result;
             }
         
+    }
+
+    public List<List<String>> traitementCSV(File csv,List<List<String>> result) {
+        try{
+            System.out.println("traitement CSV");
+            FileReader fr = new FileReader(csv);
+            BufferedReader br = new BufferedReader(fr);
+
+            int i =0;
+             
+            for (String line = br.readLine(); line != null; line = br.readLine()) {
+                System.out.println(line +"\n");
+                result.add(new ArrayList<String>());
+                result.get(i).add(line);
+                i++;
+            }
+
+            br.close();
+            fr.close();
+            return result; 
+        } catch(IOException e){
+            e.printStackTrace();
+            return result;
         }
+    
+}
+
+public List<List<String>> traitementXLS(File csv,List<List<String>> result) {
+    try{
+        System.out.println("traitement XLS");
+        FileReader fr = new FileReader(csv);
+        BufferedReader br = new BufferedReader(fr);
+        int i =0;
+         
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            System.out.println(result);
+            result.add(new ArrayList<String>());
+            result.get(i).add(line);
+            i++;
+        }
+        br.close();
+        fr.close();
+        return result; 
+    }catch(IOException e){
+        e.printStackTrace();
+        return result;
+    }
+
+}
+
+public List<List<String>> traitementXLSX(File csv,List<List<String>> result) {
+    try{
+
+        System.out.println("traitement XLSX");
+        FileReader fr = new FileReader(csv);
+        BufferedReader br = new BufferedReader(fr);
+        int i =0;
+         
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            System.out.println(result);
+            result.add(new ArrayList<String>());
+            result.get(i).add(line);
+            i++;
+        }
+
+        br.close();
+        fr.close();
+        return result; 
+    }catch(IOException e){
+        e.printStackTrace();
+        return result;
+    }
+
+}
+
+
     
 
 }
