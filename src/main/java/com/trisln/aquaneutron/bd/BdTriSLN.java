@@ -224,7 +224,7 @@ public class BdTriSLN{
         System.out.println("traitement CSV");
         FileReader fr = new FileReader(csv);
         BufferedReader br = new BufferedReader(fr);
-        List<String> donneesEntete = new ArrayList<>(Arrays.asList("id_Participant,nom,prenom,idCategorie,sexe,email,ville,certification,num_Tel,club,num_Licence,date_Naissance,nom_Equipe".split(",")));
+
         boolean estPremiereLigne = false;
         for (String line = br.readLine().toLowerCase(); line != null; line = br.readLine()) {
             System.out.println(line +"\n");
@@ -238,9 +238,17 @@ public class BdTriSLN{
                         partiedecoupe.set(i ,"null");
                     }
                 }
-
                 PreparedStatement addParticipant = this.connexion.prepareStatement("insert into PARTICIPANT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                int id_Participant = Integer.parseInt(partiedecoupe.get(0));
+                
+                int idParticipant = 0; 
+                if ("null".equals(partiedecoupe.get(0))) {
+                    System.err.println("un id des participant nest pas un entier");
+                    return;
+                }
+                else{
+                    idParticipant = Integer.parseInt(partiedecoupe.get(0));
+                }
+                
                 String nom =        partiedecoupe.get(1);
                 String prenom =     partiedecoupe.get(2);
                 String idCategorie= partiedecoupe.get(3);
@@ -249,32 +257,33 @@ public class BdTriSLN{
                 String ville =      partiedecoupe.get(6);
 
                 boolean certification = false;
-                if (partiedecoupe.get(7) == "null") {
+                if ("null".equals(partiedecoupe.get(7))) {
                     certification = false;
                 }
                 else{
                     certification = true;
                 }
-
-                String num_Tel = partiedecoupe.get(8);
+                String numTel = partiedecoupe.get(8);
                 String club =    partiedecoupe.get(9);
 
-                int num_Licence =  Integer.valueOf(partiedecoupe.get(10));
-
-                String date_Naissance = partiedecoupe.get(11);
-                String nom_Equipe =  partiedecoupe.get(12);
-
                 boolean licence = false;
-
-                if (partiedecoupe.get(13) == "null") {
+                int numLicence = 0;
+                if ("null".equals(partiedecoupe.get(10))) {
+                    System.err.println("id numLicence non trouver");
                     licence = false;
                 }
                 else{
+                    numLicence = Integer.parseInt(partiedecoupe.get(10));
                     licence = true;
                 }
 
 
-                addParticipant.setInt(1, id_Participant);
+                String dateNaissance = partiedecoupe.get(11);
+                String nomEquipe =  partiedecoupe.get(12);
+                
+                System.out.println("c'est ok");
+
+                addParticipant.setInt(1, idParticipant);
                 addParticipant.setString(2, nom);
                 addParticipant.setString(3, prenom);
                 addParticipant.setString(4, idCategorie);
@@ -282,14 +291,15 @@ public class BdTriSLN{
                 addParticipant.setString(6, email);
                 addParticipant.setString(7, ville);
                 addParticipant.setBoolean(8, certification);
-                addParticipant.setString(9, num_Tel);
+                addParticipant.setString(9, numTel);
                 addParticipant.setString(10, club);
-                addParticipant.setInt(11, num_Licence);
-                addParticipant.setString(12, date_Naissance);
-                addParticipant.setString(13, nom_Equipe);
+                addParticipant.setInt(11, numLicence);
+                addParticipant.setString(12, dateNaissance);
+                addParticipant.setString(13, nomEquipe);
                 addParticipant.setBoolean(14, licence);
                 addParticipant.executeUpdate();
                 addParticipant.close();
+                System.out.println("import ok");
                 }           
         }
             br.close();
