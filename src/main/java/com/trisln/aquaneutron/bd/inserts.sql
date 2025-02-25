@@ -79,3 +79,9 @@ insert into DOSSARD values
                             (107,7),
                             (108,8),
                             (109,9);
+
+insert into GENERER values
+                        (1, 1, 2),
+                        (2, 4, 1),
+                        (3, 2, 3),
+                        (4, 3, 4);

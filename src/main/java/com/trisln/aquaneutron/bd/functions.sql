@@ -123,6 +123,24 @@ begin
     end if;
 end|
 
+create or replace function isParticipantOfCourse(idDossard INT, idEpreuve INT) returns boolean
+begin
+    if exists (select * FROM DOSSARD JOIN PARTICIPANT ON DOSSARD.id_Participant = PARTICIPANT.id_Participant JOIN PARTICIPER ON PARTICIPANT.id_Participant = PARTICIPER.id_Participant
+        WHERE DOSSARD.num_dossard = idDossard and PARTICIPER.id_Epreuve = idEpreuve
+    ) then
+        return TRUE;
+    ELSE
+        return FALSE;
+    end if;
+end|
+
+create or replace procedure updateParticipant(id int, nomParticipant varchar(42), prenomParticipant varchar(42), sexeParticipant varchar(42), dateNaissanceParticipant date, categorieParticipant varchar(42), sousCategorieParticipant varchar(42), clubParticipant varchar(42), nomEquipeParticipant varchar(42), emailParticipant varchar(42), telParticipant varchar(42), certificationParticipant varchar(42), numLicenceParticipant int, villeParticipant varchar(42), licenceParticipant boolean)
+begin
+    declare idCateg int;
+    select getIdCategorie(categorieParticipant, sousCategorieParticipant) into idCateg;
+    update PARTICIPANT set nom=nomParticipant, prenom=prenomParticipant, idCategorie=idCateg, sexe=sexeParticipant, email=emailParticipant, ville=villeParticipant, certification=certificationParticipant, num_tel=telParticipant, club=clubParticipant, num_Licence=numLicenceParticipant, date_Naissance=dateNaissanceParticipant, nom_Equipe=nomEquipeParticipant, licence=licenceParticipant where id_Participant=id;
+end|
+
 -- Triggers
 create or replace trigger checkParticipant before insert on PARTICIPANT for each row
 begin

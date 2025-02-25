@@ -211,7 +211,6 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
     @FXML
     public void handleKeyReleased(KeyEvent event){
         try{
-            System.out.println("Coucou");
             int idParticipant=Integer.parseInt(textFieldId.getText());
             Participant participant=TriSLN.getBd().getParticipantFromId(idParticipant);
             Platform.runLater(()->textId.setText(participant.getId()+""));
