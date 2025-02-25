@@ -131,6 +131,17 @@ begin
     return club is null and nomEquipe is null and not licence and numLicence is null;
 end|
 
+create or replace function isParticipantOfCourse(idDossard INT, idEpreuve INT) returns boolean
+begin
+    if exists (select * FROM DOSSARD JOIN PARTICIPANT ON DOSSARD.id_Participant = PARTICIPANT.id_Participant JOIN PARTICIPER ON PARTICIPANT.id_Participant = PARTICIPER.id_Participant
+        WHERE DOSSARD.num_dossard = idDossard and PARTICIPER.id_Epreuve = idEpreuve
+    ) then
+        return TRUE;
+    ELSE
+        return FALSE;
+    end if;
+end|
+
 -- Triggers
 create or replace trigger checkParticipant before insert on PARTICIPANT for each row
 begin

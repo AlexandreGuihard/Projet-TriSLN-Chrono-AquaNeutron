@@ -141,6 +141,22 @@ public class BdTriSLN{
     }
 
     /**
+     * @param numDossard le numéro du dossart du participant
+     * @param course la course en cours
+     * @return true si le participant participe à la course et false sinon
+     * @throws SQLException
+     */
+    public boolean isParticipantOfCourse(int numDossard, Course course) throws SQLException{
+        int idEpreuve = course.getId();
+        Statement st=connexion.createStatement();
+        ResultSet isParticipNonLicenceIndiv=st.executeQuery("select isParticipantOfCourse("+numDossard+","+idEpreuve+")");
+        if(isParticipNonLicenceIndiv.next()){
+            return isParticipNonLicenceIndiv.getBoolean(1);
+        }
+        return false;
+    }
+
+    /**
      * @return la liste des participants à une course bien précise
      * @throws SQLException
      */
@@ -187,7 +203,6 @@ public class BdTriSLN{
         return participants;
     }
     
-
 
     /**
      * @return la liste des participants à une course avec relais de la bd
@@ -374,7 +389,7 @@ public class BdTriSLN{
     public void ajouterCourse(String nomCourse, String format, String categorie, String heureDepart, double prix) throws SQLException{
         int newId = 1;
         Statement stmt = this.connexion.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT MAX(id_Epreuve) FROM EPREUVE");
+        ResultSet rs = stmt.executeQuery("select MAX(id_Epreuve) FROM EPREUVE");
         if (rs.next()){
             newId = rs.getInt(1) + 1;
         }
@@ -437,6 +452,53 @@ public class BdTriSLN{
         st.executeUpdate();
         st.close();
     }
+
+    /**
+     * Récupère le participant à partir du numéro de son dossard
+     * @param leDossard le numéro du dossard
+     * @return le participant qui possède le dossard au bon numéro
+     * @throws SQLException
+     */
+    public Participant getParticipantByDossard(int leDossard) throws SQLException {
+        Statement st=this.connexion.createStatement();
+        Participant participant = null;
+        String sql = "select * FROM PARTICIPANT JOIN DOSSARD on PARTICIPANT.id_Participant = DOSSARD.id_Participant WHERE DOSSARD.num_dossard = "+ leDossard;
+        ResultSet rs=st.executeQuery(sql);
+        while (rs.next()) {
+            int idParticipant = rs.getInt(1);
+            String nom = rs.getString(2);
+            String prenom = rs.getString(3);
+            int idCategorie = rs.getInt(4);
+            String categorie=getCategorie(idCategorie);
+            String sousCategorie=getSousCategorie(idCategorie);
+            String sexe = rs.getString(5);
+            char sexeChar = sexe.charAt(0);
+            String email = rs.getString(6);
+            String ville = rs.getString(7);
+            boolean certification = rs.getBoolean(8);
+            String numTel = rs.getString(9);
+            String club = rs.getString(10);
+            int numLicence = rs.getInt(11);
+            String dateNaissance = rs.getString(12);
+            String nomEquipe = rs.getString(13);
+            boolean licence = rs.getBoolean(14);
+            if(isParticipantsLicenceIndiv(club, nomEquipe, licence, numLicence)){
+                participant = new ParticipantLicenceCourseIndiv(idParticipant, nom, prenom, categorie, sousCategorie, sexeChar, email, ville, certification, numTel, club, numLicence, dateNaissance);
+                continue;
+            }
+            if(isParticipantsNonLicenceIndiv(club, nomEquipe, licence, numLicence)){
+                participant = new ParticipantNonLicenceCourseIndiv(idParticipant, nom, prenom, categorie, sousCategorie, sexeChar, email, ville, certification, numTel, dateNaissance);
+                continue;
+            }
+            if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
+                participant = new ParticipantCourseRelais(idParticipant, nom, prenom, categorie, sousCategorie, sexeChar, email, ville, certification, numTel, dateNaissance, nomEquipe, licence);
+                continue;
+            }
+        }
+        st.close();
+        return participant;
+    }
+
 
     /**
      * Supprime un participant de la bd à partir de son id

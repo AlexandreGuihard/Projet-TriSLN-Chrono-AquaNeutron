@@ -136,7 +136,9 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
             }else if(btn.getId().equals("btnDemarrerCourse")){
                 System.out.println("Coucou");
                 Course course = tableViewCourses.getSelectionModel().getSelectedItem();
-                super.getVue().afficheDemarerCourse(course);
+                if (course!=null) {
+                    super.getVue().afficheDemarerCourse(course);   
+                }
             }
             else{
                 super.handle(btn);

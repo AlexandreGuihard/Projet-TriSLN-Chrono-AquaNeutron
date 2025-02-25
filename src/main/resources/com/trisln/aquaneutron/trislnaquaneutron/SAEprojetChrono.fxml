@@ -43,10 +43,10 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="idNom" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard" />
+                                    <TextField fx:id="numeroDossard" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard" />
                                  </children>
                               </VBox>
-                              <Button fx:id="btnAJtCourse1" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: #2596BE;" text="Arrivé" textFill="WHITE">
+                              <Button fx:id="btnDossardArrive" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: #2596BE;" text="Arrivé" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -61,7 +61,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <TableView maxHeight="300.0" prefHeight="150.0" prefWidth="630.0" HBox.hgrow="ALWAYS">
+                              <TableView fx:id="tableViewArrive" maxHeight="300.0" prefHeight="150.0" prefWidth="630.0" HBox.hgrow="ALWAYS">
                                  <columns>
                                     <TableColumn reorderable="false" text="Dossards" />
                                     <TableColumn reorderable="false" text="Top départ" />
