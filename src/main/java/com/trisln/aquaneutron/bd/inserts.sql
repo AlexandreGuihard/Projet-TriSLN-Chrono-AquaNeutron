@@ -68,3 +68,14 @@ insert into UTILISATEUR values
                             ("test", "voivenelromain@gmail.com" , "test"),
                             ("admin", "a@a.com", "admin"),
                             ("siecle", "b@b.com", "siecle");
+
+insert into DOSSARD values
+                            (101,1),
+                            (102,2),
+                            (103,3),
+                            (104,4),
+                            (105,5),
+                            (106,6),
+                            (107,7),
+                            (108,8),
+                            (109,9);
