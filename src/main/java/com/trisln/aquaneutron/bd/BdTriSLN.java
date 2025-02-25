@@ -94,8 +94,10 @@ public class BdTriSLN{
      */
     public boolean isParticipantsRelais(String club, String nomEquipe, boolean licence) throws SQLException{
         Statement st=connexion.createStatement();
+        System.out.println("Club:"+club+" Nom Equipe:"+nomEquipe+"Licence:"+licence);
         ResultSet isParticipRelais=st.executeQuery("select isParticipantsRelais('"+club+"','"+nomEquipe+"',"+ licence+")");
         if(isParticipRelais.next()){
+            System.out.println(isParticipRelais.getBoolean(1));
             return isParticipRelais.getBoolean(1);
         }
         return false;
@@ -162,6 +164,7 @@ public class BdTriSLN{
             boolean licence=participants.getBoolean(14);
             System.out.println(club+" "+nomEquipe+" "+licence+" "+numLicence);
             if(isParticipantsRelais(club, nomEquipe, licence) && numLicence == 0){
+                System.out.println("Ajout participant à la liste");
                 Participant participant = new ParticipantCourseRelais(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateNaissance, nomEquipe, licence);
                 System.out.println(participant);
                 participantsCourseRelais.add(participant);
