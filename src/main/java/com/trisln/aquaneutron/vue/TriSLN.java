@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import com.trisln.aquaneutron.vue.*;
 import com.trisln.aquaneutron.bd.*;
 import com.trisln.aquaneutron.controleurs.*;
+import com.trisln.aquaneutron.modele.Course;
 
 import java.io.*;
 
@@ -374,22 +375,19 @@ public class TriSLN extends Application{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsNouvelleCourses(this));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
-            System.out.println("C'est de la faute de Romain");
             this.stage = this.fenetreCourses.getWindow();
-            System.out.println("Fonctionne là");
             this.stage.show();
-            System.out.println("Jusqu'au bout");
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    public void afficheDemarerCourse() throws IOException{
+    public void afficheDemarerCourse(Course course) throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetChrono.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsDebutCourse(this));
+            loader.setController(new ControleurBoutonsDebutCourse(this, course));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             this.stage=this.fenetreCourses.getWindow();
             this.stage.show();

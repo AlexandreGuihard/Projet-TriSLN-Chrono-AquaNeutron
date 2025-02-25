@@ -28,6 +28,8 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     @FXML
     private Button btnNvlCourse;
     @FXML
+    private Button btnDemarrerCourse;
+    @FXML
     private Button btnAccueil;
     @FXML
     private Button btnRetour;
@@ -42,6 +44,14 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     public ControleurBoutonsCourses(TriSLN vue) {
         super();
         this.setBoutons(vue);
+    }
+
+    private void setBoutons(TriSLN vue) {
+        super.setVue(vue);
+        super.setBAccueil(btnAccueil);
+        super.setBCompte(btnCompte);
+        super.setBDeconnexion(btnDeconnexion);
+        super.setBRetour(btnRetour);
     }
 
     @FXML
@@ -78,15 +88,6 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
         }
     }
 
-
-    private void setBoutons(TriSLN vue) {
-        super.setVue(vue);
-        super.setBAccueil(btnAccueil);
-        super.setBCompte(btnCompte);
-        super.setBDeconnexion(btnDeconnexion);
-        super.setBRetour(btnRetour);
-    }
-
     @FXML
     public void handleBtnCoursesMouseEntered(MouseEvent event) {
         try {
@@ -94,7 +95,12 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
             if (btn.getId().equals("btnNvlCourse")) {
                 super.getVue().changeButtonColor(this.btnNvlCourse, "#105c74", "");
             } else {
-                super.handleBtnsMouseEntered(btn);
+                if (btn.getId().equals("btnDemarrerCourse")) {
+                    super.getVue().changeButtonColor(this.btnDemarrerCourse, "#105c74", "");
+                }
+                else{
+                    super.handleBtnsMouseEntered(btn);
+                }
             }
         } catch (Exception e) {
             System.err.println("Erreur");
@@ -109,7 +115,11 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
             if (btn.getId().equals("btnNvlCourse")) {
                 super.getVue().changeButtonColor(this.btnNvlCourse, "#2596BE", "");
             } else {
-                super.handleBtnsMouseExited(btn);
+                if (btn.getId().equals("btnDemarrerCourse")) {
+                    super.getVue().changeButtonColor(this.btnDemarrerCourse, "#2596BE", "");
+                } else {
+                    super.handleBtnsMouseExited(btn);
+                }
             }
         } catch (Exception e) {
             System.err.println("Erreur");
@@ -122,12 +132,11 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
         try {
             Button btn = (Button) event.getSource();
             if (btn.getId().equals("btnNvlCourse")) {
-                System.out.println("Feur");
                 super.getVue().afficheNvlCourse();
             }else if(btn.getId().equals("btnDemarrerCourse")){
                 System.out.println("Coucou");
-                //System.out.println(tableViewCourses.getSelectionModel().getSelectedItem().getNom());
-                super.getVue().afficheDemarerCourse();
+                Course course = tableViewCourses.getSelectionModel().getSelectedItem();
+                super.getVue().afficheDemarerCourse(course);
             }
             else{
                 super.handle(btn);

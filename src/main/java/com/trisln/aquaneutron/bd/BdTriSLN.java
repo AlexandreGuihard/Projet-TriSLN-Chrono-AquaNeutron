@@ -141,6 +141,55 @@ public class BdTriSLN{
     }
 
     /**
+     * @return la liste des participants à une course bien précise
+     * @throws SQLException
+     */
+    public List<Participant> getParticipantsACourse(int idEpreuve) throws SQLException {
+        List<Participant> participants = new ArrayList<>();
+        Statement st = this.connexion.createStatement();
+        String query = "SELECT * FROM PARTICIPANT JOIN PARTICIPER ON PARTICIPANT.id_Participant = PARTICIPER.id_Participant WHERE PARTICIPER.id_Epreuve = " + idEpreuve;
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            int idParticipant = rs.getInt(1);
+            String nom = rs.getString(2);
+            String prenom = rs.getString(3);
+            int idCategorie = rs.getInt(4);
+            String categorie=getCategorie(idCategorie);
+            String sousCategorie=getSousCategorie(idCategorie);
+            String sexe = rs.getString(5);
+            char sexeChar = sexe.charAt(0);
+            String email = rs.getString(6);
+            String ville = rs.getString(7);
+            boolean certification = rs.getBoolean(8);
+            String numTel = rs.getString(9);
+            String club = rs.getString(10);
+            int numLicence = rs.getInt(11);
+            String dateNaissance = rs.getString(12);
+            String nomEquipe = rs.getString(13);
+            boolean licence = rs.getBoolean(14);
+            if(isParticipantsLicenceIndiv(club, nomEquipe, licence, numLicence)){
+                Participant participant = new ParticipantLicenceCourseIndiv(idParticipant, nom, prenom, categorie, sousCategorie, sexeChar, email, ville, certification, numTel, club, numLicence, dateNaissance);
+                participants.add(participant);
+                continue;
+            }
+            if(isParticipantsNonLicenceIndiv(club, nomEquipe, licence, numLicence)){
+                Participant participant = new ParticipantNonLicenceCourseIndiv(idParticipant, nom, prenom, categorie, sousCategorie, sexeChar, email, ville, certification, numTel, dateNaissance);
+                participants.add(participant);
+                continue;
+            }
+            if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
+                Participant participant = new ParticipantCourseRelais(idParticipant, nom, prenom, categorie, sousCategorie, sexeChar, email, ville, certification, numTel, dateNaissance, nomEquipe, licence);
+                participants.add(participant);
+                continue;
+            }
+        }
+        st.close();  
+        return participants;
+    }
+    
+
+
+    /**
      * @return la liste des participants à une course avec relais de la bd
      * @throws SQLException
      */
