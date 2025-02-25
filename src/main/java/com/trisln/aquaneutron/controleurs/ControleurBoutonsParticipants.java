@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import com.trisln.aquaneutron.modele.*;
 import java.util.List;
+import java.util.ArrayList;
 import javafx.scene.control.TableColumn;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -76,6 +77,35 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         this.setBoutons(vue);
     }
 
+    private List<Participant> getParticipantsDUnSexe(List<Participant> participantsRelais, List<Participant> participantLicenceCourseIndiv, List<Participant> participantsNonLicenceCourseIndividuelles, char sexe){
+        List<Participant> participantsFiltres=new ArrayList<>();
+        System.out.println("Participants relais:");
+        for(Participant p:participantsRelais){
+            System.out.println(p);
+            if(p.getSexe()==sexe){
+                System.out.println("------------------");
+                System.out.println(p);
+                System.out.println("------------------");
+                participantsFiltres.add(p);
+            }
+        }
+        System.out.println("Participants licence:");
+        for(Participant p:participantLicenceCourseIndiv){
+            System.out.println(p);
+            if(p.getSexe()==sexe){
+                participantsFiltres.add(p);
+            }
+        }
+        System.out.println("Participants non licence:");
+        for(Participant p:participantsNonLicenceCourseIndividuelles){
+            System.out.println(p);
+            if(p.getSexe()==sexe){
+                participantsFiltres.add(p);
+            }
+        }
+        return participantsFiltres;
+    }
+
     @FXML
     public void initialize() {
         if(tableViewMasculin!=null && tableViewFeminin!=null){
@@ -99,12 +129,28 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
             colDossard.setCellValueFactory(cellData -> {
                 return new SimpleIntegerProperty(cellData.getValue().getId()).asObject();
             });
-            System.out.println(tableViewMasculin);
             tableViewMasculin.getColumns().setAll(colNom, colPrenom, colClub, colLicence, colDossard);
+            tableViewFeminin.getColumns().setAll(colNom, colPrenom, colClub, colLicence, colDossard);
             try {
                 // Récupération des participants depuis la base de données
-                List<Participant> listeParticipants = TriSLN.getBd().getParticipantsCourseRelais();
-                tableViewMasculin.setItems(FXCollections.observableArrayList(listeParticipants));
+                List<Participant> participantsRelais=TriSLN.getBd().getParticipantsCourseRelais();
+                List<Participant> participantsLicence=TriSLN.getBd().getParticipantsLicenceCourseIndividuelles();
+                List<Participant> participantsNonLicence = TriSLN.getBd().getParticipantsNonLicenceCourseIndividuelles();
+
+                System.out.println("Relais:");
+                System.out.println(participantsRelais);
+                System.out.println();
+                System.out.println("Licence:");
+                System.out.println(participantsLicence);
+                System.out.println();
+                System.out.println("Non Licence:");
+                System.out.println(participantsNonLicence);
+                System.out.println();
+
+                List<Participant> participantsMasculin=getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'M');
+                List<Participant> participantsFeminin=getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'F');
+                tableViewMasculin.setItems(FXCollections.observableArrayList(participantsMasculin));
+                tableViewFeminin.setItems(FXCollections.observableArrayList(participantsFeminin));
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -91,9 +91,9 @@ end|
 
 -- Vérification des attributs licence,numLicence,club et dateNaissance selon le type de participant
 -- Fonctions pour savoir le type de participant selon certains attributs
-create or replace function isParticipantsRelais(club varchar(42), nom_Equipe varchar(42), licence boolean) returns boolean
+create or replace function isParticipantsRelais(club varchar(42), nom_Equipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    return club='null' and nom_Equipe!='null' and licence;
+    return club='null' and nom_Equipe!='null' and licence and numLicence=0;
 end|
 
 create or replace function isParticipantsLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
@@ -113,7 +113,7 @@ begin
     declare participantRelais boolean default true;
     declare participantLicenceIndiv boolean default true;
     declare participantNonLicenceIndiv boolean default true;
-    select isParticipantsRelais(new.club, new.nom_Equipe, new.licence) into participantRelais;
+    select isParticipantsRelais(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantRelais;
     select isParticipantsLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantLicenceIndiv;
     select isParticipantsNonLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantNonLicenceIndiv;
     if not participantRelais and not participantLicenceIndiv and not participantNonLicenceIndiv then

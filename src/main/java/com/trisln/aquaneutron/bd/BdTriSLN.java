@@ -92,12 +92,10 @@ public class BdTriSLN{
      * @return true si c'est un participant Ã  un relais sinon false
      * @throws SQLException
      */
-    public boolean isParticipantsRelais(String club, String nomEquipe, boolean licence) throws SQLException{
+    public boolean isParticipantsRelais(String club, String nomEquipe, boolean licence, int numLicence) throws SQLException{
         Statement st=connexion.createStatement();
-        System.out.println("Club:"+club+" Nom Equipe:"+nomEquipe+"Licence:"+licence);
-        ResultSet isParticipRelais=st.executeQuery("select isParticipantsRelais('"+club+"','"+nomEquipe+"',"+ licence+")");
+        ResultSet isParticipRelais=st.executeQuery("select isParticipantsRelais('"+club+"','"+nomEquipe+"',"+ licence+", "+numLicence+")");
         if(isParticipRelais.next()){
-            System.out.println(isParticipRelais.getBoolean(1));
             return isParticipRelais.getBoolean(1);
         }
         return false;
@@ -162,11 +160,8 @@ public class BdTriSLN{
             String dateNaissance = participants.getString(12);
             String nomEquipe=participants.getString(13);
             boolean licence=participants.getBoolean(14);
-            System.out.println(club+" "+nomEquipe+" "+licence+" "+numLicence);
-            if(isParticipantsRelais(club, nomEquipe, licence) && numLicence == 0){
-                System.out.println("Ajout participant à la liste");
+            if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
                 Participant participant = new ParticipantCourseRelais(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateNaissance, nomEquipe, licence);
-                System.out.println(participant);
                 participantsCourseRelais.add(participant);
             }
         }
@@ -295,7 +290,7 @@ public class BdTriSLN{
                 String nomEquipe=participant.getString(13);
                 boolean licence=participant.getBoolean(14);
 
-                if(isParticipantsRelais(club, nomEquipe, licence)){
+                if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
                     leParticipant=new ParticipantCourseRelais(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateDeNaissance, nomEquipe, licence);
                 }
                 else if(isParticipantsLicenceIndiv(club, nomEquipe, licence, numLicence)){
