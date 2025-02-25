@@ -41,7 +41,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="idNom" prefHeight="30.0" prefWidth="188.0" promptText="Nom de la course">
+                        <TextField fx:id="nomCourse" prefHeight="30.0" prefWidth="188.0" promptText="Nom de la course">
                            <opaqueInsets>
                               <Insets left="10.0" />
                            </opaqueInsets>
@@ -59,7 +59,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="idFormat" mnemonicParsing="false" prefHeight="33.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="-- Choisir un format --">
+                        <MenuButton fx:id="formatCourse" mnemonicParsing="false" prefHeight="33.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="-- Choisir un format --">
                           <items>
                             <MenuItem fx:id="btnJeune" mnemonicParsing="false" text="Jeune" />
                             <MenuItem fx:id="btnXS" mnemonicParsing="false" text="XS" />
@@ -89,7 +89,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="idDate" prefHeight="30.0" prefWidth="188.0" promptText="jj/mm/aa">
+                                    <TextField fx:id="dateCourse" prefHeight="30.0" prefWidth="188.0" promptText="jj/mm/aa">
                                        <opaqueInsets>
                                           <Insets left="10.0" />
                                        </opaqueInsets>
@@ -110,7 +110,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="idHeure" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm">
+                                    <TextField fx:id="heureCourse" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm">
                                        <opaqueInsets>
                                           <Insets left="10.0" />
                                        </opaqueInsets>
