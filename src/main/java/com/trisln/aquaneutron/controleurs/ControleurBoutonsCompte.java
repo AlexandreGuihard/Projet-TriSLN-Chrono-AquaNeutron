@@ -41,7 +41,6 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
     public ControleurBoutonsCompte(TriSLN vue){
         super();
         this.setBoutons(vue);
-        System.out.println(vue.getUtilisateur().getIdentifiant());
         Platform.runLater(()->textIdentifiant.setText(vue.getUtilisateur().getIdentifiant()));
         Platform.runLater(()->textRole.setText(vue.getUtilisateur().getRole()));
         Platform.runLater(()->textNom.setText(vue.getUtilisateur().getNom()));
