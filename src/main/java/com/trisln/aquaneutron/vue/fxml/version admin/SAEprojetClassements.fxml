@@ -36,30 +36,30 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="-- Choisir une sous-catégorie --">
                         <items>
-                            <MenuItem mnemonicParsing="false" text="Mini-poussins (MP)" />
-                            <MenuItem mnemonicParsing="false" text="Poussins (PO)" />
-                              <MenuItem mnemonicParsing="false" text="Pupilles (PU)" />
-                              <MenuItem mnemonicParsing="false" text="Benjamins (BE)" />
-                              <MenuItem mnemonicParsing="false" text="Minimes (MI)" />
-                              <MenuItem mnemonicParsing="false" text="Cadets (CA)" />
-                              <MenuItem mnemonicParsing="false" text="Juniors (JU)" />
-                              <Menu mnemonicParsing="false" text="Séniors (S)">
+                            <MenuItem mnemonicParsing="false" text="MP" />
+                            <MenuItem mnemonicParsing="false" text="PO" />
+                              <MenuItem mnemonicParsing="false" text="PU" />
+                              <MenuItem mnemonicParsing="false" text="BE" />
+                              <MenuItem mnemonicParsing="false" text="MI" />
+                              <MenuItem mnemonicParsing="false" text="CA" />
+                              <MenuItem mnemonicParsing="false" text="JU" />
+                              <Menu mnemonicParsing="false" text="S">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" text="Séniors 1 (S1)" />
-                                    <MenuItem mnemonicParsing="false" text="Séniors 2 (S2)" />
-                                    <MenuItem mnemonicParsing="false" text="Séniors 3 (S3)" />
-                                    <MenuItem mnemonicParsing="false" text="Séniors 4 (S4)" />
+                                  <MenuItem mnemonicParsing="false" text="S1" />
+                                    <MenuItem mnemonicParsing="false" text="S2" />
+                                    <MenuItem mnemonicParsing="false" text="S3" />
+                                    <MenuItem mnemonicParsing="false" text="S4" />
                                 </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Vétérans (V)">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" text="Vétérans 1 (V1)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 2 (V2)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 3 (V3)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 4 (V4)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 5 (V5)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 6 (V6)" />
-                                    <MenuItem mnemonicParsing="false" text="Vétérans 7 (V7)" />
+                                  <MenuItem mnemonicParsing="false" text="V1" />
+                                    <MenuItem mnemonicParsing="false" text="V2" />
+                                    <MenuItem mnemonicParsing="false" text="V3" />
+                                    <MenuItem mnemonicParsing="false" text="V4" />
+                                    <MenuItem mnemonicParsing="false" text="V5" />
+                                    <MenuItem mnemonicParsing="false" text="V6" />
+                                    <MenuItem mnemonicParsing="false" text="V7" />
                                 </items>
                               </Menu>
                         </items>

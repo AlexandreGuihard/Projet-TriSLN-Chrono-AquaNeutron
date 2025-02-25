@@ -35,7 +35,12 @@ def generate_pdf_classement(host, user, password, database, genre, categorie):
             genre_condition = f"AND P.sexe = '{genre}'"
         
         if categorie.lower() != "toutes":
-            categorie_condition = f"AND Cat.categorie = '{categorie}'"
+            if "S" in categorie.lower():
+                categorie_condition = f"AND Cat.sousCategorie = '{categorie}'"
+            elif "V" in categorie.lower():
+                categorie_condition = f"AND Cat.sousCategorie = '{categorie}'"
+            else:
+                categorie_condition = f"AND Cat.categorie = '{categorie}'"
 
         query = f"""
         SELECT 
