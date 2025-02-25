@@ -190,6 +190,19 @@ public class BdTriSLN{
         addCourse.close();
     }
 
+    public Utilisateur getUtilisateurFromIdentifiant(String identifiant) throws SQLException{
+        Statement st=this.connexion.createStatement();
+        ResultSet utilisateur=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(utilisateur.next()){
+            String email=utilisateur.getString(2);
+            String role=utilisateur.getString(4);
+            String nom=utilisateur.getString(5);
+            String prenom=utilisateur.getString(6);
+            return new Utilisateur(identifiant, email, role, nom, prenom);
+        }
+        return null;
+    }
+
     public boolean verifConnexion(String identifiant, String motDePasse){
         try{
         Statement st=this.connexion.createStatement();
@@ -231,7 +244,7 @@ public class BdTriSLN{
         Statement s = this.connexion.createStatement();
         ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
-            return rs.getString(2);
+            return rs.getString(4);
         } else {
             throw new NoSuchUserException();
         }

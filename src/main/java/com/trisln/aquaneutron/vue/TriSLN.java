@@ -73,7 +73,7 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLogin () throws IOException{
+    public void afficheLogin() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
@@ -449,6 +449,10 @@ public class TriSLN extends Application{
 
     public Utilisateur getUtilisateur() {
         return this.utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur){
+        this.utilisateur=utilisateur;
     }
     
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){

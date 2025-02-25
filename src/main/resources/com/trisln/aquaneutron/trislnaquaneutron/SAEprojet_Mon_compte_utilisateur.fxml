@@ -37,7 +37,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="text_identifiant" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="190.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textIdentifiant" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="190.13000106811523" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -51,7 +51,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="text_rôle" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textRole" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -65,7 +65,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="text_nom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textNom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -79,7 +79,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="text_prénom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textPrenom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -93,7 +93,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="text_email" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>

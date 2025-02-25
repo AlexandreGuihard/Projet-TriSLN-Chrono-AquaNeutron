@@ -80,6 +80,9 @@ create or replace table UTILISATEUR (
                                         identifiant varchar(42),
                                         email varchar(254) unique,
                                         mot_de_passe varchar(254),
+                                        role_utilisateur varchar(42),
+                                        nom varchar(254),
+                                        prenom varchar(254),
                                         primary key(identifiant)
 );
 
