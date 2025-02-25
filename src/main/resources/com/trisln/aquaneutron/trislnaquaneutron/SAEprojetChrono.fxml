@@ -111,7 +111,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="btnAJtCourse" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Top départ" textFill="WHITE">
+                              <Button fx:id="btnTopDepart" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Top départ" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -119,7 +119,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button fx:id="btnAJtCourse3" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Fin de course" textFill="WHITE">
+                              <Button fx:id="btnTopArrive" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Fin de course" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>

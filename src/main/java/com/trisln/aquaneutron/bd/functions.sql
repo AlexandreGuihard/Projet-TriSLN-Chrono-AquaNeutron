@@ -131,6 +131,7 @@ begin
     return club is null and nomEquipe is null and not licence and numLicence is null;
 end|
 
+-- Vérifie si le participant participe à la course à partir de son numéro de dossard
 create or replace function isParticipantOfCourse(idDossard INT, idEpreuve INT) returns boolean
 begin
     if exists (select * FROM DOSSARD JOIN PARTICIPANT ON DOSSARD.id_Participant = PARTICIPANT.id_Participant JOIN PARTICIPER ON PARTICIPANT.id_Participant = PARTICIPER.id_Participant

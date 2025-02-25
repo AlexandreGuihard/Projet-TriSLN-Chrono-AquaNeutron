@@ -39,7 +39,11 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     @FXML
     private Button btnCompte;
     @FXML
-    private Button btnDossardArrive;   
+    private Button btnDossardArrive; 
+    @FXML
+    private Button btnTopDepart;
+    @FXML
+    private Button btnTopArrive;
     @FXML
     private TextField numeroDossard;
     @FXML
@@ -144,7 +148,15 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                     super.getVue().changeButtonColor(this.btnDossardArrive, "#105c74", "");
                 }
                 else{
-                    super.handleBtnsMouseEntered(btn);
+                    if(btn.getId().equals("btnTopDepart")){
+                        super.getVue().changeButtonColor(this.btnTopDepart, "#105c74", "");
+                    } else{
+                        if(btn.getId().equals("btnTopArrive")){
+                            super.getVue().changeButtonColor(this.btnTopArrive, "#105c74", "");
+                        } else{
+                            super.handleBtnsMouseEntered(btn);
+                        }
+                    }
                 }
         } catch (Exception e) {
             System.err.println("Erreur");
@@ -160,7 +172,15 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             if(btn.getId().equals("btnDossardArrive")){
                 super.getVue().changeButtonColor(this.btnDossardArrive, "#2596BE", "");
             } else {
-                super.handleBtnsMouseExited(btn);
+                if(btn.getId().equals("btnTopDepart")){
+                    super.getVue().changeButtonColor(this.btnTopDepart, "#2596BE", "");
+                } else {
+                    if(btn.getId().equals("btnTopArrive")){
+                        super.getVue().changeButtonColor(this.btnTopArrive, "#2596BE", "");
+                    } else {
+                        super.handleBtnsMouseExited(btn);
+                    }
+                }
             }
         } catch (Exception e) {
             System.err.println("Erreur");
