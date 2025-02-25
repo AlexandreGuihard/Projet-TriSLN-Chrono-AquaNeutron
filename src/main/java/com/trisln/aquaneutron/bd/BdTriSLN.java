@@ -231,7 +231,6 @@ public class BdTriSLN{
                 boolean licence=participants.getBoolean(14);
                 if(isParticipantsNonLicenceIndiv(club, nomEquipe, licence, numLicence)){
                     Participant participant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateNaissance);
-                    System.out.println(participant);
                     participantsNonLicenceCourseIndividuelles.add(participant);
                 }
             }

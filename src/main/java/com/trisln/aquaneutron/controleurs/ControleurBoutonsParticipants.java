@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import com.trisln.aquaneutron.modele.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -78,10 +80,12 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     }
 
     private List<Participant> getParticipantsDUnSexe(List<Participant> participantsRelais, List<Participant> participantLicenceCourseIndiv, List<Participant> participantsNonLicenceCourseIndividuelles, char sexe){
-        List<Participant> participantsFiltres=new ArrayList<>();
+        List<Participant> participantsFiltres = new ArrayList<>();
         System.out.println("Participants relais:");
         for(Participant p:participantsRelais){
             System.out.println(p);
+            System.out.println(p.getSexe());
+            System.out.println(sexe);
             if(p.getSexe()==sexe){
                 System.out.println("------------------");
                 System.out.println(p);
@@ -109,48 +113,62 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     @FXML
     public void initialize() {
         if(tableViewMasculin!=null && tableViewFeminin!=null){
-            TableColumn<Participant, String> colNom = new TableColumn<>("Nom");
-            colNom.setCellValueFactory(cellData -> {
-                return new SimpleStringProperty(cellData.getValue().getNom());
-            });
-            TableColumn<Participant, String> colPrenom = new TableColumn<>("Prénom");
-            colPrenom.setCellValueFactory(cellData -> {
-                return new SimpleStringProperty(cellData.getValue().getPrenom());
-            });
-            TableColumn<Participant, String> colClub = new TableColumn<>("Club");
-            colClub.setCellValueFactory(cellData -> {
-                return new SimpleStringProperty(cellData.getValue().getClub());
-            });
-            TableColumn<Participant, Boolean> colLicence = new TableColumn<>("Licence");
-            colLicence.setCellValueFactory(cellData -> {
-                return new SimpleBooleanProperty(cellData.getValue().getLicence());
-            });
-            TableColumn<Participant, Integer> colDossard = new TableColumn<>("Dossard");
-            colDossard.setCellValueFactory(cellData -> {
-                return new SimpleIntegerProperty(cellData.getValue().getId()).asObject();
-            });
-            tableViewMasculin.getColumns().setAll(colNom, colPrenom, colClub, colLicence, colDossard);
-            tableViewFeminin.getColumns().setAll(colNom, colPrenom, colClub, colLicence, colDossard);
+            // Colonnes pour la tableViewMasculin
+            TableColumn<Participant, String> colNomM = new TableColumn<>("Nom");
+            colNomM.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
+                    
+            TableColumn<Participant, String> colPrenomM = new TableColumn<>("Prénom");
+            colPrenomM.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
+                    
+            TableColumn<Participant, String> colClubM = new TableColumn<>("Club");
+            colClubM.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClub()));
+                    
+            TableColumn<Participant, Boolean> colLicenceM = new TableColumn<>("Licence");
+            colLicenceM.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getLicence()));
+                    
+            TableColumn<Participant, Integer> colDossardM = new TableColumn<>("Dossard");
+            colDossardM.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+                    
+            // Colonnes pour la tableViewFeminin
+            TableColumn<Participant, String> colNomF = new TableColumn<>("Nom");
+            colNomF.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
+                    
+            TableColumn<Participant, String> colPrenomF = new TableColumn<>("Prénom");
+            colPrenomF.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
+                    
+            TableColumn<Participant, String> colClubF = new TableColumn<>("Club");
+            colClubF.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClub()));
+                    
+            TableColumn<Participant, Boolean> colLicenceF = new TableColumn<>("Licence");
+            colLicenceF.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getLicence()));
+                    
+            TableColumn<Participant, Integer> colDossardF = new TableColumn<>("Dossard");
+            colDossardF.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+                    
+            tableViewMasculin.getColumns().setAll(colNomM, colPrenomM, colClubM, colLicenceM, colDossardM);
+            tableViewFeminin.getColumns().setAll(colNomF, colPrenomF, colClubF, colLicenceF, colDossardF);
+
             try {
+                tableViewMasculin.getItems().clear();
+                tableViewFeminin.getItems().clear();
                 // Récupération des participants depuis la base de données
                 List<Participant> participantsRelais=TriSLN.getBd().getParticipantsCourseRelais();
                 List<Participant> participantsLicence=TriSLN.getBd().getParticipantsLicenceCourseIndividuelles();
                 List<Participant> participantsNonLicence = TriSLN.getBd().getParticipantsNonLicenceCourseIndividuelles();
 
-                System.out.println("Relais:");
-                System.out.println(participantsRelais);
-                System.out.println();
-                System.out.println("Licence:");
-                System.out.println(participantsLicence);
-                System.out.println();
-                System.out.println("Non Licence:");
-                System.out.println(participantsNonLicence);
-                System.out.println();
-
                 List<Participant> participantsMasculin=getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'M');
                 List<Participant> participantsFeminin=getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'F');
-                tableViewMasculin.setItems(FXCollections.observableArrayList(participantsMasculin));
-                tableViewFeminin.setItems(FXCollections.observableArrayList(participantsFeminin));
+                System.out.println(participantsMasculin);
+                System.out.println(participantsFeminin);
+                ObservableList<Participant> masculinList = FXCollections.observableArrayList(participantsMasculin);
+                ObservableList<Participant> femininList = FXCollections.observableArrayList(participantsFeminin);
+
+                tableViewMasculin.setItems(masculinList);
+                tableViewFeminin.setItems(femininList);
+
+                System.out.println(tableViewFeminin);
+                System.out.println(tableViewMasculin);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
