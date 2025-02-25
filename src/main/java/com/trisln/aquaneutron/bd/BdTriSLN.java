@@ -195,7 +195,7 @@ public class BdTriSLN{
         Statement st=this.connexion.createStatement();
         ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
         if(rs.next()){
-            String motDePasseBd=rs.getString(2);
+            String motDePasseBd=rs.getString(3);
             return motDePasseBd.equals(motDePasse);
         }
         return false;
