@@ -15,6 +15,9 @@ public abstract class Participant implements IParticipant{
     private String numTel;
     private String dateNaissance;
     private Classement classement;
+    private String club; // Ajout de la variable club
+    private int dossard; // Ajout de la variable dossard
+    private String licence; // Ajout de la variable licence
 
     /**
      * Constructeur de la classe. Appelé par les classes enfants
@@ -52,28 +55,23 @@ public abstract class Participant implements IParticipant{
         return this.id;
     }
 
-    /**
-     * Getter pour avoior le nom
-     * @return le nom du participant
-     */
     public String getNom(){
         return this.nom;
     }
 
-    /**
-     * Getter pour avoir le prénom
-     * @return le prénom du participant
-     */
     public String getPrenom(){
         return this.prenom;
     }
 
-    /**
-     * Getter pour avoir la catégorie
-     * @return la catégorie du participant
-     */
     public String getCategorie(){
         return this.categorie;
+    }
+    /**
+     * Getter de la sous catégorie du participant
+     * @return la sous catégorie du participant
+     */
+    public String getSousCategorie(){
+        return sousCategorie;
     }
 
     /**
@@ -92,18 +90,10 @@ public abstract class Participant implements IParticipant{
         return this.sexe;
     }
 
-    /**
-     * Getter pour avoir l'email
-     * @return l'email du participant
-     */
     public String getEmail(){
         return this.email;
     }
 
-    /**
-     * Getter pour avoir la ville
-     * @return la ville du participant
-     */
     public String getVille(){
         return this.ville;
     }
@@ -137,31 +127,27 @@ public abstract class Participant implements IParticipant{
      * @param id le nouvel id du participant
      */
     public void setId(int id){
-        this.id=id;
+        this.id = id;
     }
 
-    /**
-     * Setter du nom 
-     * @param nom le nouveau nom du participant
-     */
     public void setNom(String nom){
-        this.nom=nom;
+        this.nom = nom;
     }
 
-    /**
-     * Setter du prénom
-     * @param prenom le nouveau prénom du participant
-     */
     public void setPrenom(String prenom){
-        this.prenom=prenom;
+        this.prenom = prenom;
+    }
+
+    public void setCategorie(String categorie){
+        this.categorie = categorie;
     }
 
     /**
-     * Setter de la catégorie
-     * @param categorie la nouvelle catégorie du participant
+     * Setter de la sous catégorie
+     * @param sousCategorie la nouvelle sous catégorie du participant
      */
-    public void setCategorie(String categorie){
-        this.categorie=categorie;
+    public void setSousCategorie(String sousCategorie){
+        this.sousCategorie=sousCategorie;
     }
 
     /**
@@ -177,23 +163,15 @@ public abstract class Participant implements IParticipant{
      * @param sexe le nouveau sexe du participant
      */
     public void setSexe(char sexe){
-        this.sexe=sexe;
+        this.sexe = sexe;
     }
 
-    /**
-     * Setter de l'email
-     * @param email le nouvel email du participant
-     */
     public void setEmail(String email){
-        this.email=email;
+        this.email = email;
     }
 
-    /**
-     * Setter de la ville
-     * @param ville la nouvelle ville du participant
-     */
     public void setVille(String ville){
-        this.ville=ville;
+        this.ville = ville;
     }
 
     /**

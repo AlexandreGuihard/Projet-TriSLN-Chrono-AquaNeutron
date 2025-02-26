@@ -24,9 +24,13 @@ end|
 -- Getter du format de la course à partir de l'id format
 create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
 begin
-    declare leFormat varchar(42);
-    select format into leFormat from FORMATCOURSE where idFormat=idDuFormat;
-    return leFormat;
+    declare idCateg int;
+    if sousCategorie is null then
+        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
+    else
+        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
+    end if;
+    return idCateg;
 end|
 
 -- Getter de l'id du format à partir du nom du format
@@ -64,7 +68,7 @@ END |
 create or replace function getCategorieFromId(idCategorie int) returns varchar(42)
 begin
     declare categ varchar(42);
-    select categorie into categ from CATEGORIE where idCategorie=idCategorie LIMIT 1;
+    select categorie into categ from CATEGORIE where CATEGORIE.idCategorie=idCategorie limit 1;
     return categ;
 end|
 
@@ -72,7 +76,7 @@ end|
 create or replace function getSousCategorieFromId(idCategorie int) returns varchar(42)
 begin
     declare sousCateg varchar(42);
-    select sousCategorie into sousCateg from CATEGORIE where idCategorie=idCategorie;
+    select sousCategorie into sousCateg from CATEGORIE where CATEGORIE.idCategorie=idCategorie limit 1;
     return sousCateg;
 end|
 
@@ -116,19 +120,19 @@ end|
 
 -- Vérification des attributs licence,numLicence,club et dateNaissance selon le type de participant
 -- Fonctions pour savoir le type de participant selon certains attributs
-create or replace function isParticipantsRelais(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
+create or replace function isParticipantsRelais(club varchar(42), nom_Equipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    return club is null and numLicence is null and nomEquipe is not null and licence;
+    return club='null' and nom_Equipe!='null' and licence and numLicence=0;
 end|
 
 create or replace function isParticipantsLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    return club is not null and numLicence is not null and nomEquipe is null and not licence;
+    return club!='null' and numLicence!=0 and nomEquipe='null' and not licence;
 end|
 
 create or replace function isParticipantsNonLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    return club is null and nomEquipe is null and not licence and numLicence is null;
+    return club='null' and nomEquipe='null' and not licence and numLicence=0;
 end|
 
 -- Vérifie si le participant participe à la course à partir de son numéro de dossard

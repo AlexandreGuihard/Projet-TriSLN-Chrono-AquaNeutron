@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.ArrayList;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
-public class BdTriSLN{
+public class BdTriSLN {
     private ConnexionMySQL connexion;
+  
     /**
      * Constructeur de la classe de la bd
      * @param connexion la connexion au serveur
@@ -204,8 +205,30 @@ public class BdTriSLN{
     }
     
 
+    public Participant getParticipantFromId(int id) throws SQLException{
+        List<Participant> participantsRelais=getParticipantsCourseRelais();
+        List<Participant> participantsLicence=getParticipantsLicenceCourseIndividuelles();
+        List<Participant> participantsNonLicence=getParticipantsNonLicenceCourseIndividuelles();
+        for(Participant p:participantsRelais){
+            if(p.getId()==id){
+                return p;
+            }
+        }
+        for(Participant p:participantsLicence){
+            if(p.getId()==id){
+                return p;
+            }
+        }
+        for(Participant p:participantsNonLicence){
+            if(p.getId()==id){
+                return p;
+            }
+        }
+        return null;
+    }
+
     /**
-     * @return la liste des participants à une course avec relais de la bd
+     * @return la liste des participants Ã  une course avec relais de la bd
      * @throws SQLException
      */
     public List<Participant> getParticipantsCourseRelais() throws SQLException{
@@ -234,7 +257,6 @@ public class BdTriSLN{
                 participantsCourseRelais.add(participant);
             }
         }
-        st.close();
         return participantsCourseRelais;
     }
 
@@ -310,6 +332,7 @@ public class BdTriSLN{
         return participantsNonLicenceCourseIndividuelles;
     }
 
+
     /**
      * @return la liste des courses de la bd
      * @throws SQLException
@@ -328,7 +351,6 @@ public class BdTriSLN{
             Course course=new Course(idE, nom, format, categorie, heureDepart, prix);
             courses.add(course);
         }
-        st.close();
         return courses;
     }
 
@@ -406,6 +428,19 @@ public class BdTriSLN{
 
         addCourse.executeUpdate();
         addCourse.close();
+    }
+
+    public Utilisateur getUtilisateurFromIdentifiant(String identifiant) throws SQLException{
+        Statement st=this.connexion.createStatement();
+        ResultSet utilisateur=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(utilisateur.next()){
+            String email=utilisateur.getString(2);
+            String role=utilisateur.getString(4);
+            String nom=utilisateur.getString(5);
+            String prenom=utilisateur.getString(6);
+            return new Utilisateur(identifiant, email, role, nom, prenom);
+        }
+        return null;
     }
 
     /**
@@ -603,68 +638,88 @@ public class BdTriSLN{
         }
     }
 
-    public String getEmail(String identifiant) throws SQLException, NoSuchUserException{
+    public String getEmail(String identifiant) throws SQLException, NoSuchUserException {
         Statement s = this.connexion.createStatement();
-        ResultSet rs = s.executeQuery("select email from UTILISATEUR where identifiant = '"+identifiant+"'");
-        if (rs.next()){
+        ResultSet rs = s.executeQuery("select email from UTILISATEUR where identifiant = '" + identifiant + "'");
+        if (rs.next()) {
             return rs.getString(1);
         } else {
             throw new NoSuchUserException();
         }
     }
 
-    public List<String> getEmailAdresses() throws SQLException{
+    public List<String> getEmailAdresses() throws SQLException {
         List<String> emails = new ArrayList<>();
         Statement s = this.connexion.createStatement();
         ResultSet rs = s.executeQuery("select email from UTILISATEUR");
-        while (rs.next()){
+        while (rs.next()) {
             String email = rs.getString(1);
             emails.add(email);
         }
         return emails;
     }
 
-    public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException{
+    public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException {
         Statement s = this.connexion.createStatement();
-        ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
-        if(rs.next()){
+        ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='" + identifiant + "'");
+        if (rs.next()) {
             return rs.getString(2);
         } else {
             throw new NoSuchUserException();
         }
     }
 
-    public String getIdentifiantByEmail(String email) throws SQLException, NoSuchUserException{
+    public String getIdentifiantByEmail(String email) throws SQLException, NoSuchUserException {
         PreparedStatement ps = this.connexion.prepareStatement("select identifiant from UTILISATEUR where email = ?");
         ps.setString(1, email);
-        ResultSet  rs = ps.executeQuery();
-        if(rs.next()){
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
             return rs.getString(1);
         } else {
             throw new NoSuchUserException();
         }
     }
 
-    public void changePassword(String identifiant, String newPassword) throws SQLException{
+    public void changePassword(String identifiant, String newPassword) throws SQLException {
         PreparedStatement ps = this.connexion.prepareStatement("update UTILISATEUR set mot_de_passe = ? where identifiant= ?");
         ps.setString(1, newPassword);
         ps.setString(2, identifiant);
         ps.executeUpdate();
     }
 
-    public void enregistrerToken(String identifiant, String token) throws SQLException{
+    public void enregistrerToken(String identifiant, String token) throws SQLException {
         PreparedStatement ps = this.connexion.prepareStatement("update UTILISATEUR set token_reinit = ? where identifiant = ?");
         ps.setString(1, token);
         ps.setString(2, identifiant);
         ps.executeUpdate();
     }
 
-    public void ajouterBenevole(String identifiant, String mdp, String email) throws SQLException{
+    public void ajouterBenevole(String identifiant, String mdp, String email) throws SQLException {
         PreparedStatement ps = this.connexion.prepareStatement("insert into UTILISATEUR values (?,?,?,?)");
         ps.setString(1, identifiant);
         ps.setString(2, "benevol");
         ps.setString(3, mdp);
         ps.setString(4, email);
+        ps.executeUpdate();
+    }
+
+    public void updateParticipant(Participant participant) throws SQLException{
+        PreparedStatement ps=this.connexion.prepareStatement("call updateParticipant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ps.setInt(1, participant.getId());
+        ps.setString(2, participant.getNom());
+        ps.setString(3, participant.getPrenom());
+        ps.setString(4, participant.getSexe()+"");
+        ps.setString(5, participant.getDateNaissance());
+        ps.setString(6, participant.getCategorie());
+        ps.setString(7, participant.getSousCategorie());
+        ps.setString(8, participant.getClub());
+        ps.setString(9, participant.getNomEquipe());
+        ps.setString(10, participant.getEmail());
+        ps.setString(11, participant.getTel());
+        ps.setBoolean(12, participant.getCertification());
+        ps.setInt(13, participant.getNumLicence());
+        ps.setString(14, participant.getVille());
+        ps.setBoolean(15, participant.getLicence());
         ps.executeUpdate();
     }
 }
