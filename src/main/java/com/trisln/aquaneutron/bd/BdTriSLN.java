@@ -205,16 +205,30 @@ public class BdTriSLN {
         ps.executeUpdate();
     }
 
-    public boolean verifConnexion(String identifiant, String motDePasse) {
-        try {
-            Statement st = this.connexion.createStatement();
-            ResultSet rs = st.executeQuery("select * from UTILISATEUR where identifiant='" + identifiant + "'");
-            if (rs.next()) {
-                String motDePasseBd = rs.getString(1);
-                return motDePasseBd.equals(motDePasse);
-            }
-            return false;
-        } catch (Exception e) {
+    public Utilisateur getUtilisateurFromIdentifiant(String identifiant) throws SQLException{
+        Statement st=this.connexion.createStatement();
+        ResultSet utilisateur=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(utilisateur.next()){
+            String email=utilisateur.getString(2);
+            String role=utilisateur.getString(4);
+            String nom=utilisateur.getString(5);
+            String prenom=utilisateur.getString(6);
+            return new Utilisateur(identifiant, email, role, nom, prenom);
+        }
+        return null;
+    }
+
+    public boolean verifConnexion(String identifiant, String motDePasse){
+        try{
+        Statement st=this.connexion.createStatement();
+        ResultSet rs=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(rs.next()){
+            String motDePasseBd=rs.getString(3);
+            return motDePasseBd.equals(motDePasse);
+        }
+        return false;
+        }
+        catch (Exception e){
             e.printStackTrace();
             return false;
         }

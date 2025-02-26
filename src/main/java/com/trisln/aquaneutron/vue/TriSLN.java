@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 
 import java.sql.Connection;
@@ -27,6 +28,7 @@ import java.sql.SQLException;
 
 
 import java.io.File;
+
 import javafx.scene.control.ComboBox;
 
 import com.trisln.aquaneutron.vue.*;
@@ -93,7 +95,7 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLogin () throws IOException{
+    public void afficheLogin() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
@@ -471,7 +473,10 @@ public class TriSLN extends Application{
         return this.utilisateur;
     }
 
-
+    public void setUtilisateur(Utilisateur utilisateur){
+        this.utilisateur=utilisateur;
+    }
+    
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){
         this.fenetreParticipants=fenetreParticipants;
     }

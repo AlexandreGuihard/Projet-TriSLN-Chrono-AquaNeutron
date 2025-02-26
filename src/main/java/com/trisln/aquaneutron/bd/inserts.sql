@@ -17,7 +17,9 @@ insert into CATEGORIE (idCategorie, categorie, sousCategorie) values
                                                                   (15, 'V', 'V4'),
                                                                   (16, 'V', 'V5'),
                                                                   (17, 'V', 'V6'),
-                                                                  (18, 'V', 'V7');
+                                                                  (18, 'V', 'V7'),
+                                                                  (19, "Sénior", null),
+                                                                  (20, "Vétéran", null);
 
 insert into PARTICIPANT values
                             (1, 'Dupont', 'Carle', 1, 'F', 'x.carle@yahoo.fr', 'Paris', true, '0647882565', null, null, '2001-01-20', 'bleu', true),-- Relais
@@ -65,9 +67,9 @@ insert into CLASSEMENT values
                            (4, 3, 4, 2, "23:48");
 
 insert into UTILISATEUR values
-                            ("test", "voivenelromain@gmail.com" , "test"),
-                            ("admin", "a@a.com", "admin"),
-                            ("siecle", "b@b.com", "siecle");
+                             ("test", "voivenelromain@gmail.com" , "test", "Bénévole", "TestNom", "TestPrenom"),
+                            ("admin", "a@a.com", "admin", "Admin", "Administrateur", "Administrateur"),
+                            ("siecle", "b@b.com", "siecle", "Bénévole", "Toto", "Titi");
 
 insert into DOSSARD values
                         (1, 1),
