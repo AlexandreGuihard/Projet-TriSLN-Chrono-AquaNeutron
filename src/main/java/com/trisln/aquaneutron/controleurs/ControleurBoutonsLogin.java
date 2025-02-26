@@ -96,12 +96,17 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
                     super.getVue().getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
                     idInfoLabel.setText("Identifié en tant que " + super.getVue().getUtilisateur().getRole());
                     super.getVue().afficheAccueilConnecte();
+                    super.getVue().setUtilisateur(TriSLN.getBd().getUtilisateurFromIdentifiant(this.idIdentifiant.getText()));
                 }
                 catch (SQLException e) {
                     e.printStackTrace();
                 } 
                 catch (NoSuchUserException e){
                     idInfoLabel.setText("Cette utilisateur n'existe pas");
+                    e.printStackTrace();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
                 }
                 break;
             case "btnForgotPassword":

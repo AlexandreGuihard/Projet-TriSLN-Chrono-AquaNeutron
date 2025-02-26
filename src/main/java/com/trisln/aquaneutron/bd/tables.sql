@@ -14,7 +14,7 @@ create or replace table CHRONOMETRAGE (
 );
 
 create or replace table CLASSEMENT (
-                                       id_Classement int not null,
+                                       id_Classement int not null AUTO_INCREMENT,
                                        pos_generale int,
                                        pos_categorie int,
                                        pos_club int,
@@ -80,6 +80,9 @@ create or replace table UTILISATEUR (
                                         identifiant varchar(42),
                                         email varchar(254) unique,
                                         mot_de_passe varchar(254),
+                                        role_utilisateur varchar(42),
+                                        nom varchar(254),
+                                        prenom varchar(254),
                                         primary key(identifiant)
 );
 
