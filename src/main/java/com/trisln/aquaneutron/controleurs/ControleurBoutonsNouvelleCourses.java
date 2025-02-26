@@ -59,7 +59,7 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     }
 
     public void initialize() {
-        this.toggleGroup = this.rbMP.getToggleGroup();
+        this.toggleGroup = this.idMinPoussins.getToggleGroup();
 
         this.nomCourse.textProperty().addListener((observable, oldValue, newValue) -> {
             this.changeEtatBouton();
@@ -76,58 +76,9 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
 
     @FXML
     public void onKeyReleased(KeyEvent event) {
-        //TODO : à Finir
         KeyCode keyCode = event.getCode();
         TextField textField = (TextField) event.getSource();
         if (textField.getId().equals("heureCourse")) {
-            Set<Character> HEURE_AUTORISEE = Set.of('0', '1', '2');
-            Set<Character> HEURE_AUTORISEE_SI_2 = Set.of('0', '1', '2', '3');
-            Set<Character> MINUTE_AUTORISEE_PREMIER_CHAR = Set.of('0', '1', '2', '3', '4', '5', '6');
-
-
-            int cursorPosition = this.heureCourse.getCaretPosition();
-            String text = textField.getText();
-            char newChar = textField.getText().charAt(cursorPosition-1);
-            StringBuilder newText = new StringBuilder(text); // Pour modifier le contenu
-
-            if ((keyCode.isDigitKey() || keyCode.isKeypadKey())
-                    && cursorPosition > 0 && cursorPosition < newText.length()) {
-                switch(cursorPosition) {
-                    case 1:
-                        if (HEURE_AUTORISEE.contains(newChar)) {
-                            newText.setCharAt(cursorPosition, newChar);
-                        }
-                        break;
-                    case 2:
-                        if (newText.charAt(0) != '2' || HEURE_AUTORISEE_SI_2.contains(newChar)) {
-                            newText.setCharAt(cursorPosition, newChar);
-                        }
-                        break;
-                    case 3:
-                        this.heureCourse.positionCaret(cursorPosition+1);
-                        event.consume();
-                        break;
-                    case 4:
-                        if (MINUTE_AUTORISEE_PREMIER_CHAR.contains(newChar)) {
-                            newText.setCharAt(cursorPosition, newChar);
-                        }
-                        break;
-                    case 5:
-                        newText.setCharAt(cursorPosition, newChar);
-                        break;
-                }
-            } else if (keyCode == KeyCode.BACK_SPACE) {
-                newText.setCharAt(cursorPosition, '0');
-            }
-
-            // Enlever l'element ajouté par l'utilisateur
-            if (keyCode.isLetterKey() || keyCode.isKeypadKey() || keyCode.isDigitKey() || keyCode == KeyCode.SPACE) {
-                newText.deleteCharAt(cursorPosition-1);
-                text = String.valueOf(newText);
-            }
-            // Mettre à jour le TextField
-            this.heureCourse.setText(text);
-            this.heureCourse.positionCaret(cursorPosition);
             this.changeEtatBouton();
         }
     }
@@ -166,6 +117,15 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         }
     }
 
+    public void handleRB(ActionEvent event) {
+        this.changeEtatBouton();
+    }
+
+    @FXML
+    public void handleCB(ActionEvent event) {
+        this.changeEtatBouton();
+    }
+
     public void handle(ActionEvent event){
       try {
             Button btn=(Button) event.getSource();
@@ -177,39 +137,30 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
                 String categorie = "";
                 if (this.idMinPoussins.isSelected()) {
                     categorie = "MP";
-                    this.changeEtatBouton();
                 }
                 if (this.idBenjamins.isSelected()) {
                     categorie = "BE";
-                    this.changeEtatBouton();
                 }
                 if (this.idPoussins.isSelected()) {
                     categorie = "PO";
-                    this.changeEtatBouton();
                 }
                 if (this.idMinimes.isSelected()) {
                     categorie = "MI";
-                    this.changeEtatBouton();
                 }
                 if (this.idPupilles.isSelected()) {
                     categorie = "PU";
-                    this.changeEtatBouton();
                 }
                 if (this.idCadets.isSelected()) {
                     categorie = "CA";
-                    this.changeEtatBouton();
                 }
                 if (this.idJunoirs.isSelected()) {
                     categorie = "JU";
-                    this.changeEtatBouton();
                 }
                 if (this.idSeniors.isSelected()) {
                     categorie = "Senior";
-                    this.changeEtatBouton();
                 }
                 if (this.idVetran.isSelected()) {
                     categorie = "Veteran";
-                    this.changeEtatBouton();
                 }
                 try {
                     super.getVue().getBd().ajouterCourse(nom, "XS", categorie , heure, 1);
@@ -228,7 +179,6 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
             e.printStackTrace();
         } 
     }
-}
 
     private void changeEtatBouton() {
         boolean nomVide = this.nomCourse.getText().isEmpty();

@@ -61,7 +61,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="formatCourse" onAction="#handle" prefHeight="26.0" prefWidth="220.0" promptText="-- Choisir un format --" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;">
+                        <ComboBox fx:id="formatCourse" onAction="#handleCB" prefHeight="26.0" prefWidth="220.0" promptText="-- Choisir un format --" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Jeune" />
@@ -117,7 +117,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="heureCourse" onKeyReleased="#onKeyReleased" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm" text="00:00">
+                                    <TextField fx:id="heureCourse" onKeyReleased="#onKeyReleased" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
@@ -157,18 +157,18 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <RadioButton fx:id="rbMP" mnemonicParsing="false" onAction="#handle" text="Mini-Poussins">
+                              <RadioButton fx:id="idMinPoussins" mnemonicParsing="false" onAction="#handleRB" text="Mini-Poussins">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="categorie" />
                                  </toggleGroup></RadioButton>
-                              <RadioButton fx:id="rbB" mnemonicParsing="false" onAction="#handle" text="Benjamins" toggleGroup="$categorie" GridPane.columnIndex="1" />
-                              <RadioButton fx:id="rbJ" mnemonicParsing="false" onAction="#handle" text="Juniors" toggleGroup="$categorie" GridPane.columnIndex="2" />
-                              <RadioButton fx:id="rbPo" mnemonicParsing="false" onAction="#handle" text="Poussin" toggleGroup="$categorie" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="rbM" mnemonicParsing="false" onAction="#handle" text="Minimes" toggleGroup="$categorie" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="rbS" mnemonicParsing="false" onAction="#handle" text="Seniors" toggleGroup="$categorie" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="rbPu" mnemonicParsing="false" onAction="#handle" text="Pupilles" toggleGroup="$categorie" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="rbC" mnemonicParsing="false" onAction="#handle" text="Cadets" toggleGroup="$categorie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="rbV" mnemonicParsing="false" onAction="#handle" text="Vétéran" toggleGroup="$categorie" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="idBenjamins" mnemonicParsing="false" onAction="#handleRB" text="Benjamins" toggleGroup="$categorie" GridPane.columnIndex="1" />
+                              <RadioButton fx:id="idJunoirs" mnemonicParsing="false" onAction="#handleRB" text="Juniors" toggleGroup="$categorie" GridPane.columnIndex="2" />
+                              <RadioButton fx:id="idPoussins" mnemonicParsing="false" onAction="#handleRB" text="Poussin" toggleGroup="$categorie" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="idMinimes" mnemonicParsing="false" onAction="#handleRB" text="Minimes" toggleGroup="$categorie" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="idSeniors" mnemonicParsing="false" onAction="#handleRB" text="Seniors" toggleGroup="$categorie" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="idPupilles" mnemonicParsing="false" onAction="#handleRB" text="Pupilles" toggleGroup="$categorie" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="idCadets" mnemonicParsing="false" onAction="#handleRB" text="Cadets" toggleGroup="$categorie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="idVetran" mnemonicParsing="false" onAction="#handleRB" text="Vétéran" toggleGroup="$categorie" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>

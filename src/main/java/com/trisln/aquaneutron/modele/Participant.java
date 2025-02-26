@@ -75,14 +75,6 @@ public abstract class Participant implements IParticipant{
     }
 
     /**
-     * Getter de la sous catégorie du participant
-     * @return la sous catégorie du participant
-     */
-    public String getSousCategorie(){
-        return sousCategorie;
-    }
-
-    /**
      * Getter pour avoir le sexe
      * @return le sexe du participant
      */
@@ -140,14 +132,6 @@ public abstract class Participant implements IParticipant{
 
     public void setCategorie(String categorie){
         this.categorie = categorie;
-    }
-
-    /**
-     * Setter de la sous catégorie
-     * @param sousCategorie la nouvelle sous catégorie du participant
-     */
-    public void setSousCategorie(String sousCategorie){
-        this.sousCategorie=sousCategorie;
     }
 
     /**
