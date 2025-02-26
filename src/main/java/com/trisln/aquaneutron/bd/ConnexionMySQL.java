@@ -29,16 +29,16 @@ public class ConnexionMySQL {
     public Connection getConnexion(){
         return this.mysql;
     }
-    public boolean getConnecte(){
+
+    public boolean getConnecte() {
         return this.connecte;
     }
 
-	public Statement createStatement() throws SQLException {
-		return this.mysql.createStatement();
-	}
+    public Statement createStatement() throws SQLException {
+        return this.mysql.createStatement();
+    }
 
-	public PreparedStatement prepareStatement(String requete) throws SQLException{
-		return this.mysql.prepareStatement(requete);
-	}
-	
+    public PreparedStatement prepareStatement(String requete) throws SQLException {
+        return this.mysql.prepareStatement(requete);
+    }
 }
