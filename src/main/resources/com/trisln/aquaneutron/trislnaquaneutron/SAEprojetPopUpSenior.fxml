@@ -54,6 +54,7 @@
                      <String fx:id="choiceSeniors1" fx:value="S1"/>
                      <String fx:id="choiceSeniors2" fx:value="S2"/>
                      <String fx:id="choiceSeniors3" fx:value="S3"/>
+                     <String fx:id="choiceSeniors4" fx:value="S4"/>
                   </FXCollections>
                </items>
                <cursor>

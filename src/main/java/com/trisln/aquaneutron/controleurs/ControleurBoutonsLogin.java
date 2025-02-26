@@ -44,9 +44,7 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
 
     @FXML
     public void onKeyTyped(KeyEvent event) {
-        System.out.println(event.getCode().toString());
         TextField tf = (TextField) event.getSource();
-        System.out.println(tf.getId());
         if (event.getCode() == KeyCode.ENTER) {
             if (tf.getId().equals("idIdentifiant")) {
                 this.idMdp.requestFocus();
