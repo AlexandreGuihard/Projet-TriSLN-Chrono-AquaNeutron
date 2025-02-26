@@ -91,21 +91,21 @@ end|
 
 -- Vérification des attributs licence,numLicence,club et dateNaissance selon le type de participant
 -- Fonctions pour savoir le type de participant selon certains attributs
-create or replace function isParticipantsRelais(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
-begin
-    return club is null and numLicence is null and nomEquipe is not null and licence;
-end|
 
 create or replace function isParticipantsLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    return club is not null and numLicence is not null and nomEquipe is null and not licence;
+    return club!='null' and numLicence!=0 and nomEquipe='null' and licence;
 end|
 
 create or replace function isParticipantsNonLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
-    return club is null and nomEquipe is null and not licence and numLicence is null;
+    return club='null' and nomEquipe='null' and not licence and numLicence=0;
 end|
 
+create or replace function isParticipantsRelais(club varchar(42), nom_Equipe varchar(42), licence boolean, numLicence int) returns boolean
+begin
+    return club='null' and nom_Equipe!='null' and not licence and numLicence=0;
+end|
 -- Triggers
 create or replace trigger checkParticipant before insert on PARTICIPANT for each row
 begin

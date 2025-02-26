@@ -16,19 +16,22 @@ import java.util.Map;
 public class BdTriSLN{
 
     private static final Map<String, String> monthMap = new HashMap<>();
-    static {
+    static { //TODO voir si modif
         monthMap.put("janvier", "01");
         monthMap.put("février", "02");
+        monthMap.put("fevrier", "02");
         monthMap.put("mars", "03");
         monthMap.put("avril", "04");
         monthMap.put("mai", "05");
         monthMap.put("juin", "06");
         monthMap.put("juillet", "07");
         monthMap.put("août", "08");
+        monthMap.put("aout", "08");
         monthMap.put("septembre", "09");
         monthMap.put("octobre", "10");
         monthMap.put("novembre", "11");
         monthMap.put("décembre", "12");
+        monthMap.put("decembre", "12");
     }
 
     private ConnexionMySQL connexion;
@@ -218,17 +221,14 @@ public class BdTriSLN{
         try{
             if(fichier.getName().toLowerCase().endsWith(".csv")){
                 traitementCSV(fichier);
-            }
-
-            else if(fichier.getName().toLowerCase().endsWith(".xls")){
+            } else if(fichier.getName().toLowerCase().endsWith(".xls")){
                 traitementXLS(fichier);
-            }
-
-            else if(fichier.getName().toLowerCase().endsWith(".xlsx")){
+            } else if(fichier.getName().toLowerCase().endsWith(".xlsx")){
                 traitementXLSX( fichier);
+            } else{
+                System.out.println("fichier non traiter pour le moment");
             }
-
-            System.out.println("fichier non traiter pour le moment");
+            
 
         }
 
@@ -246,7 +246,7 @@ public class BdTriSLN{
 
         boolean estPremiereLigne = false;
         for (String line = br.readLine().toLowerCase(); line != null; line = br.readLine()) {
-            System.out.println(line +"\n");
+            //System.out.println(line +"\n");
             if (!estPremiereLigne) {
                 estPremiereLigne = true;
                 }
@@ -262,7 +262,7 @@ public class BdTriSLN{
                  {
                     partiedecoupe.add("null");
                 }
-                System.out.println(partiedecoupe +"\n");
+                System.out.println(partiedecoupe);
 
                 PreparedStatement addParticipant = this.connexion.prepareStatement("insert into PARTICIPANT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 int idParticipant = 0; 
@@ -288,31 +288,31 @@ public class BdTriSLN{
                 }
 
                 if ("null".equals(partiedecoupe.get(1))) {
-                    System.err.println("nom de la personne non trouver");
+                    System.err.println("nom de la personne non trouvé");
                     return ; //TODO faire des alertes
                 } else{
                     nom = partiedecoupe.get(1);
                 }                
                 
                 if ("null".equals(partiedecoupe.get(2))) {
-                    System.err.println("prenom de la personne non trouver");
+                    System.err.println("prenom de la personne non trouvé");
                     return ; //TODO faire des alertes
                 } else{
                     prenom = partiedecoupe.get(2);
                 }
 
                 if ("null".equals(partiedecoupe.get(3))) {
-                    System.err.println("id Categorie non trouver");
+                    System.err.println("id Categorie non trouvé");
                     return ; //TODO faire des alertes
                 }else{
                     idCategorie = Integer.parseInt(partiedecoupe.get(3));
                 }
 
                 if ("null".equals(partiedecoupe.get(4))) {
-                    System.err.println("sexe non trouver");
+                    System.err.println("sexe non trouvé");
                     return ; //TODO faire des alertes
                 }else{
-                    sexe = partiedecoupe.get(4);
+                    sexe = String.valueOf(partiedecoupe.get(4).charAt(0));
                 }
                 
                 if ("null".equals(partiedecoupe.get(7))) {
@@ -322,15 +322,15 @@ public class BdTriSLN{
                 }
 
                 if ("null".equals(partiedecoupe.get(8))) {
-                    System.err.println("telephone non trouver");
+                    System.err.println("telephone non trouvé");
                     return ; //TODO faire des alertes
                 }else{
                     numTel = partiedecoupe.get(8);
                 }
 
                 if ("null".equals(partiedecoupe.get(10))) {
-                    System.err.println("id numLicence non trouver");
-                    licence = false;
+                    System.err.println("id numLicence non trouvé");
+                    licence = false; //TODO a voir
                 }else{
                     numLicence = Integer.parseInt(partiedecoupe.get(10));
                     licence = true;
