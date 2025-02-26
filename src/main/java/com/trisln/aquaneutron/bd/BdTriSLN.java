@@ -3,6 +3,7 @@ package com.trisln.aquaneutron.bd;
 
 import com.trisln.aquaneutron.modele.*;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
+import com.trisln.aquaneutron.bd.Alerter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+
+
 
 public class BdTriSLN{
 
@@ -554,6 +558,9 @@ public class BdTriSLN {
                 int numLicence = 0;
                 String dateNaissance = "";
                 String nomEquipe =  partiedecoupe.get(12);
+
+                Alerter A = new Alerter();
+                A.Testfonct();
                 
                 if ("null".equals(partiedecoupe.get(0))) {
                     System.err.println("un id des participant nest pas un entier");
