@@ -74,35 +74,65 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     @FXML
     private TableView<Participant> tableViewFeminin;
 
+    private String categorieChoisie;
+
+    private String sousCategorieChoisie;
+
     public ControleurBoutonsParticipants(TriSLN vue){
         super();
         this.setBoutons(vue);
+        this.categorieChoisie=null;
+        this.sousCategorieChoisie=null;
+    }
+
+    public ControleurBoutonsParticipants(TriSLN vue, String categorieChoisie, String sousCategorieChoisie){
+        super();
+        this.setBoutons(vue);
+        System.out.println("categ:"+categorieChoisie);
+        switch(categorieChoisie){
+            case "btnMP":
+                this.categorieChoisie="MP";
+                break;
+            case "btnPO":
+                this.categorieChoisie="PO";
+                break;
+            case "btnPU":
+                this.categorieChoisie="PU";
+                break;
+            case "btnBE":
+                this.categorieChoisie="BE";
+                break;
+            case "btnMI":
+                this.categorieChoisie="MI";
+                break;
+            case "btnCA":
+                this.categorieChoisie="CA";
+                break;
+            case "btnJU":
+                this.categorieChoisie="JU";
+                break;
+            default:
+                this.categorieChoisie=categorieChoisie;
+                this.sousCategorieChoisie=sousCategorieChoisie;
+                System.out.println(sousCategorieChoisie);                            
+        }
+        //this.categorieChoisie=categorieChoisie;
+        this.sousCategorieChoisie=sousCategorieChoisie;
     }
 
     private List<Participant> getParticipantsDUnSexe(List<Participant> participantsRelais, List<Participant> participantLicenceCourseIndiv, List<Participant> participantsNonLicenceCourseIndividuelles, char sexe){
         List<Participant> participantsFiltres = new ArrayList<>();
-        System.out.println("Participants relais:");
         for(Participant p:participantsRelais){
-            System.out.println(p);
-            System.out.println(p.getSexe());
-            System.out.println(sexe);
             if(p.getSexe()==sexe){
-                System.out.println("------------------");
-                System.out.println(p);
-                System.out.println("------------------");
                 participantsFiltres.add(p);
             }
         }
-        System.out.println("Participants licence:");
         for(Participant p:participantLicenceCourseIndiv){
-            System.out.println(p);
             if(p.getSexe()==sexe){
                 participantsFiltres.add(p);
             }
         }
-        System.out.println("Participants non licence:");
         for(Participant p:participantsNonLicenceCourseIndividuelles){
-            System.out.println(p);
             if(p.getSexe()==sexe){
                 participantsFiltres.add(p);
             }
@@ -110,8 +140,31 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         return participantsFiltres;
     }
 
+    private List<Participant> getParticipantsDUneCategorie(List<Participant> participantsFiltresParSexe){
+        List<Participant> participantsFiltresParCategorie=new ArrayList<>();
+        for(Participant p:participantsFiltresParSexe){
+            System.out.println(p);
+            System.out.println(categorieChoisie+" "+sousCategorieChoisie);
+            if(sousCategorieChoisie==null){
+                if(p.getCategorie().equals(categorieChoisie)){
+                    participantsFiltresParCategorie.add(p);
+                }
+            }
+            else if(p.getCategorie().equals(categorieChoisie) && p.getSousCategorie().equals(sousCategorieChoisie)){
+                participantsFiltresParCategorie.add(p);
+            }
+        }
+        return participantsFiltresParCategorie;
+    }
+
+    public String getCategorieChoisie(){
+        return categorieChoisie;
+    }
+
     @FXML
     public void initialize() {
+        System.out.println("initialize()");
+        System.out.println(tableViewMasculin+" "+tableViewFeminin);
         if(tableViewMasculin!=null && tableViewFeminin!=null){
             // Colonnes pour la tableViewMasculin
             TableColumn<Participant, String> colNomM = new TableColumn<>("Nom");
@@ -149,6 +202,7 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
             tableViewFeminin.getColumns().setAll(colNomF, colPrenomF, colClubF, colLicenceF, colDossardF);
 
             try {
+                System.out.println(getCategorieChoisie());
                 tableViewMasculin.getItems().clear();
                 tableViewFeminin.getItems().clear();
                 // Récupération des participants depuis la base de données
@@ -156,16 +210,16 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                 List<Participant> participantsLicence=TriSLN.getBd().getParticipantsLicenceCourseIndividuelles();
                 List<Participant> participantsNonLicence = TriSLN.getBd().getParticipantsNonLicenceCourseIndividuelles();
 
-                List<Participant> participantsMasculin=getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'M');
-                List<Participant> participantsFeminin=getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'F');
-                System.out.println(participantsMasculin);
-                System.out.println(participantsFeminin);
-                ObservableList<Participant> masculinList = FXCollections.observableArrayList(participantsMasculin);
-                ObservableList<Participant> femininList = FXCollections.observableArrayList(participantsFeminin);
-
+                List<Participant> participantsMasculinCategorie=getParticipantsDUneCategorie(getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'M'));
+                List<Participant> participantsFemininCategorie=getParticipantsDUneCategorie(getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'F'));
+                
+                //System.out.println(participantsMasculinCategorie);
+                //System.out.println(participantsFemininCategorie);
+                
+                ObservableList<Participant> masculinList = FXCollections.observableArrayList(participantsMasculinCategorie);
+                ObservableList<Participant> femininList = FXCollections.observableArrayList(participantsFemininCategorie);
                 tableViewMasculin.setItems(masculinList);
                 tableViewFeminin.setItems(femininList);
-
                 System.out.println(tableViewFeminin);
                 System.out.println(tableViewMasculin);
 
@@ -367,7 +421,9 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                         break;    
    
                     default:
-                        super.getVue().afficheLesParticipants();
+                        // Bouton d'une des catégorie sauf btnS et btnV
+                        super.getVue().afficheLesParticipants(btn.getId(), null);
+                        break;
 
                 }
             }

@@ -25,9 +25,13 @@ public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
     private ComboBox<String> choiceSenSCategSeniors;
     @FXML
     private ComboBox<String> choiceVeterantSCateg;
+    private String categorieChoisie;
+    private String sousCategorieChoisie;
 
-    public ControleurBoutonsPopUp(TriSLN vue){
+    public ControleurBoutonsPopUp(TriSLN vue, String categorieChoisie){
         this.vue = vue;
+        this.categorieChoisie=categorieChoisie;
+        this.sousCategorieChoisie=null;
     }
 
     public void handleBtnValiderMouseEntered(MouseEvent event){
@@ -65,7 +69,15 @@ public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
                 break;
             case "btnValiderPopUp":
                 this.vue.closePopUpStage();
-                this.vue.afficheLesParticipants(); 
+                if(choiceSenSCategSeniors!=null){
+                    sousCategorieChoisie=choiceSenSCategSeniors.getValue();
+                }
+                else{
+                    sousCategorieChoisie=choiceVeterantSCateg.getValue();
+                }
+                System.out.println(categorieChoisie);
+                System.out.println(sousCategorieChoisie);
+                this.vue.afficheLesParticipants(categorieChoisie, sousCategorieChoisie); 
                 break;  
         }
     }

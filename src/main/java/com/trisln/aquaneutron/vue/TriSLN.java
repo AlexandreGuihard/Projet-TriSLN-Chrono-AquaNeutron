@@ -8,11 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
-import java.io.IOException;
-
-
-
-import java.io.File;
 import javafx.scene.control.ComboBox;
 
 import com.trisln.aquaneutron.vue.*;
@@ -266,14 +261,14 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLesParticipants(){
+    public void afficheLesParticipants(String categorieChoisie, String sousCategorieChoisie){
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetParticiperCategorie.fxml");
         this.precFXML = file.getPath();
-        ControleurBoutonsParticipants controleur = new ControleurBoutonsParticipants(this);
+        ControleurBoutonsParticipants controleur = new ControleurBoutonsParticipants(this, categorieChoisie, sousCategorieChoisie);
         this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsParticipants(this));
+            loader.setController(new ControleurBoutonsParticipants(this, categorieChoisie, sousCategorieChoisie));
             this.fenetreParticipants.afficheParticipants(loader);
             this.stage=this.fenetreParticipants.getStage();
             this.stage.show();
@@ -285,7 +280,7 @@ public class TriSLN extends Application{
 
     public void affichePopUp(FXMLLoader loader, String popUpName){
         try{
-            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this);
+            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this, popUpName);
             loader.setController(controleur);
             switch(popUpName){
                 case "V":
