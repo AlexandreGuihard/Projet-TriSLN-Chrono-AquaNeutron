@@ -137,6 +137,28 @@ public class BdTriSLN {
         return false;
     }
 
+    public Participant getParticipantFromId(int id) throws SQLException{
+        List<Participant> participantsRelais=getParticipantsCourseRelais();
+        List<Participant> participantsLicence=getParticipantsLicenceCourseIndividuelles();
+        List<Participant> participantsNonLicence=getParticipantsNonLicenceCourseIndividuelles();
+        for(Participant p:participantsRelais){
+            if(p.getId()==id){
+                return p;
+            }
+        }
+        for(Participant p:participantsLicence){
+            if(p.getId()==id){
+                return p;
+            }
+        }
+        for(Participant p:participantsNonLicence){
+            if(p.getId()==id){
+                return p;
+            }
+        }
+        return null;
+    }
+
     /**
      * @return la liste des participants Ã  une course avec relais de la bd
      * @throws SQLException
