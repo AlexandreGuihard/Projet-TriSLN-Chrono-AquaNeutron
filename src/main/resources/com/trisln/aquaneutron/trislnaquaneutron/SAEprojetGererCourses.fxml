@@ -43,7 +43,7 @@
                         </Label>
                         <HBox VBox.vgrow="SOMETIMES">
                            <children>
-                              <TableView prefHeight="302.0" prefWidth="680.0">
+                              <TableView fx:id="tableViewCourses" prefHeight="302.0" prefWidth="680.0">
                                  <columns>
                                     <TableColumn reorderable="false" text="Id" />
                                     <TableColumn reorderable="false" text="Nom" />
@@ -71,16 +71,17 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="35.0" prefWidth="61.0" text="Date">
+                        <Button fx:id="btnDemarrerCourse" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#handle" onMouseExited="#handleBtnCoursesMouseExited" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="50.0" prefWidth="217.0" style="-fx-background-color: #2596BE;" text="Démarrer course" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="20.0" />
                            </font>
-                        </Label>
-                        <TextField fx:id="textfield" prefHeight="26.0" prefWidth="449.0" promptText="jj/mm/aa">
-                           <opaqueInsets>
-                              <Insets left="10.0" />
-                           </opaqueInsets>
-                        </TextField>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                         <Button fx:id="btnNvlCourse" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#handle" onMouseExited="#handleBtnCoursesMouseExited" mnemonicParsing="false" onMouseEntered="#handleBtnCoursesMouseEntered" prefHeight="50.0" prefWidth="217.0" style="-fx-background-color: #2596BE;" text="Nouvelle course" textFill="WHITE">
                            <font>
                               <Font size="20.0" />

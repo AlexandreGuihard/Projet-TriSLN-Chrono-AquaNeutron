@@ -14,7 +14,7 @@ create or replace table CHRONOMETRAGE (
 );
 
 create or replace table CLASSEMENT (
-                                       id_Classement int not null,
+                                       id_Classement int not null AUTO_INCREMENT,
                                        pos_generale int,
                                        pos_categorie int,
                                        pos_club int,

@@ -34,6 +34,7 @@ import javafx.scene.control.ComboBox;
 import com.trisln.aquaneutron.vue.*;
 import com.trisln.aquaneutron.bd.*;
 import com.trisln.aquaneutron.controleurs.*;
+import com.trisln.aquaneutron.modele.Course;
 
 import java.io.*;
 
@@ -303,14 +304,14 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLesParticipants(){
+    public void afficheLesParticipants(String categorieChoisie, String sousCategorieChoisie){
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetParticiperCategorie.fxml");
         this.precFXML = file.getPath();
-        ControleurBoutonsParticipants controleur = new ControleurBoutonsParticipants(this);
+        ControleurBoutonsParticipants controleur = new ControleurBoutonsParticipants(this, categorieChoisie, sousCategorieChoisie);
         this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsParticipants(this));
+            loader.setController(new ControleurBoutonsParticipants(this, categorieChoisie, sousCategorieChoisie));
             this.fenetreParticipants.afficheParticipants(loader);
             this.stage=this.fenetreParticipants.getStage();
             this.stage.show();
@@ -322,7 +323,7 @@ public class TriSLN extends Application{
 
     public void affichePopUp(FXMLLoader loader, String popUpName){
         try{
-            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this);
+            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this, popUpName);
             loader.setController(controleur);
             switch(popUpName){
                 case "V":
@@ -392,13 +393,25 @@ public class TriSLN extends Application{
 
     public void afficheNvlCourse() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetNouvelleCourse.fxml");
-        this.precFXML = "src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetGererCourses.fxml";
-        this.precControleur = new ControleurBoutonsCourses(this);
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsNouvelleCourses(this));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheDemarerCourse(Course course) throws IOException{
+        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetChrono.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsDebutCourse(this, course));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage=this.fenetreCourses.getWindow();
             this.stage.show();
         }
         catch(Exception e){

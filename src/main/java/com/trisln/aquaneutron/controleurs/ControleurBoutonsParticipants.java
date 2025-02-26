@@ -15,6 +15,18 @@ import javafx.scene.input.MouseEvent;
 import com.trisln.aquaneutron.vue.*;
 import java.io.File;
 import java.io.IOException;
+import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import com.trisln.aquaneutron.modele.*;
+import java.util.List;
+import java.util.ArrayList;
+import javafx.scene.control.TableColumn;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 
 
 public class ControleurBoutonsParticipants extends ControleurBoutons implements EventHandler<ActionEvent>{
@@ -56,10 +68,151 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     private Button btnSuprimerParticipant;
     @FXML
     private Button btnModifierParticipant;
+    // TableViews
+    @FXML
+    private TableView<Participant> tableViewMasculin;
+    @FXML
+    private TableView<Participant> tableViewFeminin;
+
+    private String categorieChoisie;
+
+    private String sousCategorieChoisie;
 
     public ControleurBoutonsParticipants(TriSLN vue){
         super();
         this.setBoutons(vue);
+        this.categorieChoisie=null;
+        this.sousCategorieChoisie=null;
+    }
+
+    public ControleurBoutonsParticipants(TriSLN vue, String categorieChoisie, String sousCategorieChoisie){
+        super();
+        this.setBoutons(vue);
+        switch(categorieChoisie){
+            case "btnMP":
+                this.categorieChoisie="MP";
+                break;
+            case "btnPO":
+                this.categorieChoisie="PO";
+                break;
+            case "btnPU":
+                this.categorieChoisie="PU";
+                break;
+            case "btnBE":
+                this.categorieChoisie="BE";
+                break;
+            case "btnMI":
+                this.categorieChoisie="MI";
+                break;
+            case "btnCA":
+                this.categorieChoisie="CA";
+                break;
+            case "btnJU":
+                this.categorieChoisie="JU";
+                break;
+            default:
+                this.categorieChoisie=categorieChoisie;
+                this.sousCategorieChoisie=sousCategorieChoisie;
+                break;                           
+        }
+    }
+
+    private List<Participant> getParticipantsDUnSexe(List<Participant> participantsRelais, List<Participant> participantLicenceCourseIndiv, List<Participant> participantsNonLicenceCourseIndividuelles, char sexe){
+        List<Participant> participantsFiltres = new ArrayList<>();
+        for(Participant p:participantsRelais){
+            if(p.getSexe()==sexe){
+                participantsFiltres.add(p);
+            }
+        }
+        for(Participant p:participantLicenceCourseIndiv){
+            if(p.getSexe()==sexe){
+                participantsFiltres.add(p);
+            }
+        }
+        for(Participant p:participantsNonLicenceCourseIndividuelles){
+            if(p.getSexe()==sexe){
+                participantsFiltres.add(p);
+            }
+        }
+        return participantsFiltres;
+    }
+
+    private List<Participant> getParticipantsDUneCategorie(List<Participant> participantsFiltresParSexe){
+        List<Participant> participantsFiltresParCategorie=new ArrayList<>();
+        for(Participant p:participantsFiltresParSexe){
+            if(sousCategorieChoisie==null){
+                if(p.getCategorie().equals(categorieChoisie)){
+                    participantsFiltresParCategorie.add(p);
+                }
+            }
+            else if(p.getCategorie().equals(categorieChoisie) && p.getSousCategorie().equals(sousCategorieChoisie)){
+                participantsFiltresParCategorie.add(p);
+            }
+        }
+        return participantsFiltresParCategorie;
+    }
+
+    public String getCategorieChoisie(){
+        return categorieChoisie;
+    }
+
+    @FXML
+    public void initialize() {
+        if(tableViewMasculin!=null && tableViewFeminin!=null){
+            // Colonnes pour la tableViewMasculin
+            TableColumn<Participant, String> colNomM = new TableColumn<>("Nom");
+            colNomM.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
+                    
+            TableColumn<Participant, String> colPrenomM = new TableColumn<>("Prénom");
+            colPrenomM.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
+                    
+            TableColumn<Participant, String> colClubM = new TableColumn<>("Club");
+            colClubM.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClub()));
+                    
+            TableColumn<Participant, Boolean> colLicenceM = new TableColumn<>("Licence");
+            colLicenceM.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getLicence()));
+                    
+            TableColumn<Participant, Integer> colDossardM = new TableColumn<>("Dossard");
+            colDossardM.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+                    
+            // Colonnes pour la tableViewFeminin
+            TableColumn<Participant, String> colNomF = new TableColumn<>("Nom");
+            colNomF.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
+                    
+            TableColumn<Participant, String> colPrenomF = new TableColumn<>("Prénom");
+            colPrenomF.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
+                    
+            TableColumn<Participant, String> colClubF = new TableColumn<>("Club");
+            colClubF.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClub()));
+                    
+            TableColumn<Participant, Boolean> colLicenceF = new TableColumn<>("Licence");
+            colLicenceF.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getLicence()));
+                    
+            TableColumn<Participant, Integer> colDossardF = new TableColumn<>("Dossard");
+            colDossardF.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+                    
+            tableViewMasculin.getColumns().setAll(colNomM, colPrenomM, colClubM, colLicenceM, colDossardM);
+            tableViewFeminin.getColumns().setAll(colNomF, colPrenomF, colClubF, colLicenceF, colDossardF);
+
+            try {
+                tableViewMasculin.getItems().clear();
+                tableViewFeminin.getItems().clear();
+                // Récupération des participants depuis la base de données
+                List<Participant> participantsRelais=TriSLN.getBd().getParticipantsCourseRelais();
+                List<Participant> participantsLicence=TriSLN.getBd().getParticipantsLicenceCourseIndividuelles();
+                List<Participant> participantsNonLicence = TriSLN.getBd().getParticipantsNonLicenceCourseIndividuelles();
+
+                List<Participant> participantsMasculinCategorie=getParticipantsDUneCategorie(getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'M'));
+                List<Participant> participantsFemininCategorie=getParticipantsDUneCategorie(getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'F'));
+                
+                ObservableList<Participant> masculinList = FXCollections.observableArrayList(participantsMasculinCategorie);
+                ObservableList<Participant> femininList = FXCollections.observableArrayList(participantsFemininCategorie);
+                tableViewMasculin.setItems(masculinList);
+                tableViewFeminin.setItems(femininList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setBoutons(TriSLN vue){
@@ -254,7 +407,9 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                         break;    
    
                     default:
-                        super.getVue().afficheLesParticipants();
+                        // Bouton d'une des catégorie sauf btnS et btnV
+                        super.getVue().afficheLesParticipants(btn.getId(), null);
+                        break;
 
                 }
             }

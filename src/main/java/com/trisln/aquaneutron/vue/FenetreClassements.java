@@ -117,11 +117,11 @@ public class FenetreClassements {
 
             // Récupérer les classements depuis la base de données
             BdTriSLN bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
-            List<Classement> classements = bd.getClassements(this.categorieChoisie, this.genreChoisie);
+            //List<Classement> classements = bd.getClassements(this.categorieChoisie, this.genreChoisie);
 
             // Ajouter les classements au TableView
-            ObservableList<Classement> data = FXCollections.observableArrayList(classements);
-            this.classement.setItems(data);
+            //ObservableList<Classement> data = FXCollections.observableArrayList(classements);
+            //this.classement.setItems(data);
 
         } catch (Exception e) {
             e.printStackTrace();
