@@ -18,14 +18,14 @@ insert into CATEGORIE (idCategorie, categorie, sousCategorie) values
                                                                   (16, 'V', 'V5'),
                                                                   (17, 'V', 'V6'),
                                                                   (18, 'V', 'V7'),
-                                                                  (19, "Sénior", null),
-                                                                  (20, "Vétéran", null);
+                                                                  (19, 'Senior', null),
+                                                                  (20, 'Veteran', null);
 
 insert into PARTICIPANT values
                             (1, 'Dupont', 'Carle', 1, 'F', 'x.carle@yahoo.fr', 'Paris', true, '0647882565', null, null, '2001-01-20', 'bleu', true),-- Relais
                             (2, 'Pilaf', 'Mila', 2, 'F', 'mila.Pilaf@yahoo.fr', 'Orleans', true, '0692243352', null, null, '2001-03-24', null, false),-- Non licence individuel
                             (3, 'Sparkis', 'Devoid', 8, 'M', 'devoid.Sparkis@yahoo.fr', 'Angers', false, '0695476132', null, null, '2001-02-03', 'jaune', true),-- Relais
-                            (4, 'Disney', 'Antoine', 1, 'F', 'disant@mick.fr', 'Paris', true, '0647882565', 'SQL', 2, '2001-01-18', null, false),-- Licence individuel
+                            (4, 'Disney', 'Antoine', 9, 'M', 'disant@mick.fr', 'Paris', true, '0647882565', 'SQL', 2, '2001-01-18', null, false),-- Licence individuel
                             (5, 'Dupont', 'Dupon', 1, 'F', 'x.dupon@yahoo.fr', 'Paris', true, '0647882566', 'SQL', 3, '2001-06-15', null, false),-- Licence individuel
                             (6, 'Ping', 'Alex', 8, 'M', 'ping@toto.com', 'Bourges', true, '0642693366', 'Club Bg', 1, '2005-10-03', null, false),-- Licence individuel
                             (7, 'Cable', 'Romain', 6, 'M', 'ctouche@mail.fr', 'Chateauroux', false, '0622568710', 'Club Bg', 4, '2005-04-23', null, false),-- Licence individuel
@@ -69,7 +69,9 @@ insert into CLASSEMENT values
 insert into UTILISATEUR values
                              ("test", "voivenelromain@gmail.com" , "test", "Bénévole", "TestNom", "TestPrenom"),
                             ("admin", "a@a.com", "admin", "Admin", "Administrateur", "Administrateur"),
-                            ("siecle", "b@b.com", "siecle", "Bénévole", "Toto", "Titi");
+                            ("siecle", "b@b.com", "siecle", "Bénévole", "Toto", "Titi"),
+                            ("ping", "guihardalex98@gmail.com", "ping", "Administrateur",  "Ping", "Pong");
+
 
 insert into DOSSARD values
                         (1, 1),
