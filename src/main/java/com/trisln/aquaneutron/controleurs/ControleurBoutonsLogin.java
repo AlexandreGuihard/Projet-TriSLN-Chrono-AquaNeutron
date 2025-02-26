@@ -7,13 +7,11 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
@@ -42,6 +40,20 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
         super.setVue(vue);
         super.setBRetour(btnRetour);
         super.setBAccueil(btnAccueil);
+    }
+
+    @FXML
+    public void onKeyTyped(KeyEvent event) {
+        System.out.println(event.getCode().toString());
+        TextField tf = (TextField) event.getSource();
+        System.out.println(tf.getId());
+        if (event.getCode() == KeyCode.ENTER) {
+            if (tf.getId().equals("idIdentifiant")) {
+                this.idMdp.requestFocus();
+            } else if (tf.getId().equals("idMdp")) {
+                this.btnConnecter.fire();
+            }
+        }
     }
 
     @FXML
