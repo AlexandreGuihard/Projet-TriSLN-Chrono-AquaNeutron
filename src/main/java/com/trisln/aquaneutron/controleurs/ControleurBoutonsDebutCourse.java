@@ -20,8 +20,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
+
+import com.trisln.aquaneutron.modele.Chronometrage;
 import com.trisln.aquaneutron.modele.Course;
 import com.trisln.aquaneutron.modele.Participant;
+import com.trisln.aquaneutron.modele.Exceptions.ChronoNotStartedException;
 
 public class ControleurBoutonsDebutCourse extends ControleurBoutons implements EventHandler<ActionEvent> {
 
@@ -30,6 +33,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     private int dossardsArrives;
     private List<Integer> lesArrives;
     private ObservableList<Object[]> arrivalList;
+    private Chronometrage chrono;
     @FXML
     private Button btnAccueil;
     @FXML
@@ -43,7 +47,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     @FXML
     private Button btnTopDepart;
     @FXML
-    private Button btnTopArrive;
+    private Button btnTopStop;
     @FXML
     private TextField numeroDossard;
     @FXML
@@ -57,6 +61,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         this.setBoutons(vue);
         this.dossardsArrives = 0;
         this.lesArrives = new ArrayList<>();
+        this.chrono = new Chronometrage();
     }
 
     private void setBoutons(TriSLN vue) {
@@ -114,6 +119,10 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             tableViewArrive.getColumns().setAll(colDossard, colTopDepart, colTopArrivee, colChrono, colSexe);
             arrivalList = FXCollections.observableArrayList();
             tableViewArrive.setItems(arrivalList);
+
+            this.btnDossardArrive.setDisable(true);
+            this.numeroDossard.setDisable(true);
+            this.btnTopStop.setDisable(true);
         }
     }
 
@@ -125,22 +134,25 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         this.dossardsArrives = lesDossardsArrives;
     }
 
-    public void enregistrerArrive() throws SQLException {
+    public void enregistrerArrive() throws SQLException, ChronoNotStartedException {
         int leDossard = Integer.parseInt(this.numeroDossard.getText());
         if (TriSLN.getBd().isParticipantOfCourse(leDossard, this.course) && !lesArrives.contains(leDossard)){
             lesArrives.add(leDossard);        
             System.out.println("Dossard " + leDossard + " est arrivé.");
             Participant participant = TriSLN.getBd().getParticipantByDossard(leDossard);
-            Object[] dosssardArrive = new Object[]{leDossard, 0, 100, 10, participant.getSexe()};
+            int tempsCourse = (int)this.chrono.getDuree();
+            Object[] dosssardArrive = new Object[]{leDossard, 0, tempsCourse, tempsCourse-0 , participant.getSexe()};
             arrivalList.add(dosssardArrive);
             int index = arrivalList.indexOf(dosssardArrive) + 1;
             System.out.println(index);
-            tableViewArrive.setItems(arrivalList);
-            dossardsArrives += 1;
-            TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId());
-            tableViewDossards.refresh();
+            this.tableViewArrive.setItems(arrivalList);
+            this.dossardsArrives += 1;
+            TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId(), tempsCourse);
+            this.tableViewDossards.refresh();
+            this.numeroDossard.setText("");     
         } else {
             System.out.println("Le dossard ne peut pas être en course");
+            // TODO les alertes c'est mieux askip Error alert
         }
     }
 
@@ -155,8 +167,8 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                     if(btn.getId().equals("btnTopDepart")){
                         super.getVue().changeButtonColor(this.btnTopDepart, "#105c74", "");
                     } else{
-                        if(btn.getId().equals("btnTopArrive")){
-                            super.getVue().changeButtonColor(this.btnTopArrive, "#105c74", "");
+                        if(btn.getId().equals("btnTopStop")){
+                            super.getVue().changeButtonColor(this.btnTopStop, "#105c74", "");
                         } else{
                             super.handleBtnsMouseEntered(btn);
                         }
@@ -179,8 +191,8 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                 if(btn.getId().equals("btnTopDepart")){
                     super.getVue().changeButtonColor(this.btnTopDepart, "#2596BE", "");
                 } else {
-                    if(btn.getId().equals("btnTopArrive")){
-                        super.getVue().changeButtonColor(this.btnTopArrive, "#2596BE", "");
+                    if(btn.getId().equals("btnTopStop")){
+                        super.getVue().changeButtonColor(this.btnTopStop, "#2596BE", "");
                     } else {
                         super.handleBtnsMouseExited(btn);
                     }
@@ -196,10 +208,31 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     public void handle(ActionEvent event) {
         try {
             Button btn = (Button) event.getSource();
-            if (btn.getId().equals("btnDossardArrive")) {
-                enregistrerArrive();
+            if (btn.getId().equals("btnDossardArrive")){
+                if (this.chrono.estDemarrer()) {
+                    enregistrerArrive();   
+                } else {
+                    System.out.println("Le chronomètre n'a pas démarrer");
+                }
             } else {
-                super.handle(btn);
+                if(btn.getId().equals("btnTopDepart")){
+                    this.chrono.demarrer();
+                    this.btnDossardArrive.setDisable(false);
+                    this.numeroDossard.setDisable(false);
+                    this.btnTopDepart.setDisable(true);
+                    this.btnTopStop.setDisable(false);
+                } else {
+                    if(btn.getId().equals("btnTopStop")){
+                        this.chrono.stopper();
+                        this.btnDossardArrive.setDisable(true);
+                        this.numeroDossard.setDisable(true);
+                        System.out.println(this.chrono.getDuree());
+                        this.btnTopDepart.setDisable(false);
+                        this.btnTopStop.setDisable(true);
+                    } else {
+                        super.handle(btn);
+                    }
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

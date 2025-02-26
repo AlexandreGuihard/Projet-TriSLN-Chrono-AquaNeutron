@@ -453,12 +453,17 @@ public class BdTriSLN{
         st.close();
     }
 
-    public void genererClassement(int idParticipant, int posGeneral, int idEpreuve) throws SQLException{
+    public void genererClassement(int idParticipant, int posGeneral, int idEpreuve, int tempsCourse) throws SQLException{
+        int heures = tempsCourse / 3600;
+        int minutes = (tempsCourse % 3600) / 60;
+        int secondes = tempsCourse % 60;
+        String timeString = String.format("%02d:%02d:%02d", heures, minutes, secondes);
+        
         PreparedStatement classementPst=connexion.prepareStatement("insert into CLASSEMENT (pos_generale, pos_categorie, pos_club, temps) values(?, ?, ?, ?)");
         classementPst.setInt(1, posGeneral);
         classementPst.setInt(2, 10);
         classementPst.setInt(3, 20);
-        classementPst.setTime(4, java.sql.Time.valueOf("01:00:00"));
+        classementPst.setTime(4, java.sql.Time.valueOf(timeString));
         classementPst.executeUpdate();
         classementPst.close();
 

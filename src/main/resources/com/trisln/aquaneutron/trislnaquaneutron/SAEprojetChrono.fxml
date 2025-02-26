@@ -119,7 +119,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button fx:id="btnTopArrive" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Fin de course" textFill="WHITE">
+                              <Button fx:id="btnTopStop" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Stop" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
