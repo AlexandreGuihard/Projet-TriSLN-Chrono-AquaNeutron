@@ -18,8 +18,8 @@ public class Course {
      * Constructeur de la classe Course
      * @param id l'id de la course
      * @param nom le nom de la course
-     * @param format le format de la course
-     * @param categorie la catégorie de la course
+     * @param idFormat le format de la course
+     * @param idCategorie la catégorie de la course
      * @param heureDepart l'heure de départ de la course
      * @param prix le prix pour participer à la course
      */

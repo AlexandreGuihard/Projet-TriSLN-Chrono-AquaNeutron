@@ -7,15 +7,16 @@ import com.trisln.aquaneutron.vue.TriSLN;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
     private TriSLN vue;
@@ -43,6 +44,16 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
     @FXML
     private Button btnViewConfMDP;
     @FXML
+    private ImageView checkmark8char;
+    @FXML
+    private ImageView checkmarkMaj;
+    @FXML
+    private ImageView checkmarkMin;
+    @FXML
+    private ImageView checkmarkSpec;
+    @FXML
+    private ImageView checkmarkNum;
+    @FXML
     private Label infoMDPLabel;
     @FXML
     private Button btnValiderNewMDP;
@@ -50,15 +61,122 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
     private String email;
 
     private String token;
-    private int nbEssai = 3;
+    private int nbEssai;
+
+    private int requirements;
 
     private boolean isNewVisible;
     private boolean isConfVisible;
 
     public ControleurBoutonsPopUpLogin(TriSLN vue) {
         this.vue = vue;
+        this.nbEssai = 3;
+        this.requirements = 0;
         this.token = "";
         this.email = "";
+
+    }
+
+    public void initialize() {
+        // Vérifier la connexion
+        try {
+            InetAddress ip = InetAddress.getByName("8.8.8.8");
+            if (!ip.isReachable(1500)) {
+                this.btnValiderEmail.setDisable(true);
+                this.infoEmailLabel.setText("Aucune connexion à internet");
+            }
+        } catch (IOException e) {
+            this.btnValiderEmail.setDisable(true);
+            this.infoEmailLabel.setText("Aucune connexion à internet");
+        }
+    }
+
+    @FXML
+    private void onKeyTyped(KeyEvent event) {
+        PasswordField field = (PasswordField) event.getSource();
+        if (field.getId().equals("newMDPField")) {
+            this.requirements = 0;
+            String newMDP = field.getText();
+            String urlCheckmarkGood = "/com/trisln/aquaneutron/trislnaquaneutron/img/checkmark_good.png";
+            String urlCheckmarkBad = "/com/trisln/aquaneutron/trislnaquaneutron/img/checkmark_bad.png";
+            Utilisateur utilisateur = this.vue.getUtilisateur();
+            if (newMDP.length() >= 8) {
+                System.out.println("taille supérieur ou égal à 8");
+                this.requirements += 1;
+                this.checkmark8char.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkGood)).toExternalForm()));
+            } else {
+                System.out.println("taille inférieur à 8");
+                this.requirements -= 1;
+                this.checkmark8char.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkBad)).toExternalForm()));
+            }
+
+            if (utilisateur.verifierMDPMajuscule(newMDP)) {
+                System.out.println("a une majuscule");
+                this.requirements += 1;
+                this.checkmarkMaj.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkGood)).toExternalForm()));
+            } else {
+                System.out.println("n'a pas de majuscule");
+                this.requirements -= 1;
+                this.checkmarkMaj.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkBad)).toExternalForm()));
+            }
+
+            if (utilisateur.verifierMDPMinuscule(newMDP)) {
+                System.out.println("a une minuscule");
+                this.requirements += 1;
+                this.checkmarkMin.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkGood)).toExternalForm()));
+            } else {
+                System.out.println("n'a pas de minuscule");
+                this.requirements -= 1;
+                this.checkmarkMin.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkBad)).toExternalForm()));
+            }
+
+            if (utilisateur.verifierMDPSpecial(newMDP)) {
+                System.out.println("a un character special");
+                this.requirements += 1;
+                this.checkmarkSpec.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkGood)).toExternalForm()));
+            } else {
+                System.out.println("n'a pas de character special");
+                this.requirements -= 1;
+                this.checkmarkSpec.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkBad)).toExternalForm()));
+            }
+
+            if (utilisateur.verifierMDPNombre(newMDP)) {
+                System.out.println("a un nombre");
+                this.requirements += 1;
+                this.checkmarkNum.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkGood)).toExternalForm()));
+            } else {
+                System.out.println("n'a pas de nombre");
+                this.requirements -= 1;
+                this.checkmarkNum.setImage(new Image(Objects.requireNonNull(getClass().getResource(
+                        urlCheckmarkBad)).toExternalForm()));
+            }
+        }
+    }
+
+    @FXML
+    public void onKeyPressed(KeyEvent event) {
+        TextInputControl field = (TextInputControl) event.getSource();
+        switch (field.getId()) {
+            case "verifEmailField":
+                if (event.getCode() == KeyCode.ENTER) {
+                    btnValiderEmail.fire();
+                }
+                break;
+            case "verifCodeField":
+                if (event.getCode() == KeyCode.ENTER) {
+                    btnValiderCode.fire();
+                }
+                break;
+        }
     }
 
     @Override
@@ -134,10 +252,7 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
                 System.out.println("Clique valider mdp");
                 String fieldNewMDP = newMDPField.getText();
                 String fieldConfirmMDP = confirmMDPField.getText();
-                boolean testfieldnewMDP = fieldNewMDP.isEmpty();
-                boolean testfieldconfMDP = fieldConfirmMDP.isEmpty();
-                // TODO : Vérifier si le mot de passe est conforme : minimum 8 char, 1 maj, 1 min, 1 caractère special, 1 nombre
-                if (!(fieldNewMDP.isEmpty()) || !(fieldConfirmMDP.isEmpty())) {
+                if (this.requirements == 5) {
                     if (fieldNewMDP.equals(fieldConfirmMDP)) {
                         System.out.println("OK");
                         try {
@@ -154,10 +269,12 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
                             );
                         }
                     } else {
-                        this.infoMDPLabel.setText("Le contenu de nouveau mot de passe et de la confirmation sont différents.");
+                        this.infoMDPLabel.setText(
+                                "Le contenu de nouveau mot de passe et de la confirmation sont différents.");
                     }
                 } else {
-                    this.infoMDPLabel.setText("Le contenu de nouveau mot de passe ou de la confirmation est vide.");
+                    this.infoMDPLabel.setText(
+                            "Le contenu de nouveau mot de passe n'est pas conforme au recommendations listées ci dessus.");
                 }
                 break;
         }

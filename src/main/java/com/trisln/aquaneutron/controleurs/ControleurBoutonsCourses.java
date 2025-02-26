@@ -3,18 +3,23 @@ package com.trisln.aquaneutron.controleurs;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
-
-
-
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import java.sql.SQLException;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
+import java.util.List;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import com.trisln.aquaneutron.modele.Course;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 
 
 public class ControleurBoutonsCourses extends ControleurBoutons implements EventHandler<ActionEvent> {
@@ -23,6 +28,8 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     @FXML
     private Button btnNvlCourse;
     @FXML
+    private Button btnDemarrerCourse;
+    @FXML
     private Button btnAccueil;
     @FXML
     private Button btnRetour;
@@ -30,13 +37,16 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     private Button btnDeconnexion;
     @FXML
     private Button btnCompte;
+    @FXML
+    private TableView<Course> tableViewCourses;
 
-    public ControleurBoutonsCourses(TriSLN vue){
+
+    public ControleurBoutonsCourses(TriSLN vue) {
         super();
         this.setBoutons(vue);
     }
 
-    private void setBoutons(TriSLN vue){
+    private void setBoutons(TriSLN vue) {
         super.setVue(vue);
         super.setBAccueil(btnAccueil);
         super.setBCompte(btnCompte);
@@ -45,53 +55,95 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     }
 
     @FXML
-    public void handleBtnCoursesMouseEntered(MouseEvent event){
-        try{
-            Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnNvlCourse")){
-                super.getVue().changeButtonColor(this.btnNvlCourse, "#105c74", "");
-            }
-            else{
-                super.handleBtnsMouseEntered(btn);
+    public void initialize() {
+        if(tableViewCourses!= null){
+            TableColumn<Course, Integer> colId = new TableColumn<>("Id");
+            colId.setCellValueFactory(cellData -> {
+                return new SimpleIntegerProperty(cellData.getValue().getId()).asObject();
+            });
+            TableColumn<Course, String> colNom = new TableColumn<>("Nom");
+            colNom.setCellValueFactory(cellData -> {
+                return new SimpleStringProperty(cellData.getValue().getNom());
+            });
+            TableColumn<Course, String> colFormat = new TableColumn<>("Format");
+            colFormat.setCellValueFactory(cellData -> {
+                return new SimpleStringProperty(cellData.getValue().getFormat());
+            });
+            TableColumn<Course, String> colCategorie = new TableColumn<>("Catégories");
+            colCategorie.setCellValueFactory(cellData -> {
+                return new SimpleStringProperty(cellData.getValue().getCategorie());
+            });
+            TableColumn<Course, String> colDepart = new TableColumn<>("Départ");
+            colDepart.setCellValueFactory(cellData -> {
+                return new SimpleStringProperty(cellData.getValue().getHeureDepart());
+            });
+            this.tableViewCourses.getColumns().setAll(colId, colNom, colFormat, colCategorie, colDepart);
+            try {
+                List<Course> listeCourses = TriSLN.getBd().getCourses();
+                this.tableViewCourses.setItems(FXCollections.observableArrayList(listeCourses));
+            } catch (SQLException e) {
+                System.err.println("Erreur lors de la récupération des courses: " + e.getMessage());
+                e.printStackTrace();
             }
         }
-        catch(Exception e){
+    }
+
+    @FXML
+    public void handleBtnCoursesMouseEntered(MouseEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            if (btn.getId().equals("btnNvlCourse")) {
+                super.getVue().changeButtonColor(this.btnNvlCourse, "#105c74", "");
+            } else {
+                if (btn.getId().equals("btnDemarrerCourse")) {
+                    super.getVue().changeButtonColor(this.btnDemarrerCourse, "#105c74", "");
+                }
+                else{
+                    super.handleBtnsMouseEntered(btn);
+                }
+            }
+        } catch (Exception e) {
             System.err.println("Erreur");
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void handleBtnCoursesMouseExited(MouseEvent event){
-        try{
-            Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnNvlCourse")){
+    public void handleBtnCoursesMouseExited(MouseEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            if (btn.getId().equals("btnNvlCourse")) {
                 super.getVue().changeButtonColor(this.btnNvlCourse, "#2596BE", "");
+            } else {
+                if (btn.getId().equals("btnDemarrerCourse")) {
+                    super.getVue().changeButtonColor(this.btnDemarrerCourse, "#2596BE", "");
+                } else {
+                    super.handleBtnsMouseExited(btn);
+                }
             }
-            else{
-                super.handleBtnsMouseExited(btn);
-            }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.err.println("Erreur");
             e.printStackTrace();
         }
     }
 
     @Override
-    public void handle(ActionEvent event){
+    public void handle(ActionEvent event) {
         try {
-            Button btn=(Button) event.getSource();
-            if(btn.getId().equals("btnNvlCourse")){
+            Button btn = (Button) event.getSource();
+            if (btn.getId().equals("btnNvlCourse")) {
                 super.getVue().afficheNvlCourse();
+            }else if(btn.getId().equals("btnDemarrerCourse")){
+                Course course = tableViewCourses.getSelectionModel().getSelectedItem();
+                if (course!=null) {
+                    super.getVue().afficheDemarerCourse(course);   
+                }
             }
             else{
                 super.handle(btn);
             }
-        } 
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-        } 
+        }
     }
 }

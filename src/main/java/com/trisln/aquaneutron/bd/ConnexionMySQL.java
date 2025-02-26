@@ -19,8 +19,9 @@ public class ConnexionMySQL {
 			mysql = DriverManager.getConnection(
 					"jdbc:mariadb://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
 			connecte=true;
+			System.out.println("connecté");
 		} catch (SQLException e) {
-			System.out.println("Echec de connexion!"); 
+			System.out.println("Echec de connexion à la bd!"); 
 			System.out.println(e.getMessage());
 			mysql=null;
 			return;
@@ -29,16 +30,16 @@ public class ConnexionMySQL {
     public Connection getConnexion(){
         return this.mysql;
     }
-    public boolean getConnecte(){
+
+    public boolean getConnecte() {
         return this.connecte;
     }
 
-	public Statement createStatement() throws SQLException {
-		return this.mysql.createStatement();
-	}
+    public Statement createStatement() throws SQLException {
+        return this.mysql.createStatement();
+    }
 
-	public PreparedStatement prepareStatement(String requete) throws SQLException{
-		return this.mysql.prepareStatement(requete);
-	}
-	
+    public PreparedStatement prepareStatement(String requete) throws SQLException {
+        return this.mysql.prepareStatement(requete);
+    }
 }

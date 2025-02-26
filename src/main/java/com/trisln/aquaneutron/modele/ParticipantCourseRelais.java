@@ -1,9 +1,6 @@
 package com.trisln.aquaneutron.modele;
 
-/**
- * Classe ParticipantCourseRelais représentant un participant à une course de relais
- */
-public class ParticipantCourseRelais extends Participant{
+public class ParticipantCourseRelais extends Participant {
     private String nomEquipe;
     private boolean licence;
 

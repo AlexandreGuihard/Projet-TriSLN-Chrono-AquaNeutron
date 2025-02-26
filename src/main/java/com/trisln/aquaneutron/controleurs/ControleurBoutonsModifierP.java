@@ -138,10 +138,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                     default:
                         superButton=true;
                         break;
-                    }
-                    super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
                 }
-            
+                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+            }
+
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -163,16 +163,16 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
             else{
                 switch(btn.getId()){
                     case "btnAjouterParticipant":
-                    changedButton=this.btnAjouterParticipant;
-                    newBtnColor="#2596BE";
+                        changedButton=this.btnAjouterParticipant;
+                        newBtnColor="#2596BE";
                         break;
                     case "btnSuprimerParticipant":
-                    changedButton=this.btnSuprimerParticipant;
-                    newBtnColor="#2596BE";
+                        changedButton=this.btnSuprimerParticipant;
+                        newBtnColor="#2596BE";
                         break;
                     case "btnModifierParticipant":
-                    changedButton=this.btnModifierParticipant;
-                    newBtnColor="#2596BE";
+                        changedButton=this.btnModifierParticipant;
+                        newBtnColor="#2596BE";
                         break;
                     case "btnEnregistrerModification":
                         changedButton=this.btnEnregistrerModification;
@@ -229,14 +229,14 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                         break;
                     default:
                         super.getVue().afficheModifierP();
-                        break;       
+                        break;
                 }
             }
         }
         catch (IOException e)
         {
             e.printStackTrace();
-        } 
+        }
     }
 
     @FXML
@@ -297,12 +297,12 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
 
     private void updateComboxSC() {
         String selectedCategory = this.getCategFromComboBox();
-        
+
         if (selectedCategory == null) { // Évite NullPointerException
             this.comboxSC.setDisable(true);
             return;
         }
-    
+
         if (selectedCategory.equals("V")) {
             List<String> scVet = List.of("V1", "V2", "V3", "V4", "V5", "V6", "V7");
             this.comboxSC.setItems(FXCollections.observableArrayList(scVet));
@@ -316,13 +316,13 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
             this.comboxSC.setDisable(true);
         }
     }
-    
+
 
     private String getCategFromComboBox() {
         if (comboxCategorie.getValue() == null) {
             return null; // Évite NullPointerException
         }
-    
+
         switch (comboxCategorie.getValue()) {
             case "Mini-poussin": return "MP";
             case "Poussin": return "PO";
@@ -336,7 +336,7 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
             default: return comboxCategorie.getValue();
         }
     }
-    
+
 
     private String change(String categorie) {
         switch (categorie) {
