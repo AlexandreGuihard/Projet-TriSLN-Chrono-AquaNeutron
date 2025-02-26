@@ -205,13 +205,17 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                         System.out.println("enregistrer");
                         Participant participant=null;
                         try{
-                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
+                            int numLicence = 0;
+                            if (!textFieldNumLicence.getText().equals("null")) {
+                                numLicence = Integer.parseInt(textFieldNumLicence.getText());
+                            }
+                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
                                 participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
                             }
-                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
-                                participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldClub.getText(), Integer.parseInt(textFieldNumLicence.getText()), textFieldDateDeNaissance.getText());
+                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
+                                participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
                             }
-                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
+                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
                                 participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
                             }
                             super.getVue().getBd().updateParticipant(participant);
@@ -282,7 +286,11 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                 Platform.runLater(()->textFieldEmail.setText(participant.getEmail()));
                 Platform.runLater(()->textFieldNumTel.setText(participant.getTel()));
                 Platform.runLater(()->textFieldCertification.setText(participant.getCertification()+""));
-                Platform.runLater(()->textFieldNumLicence.setText(participant.getNumLicence()+""));
+                if (participant.getNumLicence()==0){
+                    Platform.runLater(()->textFieldNumLicence.setText(""));
+                } else {
+                    Platform.runLater(()->textFieldNumLicence.setText(participant.getNumLicence()+""));
+                }
                 Platform.runLater(()->textFieldVille.setText(participant.getVille()));
                 Platform.runLater(()->textFieldLicence.setText(participant.getLicence()+""));
             }

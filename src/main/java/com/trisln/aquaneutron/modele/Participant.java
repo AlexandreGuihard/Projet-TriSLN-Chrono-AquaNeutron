@@ -209,7 +209,7 @@ public abstract class Participant implements IParticipant{
     @Override
     public Integer getNumLicence() {
         // Pas de numéro de licence
-        return null;
+        return 0;
     }
 
     /**
