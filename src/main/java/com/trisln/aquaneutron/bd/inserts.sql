@@ -69,7 +69,8 @@ insert into CLASSEMENT values
 insert into UTILISATEUR values
                              ("test", "voivenelromain@gmail.com" , "test", "Bénévole", "TestNom", "TestPrenom"),
                             ("admin", "a@a.com", "admin", "Admin", "Administrateur", "Administrateur"),
-                            ("siecle", "b@b.com", "siecle", "Bénévole", "Toto", "Titi");
+                            ("siecle", "b@b.com", "siecle", "Bénévole", "Toto", "Titi"),
+                            ("ping", "guihardalex98@gmail.com", "ping", "Administrateur",  "Ping", "Pong");
 
 insert into DOSSARD values
                         (1, 1),
