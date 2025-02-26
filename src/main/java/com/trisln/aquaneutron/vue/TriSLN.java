@@ -8,16 +8,33 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+import com.trisln.aquaneutron.modele.Classement;
+import com.trisln.aquaneutron.modele.Participant;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import java.sql.SQLException;
 
 
 import java.io.File;
+
 import javafx.scene.control.ComboBox;
 
 import com.trisln.aquaneutron.vue.*;
 import com.trisln.aquaneutron.bd.*;
 import com.trisln.aquaneutron.controleurs.*;
+import com.trisln.aquaneutron.modele.Course;
 
 import java.io.*;
 
@@ -58,6 +75,7 @@ public class TriSLN extends Application{
         this.utilisateur = new Utilisateur();
         this.connecte=false;
     }
+
     public void start(Stage stage){
         this.precFXML="src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueil.fxml";
         this.precControleur=new ControleurBoutonsCo(this);
@@ -78,7 +96,7 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLogin () throws IOException{
+    public void afficheLogin() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetConnexion.fxml");
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
@@ -144,11 +162,31 @@ public class TriSLN extends Application{
         }
     }
 
+    public void affichePopUpMDP(ControleurBoutonsPopUpLogin controleur) throws IOException {
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpAskNewPassword.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(controleur);
+            BorderPane page = (BorderPane) loader.load();
+            Scene scene = new Scene(page);
+            this.popUpStage.setScene(scene);
+            this.popUpStage.setResizable(false);
+            this.popUpStage.setAlwaysOnTop(true);
+            this.stage.setOnCloseRequest(event -> {
+                this.popUpStage = null;
+            });
+
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void afficheAccueil() throws IOException {
         if (this.stage == null) {
             System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
             return;
-        }    
+        }
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueil.fxml");
         this.precFXML = file.getPath();
         ControleurBoutonsCo controleur = new ControleurBoutonsCo(this);
@@ -266,14 +304,14 @@ public class TriSLN extends Application{
         }
     }
 
-    public void afficheLesParticipants(){
+    public void afficheLesParticipants(String categorieChoisie, String sousCategorieChoisie){
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetParticiperCategorie.fxml");
         this.precFXML = file.getPath();
-        ControleurBoutonsParticipants controleur = new ControleurBoutonsParticipants(this);
+        ControleurBoutonsParticipants controleur = new ControleurBoutonsParticipants(this, categorieChoisie, sousCategorieChoisie);
         this.precControleur = controleur;
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
-            loader.setController(new ControleurBoutonsParticipants(this));
+            loader.setController(new ControleurBoutonsParticipants(this, categorieChoisie, sousCategorieChoisie));
             this.fenetreParticipants.afficheParticipants(loader);
             this.stage=this.fenetreParticipants.getStage();
             this.stage.show();
@@ -285,7 +323,7 @@ public class TriSLN extends Application{
 
     public void affichePopUp(FXMLLoader loader, String popUpName){
         try{
-            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this);
+            ControleurBoutonsPopUp controleur=new ControleurBoutonsPopUp(this, popUpName);
             loader.setController(controleur);
             switch(popUpName){
                 case "V":
@@ -325,16 +363,16 @@ public class TriSLN extends Application{
 
 
 
-    public void afficheClassements() throws IOException{
-        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetClassements.fxml");
-        try{
-            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+    public void afficheClassements() throws IOException {
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetClassements.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsClassements(this));
-            this.fenetreClassements=new FenetreClassements(loader, this.stage);
-            this.stage = this.fenetreClassements.getWindow();
+            BorderPane root = loader.load();
+            Scene scene = new Scene(root);
+            this.stage.setScene(scene);
             this.stage.show();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -355,13 +393,25 @@ public class TriSLN extends Application{
 
     public void afficheNvlCourse() throws IOException{
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetNouvelleCourse.fxml");
-        this.precFXML = "src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetGererCourses.fxml";
-        this.precControleur = new ControleurBoutonsCourses(this);
         try{
             FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsNouvelleCourses(this));
             this.fenetreCourses=new FenetreCourses(loader, this.stage);
             this.stage = this.fenetreCourses.getWindow();
+            this.stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheDemarerCourse(Course course) throws IOException{
+        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetChrono.fxml");
+        try{
+            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+            loader.setController(new ControleurBoutonsDebutCourse(this, course));
+            this.fenetreCourses=new FenetreCourses(loader, this.stage);
+            this.stage=this.fenetreCourses.getWindow();
             this.stage.show();
         }
         catch(Exception e){
@@ -435,6 +485,10 @@ public class TriSLN extends Application{
     public Utilisateur getUtilisateur() {
         return this.utilisateur;
     }
+
+    public void setUtilisateur(Utilisateur utilisateur){
+        this.utilisateur=utilisateur;
+    }
     
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){
         this.fenetreParticipants=fenetreParticipants;
@@ -475,31 +529,9 @@ public class TriSLN extends Application{
         }
 
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                "python3",
-                "src/main/java/com/trisln/aquaneutron/bd/generationsPDF.py",
-                host, user, password, database, categorieCode, genre
-            );
-
-            Process process = processBuilder.start();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-
-            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            while ((line = errorReader.readLine()) != null) {
-                System.err.println(line);
-            }
-
-            if (process.waitFor() != 0) {
-                System.err.println("Code de sortie : " + process.waitFor());
-            }
-
-        } catch (IOException | InterruptedException e) {
-            System.err.println(e.getMessage());
+            BdTriSLN bdTriSLN = new BdTriSLN(new ConnexionMySQL(host, database, user, password));
+            bdTriSLN.genererPdfClassement(host, user, password, database, genre, categorieCode);
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }

@@ -22,11 +22,23 @@ public class Utilisateur {
     private String identifiant;
     private String role;
     private String email;
+    private String nom;
+    private String prenom;
 
     public Utilisateur(){
         this.identifiant = "spectateur";
         this.role = "spectateur";
         this.email = "voivenelromain@gmail.com";
+        this.nom="Spectateur";
+        this.prenom="Spectateur";
+    }
+
+    public Utilisateur(String identifiant, String email, String role, String nom, String prenom){
+        this.identifiant=identifiant;
+        this.role=role;
+        this.email=email;
+        this.nom=nom;
+        this.prenom=prenom;
     }
 
     public String getRole(){
@@ -35,6 +47,18 @@ public class Utilisateur {
 
     public String getEmail(){
         return this.email;
+    }
+
+    public String getIdentifiant(){
+        return identifiant;
+    }
+
+    public String getNom(){
+        return nom;
+    }
+
+    public String getPrenom(){
+        return prenom;
     }
 
     public void connecter(String identifiant, String mdp) throws SQLException, NoSuchUserException{
@@ -47,19 +71,59 @@ public class Utilisateur {
     }
 
     public boolean estAdmin(){
-        return this.role == "admin";
+        return this.role.equals("admin");
     }
 
     public boolean estBenevol(){
-        return this.role == "benevol";
+        return this.role.equals("benevol");
     }
 
     public boolean estSpectateur(){
-        return this.role == "spectateur";
+        return this.role.equals("spectateur");
     }
 
-    public void changePassword(String newPassword) throws SQLException{
-        TriSLN.getBd().changePassword(this.identifiant, newPassword);
+    public boolean verifierMDPMinuscule(String mdp){
+        String minuscules = "abcdefghijklmnopqrstuvwxyz";
+        for (char c : minuscules.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPMajuscule(String mdp){
+        String majuscules = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (char c : majuscules.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPSpecial(String mdp){
+        String specials = "&é\"'(-è_çà)=~#{[|`\\^@]}°+^¨$£¤%ùµ*,;:!?./§";
+        for (char c : specials.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPNombre(String mdp){
+        String nombres = "0123456789";
+        for (char c : nombres.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void changePassword(String email, String newPassword) throws SQLException, NoSuchUserException {
+        TriSLN.getBd().changePassword(TriSLN.getBd().getIdentifiantByEmail(email), newPassword);
     }
 
     public String genererTokenReinitialisation() {
@@ -113,5 +177,10 @@ public class Utilisateur {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString(){
+        return "Identifiant:"+identifiant+" Email:"+email+" Role:"+role+" Prenom/Nom:"+prenom+" "+nom;
     }
 }
