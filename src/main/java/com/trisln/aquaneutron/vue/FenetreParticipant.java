@@ -1,6 +1,7 @@
 package com.trisln.aquaneutron.vue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 
 public class FenetreParticipant{
     private Stage stage;
@@ -124,11 +126,12 @@ public class FenetreParticipant{
     private static void configureFileChooser(final FileChooser fileChooser){                           
         fileChooser.setTitle("liste des pariticpants");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        //fileChooser.setInitialDirectory(new File("./data"));
+        fileChooser.setInitialDirectory(new File("./data"));
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All", "*.csv","*.xls"),
+                new FileChooser.ExtensionFilter("All", "*.csv","*.xls","*.xlsx"),
                 new FileChooser.ExtensionFilter("csv", "*.csv"),
-                new FileChooser.ExtensionFilter("xls", "*.xls")
+                new FileChooser.ExtensionFilter("xls", "*.xls"),
+                new FileChooser.ExtensionFilter("xlsx", "*.xlsx")
             );
     }
 
@@ -140,32 +143,7 @@ public class FenetreParticipant{
           
     }
 
-    public List<List<String>> lectureFichier(File csv) {
-            List<List<String>> result = new ArrayList<List<String>>();
-            try{
-                FileReader fr = new FileReader(csv);
-                BufferedReader br = new BufferedReader(fr);
 
-                int i =0;
-                 
-                for (String line = br.readLine(); line != null; line = br.readLine()) {
-                    System.out.println(result);
-                    result.add(new ArrayList<String>());
-                    result.get(i).add(line);
-                    i++;
-                }
-
-                br.close();
-                fr.close();
-                return result; 
-            }
-
-            catch(IOException e){
-                e.printStackTrace();
-                return result;
-            }
-        
-        }
     
 
 }
