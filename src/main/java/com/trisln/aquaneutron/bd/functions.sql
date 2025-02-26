@@ -116,6 +116,7 @@ begin
     select isParticipantsRelais(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantRelais;
     select isParticipantsLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantLicenceIndiv;
     select isParticipantsNonLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantNonLicenceIndiv;
+    
     if not participantRelais and not participantLicenceIndiv and not participantNonLicenceIndiv then
         set msg=concat("Le participant ", new.prenom, " ", new.nom, " ne correspond à aucun type de participant connu (relais, licence individuelle, sans licence individuelle)");
         signal SQLSTATE '45000'set MESSAGE_TEXT=msg;
