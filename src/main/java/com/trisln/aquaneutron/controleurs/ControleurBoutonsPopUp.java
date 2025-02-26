@@ -75,8 +75,6 @@ public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
                 else{
                     sousCategorieChoisie=choiceVeterantSCateg.getValue();
                 }
-                System.out.println(categorieChoisie);
-                System.out.println(sousCategorieChoisie);
                 this.vue.afficheLesParticipants(categorieChoisie, sousCategorieChoisie); 
                 break;  
         }

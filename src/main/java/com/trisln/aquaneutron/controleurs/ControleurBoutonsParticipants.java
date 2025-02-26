@@ -88,7 +88,6 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     public ControleurBoutonsParticipants(TriSLN vue, String categorieChoisie, String sousCategorieChoisie){
         super();
         this.setBoutons(vue);
-        System.out.println("categ:"+categorieChoisie);
         switch(categorieChoisie){
             case "btnMP":
                 this.categorieChoisie="MP";
@@ -114,10 +113,8 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
             default:
                 this.categorieChoisie=categorieChoisie;
                 this.sousCategorieChoisie=sousCategorieChoisie;
-                System.out.println(sousCategorieChoisie);                            
+                break;                           
         }
-        //this.categorieChoisie=categorieChoisie;
-        this.sousCategorieChoisie=sousCategorieChoisie;
     }
 
     private List<Participant> getParticipantsDUnSexe(List<Participant> participantsRelais, List<Participant> participantLicenceCourseIndiv, List<Participant> participantsNonLicenceCourseIndividuelles, char sexe){
@@ -143,8 +140,6 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
     private List<Participant> getParticipantsDUneCategorie(List<Participant> participantsFiltresParSexe){
         List<Participant> participantsFiltresParCategorie=new ArrayList<>();
         for(Participant p:participantsFiltresParSexe){
-            System.out.println(p);
-            System.out.println(categorieChoisie+" "+sousCategorieChoisie);
             if(sousCategorieChoisie==null){
                 if(p.getCategorie().equals(categorieChoisie)){
                     participantsFiltresParCategorie.add(p);
@@ -163,8 +158,6 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
 
     @FXML
     public void initialize() {
-        System.out.println("initialize()");
-        System.out.println(tableViewMasculin+" "+tableViewFeminin);
         if(tableViewMasculin!=null && tableViewFeminin!=null){
             // Colonnes pour la tableViewMasculin
             TableColumn<Participant, String> colNomM = new TableColumn<>("Nom");
@@ -202,7 +195,6 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
             tableViewFeminin.getColumns().setAll(colNomF, colPrenomF, colClubF, colLicenceF, colDossardF);
 
             try {
-                System.out.println(getCategorieChoisie());
                 tableViewMasculin.getItems().clear();
                 tableViewFeminin.getItems().clear();
                 // Récupération des participants depuis la base de données
@@ -213,16 +205,10 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
                 List<Participant> participantsMasculinCategorie=getParticipantsDUneCategorie(getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'M'));
                 List<Participant> participantsFemininCategorie=getParticipantsDUneCategorie(getParticipantsDUnSexe(participantsRelais, participantsLicence, participantsNonLicence, 'F'));
                 
-                //System.out.println(participantsMasculinCategorie);
-                //System.out.println(participantsFemininCategorie);
-                
                 ObservableList<Participant> masculinList = FXCollections.observableArrayList(participantsMasculinCategorie);
                 ObservableList<Participant> femininList = FXCollections.observableArrayList(participantsFemininCategorie);
                 tableViewMasculin.setItems(masculinList);
                 tableViewFeminin.setItems(femininList);
-                System.out.println(tableViewFeminin);
-                System.out.println(tableViewMasculin);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
