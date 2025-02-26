@@ -68,6 +68,7 @@
                                  <String fx:value="XS" />
                                  <String fx:value="S" />
                                  <String fx:value="M" />
+                                 <String fx:value="Relais" />
                               </FXCollections>
                            </items>
                            <cursor>

@@ -131,8 +131,7 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
             Button btn=(Button) event.getSource();
             if(btn.getId().equals("btnAjoutCourse")){
                 String nom = this.nomCourse.getText();
-                // La récupération de la catégorie est à refaire au niveau du FXML
-                // Que fait-on avec la date ?
+                String format = this.formatCourse.getValue();
                 String heure = this.heureCourse.getText();
                 String categorie = "";
                 if (this.idMinPoussins.isSelected()) {
@@ -163,7 +162,7 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
                     categorie = "Veteran";
                 }
                 try {
-                    super.getVue().getBd().ajouterCourse(nom, "XS", categorie , heure, 1);
+                    super.getVue().getBd().ajouterCourse(nom, format, categorie , heure, 1);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
