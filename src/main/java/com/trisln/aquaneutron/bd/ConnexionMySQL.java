@@ -20,7 +20,7 @@ public class ConnexionMySQL {
 					"jdbc:mariadb://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
 			connecte=true;
 		} catch (SQLException e) {
-			System.out.println("Echec de connexion!"); 
+			System.out.println("Echec de connexion à la bd!"); 
 			System.out.println(e.getMessage());
 			mysql=null;
 			return;
