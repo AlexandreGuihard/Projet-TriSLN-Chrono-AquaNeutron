@@ -158,7 +158,7 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
                         if (file != null) {
                             System.out.println(file);
                             System.out.println("lancement");
-                            vue.getBd().lectureFichier(file);
+                            super.getVue().getBd().lectureFichier(file);
                             System.out.println("fin");
                             
                         }
