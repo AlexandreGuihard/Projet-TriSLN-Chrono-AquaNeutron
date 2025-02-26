@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" prefHeight="460.0" prefWidth="982.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
@@ -49,7 +50,7 @@
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField fx:id="textFieldId" prefHeight="150.0" prefWidth="194.0">
+                              <TextField fx:id="textFieldId" onKeyReleased="#handleKeyReleased" prefHeight="150.0" prefWidth="194.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
@@ -59,7 +60,7 @@
                               <Insets />
                            </VBox.margin>
                         </VBox>
-                        <Button fx:id="btnEnregistrerModification"  alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;" VBox.vgrow="ALWAYS">
+                        <Button fx:id="btnEnregistrerModification" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -110,6 +111,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" GridPane.rowIndex="1">
@@ -132,7 +134,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie" GridPane.rowIndex="5">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ville" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
@@ -157,7 +159,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date De Naissance" GridPane.rowIndex="4">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
@@ -172,7 +174,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ville" GridPane.rowIndex="6">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie" GridPane.rowIndex="6">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
@@ -181,67 +183,116 @@
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldPrenom" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldSexe" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldDateDeNaissance" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
-                        <TextField fx:id="textFieldCategorie" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <TextField fx:id="textFieldVille" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="textFieldVille" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldNomEquipe" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldEmail" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldClub" GridPane.columnIndex="3">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldNumTel" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldCertification" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <TextField fx:id="textFieldNumLicence" GridPane.columnIndex="3" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TextField>
                         <Text fx:id="textId" strokeType="OUTSIDE" strokeWidth="0.0" text="..." GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sous-catégorie" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <ComboBox fx:id="comboxCategorie" maxWidth="1.7976931348623157E308" onAction="#handle" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ComboBox>
+                        <ComboBox fx:id="comboxSC" maxWidth="1.7976931348623157E308" onAction="#handle" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </ComboBox>
                      </children>
                   </GridPane>
                </children>
@@ -313,7 +364,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -337,7 +388,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnDeconnexion" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -385,7 +436,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btnAjouterParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnAjouterParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -412,7 +463,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnSuprimerParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnSuprimerParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -439,7 +490,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnModifierParticipant" onAction="#handle" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
+                  <Button fx:id="btnModifierParticipant" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="82.0" prefWidth="148.0" style="-fx-background-color: #2596BE;">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -478,7 +529,7 @@
       </VBox>
    </right>
    <bottom>
-      <Button fx:id="btnRetour" onAction="#handle" mnemonicParsing="false" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
