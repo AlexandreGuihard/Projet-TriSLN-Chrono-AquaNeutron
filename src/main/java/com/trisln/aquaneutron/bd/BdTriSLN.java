@@ -450,4 +450,24 @@ public class BdTriSLN {
         ps.setString(4, email);
         ps.executeUpdate();
     }
+
+    public void updateParticipant(Participant participant) throws SQLException{
+        PreparedStatement ps=this.connexion.prepareStatement("call updateParticipant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ps.setInt(1, participant.getId());
+        ps.setString(2, participant.getNom());
+        ps.setString(3, participant.getPrenom());
+        ps.setString(4, participant.getSexe()+"");
+        ps.setString(5, participant.getDateNaissance());
+        ps.setString(6, participant.getCategorie());
+        ps.setString(7, participant.getSousCategorie());
+        ps.setString(8, participant.getClub());
+        ps.setString(9, participant.getNomEquipe());
+        ps.setString(10, participant.getEmail());
+        ps.setString(11, participant.getTel());
+        ps.setBoolean(12, participant.getCertification());
+        ps.setInt(13, participant.getNumLicence());
+        ps.setString(14, participant.getVille());
+        ps.setBoolean(15, participant.getLicence());
+        ps.executeUpdate();
+    }
 }

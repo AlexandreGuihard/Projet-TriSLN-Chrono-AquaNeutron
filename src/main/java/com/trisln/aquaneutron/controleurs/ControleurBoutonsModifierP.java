@@ -80,6 +80,8 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     private TextField textFieldNumLicence;
     @FXML
     private TextField textFieldLicence;
+    @FXML
+    private TextField textFieldSousCategorie;
 
     @FXML
     private Text textSC;
@@ -204,7 +206,7 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                             participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), textFieldCategorie.getText(), textFieldSousCategorie.getText(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
                         }
                         else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
-                            participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), textFieldCategorie.getText(), textFieldSousCategorie.getText(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
+                            participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), textFieldCategorie.getText(), textFieldSousCategorie.getText(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), Integer.parseInt(textFieldNumLicence.getText()), textFieldClub.getText());
                         }
                         else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
                             participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), textFieldCategorie.getText(), textFieldSousCategorie.getText(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
