@@ -147,7 +147,7 @@ public class BdTriSLN {
             } else {
                 query.append("WHERE ");
             }
-            String genreBD = genre.equals("homme") ? "H" : genre.equals("femme") ? "F" : genre;
+            String genreBD = genre.equals("homme") ? "M" : genre.equals("femme") ? "F" : genre;
             query.append("P.sexe = '").append(genreBD).append("' ");
         }
 
