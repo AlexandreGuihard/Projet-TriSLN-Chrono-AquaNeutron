@@ -128,7 +128,6 @@ public class BdTriSLN {
         List<Classement> classements = new ArrayList<>();
         Statement st = this.connexion.createStatement();
         
-        // Construire la requête SQL en fonction des paramètres
         StringBuilder query = new StringBuilder(
             "SELECT C.id_Classement, C.pos_generale, C.pos_categorie, C.pos_club, C.temps, P.id_Participant, P.nom, P.prenom, P.idCategorie, P.sexe, P.email, P.ville, P.certification, P.num_Tel, P.club, P.num_Licence, P.date_Naissance, P.nom_Equipe, P.licence " +
             "FROM CLASSEMENT C " +
@@ -137,7 +136,6 @@ public class BdTriSLN {
             "JOIN CATEGORIE Cat ON P.idCategorie = Cat.idCategorie "
         );
 
-        // Ajouter les conditions de filtre
         boolean hasCondition = false;
         if (!"toutes".equals(categorie)) {
             query.append("WHERE Cat.categorie = '").append(categorie).append("' ");
@@ -149,8 +147,13 @@ public class BdTriSLN {
             } else {
                 query.append("WHERE ");
             }
-            query.append("P.sexe = '").append(genre).append("' ");
+            String genreBD = genre.equals("homme") ? "H" : genre.equals("femme") ? "F" : genre;
+            query.append("P.sexe = '").append(genreBD).append("' ");
         }
+
+        query.append("ORDER BY C.pos_generale");
+
+        System.out.println("Requête SQL générée : " + query.toString());
 
         ResultSet lesClassements = st.executeQuery(query.toString());
         Participant leParticipant = null;
@@ -167,8 +170,8 @@ public class BdTriSLN {
             String certification = lesClassements.getString("certification");
             int tel = lesClassements.getInt("num_Tel");
             String dateDeNaissance = lesClassements.getString("date_Naissance");
-            String licence = lesClassements.getString("num_Licence");
             String club = lesClassements.getString("club");
+            String licence = lesClassements.getString("num_Licence");
 
             if (this.estUnParticipantCourseRelais(licence)) {
                 String nomEquipe = lesClassements.getString("nom_Equipe");

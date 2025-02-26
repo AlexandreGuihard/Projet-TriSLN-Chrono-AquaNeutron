@@ -1,36 +1,26 @@
 package com.trisln.aquaneutron.controleurs;
 
 import com.trisln.aquaneutron.vue.TriSLN;
-
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.TableColumn;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-
 import com.trisln.aquaneutron.modele.Classement;
-import com.trisln.aquaneutron.modele.Participant;
-
 import javafx.collections.FXCollections;
-
 import java.util.List;
-
 import java.sql.SQLException;
-
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import com.trisln.aquaneutron.bd.BdTriSLN;
 
 public class ControleurBoutonsClassements implements EventHandler<ActionEvent> {
     private TriSLN vue;
-
     private BdTriSLN bdTriSLN;
-    private ObservableList<Classement> listeClassements;
 
     @FXML
     private TableView<Classement> tableViewClassements;
