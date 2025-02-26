@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -16,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
@@ -38,7 +37,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="279.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
                         <Label alignment="CENTER" prefHeight="35.0" prefWidth="288.0" style="-fx-font-weight: bold;" text="Masculin">
                            <font>
@@ -47,8 +46,8 @@
                         </Label>
                         <HBox prefHeight="279.0" prefWidth="435.0">
                            <children>
-                              <TableView fx:id="tableViewMasculin" prefHeight="279.0" HBox.hgrow="ALWAYS">
-                                <columns>
+                              <TableView fx:id="tableViewMasculin" HBox.hgrow="ALWAYS">
+                                 <columns>
                                     <TableColumn reorderable="false" text="Nom" />
                                     <TableColumn reorderable="false" text="Prénom" />
                                     <TableColumn reorderable="false" text="Club" />
@@ -59,7 +58,6 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <ScrollBar orientation="VERTICAL" />
                            </children>
                         </HBox>
                      </children>
@@ -68,7 +66,7 @@
                      </HBox.margin>
                   </VBox>
                   <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <VBox alignment="CENTER" prefHeight="200.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
                         <Label alignment="CENTER" prefHeight="35.0" prefWidth="288.0" style="-fx-font-weight: bold;" text="Feminin">
                            <font>
@@ -77,8 +75,8 @@
                         </Label>
                         <HBox prefHeight="279.0">
                            <children>
-                              <TableView fx:id="tableViewFeminin" prefHeight="279.0" HBox.hgrow="ALWAYS">
-                                <columns>
+                              <TableView fx:id="tableViewFeminin" HBox.hgrow="ALWAYS">
+                                 <columns>
                                     <TableColumn reorderable="false" text="Nom" />
                                     <TableColumn reorderable="false" text="Prénom" />
                                     <TableColumn reorderable="false" text="Club" />
@@ -89,7 +87,6 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <ScrollBar orientation="VERTICAL" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -102,27 +99,6 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="btnRetour" mnemonicParsing="false" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <ImageView fx:id="btnRetourImg" fitHeight="75.0" fitWidth="75.0">
-                     <image>
-                        <Image url="@../img/93634.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets top="70.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </children>
       </VBox>
    </center>
@@ -207,7 +183,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-		            <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnCategorieMouseEntered" onMouseExited="#handleBtnCategorieMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
@@ -237,7 +213,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetourCategorie" onAction="#handle" mnemonicParsing="false" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetourCategorie" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
