@@ -1,12 +1,13 @@
 module com.trisln.aquaneutron.trislnaquaneutron {
     requires javafx.controls;
     requires javafx.fxml;
-
     requires org.controlsfx.controls;
     requires java.sql;
     requires java.mail;
     requires org.mariadb.jdbc;
     requires java.dotenv;
+    requires org.apache.pdfbox;
+    requires java.desktop;
 
     exports com.trisln.aquaneutron.bd;
     exports com.trisln.aquaneutron.controleurs;

@@ -516,31 +516,9 @@ public class TriSLN extends Application{
         }
 
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                "python3",
-                "src/main/java/com/trisln/aquaneutron/bd/generationsPDF.py",
-                host, user, password, database, categorieCode, genre
-            );
-
-            Process process = processBuilder.start();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-
-            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            while ((line = errorReader.readLine()) != null) {
-                System.err.println(line);
-            }
-
-            if (process.waitFor() != 0) {
-                System.err.println("Code de sortie : " + process.waitFor());
-            }
-
-        } catch (IOException | InterruptedException e) {
-            System.err.println(e.getMessage());
+            BdTriSLN bdTriSLN = new BdTriSLN(new ConnexionMySQL(host, database, user, password));
+            bdTriSLN.genererPdfClassement(host, user, password, database, genre, categorieCode);
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }

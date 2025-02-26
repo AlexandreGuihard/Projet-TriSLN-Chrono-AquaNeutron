@@ -1,11 +1,26 @@
 package com.trisln.aquaneutron.bd;
 
+
 import com.trisln.aquaneutron.modele.*;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
+
 
 public class BdTriSLN {
     private ConnexionMySQL connexion;
@@ -128,66 +143,52 @@ public class BdTriSLN {
         List<Classement> classements = new ArrayList<>();
         Statement st = this.connexion.createStatement();
         
-        StringBuilder query = new StringBuilder(
-            "SELECT C.id_Classement, C.pos_generale, C.pos_categorie, C.pos_club, C.temps, P.id_Participant, P.nom, P.prenom, P.idCategorie, P.sexe, P.email, P.ville, P.certification, P.num_Tel, P.club, P.num_Licence, P.date_Naissance, P.nom_Equipe, P.licence " +
-            "FROM CLASSEMENT C " +
-            "JOIN GENERER G ON C.id_Classement = G.id_Classement " +
-            "JOIN PARTICIPANT P ON G.id_Participant = P.id_Participant " +
-            "JOIN CATEGORIE Cat ON P.idCategorie = Cat.idCategorie "
-        );
+        String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "H" : "F") + "'" : "";
+        String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
 
-        boolean hasCondition = false;
-        if (!"toutes".equals(categorie)) {
-            query.append("WHERE Cat.categorie = '").append(categorie).append("' ");
-            hasCondition = true;
-        }
-        if (!"mixte".equals(genre)) {
-            if (hasCondition) {
-                query.append("AND ");
-            } else {
-                query.append("WHERE ");
-            }
-            String genreBD = genre.equals("homme") ? "H" : genre.equals("femme") ? "F" : genre;
-            query.append("P.sexe = '").append(genreBD).append("' ");
-        }
+        String query = "SELECT C.id_Classement, C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +
+                "P.club AS Club_Equipe, D.num_dossard AS Dossard, Cat.categorie AS Catégorie, C.pos_categorie AS Classements_Catégorie, " +
+                "P.num_Licence AS Licence, P.id_Participant " +
+                "FROM CLASSEMENT C " +
+                "JOIN GENERER G ON C.id_Classement = G.id_Classement " +
+                "JOIN PARTICIPANT P ON G.id_Participant = P.id_Participant " +
+                "JOIN DOSSARD D ON P.id_Participant = D.id_Participant " +
+                "JOIN CATEGORIE Cat ON P.idCategorie = Cat.idCategorie " +
+                "WHERE 1=1 " + genreCondition + " " + categorieCondition + " ORDER BY C.pos_generale";
 
-        query.append("ORDER BY C.pos_generale");
+        System.out.println("Requête SQL générée : " + query);
 
-        System.out.println("Requête SQL générée : " + query.toString());
-
-        ResultSet lesClassements = st.executeQuery(query.toString());
-        Participant leParticipant = null;
+        ResultSet lesClassements = st.executeQuery(query);
 
         while (lesClassements.next()) {
             int idC = lesClassements.getInt("id_Classement");
             int idP = lesClassements.getInt("id_Participant");
-            String nom = lesClassements.getString("nom");
-            String prenom = lesClassements.getString("prenom");
-            String categorieP = lesClassements.getString("idCategorie");
-            char sexe = lesClassements.getString("sexe").charAt(0);
-            String email = lesClassements.getString("email");
-            String ville = lesClassements.getString("ville");
-            String certification = lesClassements.getString("certification");
-            int tel = lesClassements.getInt("num_Tel");
-            String dateDeNaissance = lesClassements.getString("date_Naissance");
-            String club = lesClassements.getString("club");
-            String licence = lesClassements.getString("num_Licence");
+            String nom = lesClassements.getString("Nom_Prénom");
+            String prenom = "";
+            String club = lesClassements.getString("Club_Equipe");
+            String licence = lesClassements.getString("Licence");
+            String categorieP = lesClassements.getString("Catégorie");
+            char sexe = genre.equals("homme") ? 'M' : genre.equals("femme") ? 'F' : 'M';
+            String email = "";
+            String ville = "";
+            String certification = "";
+            int tel = 0;
+            String dateDeNaissance = "";
 
+            Participant leParticipant;
             if (this.estUnParticipantCourseRelais(licence)) {
-                String nomEquipe = lesClassements.getString("nom_Equipe");
+                String nomEquipe = "";
                 leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, nomEquipe, licence);
             } else if (this.estUnParticipantLicenceIndividuel(club)) {
-                int numLicence = lesClassements.getInt("num_Licence");
-                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, club, numLicence, dateDeNaissance);
+                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, club, Integer.parseInt(licence), dateDeNaissance);
             } else {
                 leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, dateDeNaissance);
             }
 
-            int posGeneral = lesClassements.getInt("pos_generale");
-            String posCategorie = lesClassements.getString("pos_categorie");
-            int posClub = lesClassements.getInt("pos_club");
-            String temps = lesClassements.getString("temps");
-            Classement classement = new Classement(idC, posGeneral, posCategorie, posClub, temps, leParticipant);
+            int posGeneral = lesClassements.getInt("Positions");
+            String posCategorie = lesClassements.getString("Classements_Catégorie");
+            String temps = lesClassements.getString("Temps");
+            Classement classement = new Classement(idC, posGeneral, posCategorie, 0, temps, leParticipant);
             classements.add(classement);
         }
         return classements;
@@ -297,5 +298,161 @@ public class BdTriSLN {
         ps.setString(3, mdp);
         ps.setString(4, email);
         ps.executeUpdate();
+    }
+
+    public void genererPdfClassement(String host, String user, String password, String database, String genre, String categorie) throws SQLException, IOException {
+        String formattedGenre = genre.toLowerCase().replace(" ", "_");
+        String formattedCategorie = categorie.toLowerCase().replace(" ", "_");
+        String outputFile = "pdf/Classement_" + formattedGenre + "_" + formattedCategorie + ".pdf";
+
+        File pdfDir = new File("pdf");
+        if (!pdfDir.exists()) {
+            pdfDir.mkdirs();
+        }
+
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://" + host + ":3306/" + database, user, password);
+        Statement stmt = conn.createStatement();
+
+        String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "H" : "F") + "'" : "";
+        String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
+
+        String query = "SELECT C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +
+                "P.club AS Club_Equipe, D.num_dossard AS Dossard, Cat.categorie AS Catégorie, C.pos_categorie AS Classements_Catégorie, " +
+                "P.num_Licence AS Licence " +
+                "FROM CLASSEMENT C " +
+                "JOIN GENERER G ON C.id_Classement = G.id_Classement " +
+                "JOIN PARTICIPANT P ON G.id_Participant = P.id_Participant " +
+                "JOIN DOSSARD D ON P.id_Participant = D.id_Participant " +
+                "JOIN CATEGORIE Cat ON P.idCategorie = Cat.idCategorie " +
+                "WHERE 1=1 " + genreCondition + " " + categorieCondition + " ORDER BY C.pos_generale";
+
+        ResultSet rs = stmt.executeQuery(query);
+
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage(PDRectangle.A4);
+        document.addPage(page);
+
+        PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true, true);
+        float margin = 40;
+        float yStart = page.getMediaBox().getHeight() - margin;
+        float tableWidth = page.getMediaBox().getWidth() - 2 * margin;
+        float yPosition = yStart;
+        float rowHeight = 18;
+        float cellMargin = 5f;
+
+        // Titre du classement
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+        contentStream.beginText();
+        contentStream.newLineAtOffset(margin, yPosition);
+        contentStream.showText("Classement - Catégorie: " + categorie + " | Genre: " + genre);
+        contentStream.endText();
+        yPosition -= 25;
+
+        // Définition des colonnes avec ajustement des largeurs
+        String[] headers = {"Pos", "Temps", "Nom Prénom", "Club", "Dossard", "Catégorie", "Classement Catégorie", "Licence"};
+        float[] columnWidths = {30, 50, 100, 90, 40, 60, 90, 60};
+
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 8);
+        // Dessiner l'en-tête du tableau
+        float nextX = margin;
+        for (int i = 0; i < headers.length; i++) {
+            contentStream.beginText();
+            contentStream.newLineAtOffset(nextX + 5, yPosition + 5);
+            contentStream.showText(headers[i]);
+            contentStream.endText();
+            nextX += columnWidths[i];
+        }
+        // Dessiner les bordures de l'en-tête
+        dessinerBordures(contentStream, margin, yPosition, columnWidths, rowHeight);
+        yPosition -= rowHeight;
+
+        // Remplissage des données
+        contentStream.setFont(PDType1Font.HELVETICA, 6);
+        while (rs.next()) {
+            if (yPosition < margin + rowHeight) {
+                contentStream.close();
+                page = new PDPage(PDRectangle.A4);
+                document.addPage(page);
+                contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true, true);
+                contentStream.setFont(PDType1Font.HELVETICA, 6);
+                yPosition = yStart - rowHeight;
+                // Redessiner l'en-tête sur la nouvelle page
+                nextX = margin;
+                for (int i = 0; i < headers.length; i++) {
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(nextX + 5, yPosition + 5);
+                    contentStream.showText(headers[i]);
+                    contentStream.endText();
+                    nextX += columnWidths[i];
+                }
+                dessinerBordures(contentStream, margin, yPosition, columnWidths, rowHeight);
+                yPosition -= rowHeight;
+            }
+
+            String[] row = {
+                    rs.getString("Positions"),
+                    rs.getString("Temps"),
+                    rs.getString("Nom_Prénom"),
+                    rs.getString("Club_Equipe"),
+                    rs.getString("Dossard"),
+                    rs.getString("Catégorie"),
+                    rs.getString("Classements_Catégorie"),
+                    rs.getString("Licence")
+            };
+
+            nextX = margin;
+            for (int i = 0; i < row.length; i++) {
+                contentStream.beginText();
+                contentStream.newLineAtOffset(nextX + 5, yPosition + 5);
+                contentStream.showText(row[i] != null ? row[i] : "");
+                contentStream.endText();
+                nextX += columnWidths[i];
+            }
+            dessinerBordures(contentStream, margin, yPosition, columnWidths, rowHeight);
+            yPosition -= rowHeight;
+        }
+
+        contentStream.close();
+        document.save(outputFile);
+        document.close();
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+        new Thread(() -> {
+            try {
+                afficherPdf(outputFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void dessinerBordures(PDPageContentStream contentStream, float margin, float yPosition, float[] columnWidths, float rowHeight) throws IOException {
+        float nextX = margin;
+
+        for (float width : columnWidths) {
+            contentStream.moveTo(nextX, yPosition + rowHeight);
+            contentStream.lineTo(nextX, yPosition);
+            contentStream.stroke();
+            nextX += width;
+        }
+
+        contentStream.moveTo(nextX, yPosition + rowHeight);
+        contentStream.lineTo(nextX, yPosition);
+        contentStream.stroke();
+        contentStream.moveTo(margin, yPosition);
+        contentStream.lineTo(margin + nextX - margin, yPosition);
+        contentStream.stroke();
+    }
+
+    private void afficherPdf(String filePath) throws IOException {
+        if (Desktop.isDesktopSupported()) {
+            File pdfFile = new File(filePath);
+            if (pdfFile.exists()) {
+                Desktop.getDesktop().open(pdfFile);
+            }
+        }
     }
 }
