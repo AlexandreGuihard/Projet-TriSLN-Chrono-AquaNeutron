@@ -49,6 +49,8 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     @FXML
     private Button btnTopStop;
     @FXML
+    private Button btnFinCourse;
+    @FXML
     private TextField numeroDossard;
     @FXML
     private TableView<Course> tableViewDossards;
@@ -170,7 +172,11 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                         if(btn.getId().equals("btnTopStop")){
                             super.getVue().changeButtonColor(this.btnTopStop, "#105c74", "");
                         } else{
-                            super.handleBtnsMouseEntered(btn);
+                            if(btn.getId().equals("btnFinCourse")){
+                                super.getVue().changeButtonColor(this.btnFinCourse, "#105c74", "");
+                            } else{
+                                super.handleBtnsMouseEntered(btn);   
+                            }
                         }
                     }
                 }
@@ -194,7 +200,11 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                     if(btn.getId().equals("btnTopStop")){
                         super.getVue().changeButtonColor(this.btnTopStop, "#2596BE", "");
                     } else {
-                        super.handleBtnsMouseExited(btn);
+                        if(btn.getId().equals("btnFinCourse")){
+                            super.getVue().changeButtonColor(this.btnFinCourse, "#2596BE", "");
+                        } else{
+                            super.handleBtnsMouseExited(btn);   
+                        }
                     }
                 }
             }
@@ -230,7 +240,11 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                         this.btnTopDepart.setDisable(false);
                         this.btnTopStop.setDisable(true);
                     } else {
-                        super.handle(btn);
+                        if(btn.getId().equals("btnFinCourse")){
+                            super.getVue().afficheCourses();
+                        }else{
+                            super.handle(btn);
+                        }
                     }
                 }
             }
