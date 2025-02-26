@@ -149,7 +149,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             System.out.println(index);
             this.tableViewArrive.setItems(arrivalList);
             this.dossardsArrives += 1;
-            TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId(), tempsCourse);
+            TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId(), tempsCourse, participant.getClub());
             this.tableViewDossards.refresh();
             this.numeroDossard.setText("");     
         } else {

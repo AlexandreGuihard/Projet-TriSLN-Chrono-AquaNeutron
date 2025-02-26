@@ -33,6 +33,27 @@ begin
     return idCateg;
 end|
 
+create or replace function getPositionCategorie(idParticipant int, idEpreuve int) 
+returns int
+BEGIN
+    declare posCategorie int;
+    declare idCateg int;
+    select idCategorie into idCateg FROM PARTICIPANT WHERE id_Participant = idParticipant;
+    select COUNT(*) + 1 into posCategorie FROM PARTICIPANT p JOIN GENERER g on p.id_Participant = g.id_Participant WHERE p.idCategorie = idCateg and g.id_Epreuve = idEpreuve and p.id_Participant != idParticipant and g.id_Classement in (select id_Classement FROM CLASSEMENT WHERE temps <= (select temps FROM CLASSEMENT WHERE id_Classement = g.id_Classement));
+    return posCategorie;
+end|
+
+CREATE OR REPLACE FUNCTION getPositionClub(idParticipant INT, club VARCHAR(42), idEpreuve INT)
+RETURNS INT
+begin
+    declare posClub int;
+    select COUNT(*) + 1 into posClub FROM PARTICIPANT p JOIN GENERER g on p.id_Participant = g.id_Participant JOIN CLASSEMENT c on c.id_Classement = g.id_Classement WHERE p.club = club and g.id_Epreuve = idEpreuve and p.id_Participant != idParticipant and c.temps <= (select temps FROM CLASSEMENT WHERE id_Classement = (select id_Classement FROM GENERER WHERE id_Participant = idParticipant and id_Epreuve = idEpreuve limit 1));
+    return posClub;
+end|
+
+
+
+
 -- Getter de l'id du format à partir du nom du format
 CREATE OR REPLACE FUNCTION getIdFormatFromFormat(formatInput VARCHAR(42)) 
 RETURNS INT

@@ -488,25 +488,51 @@ public class BdTriSLN {
         st.close();
     }
 
-    public void genererClassement(int idParticipant, int posGeneral, int idEpreuve, int tempsCourse) throws SQLException{
+    public void genererClassement(int idParticipant, int posGeneral, int idEpreuve, int tempsCourse, String club) throws SQLException{
         int heures = tempsCourse / 3600;
         int minutes = (tempsCourse % 3600) / 60;
         int secondes = tempsCourse % 60;
         String timeString = String.format("%02d:%02d:%02d", heures, minutes, secondes);
+
+        String queryCateg = "select getPositionCategorie(?, ?)";
+        PreparedStatement preparSt = connexion.prepareStatement(queryCateg);
+        preparSt.setInt(1, idParticipant);
+        preparSt.setInt(2, idEpreuve);
+        ResultSet rs = preparSt.executeQuery();
+        int posCategorie = 0;
+        if (rs.next()) {
+            posCategorie = rs.getInt(1);
+        }
+        rs.close();
+        preparSt.close();
+
+        String queryClub = "select getPositionClub(?, ?, ?)";
+        PreparedStatement preparState = connexion.prepareStatement(queryClub);
+        preparState.setInt(1, idParticipant);
+        preparState.setString(2, club);
+        preparState.setInt(3, idEpreuve);
+        ResultSet reSet = preparState.executeQuery();
+        int posClub = 0;
+        if (reSet.next()) {
+            posClub = reSet.getInt(1);
+        }
+        reSet.close();
+        preparState.close();
+
         
         PreparedStatement classementPst=connexion.prepareStatement("insert into CLASSEMENT (pos_generale, pos_categorie, pos_club, temps) values(?, ?, ?, ?)");
         classementPst.setInt(1, posGeneral);
-        classementPst.setInt(2, 10);
-        classementPst.setInt(3, 20);
+        classementPst.setInt(2, posCategorie);
+        classementPst.setInt(3, posClub);
         classementPst.setTime(4, java.sql.Time.valueOf(timeString));
         classementPst.executeUpdate();
         classementPst.close();
 
         Statement st=this.connexion.createStatement();
-        ResultSet rs=st.executeQuery("select max(id_Classement) from CLASSEMENT");
+        ResultSet resultS=st.executeQuery("select max(id_Classement) from CLASSEMENT");
         int idClassement= 0;
-        while (rs.next()){
-            idClassement =rs.getInt(1);
+        while (resultS.next()){
+            idClassement =resultS.getInt(1);
         }
         PreparedStatement genererPst=connexion.prepareStatement("insert into GENERER values(?, ?, ?)");
         genererPst.setInt(1, idClassement);
