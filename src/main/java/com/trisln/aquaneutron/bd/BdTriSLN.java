@@ -453,6 +453,29 @@ public class BdTriSLN{
         st.close();
     }
 
+    public void genererClassement(int idParticipant, int posGeneral, int idEpreuve) throws SQLException{
+        PreparedStatement classementPst=connexion.prepareStatement("insert into CLASSEMENT (pos_generale, pos_categorie, pos_club, temps) values(?, ?, ?, ?)");
+        classementPst.setInt(1, posGeneral);
+        classementPst.setInt(2, 10);
+        classementPst.setInt(3, 20);
+        classementPst.setTime(4, java.sql.Time.valueOf("01:00:00"));
+        classementPst.executeUpdate();
+        classementPst.close();
+
+        Statement st=this.connexion.createStatement();
+        ResultSet rs=st.executeQuery("select max(id_Classement) from CLASSEMENT");
+        int idClassement= 0;
+        while (rs.next()){
+            idClassement =rs.getInt(1);
+        }
+        PreparedStatement genererPst=connexion.prepareStatement("insert into GENERER values(?, ?, ?)");
+        genererPst.setInt(1, idClassement);
+        genererPst.setInt(2, idEpreuve);
+        genererPst.setInt(3, idParticipant);
+        genererPst.executeUpdate();
+        genererPst.close();
+    }
+
     /**
      * Récupère le participant à partir du numéro de son dossard
      * @param leDossard le numéro du dossard

@@ -127,13 +127,17 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
 
     public void enregistrerArrive() throws SQLException {
         int leDossard = Integer.parseInt(this.numeroDossard.getText());
-        if (TriSLN.getBd().isParticipantOfCourse(leDossard, course) && !lesArrives.contains(leDossard)){
+        if (TriSLN.getBd().isParticipantOfCourse(leDossard, this.course) && !lesArrives.contains(leDossard)){
             lesArrives.add(leDossard);        
             System.out.println("Dossard " + leDossard + " est arrivé.");
             Participant participant = TriSLN.getBd().getParticipantByDossard(leDossard);
-            arrivalList.add(new Object[]{leDossard, 0, 100, 10, participant.getSexe()});
+            Object[] dosssardArrive = new Object[]{leDossard, 0, 100, 10, participant.getSexe()};
+            arrivalList.add(dosssardArrive);
+            int index = arrivalList.indexOf(dosssardArrive) + 1;
+            System.out.println(index);
             tableViewArrive.setItems(arrivalList);
             dossardsArrives += 1;
+            TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId());
             tableViewDossards.refresh();
         } else {
             System.out.println("Le dossard ne peut pas être en course");
