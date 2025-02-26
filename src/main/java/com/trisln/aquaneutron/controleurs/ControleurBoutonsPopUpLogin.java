@@ -14,6 +14,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -74,6 +77,20 @@ public class ControleurBoutonsPopUpLogin implements EventHandler<ActionEvent> {
         this.token = "";
         this.email = "";
 
+    }
+
+    public void initialize() {
+        // Vérifier la connexion
+        try {
+            InetAddress ip = InetAddress.getByName("8.8.8.8");
+            if (!ip.isReachable(1500)) {
+                this.btnValiderEmail.setDisable(true);
+                this.infoEmailLabel.setText("Aucune connexion à internet");
+            }
+        } catch (IOException e) {
+            this.btnValiderEmail.setDisable(true);
+            this.infoEmailLabel.setText("Aucune connexion à internet");
+        }
     }
 
     @FXML
