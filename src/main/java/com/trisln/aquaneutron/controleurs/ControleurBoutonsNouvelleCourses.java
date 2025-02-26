@@ -1,8 +1,8 @@
 package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
-
-
+import java.io.IOException;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -30,28 +30,28 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     private Button btnDeconnexion;
     @FXML
     private Button btnCompte;
-
     @FXML
-    private RadioButton rbMP;
+    private RadioButton idMinPoussins;
     @FXML
-    private RadioButton rbPo;
+    private RadioButton idPoussins;
     @FXML
-    private RadioButton rbPu;
+    private RadioButton idPupilles;
     @FXML
-    private RadioButton rbB;
+    private RadioButton idBenjamins;
     @FXML
-    private RadioButton rbM;
+    private RadioButton idMinimes;
     @FXML
-    private RadioButton rbC;
+    private RadioButton idCadets;
     @FXML
-    private RadioButton rbJ;
+    private RadioButton idJunoirs;
     @FXML
-    private RadioButton rbS;
+    private RadioButton idSeniors;
     @FXML
-    private RadioButton rbV;
+    private RadioButton idVetran;
     private ToggleGroup toggleGroup;
     @FXML
     private TextField heureCourse;
+  
 
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
         super();
@@ -135,29 +135,13 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     @FXML
     public void handleBtnCoursesMouseEntered(MouseEvent event){
         try{
-            boolean superButton=false;
-            Button changedButton=null;
-            String newBtnColor="";
-            String otherStyle="";
             Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
-                super.handleBtnsMouseEntered(btn);
+            if(btn.getId().equals("btnAjoutCourse")){
+                super.getVue().changeButtonColor(this.btnAjoutCourse, "#105c74", "");
             }
             else{
-                switch(btn.getId()){
-
-                    case "btnAjoutCourse":
-                        changedButton=this.btnAjoutCourse;
-                        newBtnColor="#105c74";
-                        break;
-
-                    default:
-                        superButton=true;
-                        break;
-                }
-                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+                super.handleBtnsMouseEntered(btn);
             }
-
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -168,29 +152,13 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     @FXML
     public void handleBtnCoursesMouseExited(MouseEvent event){
         try{
-            boolean superButton=false;
-            Button changedButton=null;
-            String newBtnColor="";
-            String otherStyle="";
             Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
-                super.handleBtnsMouseExited(btn);
+            if(btn.getId().equals("btnAjoutCourse")){
+                super.getVue().changeButtonColor(this.btnAjoutCourse, "#2596BE", "");
             }
             else{
-                switch(btn.getId()){
-                    case "btnAjoutCourse":
-                        changedButton=this.btnAjoutCourse;
-                        newBtnColor="#2596BE";
-                        break;
-
-                    default:
-                        superButton=true;
-                        break;
-                    }
-                super.getVue().changeButtonColor(changedButton, newBtnColor, otherStyle);
+                super.handleBtnsMouseExited(btn);
             }
-            
-
         }
         catch(Exception e){
             System.err.println("Erreur");
@@ -199,29 +167,68 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     }
 
     public void handle(ActionEvent event){
-        Object source = event.getSource();
-
-        if (source instanceof Button btn) {
-            switch (btn.getId()) {
-                case "btnAccueil":
-                case "btnRetour":
-                case "btnCompte":
-                case "btnDeconnexion":
-                case "btnConnexion":
-                    super.handle(btn);
-                    break;
+      try {
+            Button btn=(Button) event.getSource();
+            if(btn.getId().equals("btnAjoutCourse")){
+                String nom = this.nomCourse.getText();
+                // La récupération de la catégorie est à refaire au niveau du FXML
+                // Que fait-on avec la date ?
+                String heure = this.heureCourse.getText();
+                String categorie = "";
+                if (this.idMinPoussins.isSelected()) {
+                    categorie = "MP";
+                    this.changeEtatBouton();
+                }
+                if (this.idBenjamins.isSelected()) {
+                    categorie = "BE";
+                    this.changeEtatBouton();
+                }
+                if (this.idPoussins.isSelected()) {
+                    categorie = "PO";
+                    this.changeEtatBouton();
+                }
+                if (this.idMinimes.isSelected()) {
+                    categorie = "MI";
+                    this.changeEtatBouton();
+                }
+                if (this.idPupilles.isSelected()) {
+                    categorie = "PU";
+                    this.changeEtatBouton();
+                }
+                if (this.idCadets.isSelected()) {
+                    categorie = "CA";
+                    this.changeEtatBouton();
+                }
+                if (this.idJunoirs.isSelected()) {
+                    categorie = "JU";
+                    this.changeEtatBouton();
+                }
+                if (this.idSeniors.isSelected()) {
+                    categorie = "Senior";
+                    this.changeEtatBouton();
+                }
+                if (this.idVetran.isSelected()) {
+                    categorie = "Veteran";
+                    this.changeEtatBouton();
+                }
+                try {
+                    super.getVue().getBd().ajouterCourse(nom, "XS", categorie , heure, 1);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                super.getVue().afficheCourses();
+                System.out.println("Course ajoutée");
             }
-        }
-         else if (source instanceof ComboBox<?> comboBox) {
-            if (comboBox.getId().equals("formatCourse")) {
-                this.changeEtatBouton();
+            else{
+                super.handle(btn);
             }
-        }
-        else if (source instanceof RadioButton) {
-            this.changeEtatBouton();
-        }
-
+        } 
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        } 
     }
+}
 
     private void changeEtatBouton() {
         boolean nomVide = this.nomCourse.getText().isEmpty();

@@ -19,7 +19,7 @@ insert into CATEGORIE (idCategorie, categorie, sousCategorie) values
                                                                   (17, 'V', 'V6'),
                                                                   (18, 'V', 'V7'),
                                                                   (19, 'Senior', null),
-                                                                  (20, "Veteran", null);
+                                                                  (20, 'Veteran', null);
 
 insert into PARTICIPANT values
                             (1, 'Dupont', 'Carle', 1, 'F', 'x.carle@yahoo.fr', 'Paris', true, '0647882565', null, null, '2001-01-20', 'bleu', true),-- Relais
@@ -71,6 +71,7 @@ insert into UTILISATEUR values
                             ("admin", "a@a.com", "admin", "Admin", "Administrateur", "Administrateur"),
                             ("siecle", "b@b.com", "siecle", "Bénévole", "Toto", "Titi"),
                             ("ping", "guihardalex98@gmail.com", "ping", "Administrateur",  "Ping", "Pong");
+
 
 insert into DOSSARD values
                         (1, 1),
