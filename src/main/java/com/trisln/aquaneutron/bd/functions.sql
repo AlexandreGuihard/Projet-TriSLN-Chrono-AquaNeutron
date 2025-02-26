@@ -82,11 +82,11 @@ begin
     delete from PARTICIPANT where id_Participant=idParticipant;
 end|
 
-create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sousCategorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel int, club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42))
+create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sousCategorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel int, club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42), licence boolean)
 begin
     declare idCateg int;
     select getIdCategorie(categorie, sousCategorie) into idCateg;
-    update PARTICIPANT set nom=nom, prenom=prenom, idCategorie=idCateg, sexe=sexe, email=email, ville=ville, certification=certification, num_Tel=numTel, club=club, num_Licence=numLicence, date_Naissance=dateNaissance, nom_Equipe=nomEquipe where id_Participant=idParticipant;
+    update PARTICIPANT set PARTICIPANT.nom=nom, PARTICIPANT.prenom=prenom, PARTICIPANT.idCategorie=idCateg, PARTICIPANT.sexe=sexe, PARTICIPANT.email=email, PARTICIPANT.ville=ville, PARTICIPANT.certification=certification, PARTICIPANT.num_Tel=numTel, PARTICIPANT.club=club, PARTICIPANT.num_Licence=numLicence, PARTICIPANT.date_Naissance=dateNaissance, PARTICIPANT.nom_Equipe=nomEquipe, PARTICIPANT.licence=licence where id_Participant=idParticipant;
 end|
 
 -- Vérification des attributs licence,numLicence,club et dateNaissance selon le type de participant
