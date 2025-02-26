@@ -10,8 +10,27 @@ import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BdTriSLN{
+
+    private static final Map<String, String> monthMap = new HashMap<>();
+    static {
+        monthMap.put("janvier", "01");
+        monthMap.put("février", "02");
+        monthMap.put("mars", "03");
+        monthMap.put("avril", "04");
+        monthMap.put("mai", "05");
+        monthMap.put("juin", "06");
+        monthMap.put("juillet", "07");
+        monthMap.put("août", "08");
+        monthMap.put("septembre", "09");
+        monthMap.put("octobre", "10");
+        monthMap.put("novembre", "11");
+        monthMap.put("décembre", "12");
+    }
+
     private ConnexionMySQL connexion;
     public BdTriSLN(ConnexionMySQL connexion){
         this.connexion=connexion;
@@ -233,60 +252,115 @@ public class BdTriSLN{
                 }
             else{
                 List<String> partiedecoupe = new ArrayList<>(Arrays.asList(line.split(",")));
-                for ( int i =0; i < partiedecoupe.size();i++  ){
+                for ( int i = 0; i < partiedecoupe.size();i++  ){
                     if ("".equals(partiedecoupe.get(i))) {
                         partiedecoupe.set(i ,"null");
                     }
                 }
+
+                while (partiedecoupe.size() < 13 && partiedecoupe.size() != 13 ) //TODO le 13 a convertir en const
+                 {
+                    partiedecoupe.add("null");
+                }
+                System.out.println(partiedecoupe +"\n");
+
                 PreparedStatement addParticipant = this.connexion.prepareStatement("insert into PARTICIPANT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                
                 int idParticipant = 0; 
-                if ("null".equals(partiedecoupe.get(0))) {
-                    System.err.println("un id des participant nest pas un entier");
-                    return;
-                }
-                else{
-                    idParticipant = Integer.parseInt(partiedecoupe.get(0));
-                }
-                
-                String nom =        partiedecoupe.get(1);
-                String prenom =     partiedecoupe.get(2);
-                String idCategorie= partiedecoupe.get(3);
-                String sexe =       partiedecoupe.get(4);
+                String nom = "";
+                String prenom = "";
+                int idCategorie= 0;
+                String sexe = "";
                 String email =      partiedecoupe.get(5);
                 String ville =      partiedecoupe.get(6);
-
                 boolean certification = false;
-                if ("null".equals(partiedecoupe.get(7))) {
-                    certification = false;
-                }
-                else{
-                    certification = true;
-                }
-                String numTel = partiedecoupe.get(8);
-                String club =    partiedecoupe.get(9);
-
+                String numTel = "";
+                String club = partiedecoupe.get(9);
                 boolean licence = false;
                 int numLicence = 0;
+                String dateNaissance = "";
+                String nomEquipe =  partiedecoupe.get(12);
+                
+                if ("null".equals(partiedecoupe.get(0))) {
+                    System.err.println("un id des participant nest pas un entier");
+                    return; //TODO faire des alertes
+                } else{
+                    idParticipant = Integer.parseInt(partiedecoupe.get(0));
+                }
+
+                if ("null".equals(partiedecoupe.get(1))) {
+                    System.err.println("nom de la personne non trouver");
+                    return ; //TODO faire des alertes
+                } else{
+                    nom = partiedecoupe.get(1);
+                }                
+                
+                if ("null".equals(partiedecoupe.get(2))) {
+                    System.err.println("prenom de la personne non trouver");
+                    return ; //TODO faire des alertes
+                } else{
+                    prenom = partiedecoupe.get(2);
+                }
+
+                if ("null".equals(partiedecoupe.get(3))) {
+                    System.err.println("id Categorie non trouver");
+                    return ; //TODO faire des alertes
+                }else{
+                    idCategorie = Integer.parseInt(partiedecoupe.get(3));
+                }
+
+                if ("null".equals(partiedecoupe.get(4))) {
+                    System.err.println("sexe non trouver");
+                    return ; //TODO faire des alertes
+                }else{
+                    sexe = partiedecoupe.get(4);
+                }
+                
+                if ("null".equals(partiedecoupe.get(7))) {
+                    certification = false;
+                }else{
+                    certification = true;
+                }
+
+                if ("null".equals(partiedecoupe.get(8))) {
+                    System.err.println("telephone non trouver");
+                    return ; //TODO faire des alertes
+                }else{
+                    numTel = partiedecoupe.get(8);
+                }
+
                 if ("null".equals(partiedecoupe.get(10))) {
                     System.err.println("id numLicence non trouver");
                     licence = false;
-                }
-                else{
+                }else{
                     numLicence = Integer.parseInt(partiedecoupe.get(10));
                     licence = true;
                 }
 
-
-                String dateNaissance = partiedecoupe.get(11);
-                String nomEquipe =  partiedecoupe.get(12);
+                if ("null".equals(partiedecoupe.get(11))) {
+                    System.err.println("il manque une date de naissance dans le fichier");
+                    return;
+                }
+                else{
+                    dateNaissance = partiedecoupe.get(11).replace("/","-").toLowerCase();
+                    String[] dateParts = dateNaissance.split("-");
+                    String jour = dateParts[1];
+                    String mois = monthMap.get(dateParts[0].toLowerCase());;
+                    if (jour.length() == 1) {
+                        jour = "0" + jour;
+                    }
+                    if (mois.length() == 1) {
+                        mois = "0" + mois;
+                    }
+                    // Retourner la date au format SQL 'YYYY-MM-DD'
+                    dateNaissance =  dateParts[2] + "-" + mois + "-" + jour;
+                }
                 
-                System.out.println("c'est ok");
+                System.out.println("la lecture de la ligne c'est bien passer");
 
                 addParticipant.setInt(1, idParticipant);
                 addParticipant.setString(2, nom);
                 addParticipant.setString(3, prenom);
-                addParticipant.setString(4, idCategorie);
+                addParticipant.setInt(4, idCategorie);
                 addParticipant.setString(5, sexe);
                 addParticipant.setString(6, email);
                 addParticipant.setString(7, ville);
