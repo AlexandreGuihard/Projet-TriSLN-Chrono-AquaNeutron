@@ -67,11 +67,11 @@ insert into CLASSEMENT values
                            (4, 3, 4, 2, "23:48");
 
 insert into UTILISATEUR values
-                            ("test", "voivenelromain@gmail.com" , "test"),
-                            ("admin", "a@a.com", "admin"),
-                            ("siecle", "b@b.com", "siecle");
+                             ("test", "voivenelromain@gmail.com" , "test", "Bénévole", "TestNom", "TestPrenom"),
+                            ("admin", "a@a.com", "admin", "Admin", "Administrateur", "Administrateur"),
+                            ("siecle", "b@b.com", "siecle", "Bénévole", "Toto", "Titi");
 
-                            insert into DOSSARD values
+insert into DOSSARD values
                         (1, 1),
                         (2, 2),
                         (3, 3),

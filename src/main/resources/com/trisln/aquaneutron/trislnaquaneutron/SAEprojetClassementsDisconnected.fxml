@@ -64,9 +64,9 @@
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="-- Choisir un genre --"/>
+                           <String fx:value="mixte"/>
                            <String fx:value="homme"/>
                            <String fx:value="femme"/>
-                           <String fx:value="mixte"/>
                         </FXCollections>
                      </items>
                      <cursor>
@@ -99,7 +99,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView HBox.hgrow="ALWAYS">
+                  <TableView fx:id="tableViewClassements" HBox.hgrow="ALWAYS">
                      <columns>
                         <TableColumn reorderable="false" text="Positions" />
                         <TableColumn reorderable="false" text="Temps" />

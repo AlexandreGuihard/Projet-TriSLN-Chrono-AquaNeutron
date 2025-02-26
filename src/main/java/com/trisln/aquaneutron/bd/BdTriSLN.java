@@ -1,4 +1,5 @@
 package com.trisln.aquaneutron.bd;
+
 import com.trisln.aquaneutron.modele.*;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
@@ -6,10 +7,11 @@ import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class BdTriSLN{
+public class BdTriSLN {
     private ConnexionMySQL connexion;
-    public BdTriSLN(ConnexionMySQL connexion){
-        this.connexion=connexion;
+
+    public BdTriSLN(ConnexionMySQL connexion) {
+        this.connexion = connexion;
     }
 
     /**
@@ -165,7 +167,6 @@ public class BdTriSLN{
                 participantsCourseRelais.add(participant);
             }
         }
-        st.close();
         return participantsCourseRelais;
     }
 
@@ -241,21 +242,20 @@ public class BdTriSLN{
         return participantsNonLicenceCourseIndividuelles;
     }
 
-    public List<Course> getCourses() throws SQLException{
-        List<Course> courses=new ArrayList<>();
-        Statement st=this.connexion.createStatement();
-        ResultSet epreuves=st.executeQuery("select * from EPREUVE");
-        while(epreuves.next()){
-            int idE=epreuves.getInt(1);
-            String nom=epreuves.getString(2);
-            String format=epreuves.getString(3);
-            String categorie=epreuves.getString(4);
-            String heureDepart=epreuves.getString(5);
-            double prix=epreuves.getDouble(6);
-            Course course=new Course(idE, nom, format, categorie, heureDepart, prix);
+    public List<Course> getCourses() throws SQLException {
+        List<Course> courses = new ArrayList<>();
+        Statement st = this.connexion.createStatement();
+        ResultSet rs = st.executeQuery("select * from COURSE");
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String nom = rs.getString("nom");
+            String format = rs.getString("format");
+            String categorie = rs.getString("categorie");
+            String heureDepart = rs.getString("heureDepart");
+            double prix = rs.getDouble("prix");
+            Course course = new Course(id, nom, format, categorie, heureDepart, prix);
             courses.add(course);
         }
-        st.close();
         return courses;
     }
 
@@ -299,32 +299,75 @@ public class BdTriSLN{
                     leParticipant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateDeNaissance);
                 }
             }
-            int posGeneral=lesClassements.getInt(2);
-            String posCategorie=lesClassements.getString(3);
-            int posClub=lesClassements.getInt(4);
-            String temps=lesClassements.getString(5);
-            Classement classement=new Classement(idC, posGeneral, posCategorie, posClub, temps, leParticipant);
+            String genreBD = genre.equals("homme") ? "H" : genre.equals("femme") ? "F" : genre;
+            query.append("P.sexe = '").append(genreBD).append("' ");
+        }
+
+        query.append("ORDER BY C.pos_generale");
+
+        System.out.println("Requête SQL générée : " + query.toString());
+
+        ResultSet lesClassements = st.executeQuery(query.toString());
+        Participant leParticipant = null;
+
+        while (lesClassements.next()) {
+            int idC = lesClassements.getInt("id_Classement");
+            int idP = lesClassements.getInt("id_Participant");
+            String nom = lesClassements.getString("nom");
+            String prenom = lesClassements.getString("prenom");
+            String categorieP = lesClassements.getString("idCategorie");
+            char sexe = lesClassements.getString("sexe").charAt(0);
+            String email = lesClassements.getString("email");
+            String ville = lesClassements.getString("ville");
+            String certification = lesClassements.getString("certification");
+            int tel = lesClassements.getInt("num_Tel");
+            String dateDeNaissance = lesClassements.getString("date_Naissance");
+            String club = lesClassements.getString("club");
+            String licence = lesClassements.getString("num_Licence");
+
+            if (this.estUnParticipantCourseRelais(licence)) {
+                String nomEquipe = lesClassements.getString("nom_Equipe");
+                leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, nomEquipe, licence);
+            } else if (this.estUnParticipantLicenceIndividuel(club)) {
+                int numLicence = lesClassements.getInt("num_Licence");
+                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, club, numLicence, dateDeNaissance);
+            } else {
+                leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, dateDeNaissance);
+            }
+
+            int posGeneral = lesClassements.getInt("pos_generale");
+            String posCategorie = lesClassements.getString("pos_categorie");
+            int posClub = lesClassements.getInt("pos_club");
+            String temps = lesClassements.getString("temps");
+            Classement classement = new Classement(idC, posGeneral, posCategorie, posClub, temps, leParticipant);
             classements.add(classement);
         }
         return classements;
     }
 
-    public void ajouterCourse(Course course) throws SQLException{
-        PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");
-        int idE=course.getId();
-        String nom=course.getNom();
-        String format=course.getFormat();
-        String categorie=course.getCategorie();
-        String heureDepart=course.getHeureDepart();
-        double prix=course.getPrix();
-        addCourse.setInt(1, idE);
-        addCourse.setString(2, nom);
-        addCourse.setString(3, format);
-        addCourse.setString(4, categorie);
-        addCourse.setString(5, heureDepart);
-        addCourse.setDouble(6, prix);
-        addCourse.executeUpdate();
-        addCourse.close();
+    public void ajouterCourse(Course course) throws SQLException {
+        String query = "INSERT INTO COURSE (id, nom, format, categorie, heureDepart, prix) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = this.connexion.prepareStatement(query);
+        ps.setInt(1, course.getId());
+        ps.setString(2, course.getNom());
+        ps.setString(3, course.getFormat());
+        ps.setString(4, course.getCategorie());
+        ps.setString(5, course.getHeureDepart());
+        ps.setDouble(6, course.getPrix());
+        ps.executeUpdate();
+    }
+
+    public Utilisateur getUtilisateurFromIdentifiant(String identifiant) throws SQLException{
+        Statement st=this.connexion.createStatement();
+        ResultSet utilisateur=st.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
+        if(utilisateur.next()){
+            String email=utilisateur.getString(2);
+            String role=utilisateur.getString(4);
+            String nom=utilisateur.getString(5);
+            String prenom=utilisateur.getString(6);
+            return new Utilisateur(identifiant, email, role, nom, prenom);
+        }
+        return null;
     }
 
     public boolean verifConnexion(String identifiant, String motDePasse){
@@ -343,52 +386,63 @@ public class BdTriSLN{
         }
     }
 
-    public String getEmail(String identifiant) throws SQLException, NoSuchUserException{
+    public String getEmail(String identifiant) throws SQLException, NoSuchUserException {
         Statement s = this.connexion.createStatement();
-        ResultSet rs = s.executeQuery("select email from UTILISATEUR where identifiant = '"+identifiant+"'");
-        if (rs.next()){
+        ResultSet rs = s.executeQuery("select email from UTILISATEUR where identifiant = '" + identifiant + "'");
+        if (rs.next()) {
             return rs.getString(1);
         } else {
             throw new NoSuchUserException();
         }
     }
 
-    public List<String> getEmailAdresses() throws SQLException{
+    public List<String> getEmailAdresses() throws SQLException {
         List<String> emails = new ArrayList<>();
         Statement s = this.connexion.createStatement();
         ResultSet rs = s.executeQuery("select email from UTILISATEUR");
-        while (rs.next()){
+        while (rs.next()) {
             String email = rs.getString(1);
             emails.add(email);
         }
         return emails;
     }
 
-    public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException{
+    public String getRoleUtilisateur(String identifiant) throws SQLException, NoSuchUserException {
         Statement s = this.connexion.createStatement();
-        ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='"+identifiant+"'");
-        if(rs.next()){
+        ResultSet rs = s.executeQuery("select * from UTILISATEUR where identifiant='" + identifiant + "'");
+        if (rs.next()) {
             return rs.getString(2);
         } else {
             throw new NoSuchUserException();
         }
     }
 
-    public void changePassword(String identifiant, String newPassword) throws SQLException{
+    public String getIdentifiantByEmail(String email) throws SQLException, NoSuchUserException {
+        PreparedStatement ps = this.connexion.prepareStatement("select identifiant from UTILISATEUR where email = ?");
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getString(1);
+        } else {
+            throw new NoSuchUserException();
+        }
+    }
+
+    public void changePassword(String identifiant, String newPassword) throws SQLException {
         PreparedStatement ps = this.connexion.prepareStatement("update UTILISATEUR set mot_de_passe = ? where identifiant= ?");
         ps.setString(1, newPassword);
         ps.setString(2, identifiant);
         ps.executeUpdate();
     }
 
-    public void enregistrerToken(String identifiant, String token) throws SQLException{
+    public void enregistrerToken(String identifiant, String token) throws SQLException {
         PreparedStatement ps = this.connexion.prepareStatement("update UTILISATEUR set token_reinit = ? where identifiant = ?");
         ps.setString(1, token);
         ps.setString(2, identifiant);
         ps.executeUpdate();
     }
 
-    public void ajouterBenevole(String identifiant, String mdp, String email) throws SQLException{
+    public void ajouterBenevole(String identifiant, String mdp, String email) throws SQLException {
         PreparedStatement ps = this.connexion.prepareStatement("insert into UTILISATEUR values (?,?,?,?)");
         ps.setString(1, identifiant);
         ps.setString(2, "benevol");

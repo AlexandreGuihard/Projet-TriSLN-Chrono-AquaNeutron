@@ -8,7 +8,7 @@ public class ConnexionMySQL {
 	public ConnexionMySQL(String nomServeur, String nomBase, String nomLogin, String motDePasse) {
 		try {
 			//Class.forName("com.mysql.jdbc.Driver");
-			//Class.forName("com.mysql.cj.jdbc.Driver"); // Romain
+			//Class.forName("com.mysql.cj.jdbc.Driver");
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver MySQL non trouvÃ©?");
@@ -29,16 +29,16 @@ public class ConnexionMySQL {
     public Connection getConnexion(){
         return this.mysql;
     }
-    public boolean getConnecte(){
+
+    public boolean getConnecte() {
         return this.connecte;
     }
 
-	public Statement createStatement() throws SQLException {
-		return this.mysql.createStatement();
-	}
+    public Statement createStatement() throws SQLException {
+        return this.mysql.createStatement();
+    }
 
-	public PreparedStatement prepareStatement(String requete) throws SQLException{
-		return this.mysql.prepareStatement(requete);
-	}
-	
+    public PreparedStatement prepareStatement(String requete) throws SQLException {
+        return this.mysql.prepareStatement(requete);
+    }
 }

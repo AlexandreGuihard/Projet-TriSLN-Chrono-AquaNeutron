@@ -8,6 +8,27 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+
+import java.io.IOException;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+import com.trisln.aquaneutron.modele.Classement;
+import com.trisln.aquaneutron.modele.Participant;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import java.sql.SQLException;
+
+
+import java.io.File;
+
 import javafx.scene.control.ComboBox;
 
 import com.trisln.aquaneutron.vue.*;
@@ -53,6 +74,7 @@ public class TriSLN extends Application{
         this.utilisateur = new Utilisateur();
         this.connecte=false;
     }
+
     public void start(Stage stage){
         this.precFXML="src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueil.fxml";
         this.precControleur=new ControleurBoutonsCo(this);
@@ -139,11 +161,31 @@ public class TriSLN extends Application{
         }
     }
 
+    public void affichePopUpMDP(ControleurBoutonsPopUpLogin controleur) throws IOException {
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetPopUpAskNewPassword.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
+            loader.setController(controleur);
+            BorderPane page = (BorderPane) loader.load();
+            Scene scene = new Scene(page);
+            this.popUpStage.setScene(scene);
+            this.popUpStage.setResizable(false);
+            this.popUpStage.setAlwaysOnTop(true);
+            this.stage.setOnCloseRequest(event -> {
+                this.popUpStage = null;
+            });
+
+            this.stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void afficheAccueil() throws IOException {
         if (this.stage == null) {
             System.out.println("Erreur : Stage non initialisé dans afficheAccueil.");
             return;
-        }    
+        }
         File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetAccueil.fxml");
         this.precFXML = file.getPath();
         ControleurBoutonsCo controleur = new ControleurBoutonsCo(this);
@@ -320,16 +362,16 @@ public class TriSLN extends Application{
 
 
 
-    public void afficheClassements() throws IOException{
-        File file=new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetClassements.fxml");
-        try{
-            FXMLLoader loader=new FXMLLoader(file.toURI().toURL());
+    public void afficheClassements() throws IOException {
+        File file = new File("src/main/resources/com/trisln/aquaneutron/trislnaquaneutron/SAEprojetClassements.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
             loader.setController(new ControleurBoutonsClassements(this));
-            this.fenetreClassements=new FenetreClassements(loader, this.stage);
-            this.stage = this.fenetreClassements.getWindow();
+            BorderPane root = loader.load();
+            Scene scene = new Scene(root);
+            this.stage.setScene(scene);
             this.stage.show();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -429,6 +471,10 @@ public class TriSLN extends Application{
 
     public Utilisateur getUtilisateur() {
         return this.utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur){
+        this.utilisateur=utilisateur;
     }
     
     public void setFenetreParticipants(FenetreParticipant fenetreParticipants){
