@@ -18,8 +18,8 @@ insert into CATEGORIE (idCategorie, categorie, sousCategorie) values
                                                                   (16, 'V', 'V5'),
                                                                   (17, 'V', 'V6'),
                                                                   (18, 'V', 'V7'),
-                                                                  (19, "Sénior", null),
-                                                                  (20, "Vétéran", null);
+                                                                  (19, 'Senior', null),
+                                                                  (20, "Veteran", null);
 
 insert into PARTICIPANT values
                             (1, 'Dupont', 'Carle', 1, 'F', 'x.carle@yahoo.fr', 'Paris', true, '0647882565', null, null, '2001-01-20', 'bleu', true),-- Relais

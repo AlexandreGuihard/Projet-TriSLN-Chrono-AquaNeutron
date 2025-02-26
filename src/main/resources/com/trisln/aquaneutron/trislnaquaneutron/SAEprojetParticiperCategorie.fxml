@@ -47,7 +47,7 @@
                         </Label>
                         <HBox prefHeight="279.0" prefWidth="435.0">
                            <children>
-                              <TableView prefHeight="279.0" HBox.hgrow="ALWAYS">
+                              <TableView fx:id="tableViewMasculin" prefHeight="279.0" HBox.hgrow="ALWAYS">
                                 <columns>
                                     <TableColumn reorderable="false" text="Nom" />
                                     <TableColumn reorderable="false" text="Prénom" />
@@ -77,7 +77,7 @@
                         </Label>
                         <HBox prefHeight="279.0">
                            <children>
-                              <TableView prefHeight="279.0" HBox.hgrow="ALWAYS">
+                              <TableView fx:id="tableViewFeminin" prefHeight="279.0" HBox.hgrow="ALWAYS">
                                 <columns>
                                     <TableColumn reorderable="false" text="Nom" />
                                     <TableColumn reorderable="false" text="Prénom" />

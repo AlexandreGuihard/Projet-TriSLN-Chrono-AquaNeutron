@@ -103,6 +103,10 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
                 } 
                 catch (NoSuchUserException e){
                     idInfoLabel.setText("Cette utilisateur n'existe pas");
+                    e.printStackTrace();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
                 }
                 break;
             case "btnForgotPassword":
