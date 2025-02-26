@@ -25,7 +25,7 @@ insert into PARTICIPANT values
                             (1, 'Dupont', 'Carle', 1, 'F', 'x.carle@yahoo.fr', 'Paris', true, '0647882565', null, null, '2001-01-20', 'bleu', false),-- Relais
                             (2, 'Pilaf', 'Mila', 2, 'F', 'mila.Pilaf@yahoo.fr', 'Orleans', true, '0692243352', null, null, '2001-03-24', null, false),-- Non licence individuel
                             (3, 'Sparkis', 'Devoid', 8, 'M', 'devoid.Sparkis@yahoo.fr', 'Angers', false, '0695476132', null, null, '2001-02-03', 'jaune', false),-- Relais
-                            (4, 'Disney', 'Antoine', 1, 'F', 'disant@mick.fr', 'Paris', true, '0647882565', 'SQL', 2, '2001-01-18', null, true),-- Licence individuel
+                            (4, 'Disney', 'Antoine', 1, 'F', 'disant@mick.fr', 'Paris', true, '0647882565', 'SQL', 2, '2001-01-18', null, true),
                             (5, 'Dupont', 'Dupon', 1, 'F', 'x.dupon@yahoo.fr', 'Paris', true, '0647882566', 'SQL', 3, '2001-06-15', null, true),-- Licence individuel
                             (6, 'Ping', 'Alex', 8, 'M', 'ping@toto.com', 'Bourges', true, '0642693366', 'Club Bg', 1, '2005-10-03', null, true),-- Licence individuel
                             (7, 'Cable', 'Romain', 6, 'M', 'ctouche@mail.fr', 'Chateauroux', false, '0622568710', 'Club Bg', 4, '2005-04-23', null, true),-- Licence individuel

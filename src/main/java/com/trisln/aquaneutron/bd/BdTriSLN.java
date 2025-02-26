@@ -14,27 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-public class BdTriSLN{
-
-    private static final Map<String, String> monthMap = new HashMap<>();
-    static { //TODO voir si modif
-        monthMap.put("janvier", "01");
-        monthMap.put("février", "02");
-        monthMap.put("fevrier", "02");
-        monthMap.put("mars", "03");
-        monthMap.put("avril", "04");
-        monthMap.put("mai", "05");
-        monthMap.put("juin", "06");
-        monthMap.put("juillet", "07");
-        monthMap.put("août", "08");
-        monthMap.put("aout", "08");
-        monthMap.put("septembre", "09");
-        monthMap.put("octobre", "10");
-        monthMap.put("novembre", "11");
-        monthMap.put("décembre", "12");
-        monthMap.put("decembre", "12");
-    }
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -54,9 +33,28 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
+public class BdTriSLN{
 
+    private static final Map<String, String> monthMap = new HashMap<>();
+    static { 
+        //TODO voir si modif
+        monthMap.put("janvier", "01");
+        monthMap.put("février", "02");
+        monthMap.put("fevrier", "02");
+        monthMap.put("mars", "03");
+        monthMap.put("avril", "04");
+        monthMap.put("mai", "05");
+        monthMap.put("juin", "06");
+        monthMap.put("juillet", "07");
+        monthMap.put("août", "08");
+        monthMap.put("aout", "08");
+        monthMap.put("septembre", "09");
+        monthMap.put("octobre", "10");
+        monthMap.put("novembre", "11");
+        monthMap.put("décembre", "12");
+        monthMap.put("decembre", "12");
+    }
 
-public class BdTriSLN {
     private ConnexionMySQL connexion;
   
     /**
@@ -403,15 +401,8 @@ public class BdTriSLN {
         return courses;
     }
 
-    public boolean estUnParticipantCourseRelais(String licence) {
-        return licence != null && !licence.isEmpty();
-    }
-
-    public boolean estUnParticipantLicenceIndividuel(String club) {
-        return club != null && !club.equals("");
-    }
-
     public List<Classement> getClassements(String categorie, String genre) throws SQLException {
+        // À fix
         List<Classement> classements = new ArrayList<>();
         Statement st = this.connexion.createStatement();
         
@@ -1127,6 +1118,7 @@ public class BdTriSLN {
                 Desktop.getDesktop().open(pdfFile);
             }
         }
+    }
 
     public void updateParticipant(Participant participant) throws SQLException{
         PreparedStatement ps=this.connexion.prepareStatement("call updateParticipant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");

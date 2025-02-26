@@ -22,16 +22,16 @@ begin
 end|
 
 -- Getter du format de la course à partir de l'id format
-create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
-begin
-    declare idCateg int;
-    if sousCategorie is null then
-        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
-    else
-        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
-    end if;
-    return idCateg;
-end|
+--create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
+--begin
+--    declare idCateg int;
+--    if sousCategorie is null then
+--        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
+--    else
+--        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
+--    end if;
+--    return idCateg;
+--end|
 
 -- Getter de l'id du format à partir du nom du format
 CREATE OR REPLACE FUNCTION getIdFormatFromFormat(formatInput VARCHAR(42)) 
@@ -124,15 +124,6 @@ end|
 create or replace function isParticipantsLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
 begin
     return club!='null' and numLicence!=0 and nomEquipe='null' and licence;
-end|
-create or replace function isParticipantsRelais(club varchar(42), nom_Equipe varchar(42), licence boolean, numLicence int) returns boolean
-begin
-    return club='null' and nom_Equipe!='null' and licence and numLicence=0;
-end|
-
-create or replace function isParticipantsLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
-begin
-    return club!='null' and numLicence!=0 and nomEquipe='null' and not licence;
 end|
 
 create or replace function isParticipantsNonLicenceIndiv(club varchar(42), nomEquipe varchar(42), licence boolean, numLicence int) returns boolean
