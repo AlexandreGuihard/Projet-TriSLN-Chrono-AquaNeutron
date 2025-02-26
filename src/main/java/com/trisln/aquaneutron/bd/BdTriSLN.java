@@ -259,91 +259,91 @@ public class BdTriSLN {
         return courses;
     }
 
-    /**
-     * @return la liste des classements de la bd
-     * @throws SQLException
-     */
-    public List<Classement> getClassements() throws SQLException{
-        List<Classement> classements=new ArrayList<>();
-        Statement st=this.connexion.createStatement();
-        ResultSet lesClassements=st.executeQuery("select * from CLASSEMENT");
-        Participant leParticipant=null;
-        while(lesClassements.next()){
-            int idC=lesClassements.getInt(1);
-            ResultSet participant=st.executeQuery("select * from PARTICIPANT natural join GENERER where id_Classement="+idC);
-            if(participant.next()){
-                int idP=participant.getInt(1);
-                String nom=participant.getString(2);
-                String prenom=participant.getString(3);
-                int idCategorie=participant.getInt(4);
-                String categorie=getCategorie(idCategorie);
-                String sousCategorie=getSousCategorie(idCategorie);
-                char sexe=participant.getString(5).charAt(0);
-                String email=participant.getString(6);
-                String ville=participant.getString(7);
-                boolean certification=participant.getBoolean(8);
-                String tel=participant.getString(9);
-                String club=participant.getString(10);
-                int numLicence=participant.getInt(11);
-                String dateDeNaissance=participant.getString(12);
-                String nomEquipe=participant.getString(13);
-                boolean licence=participant.getBoolean(14);
-
-                if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
-                    leParticipant=new ParticipantCourseRelais(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateDeNaissance, nomEquipe, licence);
-                }
-                else if(isParticipantsLicenceIndiv(club, nomEquipe, licence, numLicence)){
-                    leParticipant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, club, numLicence, dateDeNaissance);
-                }
-                else{
-                    leParticipant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateDeNaissance);
-                }
-            }
-            String genreBD = genre.equals("homme") ? "H" : genre.equals("femme") ? "F" : genre;
-            query.append("P.sexe = '").append(genreBD).append("' ");
-        }
-
-        query.append("ORDER BY C.pos_generale");
-
-        System.out.println("Requête SQL générée : " + query.toString());
-
-        ResultSet lesClassements = st.executeQuery(query.toString());
-        Participant leParticipant = null;
-
-        while (lesClassements.next()) {
-            int idC = lesClassements.getInt("id_Classement");
-            int idP = lesClassements.getInt("id_Participant");
-            String nom = lesClassements.getString("nom");
-            String prenom = lesClassements.getString("prenom");
-            String categorieP = lesClassements.getString("idCategorie");
-            char sexe = lesClassements.getString("sexe").charAt(0);
-            String email = lesClassements.getString("email");
-            String ville = lesClassements.getString("ville");
-            String certification = lesClassements.getString("certification");
-            int tel = lesClassements.getInt("num_Tel");
-            String dateDeNaissance = lesClassements.getString("date_Naissance");
-            String club = lesClassements.getString("club");
-            String licence = lesClassements.getString("num_Licence");
-
-            if (this.estUnParticipantCourseRelais(licence)) {
-                String nomEquipe = lesClassements.getString("nom_Equipe");
-                leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, nomEquipe, licence);
-            } else if (this.estUnParticipantLicenceIndividuel(club)) {
-                int numLicence = lesClassements.getInt("num_Licence");
-                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, club, numLicence, dateDeNaissance);
-            } else {
-                leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, dateDeNaissance);
-            }
-
-            int posGeneral = lesClassements.getInt("pos_generale");
-            String posCategorie = lesClassements.getString("pos_categorie");
-            int posClub = lesClassements.getInt("pos_club");
-            String temps = lesClassements.getString("temps");
-            Classement classement = new Classement(idC, posGeneral, posCategorie, posClub, temps, leParticipant);
-            classements.add(classement);
-        }
-        return classements;
-    }
+    ///**
+    // * @return la liste des classements de la bd
+    // * @throws SQLException
+    // */
+    //public List<Classement> getClassements() throws SQLException{
+    //    List<Classement> classements=new ArrayList<>();
+    //    Statement st=this.connexion.createStatement();
+    //    ResultSet lesClassements=st.executeQuery("select * from CLASSEMENT");
+    //    Participant leParticipant=null;
+    //    while(lesClassements.next()){
+    //        int idC=lesClassements.getInt(1);
+    //        ResultSet participant=st.executeQuery("select * from PARTICIPANT natural join GENERER where id_Classement="+idC);
+    //        if(participant.next()){
+    //            int idP=participant.getInt(1);
+    //            String nom=participant.getString(2);
+    //            String prenom=participant.getString(3);
+    //            int idCategorie=participant.getInt(4);
+    //            String categorie=getCategorie(idCategorie);
+    //            String sousCategorie=getSousCategorie(idCategorie);
+    //            char sexe=participant.getString(5).charAt(0);
+    //            String email=participant.getString(6);
+    //            String ville=participant.getString(7);
+    //            boolean certification=participant.getBoolean(8);
+    //            String tel=participant.getString(9);
+    //            String club=participant.getString(10);
+    //            int numLicence=participant.getInt(11);
+    //            String dateDeNaissance=participant.getString(12);
+    //            String nomEquipe=participant.getString(13);
+    //            boolean licence=participant.getBoolean(14);
+//
+    //            if(isParticipantsRelais(club, nomEquipe, licence, numLicence)){
+    //                leParticipant=new ParticipantCourseRelais(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateDeNaissance, nomEquipe, licence);
+    //            }
+    //            else if(isParticipantsLicenceIndiv(club, nomEquipe, licence, numLicence)){
+    //                leParticipant=new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, club, numLicence, dateDeNaissance);
+    //            }
+    //            else{
+    //                leParticipant=new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, tel, dateDeNaissance);
+    //            }
+    //        }
+    //        String genreBD = genre.equals("homme") ? "H" : genre.equals("femme") ? "F" : genre;
+    //        query.append("P.sexe = '").append(genreBD).append("' ");
+    //    }
+//
+    //    query.append("ORDER BY C.pos_generale");
+//
+    //    System.out.println("Requête SQL générée : " + query.toString());
+//
+    //    ResultSet lesClassements = st.executeQuery(query.toString());
+    //    Participant leParticipant = null;
+//
+    //    while (lesClassements.next()) {
+    //        int idC = lesClassements.getInt("id_Classement");
+    //        int idP = lesClassements.getInt("id_Participant");
+    //        String nom = lesClassements.getString("nom");
+    //        String prenom = lesClassements.getString("prenom");
+    //        String categorieP = lesClassements.getString("idCategorie");
+    //        char sexe = lesClassements.getString("sexe").charAt(0);
+    //        String email = lesClassements.getString("email");
+    //        String ville = lesClassements.getString("ville");
+    //        String certification = lesClassements.getString("certification");
+    //        int tel = lesClassements.getInt("num_Tel");
+    //        String dateDeNaissance = lesClassements.getString("date_Naissance");
+    //        String club = lesClassements.getString("club");
+    //        String licence = lesClassements.getString("num_Licence");
+//
+    //        if (this.estUnParticipantCourseRelais(licence)) {
+    //            String nomEquipe = lesClassements.getString("nom_Equipe");
+    //            leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, nomEquipe, licence);
+    //        } else if (this.estUnParticipantLicenceIndividuel(club)) {
+    //            int numLicence = lesClassements.getInt("num_Licence");
+    //            leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, club, numLicence, dateDeNaissance);
+    //        } else {
+    //            leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, dateDeNaissance);
+    //        }
+//
+    //        int posGeneral = lesClassements.getInt("pos_generale");
+    //        String posCategorie = lesClassements.getString("pos_categorie");
+    //        int posClub = lesClassements.getInt("pos_club");
+    //        String temps = lesClassements.getString("temps");
+    //        Classement classement = new Classement(idC, posGeneral, posCategorie, posClub, temps, leParticipant);
+    //        classements.add(classement);
+    //    }
+    //    return classements;
+    //}
 
     public void ajouterCourse(Course course) throws SQLException {
         String query = "INSERT INTO COURSE (id, nom, format, categorie, heureDepart, prix) VALUES (?, ?, ?, ?, ?, ?)";

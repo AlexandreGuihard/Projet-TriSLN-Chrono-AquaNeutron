@@ -2,7 +2,7 @@ package com.trisln.aquaneutron.modele;
 
 public class ParticipantCourseRelais extends Participant {
     private String nomEquipe;
-    private String licence; // Changez le type en String
+    private boolean licence;
 
 
     /**

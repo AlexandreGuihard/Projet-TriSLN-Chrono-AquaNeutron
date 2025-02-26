@@ -75,7 +75,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             colClubEquipe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getClub()));
 
             TableColumn<Classement, Integer> colDossard = new TableColumn<>("Dossard");
-            colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getParticipant().getDossard()).asObject());
+            colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(1).asObject());
 
             TableColumn<Classement, String> colCategorie = new TableColumn<>("Catégorie");
             colCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getCategorie()));
@@ -84,7 +84,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             colClassementCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosCategorie()));
 
             TableColumn<Classement, String> colLicence = new TableColumn<>("Licence");
-            colLicence.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getLicence()));
+            colLicence.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getLicence()+""));
 
             tableViewClassements.getColumns().setAll(colPositions, colTemps, colNomPrenom, colClubEquipe, colDossard, colCategorie, colClassementCategorie, colLicence);
         }
@@ -236,22 +236,21 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
                         } else {
                             System.err.println("Aucune sélection de sous-catégorie.");
                         }
-                    } else {
-                        System.err.println("Aucune sélection de sous-catégorie.");
-                    }
+                    
                     break;
                 case "btnValider":
                     String sousCategorie = idSC.getValue();
                     String genre = idG.getValue();
                     if (sousCategorie != null && genre != null) {
-                        List<Classement> classements = bdTriSLN.getClassements(sousCategorie, genre);
-                        tableViewClassements.setItems(FXCollections.observableArrayList(classements));
+                        //List<Classement> classements = bdTriSLN.getClassements(sousCategorie, genre);
+                        //tableViewClassements.setItems(FXCollections.observableArrayList(classements));
                     } else {
                         System.err.println("Veuillez sélectionner une sous-catégorie et un genre.");
                     }
                     break;
             }
-        } catch (Exception e) {
+        }
+     } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }
