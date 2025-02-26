@@ -24,8 +24,6 @@ import com.trisln.aquaneutron.modele.ParticipantNonLicenceCourseIndiv;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 public class ControleurBoutonsModifierP extends ControleurBoutons implements EventHandler<ActionEvent>{
-    private TriSLN vue;
-
     // log accueil et AccConnecter
 
     @FXML
@@ -211,9 +209,8 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                         break;
                     default:
                         super.getVue().afficheModifierP();
-                        
-            }
-                
+                        break;       
+                }
             }
         }
         catch (IOException e)

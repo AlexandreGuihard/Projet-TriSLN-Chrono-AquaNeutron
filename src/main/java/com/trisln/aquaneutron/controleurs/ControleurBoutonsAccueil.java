@@ -15,8 +15,6 @@ import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 public class ControleurBoutonsAccueil extends ControleurBoutons implements EventHandler<ActionEvent>{
-    private TriSLN vue;
-
     // log accueil et AccConnecter
     @FXML
     private Button btnClassements;
@@ -163,29 +161,29 @@ public class ControleurBoutonsAccueil extends ControleurBoutons implements Event
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    this.vue.afficheClassementsDisconnected();
+                    super.getVue().afficheClassementsDisconnected();
                     break;
                 case "btnConnexion":
-                    this.vue.afficheLogin();
+                    super.getVue().afficheLogin();
                     break;
                 case "btnClassements2":
-                    this.vue.afficheClassements();
+                    super.getVue().afficheClassements();
                     break;
                 case "btnParticipants":
-                    this.vue.afficheParticipants();
+                    super.getVue().afficheParticipants();
                     break;
                 case "btnCourses":
-                    this.vue.afficheCourses();
+                    super.getVue().afficheCourses();
                     break;
                 case "deconnecter":
-                    this.vue.afficheAccueil();
+                    super.getVue().afficheAccueil();
                     break;
                 case "btnCompte":
-                    this.vue.afficheMonCompte();
+                    super.getVue().afficheMonCompte();
                     break;
                 default:
-                    this.vue.afficheAccueil();
-                break;
+                    super.getVue().afficheAccueil();
+                    break;
 
             }
             

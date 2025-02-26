@@ -17,8 +17,6 @@ import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 public class ControleurBoutonsAjouterP extends ControleurBoutons implements EventHandler<ActionEvent>{
-    private TriSLN vue;
-
     // log accueil et AccConnecter
 
     @FXML
