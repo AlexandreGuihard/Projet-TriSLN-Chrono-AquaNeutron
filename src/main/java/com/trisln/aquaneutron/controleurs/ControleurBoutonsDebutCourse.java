@@ -119,12 +119,12 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         if (tableViewArrive != null) {
             TableColumn<Object[], Integer> colDossard = new TableColumn<>("Dossards");
             colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty((Integer) cellData.getValue()[0]).asObject());
-            TableColumn<Object[], Integer> colTopDepart = new TableColumn<>("Top départ");
-            colTopDepart.setCellValueFactory(cellData -> new SimpleIntegerProperty((Integer) cellData.getValue()[1]).asObject());
-            TableColumn<Object[], Integer> colTopArrivee = new TableColumn<>("Top arrivée");
-            colTopArrivee.setCellValueFactory(cellData -> new SimpleIntegerProperty((Integer) cellData.getValue()[2]).asObject());
-            TableColumn<Object[], Integer> colChrono = new TableColumn<>("Chrono");
-            colChrono.setCellValueFactory(cellData -> new SimpleIntegerProperty((Integer) cellData.getValue()[3]).asObject());
+            TableColumn<Object[], String> colTopDepart = new TableColumn<>("Top départ");
+            colTopDepart.setCellValueFactory(cellData -> new SimpleStringProperty((String) String.valueOf(cellData.getValue()[1])));
+            TableColumn<Object[], String> colTopArrivee = new TableColumn<>("Top arrivée");
+            colTopArrivee.setCellValueFactory(cellData -> new SimpleStringProperty((String) String.valueOf(cellData.getValue()[2])));
+            TableColumn<Object[], String> colChrono = new TableColumn<>("Chrono");
+            colChrono.setCellValueFactory(cellData -> new SimpleStringProperty((String) String.valueOf(cellData.getValue()[3])));
             TableColumn<Object[], String> colSexe = new TableColumn<>("Sexe");
             colSexe.setCellValueFactory(cellData -> new SimpleStringProperty((String) String.valueOf(cellData.getValue()[4])));
             tableViewArrive.getColumns().setAll(colDossard, colTopDepart, colTopArrivee, colChrono, colSexe);
@@ -159,16 +159,21 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         if (!this.numeroDossard.getText().isEmpty()) {
             leDossard = Integer.parseInt(this.numeroDossard.getText());
         }
-        this.infoDossardArr.setText("Ce dossard n'existe pas");
         if (TriSLN.getBd().isParticipantOfCourse(leDossard, this.course) && !lesArrives.contains(leDossard)){
             lesArrives.add(leDossard);        
             System.out.println("Dossard " + leDossard + " est arrivé.");
-            Participant participant = TriSLN.getBd().getParticipantByDossard(leDossard);
+            Participant participant = TriSLN.getBd().getParticipantByDossard(leDossard); 
             int tempsCourse = (int)this.chrono.getDuree();
+            int tempDepart = 0;
+            String tempsComplet = TriSLN.getBd().tempsEnSTring(tempsCourse);
+
             if (participant.getSexe()== 'M') {
                 tempsCourse = tempsCourse - tempsDiffere;
+                tempDepart = tempsDiffere;
             }
-            Object[] dosssardArrive = new Object[]{leDossard, 0, tempsCourse, tempsCourse-0 , participant.getSexe()};
+            String tempsACourir = TriSLN.getBd().tempsEnSTring(tempsCourse);
+            String debutCourse = TriSLN.getBd().tempsEnSTring(tempDepart);
+            Object[] dosssardArrive = new Object[]{leDossard, debutCourse, tempsComplet, tempsACourir , participant.getSexe()};
             arrivalList.add(dosssardArrive);
             int index = arrivalList.indexOf(dosssardArrive) + 1;
             System.out.println(index);
@@ -176,6 +181,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             this.dossardsArrives += 1;
             TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId(), tempsCourse, participant.getClub());
             this.tableViewDossards.refresh();
+            this.infoDossardArr.setText("");
         } else {
             this.infoDossardArr.setText("Ce dossard n'existe pas");
             System.out.println("Le dossard ne peut pas être en course");
@@ -186,9 +192,6 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     public void changerBoutonLancerChrono() {
         boolean respectRegex = this.tempsDiff.getText().matches("^([01]?\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$");
         boolean tempsDiffEmpty = this.tempsDiff.getText().isEmpty();
-        System.out.println("respecte le regex ? : " + respectRegex);
-        System.out.println("est vide ? : " + tempsDiffEmpty);
-        System.out.println("respecte les conditions ? : " + !(respectRegex  || tempsDiffEmpty));
 
         this.btnTopDepart.setDisable(!(respectRegex || tempsDiffEmpty));
     }
@@ -274,10 +277,11 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                 }
             } else {
                 if(btn.getId().equals("btnTopDepart")){
+                    this.tempsDiff.setDisable(true);
+                    this.chrono.demarrer();
                     if((this.tempsDiff.getText() != "") && this.chrono.getEstParti()){
                         tempsDiffere = convertirTextToSecondes(this.tempsDiff.getText());
                     }
-                    this.chrono.demarrer();
                     this.btnDossardArrive.setDisable(false);
                     this.numeroDossard.setDisable(false);
                     this.btnTopDepart.setDisable(true);
