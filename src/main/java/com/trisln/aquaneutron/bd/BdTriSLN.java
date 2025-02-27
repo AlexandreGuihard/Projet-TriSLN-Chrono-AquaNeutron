@@ -486,10 +486,10 @@ public class BdTriSLN {
         st.close();
     }
 
-    public String tempsEnSTring(int NombreSecondes){
-        int heures = NombreSecondes / 3600;
-        int minutes = (NombreSecondes % 3600) / 60;
-        int secondes = NombreSecondes % 60;
+    public String tempsEnSTring(int nombreSecondes){
+        int heures = nombreSecondes / 3600;
+        int minutes = (nombreSecondes % 3600) / 60;
+        int secondes = nombreSecondes % 60;
         String temps = String.format("%02d:%02d:%02d", heures, minutes, secondes);
         return temps;
     }
@@ -527,7 +527,7 @@ public class BdTriSLN {
         classementPst.setInt(1, posGeneral);
         classementPst.setInt(2, posCategorie);
         classementPst.setInt(3, posClub);
-        classementPst.setTime(4, java.sql.Time.valueOf(timeString));
+        classementPst.setTime(4, Time.valueOf(timeString));
         classementPst.executeUpdate();
         classementPst.close();
 
