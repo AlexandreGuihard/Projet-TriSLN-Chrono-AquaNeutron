@@ -22,16 +22,52 @@ begin
 end|
 
 -- Getter du format de la course à partir de l'id format
--- create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
--- begin
---    declare idCateg int;
---    if sousCategorie is null then
---        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
---    else
---        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
---    end if;
---    return idCateg;
--- end|
+create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
+begin
+    declare idCateg int;
+    if sousCategorie is null then
+        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
+    else
+        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
+    end if;
+    return idCateg;
+end|
+
+create or replace function getPositionCategorie(idParticipant int, idEpreuve int) 
+returns int
+BEGIN
+    declare posCategorie int;
+    declare idCateg int;
+    select idCategorie into idCateg FROM PARTICIPANT WHERE id_Participant = idParticipant;
+    select COUNT(*) + 1 into posCategorie FROM PARTICIPANT p JOIN GENERER g on p.id_Participant = g.id_Participant WHERE p.idCategorie = idCateg and g.id_Epreuve = idEpreuve and p.id_Participant != idParticipant and g.id_Classement in (select id_Classement FROM CLASSEMENT WHERE temps <= (select temps FROM CLASSEMENT WHERE id_Classement = g.id_Classement));
+    return posCategorie;
+end|
+
+CREATE OR REPLACE FUNCTION getPositionClub(idParticipant INT, club VARCHAR(42), idEpreuve INT)
+RETURNS INT
+begin
+    declare posClub int;
+    select COUNT(*) + 1 into posClub FROM PARTICIPANT p JOIN GENERER g on p.id_Participant = g.id_Participant JOIN CLASSEMENT c on c.id_Classement = g.id_Classement WHERE p.club = club and g.id_Epreuve = idEpreuve and p.id_Participant != idParticipant and c.temps <= (select temps FROM CLASSEMENT WHERE id_Classement = (select id_Classement FROM GENERER WHERE id_Participant = idParticipant and id_Epreuve = idEpreuve limit 1));
+    return posClub;
+end|
+
+
+
+
+-- Getter de l'id du format à partir du nom du format
+CREATE OR REPLACE FUNCTION getIdFormatFromFormat(formatInput VARCHAR(42)) 
+RETURNS INT
+BEGIN
+    DECLARE idFormat INT;
+
+    -- Recherche dans la table FORMATCOURSE avec la colonne format
+    SELECT idFormat INTO idFormat
+    FROM FORMATCOURSE
+    WHERE format = formatInput;
+
+    RETURN idFormat;
+END |
+
 
 -- Getter de l'id de la catégorie à partir de la catégorie et de la sous catégorie si non null
 CREATE OR REPLACE FUNCTION getIdCategorie(categorie VARCHAR(42), sousCategorie VARCHAR(42))
