@@ -67,6 +67,24 @@ public class Alerter {
 
 // Alerte confirmation
 
+  public boolean showConfirmationDeconnection() {
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    alert.setTitle("Deconnecter");
+    alert.setHeaderText("Voulez vous vraiment vous deconnectez ?");
+    Optional<ButtonType> option = alert.showAndWait();
+
+    if (option.get() == null) {
+      return false;
+    } else if (option.get() == ButtonType.OK) {
+      System.out.println("deco");
+      return true;
+    } else if (option.get() == ButtonType.CANCEL) {
+      System.out.println("annuler");
+      return false;
+    }
+    return false;
+  }
+
   public boolean showConfirmationSupprimerParticipant() {
     Alert alert = new Alert(AlertType.CONFIRMATION);
     alert.setTitle("Delete Participant");
@@ -79,11 +97,10 @@ public class Alerter {
       System.out.println("'sup'");
       return true;
     } else if (option.get() == ButtonType.CANCEL) {
-      System.out.println("'can'");
+      System.out.println("annuler");
       return false;
     }
     return false;
-
   }
 
   public boolean showConfirmationModifierParticipant() {
@@ -102,7 +119,7 @@ public class Alerter {
       System.out.println("mod");
       return true;
     } else if (option.get() == ButtonType.CANCEL) {
-      System.out.println("'can'");
+      System.out.println("annuler");
       return false;
     }
     return false;

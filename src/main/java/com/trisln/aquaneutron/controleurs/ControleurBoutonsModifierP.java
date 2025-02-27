@@ -204,7 +204,8 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                 switch(btn.getId()){
                     case "btnEnregistrerModification":
                         Participant participant=null;
-                        try{                            Alerter A = new Alerter();
+                        try{                            
+                            Alerter A = new Alerter();
                             if(A.showConfirmationModifierParticipant()){
                                 System.out.println("enregistrer");
                                 int numLicence = 0;
