@@ -84,6 +84,10 @@ public class Classement{
         return participant;
     }
 
+    public int getDossard() {
+        return participant.getDossard();
+    }
+
     /**
      * Setter de l'id
      * @param id l'id du classement
