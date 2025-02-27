@@ -19,6 +19,7 @@ public class ConnexionMySQL {
 			mysql = DriverManager.getConnection(
 					"jdbc:mariadb://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
 			connecte=true;
+			System.out.println("connecté");
 		} catch (SQLException e) {
 			System.out.println("Echec de connexion à la bd!"); 
 			System.out.println(e.getMessage());

@@ -66,6 +66,7 @@ public abstract class Participant implements IParticipant{
     public String getCategorie(){
         return this.categorie;
     }
+
     /**
      * Getter de la sous catégorie du participant
      * @return la sous catégorie du participant
@@ -168,7 +169,7 @@ public abstract class Participant implements IParticipant{
 
     /**
      * Setter du numéro de téléphone
-     * @param id le nouveau numéro de téléphone du participant
+     * @param numTel le nouveau numéro de téléphone du participant
      */
     public void setTel(String numTel){
         this.numTel=numTel;
@@ -208,7 +209,7 @@ public abstract class Participant implements IParticipant{
     @Override
     public Integer getNumLicence() {
         // Pas de numéro de licence
-        return null;
+        return 0;
     }
 
     /**

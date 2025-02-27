@@ -14,4 +14,5 @@ public interface IParticipant {
     public void setNomEquipe(String nomEquipe);
     public boolean getLicence();
     public void setLicence(boolean licence);
+    public int getDossard();
 }

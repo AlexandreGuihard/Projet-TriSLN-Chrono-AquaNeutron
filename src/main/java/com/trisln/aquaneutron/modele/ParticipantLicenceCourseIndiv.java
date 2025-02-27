@@ -3,6 +3,7 @@ package com.trisln.aquaneutron.modele;
 public class ParticipantLicenceCourseIndiv extends Participant{
     private String club;
     private int numLicence;
+    private int dossard;
 
     /**
      * Constructeur de la classe NonLicenceCourseIndiv
@@ -19,11 +20,20 @@ public class ParticipantLicenceCourseIndiv extends Participant{
      * @param club le club du participant
      * @param numLicence le numéro de licence du participant
      * @param dateDeNaissance la date de naissance du participant
+     * @param dossard le numéro de dossard du participant
      */
-    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String club, int numLicence, String dateDeNaissance){
+
+    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String club, int numLicence, String dateDeNaissance) {
         super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateDeNaissance);
-        this.club=club;
-        this.numLicence=numLicence;
+        this.club = club;
+        this.numLicence = numLicence;
+    }
+
+    public ParticipantLicenceCourseIndiv(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String club, int numLicence, String dateDeNaissance, int dossard) {
+        super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateDeNaissance);
+        this.club = club;
+        this.numLicence = numLicence;
+        this.dossard = dossard;
     }
 
     /**
@@ -44,6 +54,11 @@ public class ParticipantLicenceCourseIndiv extends Participant{
         this.club=club;
     }
 
+    @Override
+    public boolean getLicence(){
+        return true;
+    }
+
     /**
      * Getter du numéro de licence
      * @return le numéro de licence du participant
@@ -60,6 +75,11 @@ public class ParticipantLicenceCourseIndiv extends Participant{
     @Override
     public void setNumLicence(int numLicence) {
         this.numLicence = numLicence;
+    }
+
+    @Override
+    public int getDossard() {
+        return this.dossard;
     }
 
     /**
