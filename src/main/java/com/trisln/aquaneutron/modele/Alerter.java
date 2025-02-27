@@ -76,8 +76,10 @@ public class Alerter {
     if (option.get() == null) {
       return false;
     } else if (option.get() == ButtonType.OK) {
+      System.out.println("'sup'");
       return true;
     } else if (option.get() == ButtonType.CANCEL) {
+      System.out.println("'can'");
       return false;
     }
     return false;
@@ -97,8 +99,10 @@ public class Alerter {
     if (option.get() == null) {
       return false;
     } else if (option.get() == ButtonType.OK) {
+      System.out.println("mod");
       return true;
     } else if (option.get() == ButtonType.CANCEL) {
+      System.out.println("'can'");
       return false;
     }
     return false;
