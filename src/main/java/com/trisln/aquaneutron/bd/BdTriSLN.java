@@ -401,13 +401,21 @@ public class BdTriSLN{
         return courses;
     }
 
+    public boolean estUnParticipantCourseRelais(String licence) {
+        return licence != null && !licence.isEmpty();
+    }
+
+    public boolean estUnParticipantLicenceIndividuel(String club) {
+        return club != null && !club.equals("");
+    }
+
     public List<Classement> getClassements(String categorie, String genre) throws SQLException {
-        // À fix
         List<Classement> classements = new ArrayList<>();
         Statement st = this.connexion.createStatement();
         
         String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "H" : "F") + "'" : "";
         String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
+
         String query = "SELECT C.id_Classement, C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +
                 "P.club AS Club_Equipe, D.num_dossard AS Dossard, Cat.categorie AS Catégorie, C.pos_categorie AS Classements_Catégorie, " +
                 "P.num_Licence AS Licence, P.id_Participant " +
@@ -430,21 +438,23 @@ public class BdTriSLN{
             String club = lesClassements.getString("Club_Equipe");
             String licence = lesClassements.getString("Licence");
             String categorieP = lesClassements.getString("Catégorie");
+            String sousCategorieP = "";
             char sexe = genre.equals("homme") ? 'M' : genre.equals("femme") ? 'F' : 'M';
             String email = "";
             String ville = "";
-            String certification = "";
-            int tel = 0;
+            boolean certification = false;
+            String tel = "";
             String dateDeNaissance = "";
+            int dossard = lesClassements.getInt("Dossard");
 
             Participant leParticipant;
             if (this.estUnParticipantCourseRelais(licence)) {
                 String nomEquipe = "";
-                leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, nomEquipe, licence);
-            } else if (this.estUnParticipantLicenceIndividuel(club)) {
-                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, club, Integer.parseInt(licence), dateDeNaissance);
+                leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, tel, dateDeNaissance, nomEquipe, certification, dossard);
+                    } else if (this.estUnParticipantLicenceIndividuel(club)) {
+                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, tel, club, Integer.parseInt(licence), dateDeNaissance, dossard);
             } else {
-                leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sexe, email, ville, certification, tel, dateDeNaissance);
+                leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, tel, dateDeNaissance, dossard);
             }
 
             int posGeneral = lesClassements.getInt("Positions");
@@ -455,6 +465,8 @@ public class BdTriSLN{
         }
         return classements;
     }
+
+
 
     /**
      * Ajoute une course dans la bd

@@ -27,15 +27,15 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     @FXML
     private Button btnConnexion;
     @FXML
-    private Button btnAccueilDisconnected;
+    private Button btnAccueil;
     @FXML
     private Button btnRetour;
     @FXML
-    private Button btnAccueil;
+    private Button btnAccueil2;
     @FXML
     private Button btnRetour2;
     @FXML
-    private Button btnDeconnexion;
+    private Button deconnecter;
     @FXML
     private Button btnCompte;
     @FXML
@@ -48,16 +48,10 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     private Button btnValider;
 
     public ControleurBoutonsClassements(TriSLN vue) {
-        super();
-        this.setBoutons(vue);
+        this.vue = vue;
+        this.bdTriSLN = vue.getBd();
     }
 
-    private void setBoutons(TriSLN vue){
-        super.setVue(vue);
-        super.setBAccueilDisconnected(btnAccueilDisconnected);
-        super.setBAccueil(btnAccueil);
-        super.setBConnexion(btnConnexion);
-    }
 
     @FXML
     public void initialize() {
@@ -75,7 +69,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             colClubEquipe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getClub()));
 
             TableColumn<Classement, Integer> colDossard = new TableColumn<>("Dossard");
-            colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(1).asObject());
+            colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDossard()).asObject());
 
             TableColumn<Classement, String> colCategorie = new TableColumn<>("Catégorie");
             colCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getCategorie()));
@@ -84,7 +78,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             colClassementCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosCategorie()));
 
             TableColumn<Classement, String> colLicence = new TableColumn<>("Licence");
-            colLicence.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getLicence()+""));
+            colLicence.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getLicence() + ""));
 
             tableViewClassements.getColumns().setAll(colPositions, colTemps, colNomPrenom, colClubEquipe, colDossard, colCategorie, colClassementCategorie, colLicence);
         }
@@ -112,39 +106,34 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     public void handleBtnClassementMouseEntered(MouseEvent event) {
         try {
             Button btn = (Button) event.getSource();
-            if(btn.getId().equals("btnConnexion") || btn.getId().equals("btnDeconnexion") || btn.getId().equals("btnCompte") || btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnAccueil")){
-                super.handleBtnsMouseEntered(btn);
-            }
-            else{
-                switch (btn.getId()) {
-                    //case "btnConnexion":
-                    //    this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
-                    //    break;
-                    //case "btnAccueil":
-                    //    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
-                    //    break;
-                    case "btnRetour":
-                        super.getVue().changeButtonColor(this.btnRetour, "white", "");
-                        break;
-                    //case "btnAccueil2":
-                    //    this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
-                    //    break;
-                    case "btnRetour2":
-                        super.getVue().changeButtonColor(this.btnRetour2, "white", "");
-                        break;
-                    //case "btnDeconnexion":
-                    //    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
-                    //    break;
-                    //case "btnCompte":
-                    //    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
-                    //    break;
-                    case "genpdf":
-                        super.getVue().changeButtonColor(this.genpdf, "#949494", "-fx-background-radius: 15");
-                        break;
-                    case "btnValider":
-                        super.getVue().changeButtonColor(this.btnValider, "#949494", "-fx-background-radius: 15");
-                        break;
-                }
+            switch (btn.getId()) {
+                case "btnConnexion":
+                    this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "white", "");
+                    break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "white", "");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "genpdf":
+                    this.vue.changeButtonColor(this.genpdf, "#949494", "-fx-background-radius: 15");
+                    break;
+                case "btnValider":
+                    this.vue.changeButtonColor(this.btnValider, "#949494", "-fx-background-radius: 15");
+                    break;
             }
         } catch (Exception e) {
             System.err.println("Erreur lors du survol du bouton (handleBtnClassementMouseEntered): " + e.getMessage());
@@ -156,39 +145,34 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     public void handleBtnClassementMouseExited(MouseEvent event) {
         try {
             Button btn = (Button) event.getSource();
-            if(btn.getId().equals("btnConnexion") || btn.getId().equals("btnDeconnexion") || btn.getId().equals("btnCompte") || btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnAccueil")){
-                super.handleBtnsMouseEntered(btn);
-            }
-            else{
-                switch (btn.getId()) {
-                    //case "btnConnexion":
-                    //    this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
-                    //    break;
-                    //case "btnAccueil":
-                    //    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
-                    //    break;
-                    case "btnRetour":
-                        super.getVue().changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
-                        break;
-                    //case "btnAccueil2":
-                    //    this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
-                    //    break;
-                    case "btnRetour2":
-                        super.getVue().changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
-                        break;
-                    //case "deconnecter":
-                    //    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
-                    //    break;
-                    //case "btnCompte":
-                    //    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
-                    //    break;
-                    case "genpdf":
-                        super.getVue().changeButtonColor(this.genpdf, "lightgrey", "-fx-background-radius: 15");
-                        break;
-                    case "btnValider":
-                        super.getVue().changeButtonColor(this.btnValider, "lightgrey", "-fx-background-radius: 15");
-                        break;
-                }
+            switch (btn.getId()) {
+                case "btnConnexion":
+                    this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour":
+                    this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
+                    break;
+                case "btnAccueil2":
+                    this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnRetour2":
+                    this.vue.changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
+                    break;
+                case "deconnecter":
+                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnCompte":
+                    this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "genpdf":
+                    this.vue.changeButtonColor(this.genpdf, "lightgrey", "-fx-background-radius: 15");
+                    break;
+                case "btnValider":
+                    this.vue.changeButtonColor(this.btnValider, "lightgrey", "-fx-background-radius: 15");
+                    break;
             }
         } catch (Exception e) {
             System.err.println("Erreur lors de la sortie du survol du bouton (handleBtnClassementMouseExited): " + e.getMessage());
@@ -200,57 +184,52 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     public void handle(ActionEvent event) {
         try {
             Button btn = (Button) event.getSource();
-            if(btn.getId().equals("btnConnexion") || btn.getId().equals("btnDeconnexion") || btn.getId().equals("btnCompte") || btn.getId().equals("btnAccueilDisconnected") || btn.getId().equals("btnAccueil")){
-                super.handle(btn);
-            }
-            else{
-                switch (btn.getId()) {
-                    //case "btnAccueil":
-                    //    this.vue.afficheAccueil();
-                    //    break;
-                    case "btnRetour":
-                        super.getVue().afficheAccueil();
-                        break;
-                    //case "btnAccueil2":
-                    //    this.vue.afficheAccueilConnecte();
-                    //    break;
-                    case "btnRetour2":
-                        super.getVue().afficheAccueilConnecte();
-                        break;
-                    //case "btnConnexion":
-                    //    this.vue.afficheLogin();
-                    //    break;
-                    //case "btnDeconnexion":
-                    //    this.vue.afficheAccueil();
-                    //    break;
-                    //case "btnCompte":
-                    //    this.vue.afficheMonCompte();
-                    //    break;
-                    case "genpdf":
-                        if (this.idSC.getValue() != null && !this.idSC.getValue().equals("-- Choisir une sous-catégorie --")) {
-                            if (this.idG.getValue() != null && !this.idG.getValue().equals("-- Choisir un genre --")) {
-                                super.getVue().affichePDF("servinfo-maria", "guihard", "guihard", "DBguihard", this.idSC.getValue(), this.idG.getValue());
-                            } else {
-                                System.err.println("Aucune sélection de genre.");
-                            }
+            switch (btn.getId()) {
+                case "btnAccueil":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnRetour":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnAccueil2":
+                    this.vue.afficheAccueilConnecte();
+                    break;
+                case "btnRetour2":
+                    this.vue.afficheAccueilConnecte();
+                    break;
+                case "btnConnexion":
+                    this.vue.afficheLogin();
+                    break;
+                case "deconnecter":
+                    this.vue.afficheAccueil();
+                    break;
+                case "btnCompte":
+                    this.vue.afficheMonCompte();
+                    break;
+                case "genpdf":
+                    if (this.idSC.getValue() != null && !this.idSC.getValue().equals("-- Choisir une sous-catégorie --")) {
+                        if (this.idG.getValue() != null && !this.idG.getValue().equals("-- Choisir un genre --")) {
+                            this.vue.affichePDF("servinfo-maria", "guihard", "guihard", "DBguihard", this.idSC.getValue(), this.idG.getValue());
                         } else {
-                            System.err.println("Aucune sélection de sous-catégorie.");
+                            System.err.println("Aucune sélection de genre.");
                         }
-                    
+                    } else {
+                        System.err.println("Aucune sélection de sous-catégorie.");
+                    }
                     break;
                 case "btnValider":
+                    System.out.println("valider");
                     String sousCategorie = idSC.getValue();
                     String genre = idG.getValue();
                     if (sousCategorie != null && genre != null) {
-                        //List<Classement> classements = bdTriSLN.getClassements(sousCategorie, genre);
-                        //tableViewClassements.setItems(FXCollections.observableArrayList(classements));
+                        List<Classement> classements = bdTriSLN.getClassements(sousCategorie, genre);
+                        tableViewClassements.setItems(FXCollections.observableArrayList(classements));
                     } else {
                         System.err.println("Veuillez sélectionner une sous-catégorie et un genre.");
                     }
                     break;
             }
-        }
-     } catch (Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
         }

@@ -3,6 +3,7 @@ package com.trisln.aquaneutron.modele;
 public class ParticipantCourseRelais extends Participant {
     private String nomEquipe;
     private boolean licence;
+    private int dossard;
 
 
     /**
@@ -19,11 +20,20 @@ public class ParticipantCourseRelais extends Participant {
      * @param numTel le numéro du téléphone du participant
      * @param nomEquipe le nom de l'équipe du participant
      * @param licence si le participant possède une licence ou non
+     * @param dossard le numéro de dossard du participant
      */
-    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, String nomEquipe, boolean licence){
+
+     public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, String nomEquipe, boolean licence) {
         super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateNaissance);
-        this.nomEquipe=nomEquipe;
-        this.licence=licence;
+        this.nomEquipe = nomEquipe;
+        this.licence = licence;
+    }
+
+    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, String numTel, String dateNaissance, String nomEquipe, boolean licence, int dossard) {
+        super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateNaissance);
+        this.nomEquipe = nomEquipe;
+        this.licence = licence;
+        this.dossard = dossard;
     }
 
 
@@ -61,6 +71,11 @@ public class ParticipantCourseRelais extends Participant {
     @Override
     public void setLicence(boolean licence){
         this.licence=licence;
+    }
+
+    @Override
+    public int getDossard() {
+        return this.dossard;
     }
 
     /**
