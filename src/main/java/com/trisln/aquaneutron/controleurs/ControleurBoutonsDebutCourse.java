@@ -19,12 +19,15 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import com.trisln.aquaneutron.modele.Chronometrage;
 import com.trisln.aquaneutron.modele.Course;
 import com.trisln.aquaneutron.modele.Participant;
 import com.trisln.aquaneutron.modele.Exceptions.ChronoNotStartedException;
+import javafx.scene.text.Text;
 
 public class ControleurBoutonsDebutCourse extends ControleurBoutons implements EventHandler<ActionEvent> {
 
@@ -55,6 +58,8 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     private TextField numeroDossard;
     @FXML
     private TextField tempsDiff;
+    @FXML
+    private Text infoDossardArr;
     @FXML
     private TableView<Course> tableViewDossards;
     @FXML
@@ -150,7 +155,11 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     }
 
     public void enregistrerArrive() throws SQLException, ChronoNotStartedException {
-        int leDossard = Integer.parseInt(this.numeroDossard.getText());
+        int leDossard = -1;
+        if (!this.numeroDossard.getText().isEmpty()) {
+            leDossard = Integer.parseInt(this.numeroDossard.getText());
+        }
+        this.infoDossardArr.setText("Ce dossard n'existe pas");
         if (TriSLN.getBd().isParticipantOfCourse(leDossard, this.course) && !lesArrives.contains(leDossard)){
             lesArrives.add(leDossard);        
             System.out.println("Dossard " + leDossard + " est arrivé.");
@@ -166,12 +175,34 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             this.tableViewArrive.setItems(arrivalList);
             this.dossardsArrives += 1;
             TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId(), tempsCourse, participant.getClub());
-            this.tableViewDossards.refresh();     
+            this.tableViewDossards.refresh();
         } else {
+            this.infoDossardArr.setText("Ce dossard n'existe pas");
             System.out.println("Le dossard ne peut pas être en course");
-            // TODO les alertes c'est mieux askip Error alert
         }
         this.numeroDossard.setText("");
+    }
+
+    public void changerBoutonLancerChrono() {
+        boolean respectRegex = this.tempsDiff.getText().matches("^([01]?\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$");
+        boolean tempsDiffEmpty = this.tempsDiff.getText().isEmpty();
+        System.out.println("respecte le regex ? : " + respectRegex);
+        System.out.println("est vide ? : " + tempsDiffEmpty);
+        System.out.println("respecte les conditions ? : " + !(respectRegex  || tempsDiffEmpty));
+
+        this.btnTopDepart.setDisable(!(respectRegex || tempsDiffEmpty));
+    }
+
+    @FXML
+    public void onKeyPressed(KeyEvent event) {
+        TextField tf = (TextField) event.getSource();
+        if (tf.getId().equals("numeroDossard")) {
+            if (event.getCode() == KeyCode.ENTER) {
+                this.btnDossardArrive.fire();
+            }
+        } else if (tf.getId().equals("tempsDiff")) {
+            changerBoutonLancerChrono();
+        }
     }
 
     @FXML
@@ -236,7 +267,8 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             Button btn = (Button) event.getSource();
             if (btn.getId().equals("btnDossardArrive")){
                 if (this.chrono.estDemarrer()) {
-                    enregistrerArrive();   
+                    enregistrerArrive();
+                    this.numeroDossard.setText("");
                 } else {
                     System.out.println("Le chronomètre n'a pas démarrer");
                 }

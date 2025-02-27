@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="722.0" prefWidth="1321.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
@@ -43,7 +33,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="numeroDossard" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard">
+                                    <TextField fx:id="numeroDossard" onKeyReleased="#onKeyPressed" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></TextField>
@@ -62,7 +52,7 @@
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <Text fx:id="infoDossardArr" strokeType="OUTSIDE" strokeWidth="0.0" text="Ce dossard n'existe pas">
+                        <Text fx:id="infoDossardArr" strokeType="OUTSIDE" strokeWidth="0.0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" />
                            </VBox.margin>
@@ -165,7 +155,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="tempsDiff" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm:ss">
+                                          <TextField fx:id="tempsDiff" onKeyReleased="#onKeyPressed" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm:ss">
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
