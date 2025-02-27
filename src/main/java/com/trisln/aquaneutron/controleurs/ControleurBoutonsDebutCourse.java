@@ -1,6 +1,7 @@
 package com.trisln.aquaneutron.controleurs;
 
 import com.trisln.aquaneutron.vue.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -64,7 +67,14 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     private TableView<Course> tableViewDossards;
     @FXML
     private TableView<Object[]> tableViewArrive;
-    
+
+    @FXML
+    private Text textChronoHeure;
+    @FXML
+    private Text textChronoMin;
+    @FXML
+    private Text textChronoSec;
+
     public ControleurBoutonsDebutCourse(TriSLN vue, Course course){
         super();
         this.course = course;
@@ -282,6 +292,44 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                     this.numeroDossard.setDisable(false);
                     this.btnTopDepart.setDisable(true);
                     this.btnTopStop.setDisable(false);
+
+                    Timer timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask() {
+                        @Override
+                        public void run() {
+                            Platform.runLater(() -> {
+                                try {
+                                    int heure = Integer.parseInt((textChronoHeure.getText()));
+                                    int minutes = Integer.parseInt((textChronoMin.getText()));
+                                    int seconds = (int) chrono.getDuree() % 60;
+                                    if ((seconds % 60) == 0 && chrono.getDuree() > 1) {
+                                        minutes += 1;
+                                    }
+                                    if (minutes == 60) {
+                                        minutes = 0;
+                                        heure += 1;
+                                    }
+                                    String textHeure = String.valueOf(heure);
+                                    String textMin = String.valueOf(minutes);
+                                    String textSec = String.valueOf(seconds);
+                                    if (textHeure.length() == 1) {
+                                        textHeure = "0" + textHeure;
+                                    }
+                                    if (textMin.length() == 1) {
+                                        textMin = "0" + textMin;
+                                    }
+                                    if (textSec.length() == 1) {
+                                        textSec = "0" + textSec;
+                                    }
+                                    textChronoHeure.setText(textHeure);
+                                    textChronoMin.setText(textMin);
+                                    textChronoSec.setText(textSec);
+                                } catch (ChronoNotStartedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            });
+                        }
+                    }, 0, 1000);
                 } else {
                     if(btn.getId().equals("btnTopStop")){
                         this.chrono.stopper();
