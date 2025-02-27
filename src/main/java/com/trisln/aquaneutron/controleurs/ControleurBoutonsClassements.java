@@ -31,11 +31,11 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     @FXML
     private Button btnRetour;
     @FXML
-    private Button btnAccueil2;
+    private Button btnAccueilDisconnected;
     @FXML
     private Button btnRetour2;
     @FXML
-    private Button deconnecter;
+    private Button btnDeconnexion;
     @FXML
     private Button btnCompte;
     @FXML
@@ -110,20 +110,20 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "#949494", "-fx-background-radius: 15");
                     break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
+                case "btnAccueilDisconnected":
+                    this.vue.changeButtonColor(this.btnAccueilDisconnected, "#949494", "-fx-background-radius: 15");
                     break;
                 case "btnRetour":
                     this.vue.changeButtonColor(this.btnRetour, "white", "");
                     break;
-                case "btnAccueil2":
-                    this.vue.changeButtonColor(this.btnAccueil2, "#949494", "-fx-background-radius: 15");
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "#949494", "-fx-background-radius: 15");
                     break;
                 case "btnRetour2":
                     this.vue.changeButtonColor(this.btnRetour2, "white", "");
                     break;
-                case "deconnecter":
-                    this.vue.changeButtonColor(this.deconnecter, "#949494", "-fx-background-radius: 15");
+                case "btnDeconnexion":
+                    this.vue.changeButtonColor(this.btnDeconnexion, "#949494", "-fx-background-radius: 15");
                     break;
                 case "btnCompte":
                     this.vue.changeButtonColor(this.btnCompte, "#949494", "-fx-background-radius: 15");
@@ -149,20 +149,20 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
                 case "btnConnexion":
                     this.vue.changeButtonColor(this.btnConnexion, "lightgrey", "-fx-background-radius: 15");
                     break;
-                case "btnAccueil":
-                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
+                case "btnAccueilDisconnected":
+                    this.vue.changeButtonColor(this.btnAccueilDisconnected, "lightgrey", "-fx-background-radius: 15");
                     break;
                 case "btnRetour":
                     this.vue.changeButtonColor(this.btnRetour, "white", "-fx-background-radius: 15");
                     break;
-                case "btnAccueil2":
-                    this.vue.changeButtonColor(this.btnAccueil2, "lightgrey", "-fx-background-radius: 15");
+                case "btnAccueil":
+                    this.vue.changeButtonColor(this.btnAccueil, "lightgrey", "-fx-background-radius: 15");
                     break;
                 case "btnRetour2":
                     this.vue.changeButtonColor(this.btnRetour2, "white", "-fx-background-radius: 15");
                     break;
-                case "deconnecter":
-                    this.vue.changeButtonColor(this.deconnecter, "lightgrey", "-fx-background-radius: 15");
+                case "btnDeconnexion":
+                    this.vue.changeButtonColor(this.btnDeconnexion, "lightgrey", "-fx-background-radius: 15");
                     break;
                 case "btnCompte":
                     this.vue.changeButtonColor(this.btnCompte, "lightgrey", "-fx-background-radius: 15");
@@ -185,13 +185,13 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         try {
             Button btn = (Button) event.getSource();
             switch (btn.getId()) {
-                case "btnAccueil":
+                case "btnAccueilDisconnected":
                     this.vue.afficheAccueil();
                     break;
                 case "btnRetour":
                     this.vue.afficheAccueil();
                     break;
-                case "btnAccueil2":
+                case "btnAccueil":
                     this.vue.afficheAccueilConnecte();
                     break;
                 case "btnRetour2":
@@ -200,7 +200,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
                 case "btnConnexion":
                     this.vue.afficheLogin();
                     break;
-                case "deconnecter":
+                case "btnDeconnexion":
                     this.vue.afficheAccueil();
                     break;
                 case "btnCompte":
