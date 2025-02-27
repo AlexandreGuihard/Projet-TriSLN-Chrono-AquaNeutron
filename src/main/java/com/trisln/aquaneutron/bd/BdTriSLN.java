@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.scene.control.ProgressBar;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -379,6 +381,20 @@ public class BdTriSLN{
         return participantsNonLicenceCourseIndividuelles;
     }
 
+    /**
+     * @return la liste des participants Ã  une course avec relais de la bd
+     * @throws SQLException
+     */
+    public List<Integer> getAllIdParticipants() throws SQLException{
+        List<Integer> participantsCourseRelais=new ArrayList<>();
+        Statement st=this.connexion.createStatement();
+        ResultSet participants=st.executeQuery("select * from PARTICIPANT");
+        while(participants.next()){
+            int idP=participants.getInt(1);
+            participantsCourseRelais.add(idP);
+        }
+        return participantsCourseRelais;
+    }
 
     /**
      * @return la liste des courses de la bd
@@ -508,9 +524,13 @@ public class BdTriSLN{
         boolean aImporter;
         String listerreur="";
         int ligne = 0;
+        List<Integer> listIdPresent = new ArrayList<>();
+
+        //ProgresseBar a faire
+        listIdPresent = this.getAllIdParticipants();
+
 
         for (String line = br.readLine().toLowerCase(); line != null; line = br.readLine()) {
-            //System.out.println(line +"\n");
             if (!estPremiereLigne) {
                 estPremiereLigne = true;
                 }
@@ -521,8 +541,7 @@ public class BdTriSLN{
                         partiedecoupe.set(i ,"null");
                     }
                 }
-                Alerter A = new Alerter();
-                A.Testfonct();
+
                 while (partiedecoupe.size() < 13 && partiedecoupe.size() != 13 ) //TODO le 13 a convertir en const
                  {
                     partiedecoupe.add("null");
@@ -549,11 +568,13 @@ public class BdTriSLN{
                     System.err.println("Il manque l'id du participant a la ligne " + ligne + "\n");
                     aImporter =false;
                     listerreur += "Il manque l'id du participant a la ligne " + ligne + "\n";
-                } else{
+                } else if ( listIdPresent.contains(Integer.parseInt(partiedecoupe.get(0))) ) {
+                    listerreur += "l'id du participant est deja dans la BD pour le participant id "+ partiedecoupe.get(0) +" a la ligne " + ligne + "\n";
+                    ligne += 1;
+                    continue;
+                }else{
                     idParticipant = Integer.parseInt(partiedecoupe.get(0));
                 }
-
-                //TODO si iddossard est dans bd signial et continue
 
                 if ("null".equals(partiedecoupe.get(1))) {
                     System.err.println("Il manque le nom du participant id "+idParticipant+" a la ligne " + ligne +"\n");
@@ -650,15 +671,15 @@ public class BdTriSLN{
                     addParticipant.close();
                     System.out.println("import ok");
                 }
-
+                ligne += 1;
                 }
-            if (listerreur != null || listerreur !="") {
-                Alerter A = new Alerter();
-                A.showError(listerreur);
-        }
     }
         br.close();
         fr.close();
+        if (listerreur !="") {
+            Alerter A = new Alerter();
+            A.showError(listerreur);
+        }
     } catch(SQLException e){
         e.printStackTrace();
 
@@ -1156,4 +1177,5 @@ public class BdTriSLN{
         ps.executeUpdate();
 
     }
+
 }
