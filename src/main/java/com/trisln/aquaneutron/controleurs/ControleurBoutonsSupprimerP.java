@@ -184,6 +184,22 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
                             if(A.showConfirmationSupprimerParticipant()){
                                 System.out.println("supprimer");
                                 super.getVue().getBd().supprimerParticipant(Integer.parseInt(textFieldId.getText()));
+                                int idParticipant=Integer.parseInt(textFieldId.getText());
+                                
+                                Participant participant=TriSLN.getBd().getParticipantFromId(idParticipant);
+                                Platform.runLater(()->textId.setText(participant.getId()+""));
+                                Platform.runLater(()->textNom.setText(participant.getNom()));
+                                Platform.runLater(()->textPrenom.setText(participant.getPrenom()));
+                                Platform.runLater(()->textSexe.setText(participant.getSexe()+""));
+                                Platform.runLater(()->textDateDeNaissance.setText(participant.getDateNaissance()));
+                                Platform.runLater(()->textCategorie.setText(participant.getCategorie()));
+                                Platform.runLater(()->textClub.setText(participant.getClub()));
+                                Platform.runLater(()->textNomEquipe.setText(participant.getNomEquipe()));
+                                Platform.runLater(()->textEmail.setText(participant.getEmail()));
+                                Platform.runLater(()->textNumTel.setText(participant.getTel()));
+                                Platform.runLater(()->textCertification.setText(participant.getCertification()+""));
+                                Platform.runLater(()->textNumLicence.setText(participant.getNumLicence()+""));
+                                Platform.runLater(()->textVille.setText(participant.getVille()));
                             }
                         }
                         catch(Exception e){
