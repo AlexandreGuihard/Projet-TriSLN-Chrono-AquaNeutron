@@ -416,8 +416,6 @@ public class BdTriSLN {
             newId = rs.getInt(1) + 1;
         }
         int idCategorie = this.getIdCategorie(categorie);
-        System.out.println(idCategorie);
-        // int idFormat = this.getIdFormat(format);
         PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");     
         addCourse.setInt(1, newId);
         addCourse.setString(2, nomCourse);

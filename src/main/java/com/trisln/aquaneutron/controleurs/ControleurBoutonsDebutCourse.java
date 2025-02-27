@@ -176,7 +176,6 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             Object[] dosssardArrive = new Object[]{leDossard, debutCourse, tempsComplet, tempsACourir , participant.getSexe()};
             arrivalList.add(dosssardArrive);
             int index = arrivalList.indexOf(dosssardArrive) + 1;
-            System.out.println(index);
             this.tableViewArrive.setItems(arrivalList);
             this.dossardsArrives += 1;
             TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId(), tempsCourse, participant.getClub());
@@ -184,7 +183,6 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             this.infoDossardArr.setText("");
         } else {
             this.infoDossardArr.setText("Ce dossard n'existe pas");
-            System.out.println("Le dossard ne peut pas être en course");
         }
         this.numeroDossard.setText("");
     }
@@ -200,7 +198,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     public void onKeyPressed(KeyEvent event) {
         TextField tf = (TextField) event.getSource();
         if (tf.getId().equals("numeroDossard")) {
-            if (event.getCode() == KeyCode.ENTER) {
+            if (event.getCode().equals(KeyCode.ENTER)) {
                 this.btnDossardArrive.fire();
             }
         } else if (tf.getId().equals("tempsDiff")) {
@@ -211,100 +209,105 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     @FXML
     public void handleBtnDemarrerCoursesMouseEntered(MouseEvent event) {
         try {
-                Button btn = (Button) event.getSource();
-                if(btn.getId().equals("btnDossardArrive")){
-                    super.getVue().changeButtonColor(this.btnDossardArrive, "#105c74", "");
-                }
-                else{
-                    if(btn.getId().equals("btnTopDepart")){
-                        super.getVue().changeButtonColor(this.btnTopDepart, "#105c74", "");
-                    } else{
-                        if(btn.getId().equals("btnTopStop")){
-                            super.getVue().changeButtonColor(this.btnTopStop, "#105c74", "");
-                        } else{
-                            if(btn.getId().equals("btnFinCourse")){
-                                super.getVue().changeButtonColor(this.btnFinCourse, "#105c74", "");
-                            } else{
-                                super.handleBtnsMouseEntered(btn);   
-                            }
-                        }
-                    }
-                }
-        } catch (Exception e) {
-            System.err.println("Erreur");
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
-    public void handleBtnDemarrerCoursesMouseExited(MouseEvent event){
-        try {
             Button btn = (Button) event.getSource();
-            if(btn.getId().equals("btnDossardArrive")){
-                super.getVue().changeButtonColor(this.btnDossardArrive, "#2596BE", "");
-            } else {
-                if(btn.getId().equals("btnTopDepart")){
-                    super.getVue().changeButtonColor(this.btnTopDepart, "#2596BE", "");
-                } else {
-                    if(btn.getId().equals("btnTopStop")){
-                        super.getVue().changeButtonColor(this.btnTopStop, "#2596BE", "");
-                    } else {
-                        if(btn.getId().equals("btnFinCourse")){
-                            super.getVue().changeButtonColor(this.btnFinCourse, "#2596BE", "");
-                        } else{
-                            super.handleBtnsMouseExited(btn);   
-                        }
-                    }
-                }
+            switch (btn.getId()) {
+                case "btnDossardArrive":
+                    super.getVue().changeButtonColor(this.btnDossardArrive, "#105c74", "");
+                    break;
+                case "btnTopDepart":
+                    super.getVue().changeButtonColor(this.btnTopDepart, "#105c74", "");
+                    break;
+                case "btnTopStop":
+                    super.getVue().changeButtonColor(this.btnTopStop, "#105c74", "");
+                    break;
+                case "btnFinCourse":
+                    super.getVue().changeButtonColor(this.btnFinCourse, "#105c74", "");
+                    break;
+                default:
+                    super.handleBtnsMouseEntered(btn);
+                    break;
             }
         } catch (Exception e) {
             System.err.println("Erreur");
             e.printStackTrace();
         }
     }
+
+
+
+    @FXML
+    public void handleBtnDemarrerCoursesMouseExited(MouseEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            switch (btn.getId()) {
+                case "btnDossardArrive":
+                    super.getVue().changeButtonColor(this.btnDossardArrive, "#2596BE", "");
+                    break;
+                case "btnTopDepart":
+                    super.getVue().changeButtonColor(this.btnTopDepart, "#2596BE", "");
+                    break;
+                case "btnTopStop":
+                    super.getVue().changeButtonColor(this.btnTopStop, "#2596BE", "");
+                    break;
+                case "btnFinCourse":
+                    super.getVue().changeButtonColor(this.btnFinCourse, "#2596BE", "");
+                    break;
+                default:
+                    super.handleBtnsMouseExited(btn);   
+                    break;
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur");
+            e.printStackTrace();
+        }
+    }
+
     
     @Override
     public void handle(ActionEvent event) {
         try {
             Button btn = (Button) event.getSource();
-            if (btn.getId().equals("btnDossardArrive")){
-                if (this.chrono.estDemarrer()) {
-                    enregistrerArrive();
-                    this.numeroDossard.setText("");
-                } else {
-                    System.out.println("Le chronomètre n'a pas démarrer");
-                }
-            } else {
-                if(btn.getId().equals("btnTopDepart")){
+            switch (btn.getId()) {
+                case "btnDossardArrive":
+                    if (this.chrono.estDemarrer()) {
+                        enregistrerArrive();
+                        this.numeroDossard.setText("");
+                    } else {
+                        System.out.println("Le chronomètre n'a pas démarrer");
+                    }
+                    break;
+
+                case "btnTopDepart":
                     this.tempsDiff.setDisable(true);
                     this.chrono.demarrer();
-                    if((this.tempsDiff.getText() != "") && this.chrono.getEstParti()){
+                    if ((!this.tempsDiff.getText().equals("")) && this.chrono.getEstParti()) {
                         tempsDiffere = convertirTextToSecondes(this.tempsDiff.getText());
                     }
                     this.btnDossardArrive.setDisable(false);
                     this.numeroDossard.setDisable(false);
                     this.btnTopDepart.setDisable(true);
                     this.btnTopStop.setDisable(false);
-                } else {
-                    if(btn.getId().equals("btnTopStop")){
-                        this.chrono.stopper();
-                        this.btnDossardArrive.setDisable(true);
-                        this.numeroDossard.setDisable(true);
-                        System.out.println(this.chrono.getDuree());
-                        this.btnTopDepart.setDisable(false);
-                        this.btnTopStop.setDisable(true);
-                    } else {
-                        if(btn.getId().equals("btnFinCourse")){
-                            super.getVue().afficheCourses();
-                        }else{
-                            super.handle(btn);
-                        }
-                    }
-                }
+                    break;
+
+                case "btnTopStop":
+                    this.chrono.stopper();
+                    this.btnDossardArrive.setDisable(true);
+                    this.numeroDossard.setDisable(true);
+                    this.btnTopDepart.setDisable(false);
+                    this.btnTopStop.setDisable(true);
+                    break;
+
+                case "btnFinCourse":
+                    super.getVue().afficheCourses();
+                    break;
+
+                default:
+                    super.handle(btn);
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }
