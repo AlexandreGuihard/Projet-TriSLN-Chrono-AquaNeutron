@@ -37,14 +37,14 @@ public class Chronometrage {
             double tempsReprise = System.currentTimeMillis();
             this.tempsDeparts += (tempsReprise - tempsPause);
             this.enPause = false;
-            System.out.println("C'est reparti");
+            System.out.println("Start");
         } else {
             if(this.estParti){
                 System.out.println("le chronomètre est déjà lancé");
             } else{
                 this.tempsDeparts = System.currentTimeMillis();
                 this.estParti = true;
-                System.out.println("Go");
+                System.out.println("Start");
             }
         }
     }
@@ -58,7 +58,7 @@ public class Chronometrage {
         if (!enPause) {
             this.tempsPause = System.currentTimeMillis();
             this.enPause = true;
-            System.out.println("Pause");
+            System.out.println("Stop");
         } else {
             System.out.println("C'est déjà en pause");
             throw new ChronoNotStartedException();

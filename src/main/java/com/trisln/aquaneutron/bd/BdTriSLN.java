@@ -416,8 +416,6 @@ public class BdTriSLN {
             newId = rs.getInt(1) + 1;
         }
         int idCategorie = this.getIdCategorie(categorie);
-        System.out.println(idCategorie);
-        // int idFormat = this.getIdFormat(format);
         PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");     
         addCourse.setInt(1, newId);
         addCourse.setString(2, nomCourse);
@@ -488,11 +486,16 @@ public class BdTriSLN {
         st.close();
     }
 
+    public String tempsEnSTring(int NombreSecondes){
+        int heures = NombreSecondes / 3600;
+        int minutes = (NombreSecondes % 3600) / 60;
+        int secondes = NombreSecondes % 60;
+        String temps = String.format("%02d:%02d:%02d", heures, minutes, secondes);
+        return temps;
+    }
+
     public void genererClassement(int idParticipant, int posGeneral, int idEpreuve, int tempsCourse, String club) throws SQLException{
-        int heures = tempsCourse / 3600;
-        int minutes = (tempsCourse % 3600) / 60;
-        int secondes = tempsCourse % 60;
-        String timeString = String.format("%02d:%02d:%02d", heures, minutes, secondes);
+        String timeString = tempsEnSTring(tempsCourse);
 
         String queryCateg = "select getPositionCategorie(?, ?)";
         PreparedStatement preparSt = connexion.prepareStatement(queryCateg);
