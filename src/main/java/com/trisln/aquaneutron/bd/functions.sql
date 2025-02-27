@@ -96,7 +96,10 @@ end|
 
 create or replace procedure deleteParticipant(idParticipant int)
 begin
-    delete from PARTICIPANT where id_Participant=idParticipant;
+    delete from PARTICIPER where PARTICIPER.id_Participant=idParticipant;
+    delete from GENERER where GENERER.id_Participant=idParticipant;
+    delete from DOSSARD where DOSSARD.id_Participant=idParticipant;
+    delete from PARTICIPANT where PARTICIPANT.id_Participant=idParticipant;
 end|
 
 create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sousCategorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel int, club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42), licence boolean)
