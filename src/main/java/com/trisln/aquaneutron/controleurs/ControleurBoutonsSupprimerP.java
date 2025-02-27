@@ -176,11 +176,14 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
     public void handle(ActionEvent event){
 
         try {Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                     super.handle(btn);
             }
             else{
                 switch(btn.getId()){
+                    case "btnRetour":
+                        super.getVue().afficheParticipants();
+                        break;
                     case "btnSupprimerParticipantValidation":
                         System.out.println("supprimer");
                         try{
