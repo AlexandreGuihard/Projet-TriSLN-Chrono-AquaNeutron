@@ -1,7 +1,5 @@
 package com.trisln.aquaneutron.controleurs;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
@@ -10,14 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 import com.trisln.aquaneutron.modele.Participant;
 import com.trisln.aquaneutron.modele.ParticipantCourseRelais;
@@ -62,10 +66,6 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     @FXML
     private TextField textFieldDateDeNaissance;
     @FXML
-    private ComboBox<String> comboxCategorie;
-    @FXML
-    private ComboBox<String> comboxSC;
-    @FXML
     private TextField textFieldVille;
     @FXML
     private TextField textFieldNomEquipe;
@@ -82,10 +82,9 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     @FXML
     private TextField textFieldLicence;
     @FXML
-    private TextField textFieldSousCategorie;
-
+    private ComboBox<String> comboxCategorie;
     @FXML
-    private Text textSC;
+    private ComboBox<String> comboxSC;
 
     public ControleurBoutonsModifierP(TriSLN vue){
         super();
@@ -94,7 +93,9 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
 
     public void initialize() {
         this.updateComboxSC();
+        btnEnregistrerModification.setDisable(true);
     }
+
 
     private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
@@ -195,26 +196,30 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     public void handle(ActionEvent event){
 
         try {Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                 super.handle(btn);
             }
             else{
                 switch(btn.getId()){
+                    case "btnRetour":
+                        super.getVue().afficheParticipants();
+                        break;
                     case "btnEnregistrerModification":
                         System.out.println("enregistrer");
                         Participant participant=null;
                         try{
-                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
-                                System.out.println("coucou");
-                                //participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), textFieldCategorie.getText(), textFieldSousCategorie.getText(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
+                            int numLicence = 0;
+                            if (!textFieldNumLicence.getText().equals("null")) {
+                                numLicence = Integer.parseInt(textFieldNumLicence.getText());
                             }
-                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
-                                System.out.println("coucou");
-                                //participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), textFieldCategorie.getText(), textFieldSousCategorie.getText(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), Integer.parseInt(textFieldNumLicence.getText()), textFieldClub.getText());
+                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
+                                participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
                             }
-                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), Integer.parseInt(textFieldNumLicence.getText()))){
-                                System.out.println("coucou");
-                                //participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), textFieldCategorie.getText(), textFieldSousCategorie.getText(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
+                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
+                                participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
+                            }
+                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
+                                participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
                             }
                             super.getVue().getBd().updateParticipant(participant);
                         }
@@ -249,25 +254,72 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    private boolean checkInt(String id){
+        for(int i=0;i<id.length();i++){
+            if(!Character.isDigit(id.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @FXML
     public void handleKeyReleased(KeyEvent event){
         try{
-            int idParticipant=Integer.parseInt(textFieldId.getText());
-            Participant participant=TriSLN.getBd().getParticipantFromId(idParticipant);
-            Platform.runLater(()->textId.setText(participant.getId()+""));
-            Platform.runLater(()->textFieldNom.setText(participant.getNom()));
-            Platform.runLater(()->textFieldPrenom.setText(participant.getPrenom()));
-            Platform.runLater(()->textFieldSexe.setText(participant.getSexe()+""));
-            Platform.runLater(()->textFieldDateDeNaissance.setText(participant.getDateNaissance()));
-            Platform.runLater(()->comboxCategorie.setValue(this.change(participant.getCategorie())));
+            Platform.runLater(()->textId.setText(""));
+            Platform.runLater(()->textFieldNom.setText(""));
+            Platform.runLater(()->textFieldPrenom.setText(""));
+            Platform.runLater(()->textFieldSexe.setText(""));
+            Platform.runLater(()->textFieldDateDeNaissance.setText(""));
+            Platform.runLater(()->comboxCategorie.setValue(this.change("")));
             Platform.runLater(this::updateComboxSC);
-            Platform.runLater(()->textFieldClub.setText(participant.getClub()));
-            Platform.runLater(()->textFieldNomEquipe.setText(participant.getNomEquipe()));
-            Platform.runLater(()->textFieldEmail.setText(participant.getEmail()));
-            Platform.runLater(()->textFieldNumTel.setText(participant.getTel()));
-            Platform.runLater(()->textFieldCertification.setText(participant.getCertification()+""));
-            Platform.runLater(()->textFieldNumLicence.setText(participant.getNumLicence()+""));
-            Platform.runLater(()->textFieldVille.setText(participant.getVille()));
-            Platform.runLater(()->textFieldLicence.setText("A faire"));
+            Platform.runLater(()->textFieldClub.setText(""));
+            Platform.runLater(()->textFieldNomEquipe.setText(""));
+            Platform.runLater(()->textFieldEmail.setText(""));
+            Platform.runLater(()->textFieldNumTel.setText(""));
+            Platform.runLater(()->textFieldCertification.setText(""));
+            Platform.runLater(()->textFieldNumLicence.setText(""));
+            Platform.runLater(()->textFieldVille.setText(""));
+            Platform.runLater(()->textFieldLicence.setText(""));
+            if(!textFieldId.getText().equals("")){
+                if(checkInt(textFieldId.getText())){
+                    btnEnregistrerModification.setDisable(false);
+                    int idParticipant=Integer.parseInt(textFieldId.getText());
+                    Participant participant=TriSLN.getBd().getParticipantFromId(idParticipant);
+                    if(participant!=null){
+                        Platform.runLater(()->textId.setText(participant.getId()+""));
+                        Platform.runLater(()->textFieldNom.setText(participant.getNom()));
+                        Platform.runLater(()->textFieldPrenom.setText(participant.getPrenom()));
+                        Platform.runLater(()->textFieldSexe.setText(participant.getSexe()+""));
+                        Platform.runLater(()->textFieldDateDeNaissance.setText(participant.getDateNaissance()));
+                        Platform.runLater(()->comboxCategorie.setValue(this.change(participant.getCategorie())));
+                        if(participant.getSousCategorie()!=null){
+                            Platform.runLater(()->comboxSC.setValue(this.change(participant.getSousCategorie())));
+                        }
+                        Platform.runLater(()->textFieldClub.setText(participant.getClub()));
+                        Platform.runLater(()->textFieldNomEquipe.setText(participant.getNomEquipe()));
+                        Platform.runLater(()->textFieldEmail.setText(participant.getEmail()));
+                        Platform.runLater(()->textFieldNumTel.setText(participant.getTel()));
+                        Platform.runLater(()->textFieldCertification.setText(participant.getCertification()+""));
+                        if (participant.getNumLicence()==0){
+                            Platform.runLater(()->textFieldNumLicence.setText(""));
+                        } else {
+                            Platform.runLater(()->textFieldNumLicence.setText(participant.getNumLicence()+""));
+                        }
+                        Platform.runLater(()->textFieldVille.setText(participant.getVille()));
+                        Platform.runLater(()->textFieldLicence.setText(participant.getLicence()+""));
+                    }
+                    else{
+                        btnEnregistrerModification.setDisable(true);
+                    }
+                }
+                else{
+                    btnEnregistrerModification.setDisable(true);
+                }
+            }
+            else{
+                btnEnregistrerModification.setDisable(true);
+            }
         }
         catch(Exception e){
             e.printStackTrace();
@@ -275,28 +327,20 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     }
 
     private void updateComboxSC() {
-        if (this.getCategFromComboBox().equals("V")) {
-            List<String> scVet = new ArrayList<>();
-            scVet.add("V1");
-            scVet.add("V2");
-            scVet.add("V3");
-            scVet.add("V4");
-            scVet.add("V5");
-            scVet.add("V6");
-            scVet.add("V7");
-            ObservableList<String> obsList = FXCollections.observableArrayList(scVet);
-            this.comboxSC.setItems(obsList);
-            this.comboxSC.show();
+        String selectedCategory = this.getCategFromComboBox();
+
+        if (selectedCategory == null) { // Évite NullPointerException
+            this.comboxSC.setDisable(true);
+            return;
+        }
+
+        if (selectedCategory.equals("V")) {
+            List<String> scVet = List.of("V1", "V2", "V3", "V4", "V5", "V6", "V7");
+            this.comboxSC.setItems(FXCollections.observableArrayList(scVet));
             this.comboxSC.setDisable(false);
-        } else if (this.getCategFromComboBox().equals("S")) {
-            List<String> scSen = new ArrayList<>();
-            scSen.add("S1");
-            scSen.add("S2");
-            scSen.add("S3");
-            scSen.add("S4");
-            ObservableList<String> obsList = FXCollections.observableArrayList(scSen);
-            this.comboxSC.setItems(obsList);
-            this.comboxSC.show();
+        } else if (selectedCategory.equals("S")) {
+            List<String> scSen = List.of("S1", "S2", "S3", "S4");
+            this.comboxSC.setItems(FXCollections.observableArrayList(scSen));
             this.comboxSC.setDisable(false);
         } else {
             this.comboxSC.hide();
@@ -304,29 +348,26 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+
     private String getCategFromComboBox() {
-        switch (comboxCategorie.getValue()){
-            case "Mini-poussin":
-                return "MP";
-            case "Poussin":
-                return "PO";
-            case "Pupille":
-                return "PU";
-            case "Benjamin":
-                return "BE";
-            case "Minime":
-                return "MI";
-            case "Cadet":
-                return "CA";
-            case "Junior":
-                return "JU";
-            case "Sénior":
-                return "S";
-            case "Vétéran":
-                return "V";
+        if (comboxCategorie.getValue() == null) {
+            return null; // Évite NullPointerException
         }
-        return comboxCategorie.getValue();
+
+        switch (comboxCategorie.getValue()) {
+            case "Mini-poussin": return "MP";
+            case "Poussin": return "PO";
+            case "Pupille": return "PU";
+            case "Benjamin": return "BE";
+            case "Minime": return "MI";
+            case "Cadet": return "CA";
+            case "Junior": return "JU";
+            case "Sénior": return "S";
+            case "Vétéran": return "V";
+            default: return comboxCategorie.getValue();
+        }
     }
+
 
     private String change(String categorie) {
         switch (categorie) {
