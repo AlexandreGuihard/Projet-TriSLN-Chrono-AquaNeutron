@@ -36,7 +36,7 @@ import java.io.IOException;
 public class BdTriSLN{
 
     private static final Map<String, String> monthMap = new HashMap<>();
-    static { 
+    static {
         //TODO voir si modif
         monthMap.put("janvier", "01");
         monthMap.put("février", "02");
@@ -56,7 +56,7 @@ public class BdTriSLN{
     }
 
     private ConnexionMySQL connexion;
-  
+
     /**
      * Constructeur de la classe de la bd
      * @param connexion la connexion au serveur
@@ -247,10 +247,10 @@ public class BdTriSLN{
                 continue;
             }
         }
-        st.close();  
+        st.close();
         return participants;
     }
-    
+
 
     public Participant getParticipantFromId(int id) throws SQLException{
         List<Participant> participantsRelais=getParticipantsCourseRelais();
@@ -482,7 +482,7 @@ public class BdTriSLN{
         int idCategorie = this.getIdCategorie(categorie);
         System.out.println(idCategorie);
         // int idFormat = this.getIdFormat(format);
-        PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");     
+        PreparedStatement addCourse=this.connexion.prepareStatement("insert into EPREUVE values(?, ?, ?, ?, ?, ?)");
         addCourse.setInt(1, newId);
         addCourse.setString(2, nomCourse);
         addCourse.setString(3, format);
@@ -505,14 +505,14 @@ public class BdTriSLN{
             } else{
                 System.out.println("fichier non traiter pour le moment");
             }
-            
+
 
         }
 
         catch(Exception e){
             e.printStackTrace();
         }
-    
+
     }
 
     public void traitementCSV(File csv) throws IOException {
@@ -542,7 +542,7 @@ public class BdTriSLN{
                 System.out.println(partiedecoupe);
 
                 PreparedStatement addParticipant = this.connexion.prepareStatement("insert into PARTICIPANT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                int idParticipant = 0; 
+                int idParticipant = 0;
                 String nom = "";
                 String prenom = "";
                 int idCategorie= 0;
@@ -556,7 +556,7 @@ public class BdTriSLN{
                 int numLicence = 0;
                 String dateNaissance = "";
                 String nomEquipe =  partiedecoupe.get(12);
-                
+
                 if ("null".equals(partiedecoupe.get(0))) {
                     System.err.println("un id des participant nest pas un entier");
                     return; //TODO faire des alertes
@@ -569,8 +569,8 @@ public class BdTriSLN{
                     return ; //TODO faire des alertes
                 } else{
                     nom = partiedecoupe.get(1);
-                }                
-                
+                }
+
                 if ("null".equals(partiedecoupe.get(2))) {
                     System.err.println("prenom de la personne non trouvé");
                     return ; //TODO faire des alertes
@@ -591,7 +591,7 @@ public class BdTriSLN{
                 }else{
                     sexe = String.valueOf(partiedecoupe.get(4).charAt(0));
                 }
-                
+
                 if ("null".equals(partiedecoupe.get(7))) {
                     certification = false;
                 }else{
@@ -631,7 +631,7 @@ public class BdTriSLN{
                     // Retourner la date au format SQL 'YYYY-MM-DD'
                     dateNaissance =  dateParts[2] + "-" + mois + "-" + jour;
                 }
-                
+
                 System.out.println("la lecture de la ligne c'est bien passer");
 
                 addParticipant.setInt(1, idParticipant);
@@ -651,14 +651,14 @@ public class BdTriSLN{
                 addParticipant.executeUpdate();
                 addParticipant.close();
                 System.out.println("import ok");
-                }           
+                }
         }
             br.close();
             fr.close();
         } catch(SQLException e){
             e.printStackTrace();
 
-        }   
+        }
     }
 
 
@@ -671,7 +671,7 @@ public class BdTriSLN{
 
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 System.out.println("wait");
-                
+
             }
             br.close();
             fr.close();
@@ -687,7 +687,7 @@ public class BdTriSLN{
             System.out.println("traitement XLSX");
             FileReader fr = new FileReader(csv);
             BufferedReader br = new BufferedReader(fr);
-            
+
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 System.out.println("wait");
             }
@@ -723,7 +723,7 @@ public class BdTriSLN{
      */
     public void ajouterParticipant(Participant participant) throws SQLException{
         PreparedStatement st=connexion.prepareStatement("call addParticipant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        
+
         String nom=participant.getNom();
         String prenom=participant.getPrenom();
         String categorie=participant.getCategorie();
@@ -756,7 +756,7 @@ public class BdTriSLN{
         st.setString(12, dateNaissance);
         st.setString(13, nomEquipe);
         st.setBoolean(14, licence);
-        
+
         st.executeUpdate();
         st.close();
     }
@@ -766,7 +766,7 @@ public class BdTriSLN{
         int minutes = (tempsCourse % 3600) / 60;
         int secondes = tempsCourse % 60;
         String timeString = String.format("%02d:%02d:%02d", heures, minutes, secondes);
-        
+
         PreparedStatement classementPst=connexion.prepareStatement("insert into CLASSEMENT (pos_generale, pos_categorie, pos_club, temps) values(?, ?, ?, ?)");
         classementPst.setInt(1, posGeneral);
         classementPst.setInt(2, 10);
@@ -854,7 +854,7 @@ public class BdTriSLN{
      */
     public void modifierParticipant(Participant participant) throws SQLException{
         PreparedStatement st=connexion.prepareStatement("call updateParticipant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?)");
-        
+
         int idP=participant.getId();
         String nom=participant.getNom();
         String prenom=participant.getPrenom();
@@ -884,7 +884,7 @@ public class BdTriSLN{
         st.setInt(12, numLicence);
         st.setString(13, dateNaissance);
         st.setString(14, nomEquipe);
-        
+
         st.executeUpdate();
         st.close();
     }
@@ -1137,17 +1137,17 @@ public class BdTriSLN{
         ps.setInt(1, participant.getId());
         ps.setString(2, participant.getNom());
         ps.setString(3, participant.getPrenom());
-        ps.setString(4, participant.getSexe()+"");
-        ps.setString(5, participant.getDateNaissance());
-        ps.setString(6, participant.getCategorie());
-        ps.setString(7, participant.getSousCategorie());
-        ps.setString(8, participant.getClub());
-        ps.setString(9, participant.getNomEquipe());
-        ps.setString(10, participant.getEmail());
-        ps.setString(11, participant.getTel());
-        ps.setBoolean(12, participant.getCertification());
-        ps.setInt(13, participant.getNumLicence());
-        ps.setString(14, participant.getVille());
+        ps.setString(4, participant.getCategorie());
+        ps.setString(5, participant.getSousCategorie());
+        ps.setString(6, participant.getSexe()+"");
+        ps.setString(7, participant.getEmail());
+        ps.setString(8, participant.getVille());
+        ps.setBoolean(9, participant.getCertification());
+        ps.setString(10, participant.getTel());
+        ps.setString(11, participant.getClub());
+        ps.setInt(12, participant.getNumLicence());
+        ps.setString(13, participant.getDateNaissance());
+        ps.setString(14, participant.getNomEquipe());
         ps.setBoolean(15, participant.getLicence());
         ps.executeUpdate();
 

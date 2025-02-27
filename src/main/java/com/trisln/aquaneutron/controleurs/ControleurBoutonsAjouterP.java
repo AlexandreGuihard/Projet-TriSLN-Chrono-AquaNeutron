@@ -17,8 +17,6 @@ import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 public class ControleurBoutonsAjouterP extends ControleurBoutons implements EventHandler<ActionEvent>{
-    private TriSLN vue;
-
     // log accueil et AccConnecter
 
     @FXML
@@ -149,18 +147,21 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
     public void handle(ActionEvent event){
 
         try {Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                     super.handle(btn);
             }
             else{
                 switch(btn.getId()){
+                    case "btnRetour":
+                        super.getVue().afficheParticipants();
+                        break;
                     case "btnImporterCSV":
                         System.out.println("importation en cours");
                         File file = super.getVue().getFenetreParticipants().reccupererParticipant();
                         if (file != null) {
                             System.out.println(file);
                             System.out.println("lancement");
-                            vue.getBd().lectureFichier(file);
+                            super.getVue().getBd().lectureFichier(file);
                             System.out.println("fin");
                             
                         }

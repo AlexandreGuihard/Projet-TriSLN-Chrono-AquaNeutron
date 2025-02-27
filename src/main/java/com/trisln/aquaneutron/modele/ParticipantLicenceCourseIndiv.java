@@ -54,6 +54,11 @@ public class ParticipantLicenceCourseIndiv extends Participant{
         this.club=club;
     }
 
+    @Override
+    public boolean getLicence(){
+        return true;
+    }
+
     /**
      * Getter du numéro de licence
      * @return le numéro de licence du participant

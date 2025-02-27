@@ -22,8 +22,8 @@ begin
 end|
 
 -- Getter du format de la course à partir de l'id format
---create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
---begin
+-- create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
+-- begin
 --    declare idCateg int;
 --    if sousCategorie is null then
 --        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
@@ -31,24 +31,10 @@ end|
 --        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
 --    end if;
 --    return idCateg;
---end|
-
--- Getter de l'id du format à partir du nom du format
-CREATE OR REPLACE FUNCTION getIdFormatFromFormat(formatInput VARCHAR(42)) 
-RETURNS INT
-BEGIN
-    DECLARE idFormat INT;
-
-    -- Recherche dans la table FORMATCOURSE avec la colonne format
-    SELECT idFormat INTO idFormat
-    FROM FORMATCOURSE
-    WHERE format = formatInput;
-
-    RETURN idFormat;
-END |
+-- end|
 
 -- Getter de l'id de la catégorie à partir de la catégorie et de la sous catégorie si non null
-CREATE OR REPLACE FUNCTION getIdCategorie(categorie VARCHAR(42), sousCategorie VARCHAR(42)) 
+CREATE OR REPLACE FUNCTION getIdCategorie(categorie VARCHAR(42), sousCategorie VARCHAR(42))
 RETURNS INT
 BEGIN
     DECLARE idCateg INT;
@@ -81,9 +67,11 @@ begin
 end|
 
 -- Création d'une nouvelle course
-create or replace procedure createEpreuve(nomEpreuve varchar(42), format varchar(42), categorie varchar(42), heureDepart time, prix int)
+create or replace procedure createEpreuve(nomEpreuve varchar(42), format varchar(42), categorie varchar(42), sousCategorie varchar(42), heureDepart time, prix int)
 begin
     declare newId int;
+    declare idCateg int;
+    select getIdCategorie(categorie, sousCategorie) into idCateg;
     select getAvailableIdEpreuve() into newId;
     insert into EPREUVE values(newId, nomEpreuve, format, idCateg, heureDepart, prix);
 end|
@@ -103,19 +91,22 @@ begin
     declare idCateg int;
     select getAvailableIdParticipant() into newId;
     select getIdCategorie(categorie, sousCategorie) into idCateg;
-    insert into PARTICIPANT values(newId, nom, prenom, idCateg, sexe, email, ville, certification, numTel, club, realNumLicence, dateNaissance, nomEquipe, licence);
+    insert into PARTICIPANT values(newId, nom, prenom, idCateg, sexe, email, ville, certification, numTel, club, numLicence, dateNaissance, nomEquipe, licence);
 end|
 
 create or replace procedure deleteParticipant(idParticipant int)
 begin
-    delete from PARTICIPANT where id_Participant=idParticipant;
+    delete from PARTICIPER where PARTICIPER.id_Participant=idParticipant;
+    delete from GENERER where GENERER.id_Participant=idParticipant;
+    delete from DOSSARD where DOSSARD.id_Participant=idParticipant;
+    delete from PARTICIPANT where PARTICIPANT.id_Participant=idParticipant;
 end|
 
-create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sousCategorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel int, club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42))
+create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sousCategorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel varchar(10), club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42), licence boolean)
 begin
     declare idCateg int;
     select getIdCategorie(categorie, sousCategorie) into idCateg;
-    update PARTICIPANT set nom=nom, prenom=prenom, idCategorie=idCateg, sexe=sexe, email=email, ville=ville, certification=certification, num_Tel=numTel, club=club, num_Licence=numLicence, date_Naissance=dateNaissance, nom_Equipe=nomEquipe where id_Participant=idParticipant;
+    update PARTICIPANT set PARTICIPANT.nom=nom, PARTICIPANT.prenom=prenom, PARTICIPANT.idCategorie=idCateg, PARTICIPANT.sexe=sexe, PARTICIPANT.email=email, PARTICIPANT.ville=ville, PARTICIPANT.certification=certification, PARTICIPANT.num_Tel=numTel, PARTICIPANT.club=club, PARTICIPANT.num_Licence=numLicence, PARTICIPANT.date_Naissance=dateNaissance, PARTICIPANT.nom_Equipe=nomEquipe, PARTICIPANT.licence=licence where id_Participant=idParticipant;
 end|
 
 -- Vérification des attributs licence,numLicence,club et dateNaissance selon le type de participant
@@ -157,7 +148,7 @@ begin
     select isParticipantsRelais(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantRelais;
     select isParticipantsLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantLicenceIndiv;
     select isParticipantsNonLicenceIndiv(new.club, new.nom_Equipe, new.licence, new.num_Licence) into participantNonLicenceIndiv;
-    
+
     if not participantRelais and not participantLicenceIndiv and not participantNonLicenceIndiv then
         set msg=concat("Le participant ", new.prenom, " ", new.nom, " ne correspond à aucun type de participant connu (relais, licence individuelle, sans licence individuelle)");
         signal SQLSTATE '45000'set MESSAGE_TEXT=msg;
