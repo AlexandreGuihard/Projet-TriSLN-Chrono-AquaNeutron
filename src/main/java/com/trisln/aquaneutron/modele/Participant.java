@@ -14,10 +14,6 @@ public abstract class Participant implements IParticipant{
     private boolean certification;
     private String numTel;
     private String dateNaissance;
-    private Classement classement;
-    private String club; // Ajout de la variable club
-    private int dossard; // Ajout de la variable dossard
-    private String licence; // Ajout de la variable licence
 
     /**
      * Constructeur de la classe. Appelé par les classes enfants
@@ -89,6 +85,34 @@ public abstract class Participant implements IParticipant{
 
     public String getVille(){
         return this.ville;
+    }
+
+    public String getClub(){
+        return "";
+    }
+
+    public String getNomEquipe() {
+        return "";
+    }
+
+    public boolean getLicence() {
+        return false;
+    }
+
+    public void setLicence(boolean licence) {
+    }
+
+    public Integer getNumLicence(){
+        return 0;
+    }
+
+    public void setClub(String club) {
+    }
+
+    public void setNomEquipe(String nomEquipe) {
+    }
+
+    public void setNumLicence(int numLicence) {
     }
 
     /**
@@ -181,80 +205,6 @@ public abstract class Participant implements IParticipant{
      */
     public void setDateNaissance(String dateNaissance){
         this.dateNaissance=dateNaissance;
-    }
-
-    // Implémentées dans les classes enfants
-    /**
-     * Implémentée dans une classe enfant
-     * @return null
-     */
-    @Override
-    public String getClub(){
-        return null;
-    }
-
-    /**
-     * Implémentée dans une classe enfant
-     * @param club 
-     */
-    @Override
-    public void setClub(String club){
-        return;
-    }
-
-    /**
-     * Implémentée dans une classe enfant
-     * @return null
-     */
-    @Override
-    public Integer getNumLicence() {
-        // Pas de numéro de licence
-        return 0;
-    }
-
-    /**
-     * Implémentée dans une classe enfant
-     * @param numLicence
-     */
-    @Override
-    public void setNumLicence(int numLicence) {
-        return;
-    }
-
-    /**
-     * Implémentée dans une classe enfant
-     * @return null
-     */
-    @Override
-    public String getNomEquipe(){
-        return null;
-    }
-
-    /**
-     * Implémentée dans une classe enfant
-     * @param nomEquioe
-     */
-    @Override
-    public void setNomEquipe(String nomEquioe){
-        return;
-    }
-
-    /**
-     * Implémentée dans une classe enfant
-     * @return null
-     */
-    @Override
-    public boolean getLicence(){
-        return false;
-    } 
-
-    /**
-     * Implémentée dans une classe enfant
-     * @param licence
-     */
-    @Override
-    public void setLicence(boolean licence){
-        return;
     }
 
     /**

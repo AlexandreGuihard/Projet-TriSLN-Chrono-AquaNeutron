@@ -2,7 +2,7 @@ package com.trisln.aquaneutron.modele;
 
 public class ParticipantLicenceCourseIndiv extends Participant{
     private String club;
-    private int numLicence;
+    private Integer numLicence;
     private int dossard;
 
     /**

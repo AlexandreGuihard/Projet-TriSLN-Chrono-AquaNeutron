@@ -66,7 +66,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             colNomPrenom.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getNom() + " " + cellData.getValue().getParticipant().getPrenom()));
 
             TableColumn<Classement, String> colClubEquipe = new TableColumn<>("Club/Equipe");
-            colClubEquipe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getClub()));
+            colClubEquipe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClub()));
 
             TableColumn<Classement, Integer> colDossard = new TableColumn<>("Dossard");
             colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDossard()).asObject());
@@ -78,7 +78,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             colClassementCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosCategorie()));
 
             TableColumn<Classement, String> colLicence = new TableColumn<>("Licence");
-            colLicence.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getLicence() + ""));
+            colLicence.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumLicence() + ""));
 
             tableViewClassements.getColumns().setAll(colPositions, colTemps, colNomPrenom, colClubEquipe, colDossard, colCategorie, colClassementCategorie, colLicence);
         }
