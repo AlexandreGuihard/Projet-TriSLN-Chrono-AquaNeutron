@@ -1,0 +1,5 @@
+id_Participant,nom,prenom,idCategorie,sexe,email,ville,certification,num_Tel,club,num_Licence,date_Naissance,nom_Equipe
+2999,GUILBERT,Isabelle,1,Féminin,eiguilbert@neuf.fr,MEUNG-SUR-LOIRE,99553880,601010101,,,Juillet/8/1964,a
+3000,LANCELIN,Hugo,1,Masculin,hugo.lancelin@orange.fr,LES HAYES,11089601,602020202,VENDOME TRIATHLON,1,Mars/12/1997,
+3001,PAUGOIS,Arthur,1,Masculin,,VENDOME,66731805,603030303,VENDOME TRIATHLON,2,Octobre/26/2007,
+3002,BREGERAS,Eric,1,Masculin,bregeras.eric@wanadoo.fr,TAVERS,54323825,604040404,,,Septembre/24/1963,a

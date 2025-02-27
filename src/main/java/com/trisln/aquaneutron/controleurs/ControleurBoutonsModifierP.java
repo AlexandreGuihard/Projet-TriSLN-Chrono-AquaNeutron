@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import com.trisln.aquaneutron.modele.Alerter;
 import com.trisln.aquaneutron.modele.Participant;
 import com.trisln.aquaneutron.modele.ParticipantCourseRelais;
 import com.trisln.aquaneutron.modele.ParticipantLicenceCourseIndiv;
@@ -202,23 +203,25 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
             else{
                 switch(btn.getId()){
                     case "btnEnregistrerModification":
-                        System.out.println("enregistrer");
                         Participant participant=null;
-                        try{
-                            int numLicence = 0;
-                            if (!textFieldNumLicence.getText().equals("null")) {
-                                numLicence = Integer.parseInt(textFieldNumLicence.getText());
+                        try{                            Alerter A = new Alerter();
+                            if(A.showConfirmationModifierParticipant()){
+                                System.out.println("enregistrer");
+                                int numLicence = 0;
+                                if (!textFieldNumLicence.getText().equals("null")) {
+                                    numLicence = Integer.parseInt(textFieldNumLicence.getText());
+                                }
+                                if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
+                                    participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
+                                }
+                                else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
+                                    participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
+                                }
+                                else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
+                                    participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
+                                }
+                                super.getVue().getBd().updateParticipant(participant);
                             }
-                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
-                            }
-                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
-                            }
-                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
-                            }
-                            super.getVue().getBd().updateParticipant(participant);
                         }
                         catch(SQLException e){
                             e.printStackTrace();

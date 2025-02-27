@@ -493,14 +493,10 @@ public class BdTriSLN{
             } else{
                 System.out.println("fichier non traiter pour le moment");
             }
-
-
         }
-
         catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
     public void traitementCSV(File csv) throws IOException {
@@ -508,8 +504,11 @@ public class BdTriSLN{
         System.out.println("traitement CSV");
         FileReader fr = new FileReader(csv);
         BufferedReader br = new BufferedReader(fr);
-
         boolean estPremiereLigne = false;
+        boolean aImporter;
+        String listerreur="";
+        int ligne = 0;
+
         for (String line = br.readLine().toLowerCase(); line != null; line = br.readLine()) {
             //System.out.println(line +"\n");
             if (!estPremiereLigne) {
@@ -522,21 +521,22 @@ public class BdTriSLN{
                         partiedecoupe.set(i ,"null");
                     }
                 }
-
+                Alerter A = new Alerter();
+                A.Testfonct();
                 while (partiedecoupe.size() < 13 && partiedecoupe.size() != 13 ) //TODO le 13 a convertir en const
                  {
                     partiedecoupe.add("null");
                 }
                 System.out.println(partiedecoupe);
-
+                aImporter = true;
                 PreparedStatement addParticipant = this.connexion.prepareStatement("insert into PARTICIPANT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 int idParticipant = 0;
                 String nom = "";
                 String prenom = "";
                 int idCategorie= 0;
                 String sexe = "";
-                String email =      partiedecoupe.get(5);
-                String ville =      partiedecoupe.get(6);
+                String email = partiedecoupe.get(5);
+                String ville = partiedecoupe.get(6);
                 boolean certification = false;
                 String numTel = "";
                 String club = partiedecoupe.get(9);
@@ -546,36 +546,44 @@ public class BdTriSLN{
                 String nomEquipe =  partiedecoupe.get(12);
 
                 if ("null".equals(partiedecoupe.get(0))) {
-                    System.err.println("un id des participant nest pas un entier");
-                    return; //TODO faire des alertes
+                    System.err.println("Il manque l'id du participant a la ligne " + ligne + "\n");
+                    aImporter =false;
+                    listerreur += "Il manque l'id du participant a la ligne " + ligne + "\n";
                 } else{
                     idParticipant = Integer.parseInt(partiedecoupe.get(0));
                 }
 
+                //TODO si iddossard est dans bd signial et continue
+
                 if ("null".equals(partiedecoupe.get(1))) {
-                    System.err.println("nom de la personne non trouvé");
-                    return ; //TODO faire des alertes
+                    System.err.println("Il manque le nom du participant id "+idParticipant+" a la ligne " + ligne +"\n");
+                    aImporter =false;
+                    listerreur += "Il manque le nom du participant id "+idParticipant+" a la ligne " + ligne +"\n";
+
                 } else{
                     nom = partiedecoupe.get(1);
                 }
 
                 if ("null".equals(partiedecoupe.get(2))) {
-                    System.err.println("prenom de la personne non trouvé");
-                    return ; //TODO faire des alertes
+                    System.err.println("Il manque le prenom du participant "+nom+" id "+idParticipant+ " a la ligne " + ligne +"\n");
+                    aImporter =false;
+                    listerreur += "Il manque le prenom du participant "+nom+" id "+idParticipant+ " a la ligne " + ligne +"\n";
                 } else{
                     prenom = partiedecoupe.get(2);
                 }
 
                 if ("null".equals(partiedecoupe.get(3))) {
-                    System.err.println("id Categorie non trouvé");
-                    return ; //TODO faire des alertes
+                    System.err.println("Il manque l'idCategorie du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n");
+                    aImporter =false;
+                    listerreur += "Il manque l'idCategorie du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n";
                 }else{
                     idCategorie = Integer.parseInt(partiedecoupe.get(3));
                 }
 
                 if ("null".equals(partiedecoupe.get(4))) {
-                    System.err.println("sexe non trouvé");
-                    return ; //TODO faire des alertes
+                    System.err.println("Il manque le sexe du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n");
+                    aImporter =false;
+                    listerreur += "Il manque le sexe du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n";
                 }else{
                     sexe = String.valueOf(partiedecoupe.get(4).charAt(0));
                 }
@@ -587,8 +595,9 @@ public class BdTriSLN{
                 }
 
                 if ("null".equals(partiedecoupe.get(8))) {
-                    System.err.println("telephone non trouvé");
-                    return ; //TODO faire des alertes
+                    System.err.println("Il manque le telephone du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n");
+                    aImporter =false;
+                    listerreur += "Il manque le telephone du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n";
                 }else{
                     numTel = partiedecoupe.get(8);
                 }
@@ -602,8 +611,9 @@ public class BdTriSLN{
                 }
 
                 if ("null".equals(partiedecoupe.get(11))) {
-                    System.err.println("il manque une date de naissance dans le fichier");
-                    return;
+                    System.err.println("Il manque la date de naissance du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne +"\n");
+                    aImporter =false;
+                    listerreur += "Il manque la date de naissance du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne +"\n";
                 }
                 else{
                     dateNaissance = partiedecoupe.get(11).replace("/","-").toLowerCase();
@@ -620,33 +630,39 @@ public class BdTriSLN{
                     dateNaissance =  dateParts[2] + "-" + mois + "-" + jour;
                 }
 
-                System.out.println("la lecture de la ligne c'est bien passer");
-
-                addParticipant.setInt(1, idParticipant);
-                addParticipant.setString(2, nom);
-                addParticipant.setString(3, prenom);
-                addParticipant.setInt(4, idCategorie);
-                addParticipant.setString(5, sexe);
-                addParticipant.setString(6, email);
-                addParticipant.setString(7, ville);
-                addParticipant.setBoolean(8, certification);
-                addParticipant.setString(9, numTel);
-                addParticipant.setString(10, club);
-                addParticipant.setInt(11, numLicence);
-                addParticipant.setString(12, dateNaissance);
-                addParticipant.setString(13, nomEquipe);
-                addParticipant.setBoolean(14, licence);
-                addParticipant.executeUpdate();
-                addParticipant.close();
-                System.out.println("import ok");
+                if (aImporter) {
+                    System.out.println("la lecture de la ligne c'est bien passer");
+                    addParticipant.setInt(1, idParticipant);
+                    addParticipant.setString(2, nom);
+                    addParticipant.setString(3, prenom);
+                    addParticipant.setInt(4, idCategorie);
+                    addParticipant.setString(5, sexe);
+                    addParticipant.setString(6, email);
+                    addParticipant.setString(7, ville);
+                    addParticipant.setBoolean(8, certification);
+                    addParticipant.setString(9, numTel);
+                    addParticipant.setString(10, club);
+                    addParticipant.setInt(11, numLicence);
+                    addParticipant.setString(12, dateNaissance);
+                    addParticipant.setString(13, nomEquipe);
+                    addParticipant.setBoolean(14, licence);
+                    addParticipant.executeUpdate();
+                    addParticipant.close();
+                    System.out.println("import ok");
                 }
-        }
-            br.close();
-            fr.close();
-        } catch(SQLException e){
-            e.printStackTrace();
 
+                }
+            if (listerreur != null || listerreur !="") {
+                Alerter A = new Alerter();
+                A.showError(listerreur);
         }
+    }
+        br.close();
+        fr.close();
+    } catch(SQLException e){
+        e.printStackTrace();
+
+    }
     }
 
 

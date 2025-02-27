@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import com.trisln.aquaneutron.vue.TriSLN;
 import com.trisln.aquaneutron.modele.Participant;
+import com.trisln.aquaneutron.modele.Alerter;
 
 public class ControleurBoutonsSupprimerP extends ControleurBoutons implements EventHandler<ActionEvent>{
     @FXML
@@ -177,9 +178,13 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
             else{
                 switch(btn.getId()){
                     case "btnSupprimerParticipantValidation":
-                        System.out.println("supprimer");
+                        
                         try{
-                            super.getVue().getBd().supprimerParticipant(Integer.parseInt(textFieldId.getText()));
+                            Alerter A = new Alerter();
+                            if(A.showConfirmationSupprimerParticipant()){
+                                System.out.println("supprimer");
+                                super.getVue().getBd().supprimerParticipant(Integer.parseInt(textFieldId.getText()));
+                            }
                         }
                         catch(Exception e){
                             e.printStackTrace();
