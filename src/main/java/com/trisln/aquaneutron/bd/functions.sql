@@ -102,7 +102,7 @@ begin
     delete from PARTICIPANT where PARTICIPANT.id_Participant=idParticipant;
 end|
 
-create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sousCategorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel int, club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42), licence boolean)
+create or replace procedure updateParticipant(idParticipant int, nom varchar(42), prenom varchar(42), categorie varchar(42), sousCategorie varchar(42), sexe varchar(42), email varchar(42), ville varchar(42), certification boolean, numTel varchar(10), club varchar(42), numLicence int, dateNaissance date, nomEquipe varchar(42), licence boolean)
 begin
     declare idCateg int;
     select getIdCategorie(categorie, sousCategorie) into idCateg;

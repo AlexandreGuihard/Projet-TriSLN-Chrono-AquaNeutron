@@ -1125,17 +1125,17 @@ public class BdTriSLN{
         ps.setInt(1, participant.getId());
         ps.setString(2, participant.getNom());
         ps.setString(3, participant.getPrenom());
-        ps.setString(4, participant.getSexe()+"");
-        ps.setString(5, participant.getDateNaissance());
-        ps.setString(6, participant.getCategorie());
-        ps.setString(7, participant.getSousCategorie());
-        ps.setString(8, participant.getClub());
-        ps.setString(9, participant.getNomEquipe());
-        ps.setString(10, participant.getEmail());
-        ps.setString(11, participant.getTel());
-        ps.setBoolean(12, participant.getCertification());
-        ps.setInt(13, participant.getNumLicence());
-        ps.setString(14, participant.getVille());
+        ps.setString(4, participant.getCategorie());
+        ps.setString(5, participant.getSousCategorie());
+        ps.setString(6, participant.getSexe()+"");
+        ps.setString(7, participant.getEmail());
+        ps.setString(8, participant.getVille());
+        ps.setBoolean(9, participant.getCertification());
+        ps.setString(10, participant.getTel());
+        ps.setString(11, participant.getClub());
+        ps.setInt(12, participant.getNumLicence());
+        ps.setString(13, participant.getDateNaissance());
+        ps.setString(14, participant.getNomEquipe());
         ps.setBoolean(15, participant.getLicence());
         ps.executeUpdate();
 

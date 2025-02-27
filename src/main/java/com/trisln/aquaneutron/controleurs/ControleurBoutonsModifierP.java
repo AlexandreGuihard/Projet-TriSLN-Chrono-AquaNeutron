@@ -251,6 +251,7 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    @FXML
     public void handleKeyReleased(KeyEvent event){
         try{
             Platform.runLater(()->textId.setText(""));
