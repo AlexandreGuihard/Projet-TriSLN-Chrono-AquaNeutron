@@ -34,6 +34,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     private List<Integer> lesArrives;
     private ObservableList<Object[]> arrivalList;
     private Chronometrage chrono;
+    private int tempsDiffere;
     @FXML
     private Button btnAccueil;
     @FXML
@@ -53,6 +54,8 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     @FXML
     private TextField numeroDossard;
     @FXML
+    private TextField tempsDiff;
+    @FXML
     private TableView<Course> tableViewDossards;
     @FXML
     private TableView<Object[]> tableViewArrive;
@@ -64,6 +67,7 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         this.dossardsArrives = 0;
         this.lesArrives = new ArrayList<>();
         this.chrono = new Chronometrage();
+        this.tempsDiffere = 0;
     }
 
     private void setBoutons(TriSLN vue) {
@@ -132,6 +136,15 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         return this.dossardsArrives;
     }
 
+    public static int convertirTextToSecondes(String differe) {
+        String[] textDecoupe = differe.split(":");
+        int heures = Integer.parseInt(textDecoupe[0]);
+        int minutes = Integer.parseInt(textDecoupe[1]);
+        int secondes = Integer.parseInt(textDecoupe[2]);
+        int secondesDiffere = (heures * 3600) + (minutes * 60) + secondes;
+        return secondesDiffere;
+    }
+
     public void setDossardsArrives(int lesDossardsArrives){
         this.dossardsArrives = lesDossardsArrives;
     }
@@ -143,6 +156,9 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             System.out.println("Dossard " + leDossard + " est arrivé.");
             Participant participant = TriSLN.getBd().getParticipantByDossard(leDossard);
             int tempsCourse = (int)this.chrono.getDuree();
+            if (participant.getSexe()== 'M') {
+                tempsCourse = tempsCourse - tempsDiffere;
+            }
             Object[] dosssardArrive = new Object[]{leDossard, 0, tempsCourse, tempsCourse-0 , participant.getSexe()};
             arrivalList.add(dosssardArrive);
             int index = arrivalList.indexOf(dosssardArrive) + 1;
@@ -150,12 +166,12 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
             this.tableViewArrive.setItems(arrivalList);
             this.dossardsArrives += 1;
             TriSLN.getBd().genererClassement(participant.getId(),index, this.course.getId(), tempsCourse, participant.getClub());
-            this.tableViewDossards.refresh();
-            this.numeroDossard.setText("");     
+            this.tableViewDossards.refresh();     
         } else {
             System.out.println("Le dossard ne peut pas être en course");
             // TODO les alertes c'est mieux askip Error alert
         }
+        this.numeroDossard.setText("");
     }
 
     @FXML
@@ -226,6 +242,9 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
                 }
             } else {
                 if(btn.getId().equals("btnTopDepart")){
+                    if((this.tempsDiff.getText() != "") && this.chrono.getEstParti()){
+                        tempsDiffere = convertirTextToSecondes(this.tempsDiff.getText());
+                    }
                     this.chrono.demarrer();
                     this.btnDossardArrive.setDisable(false);
                     this.numeroDossard.setDisable(false);

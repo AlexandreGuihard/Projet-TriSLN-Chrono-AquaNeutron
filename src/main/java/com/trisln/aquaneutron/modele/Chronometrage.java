@@ -25,6 +25,10 @@ public class Chronometrage {
         this.estParti =false;
     }
 
+    public boolean getEstParti(){
+        return this.estParti;
+    }
+
     /**
      * Démarre le chronomètre en enregistrant le temps actuel en millisecondes.
      */
@@ -64,7 +68,7 @@ public class Chronometrage {
     /**
      * Vérifie si le chronomètre a démarrer
      * 
-     * @return true si le chronomètre a démarrer et false sinon.
+     * @return true si le chronomètre est en pause et false sinon.
       * @throws ChronoNotStartedException 
       */
     public boolean estDemarrer(){

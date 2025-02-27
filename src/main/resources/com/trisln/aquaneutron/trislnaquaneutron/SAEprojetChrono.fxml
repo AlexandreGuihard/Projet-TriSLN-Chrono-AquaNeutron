@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -31,7 +32,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" spacing="50.0">
                            <children>
@@ -42,7 +43,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="numeroDossard"  prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard">
+                                    <TextField fx:id="numeroDossard" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></TextField>
@@ -58,9 +59,14 @@
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
+                        <Text fx:id="infoDossardArr" strokeType="OUTSIDE" strokeWidth="0.0" text="Ce dossard n'existe pas">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
+                           </VBox.margin>
+                        </Text>
                         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
                               <TableView fx:id="tableViewArrive" maxHeight="300.0" prefHeight="150.0" prefWidth="630.0" HBox.hgrow="ALWAYS">
@@ -85,7 +91,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TableView  fx:id="tableViewDossards" maxHeight="60.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
+                                    <TableView fx:id="tableViewDossards" maxHeight="60.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
                                        <columns>
                                           <TableColumn reorderable="false" text="Dossards partis" />
                                           <TableColumn reorderable="false" text="Dossards arrivés" />
@@ -103,7 +109,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Button  fx:id="btnTopDepart" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Top départ" textFill="WHITE">
+                                    <Button fx:id="btnTopDepart" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Top départ" textFill="WHITE">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -111,7 +117,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button  fx:id="btnTopStop" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" disable="true" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Stop" textFill="WHITE">
+                                    <Button fx:id="btnTopStop" disable="true" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Stop" textFill="WHITE">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -119,6 +125,35 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fx:id="textChronoHeure" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="textChronoMin" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="textChronoSec" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
@@ -130,7 +165,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="idDate" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm:ss">
+                                          <TextField fx:id="tempsDiff" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm:ss">
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
@@ -211,7 +246,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil"  mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
