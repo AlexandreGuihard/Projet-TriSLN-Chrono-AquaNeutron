@@ -414,13 +414,14 @@ public class BdTriSLN{
         return club != null && !club.equals("");
     }
 
-    public List<Classement> getClassements(String categorie, String genre) throws SQLException {
+    public List<Classement> getClassements(String categorie, String genre, String licence) throws SQLException {
         List<Classement> classements = new ArrayList<>();
         Statement st = this.connexion.createStatement();
         
         String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "M" : "F") + "'" : "";
         String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
-
+        String licenceCondition = !"tout".equalsIgnoreCase(licence) ? "AND P.num_Licence IS " + ("oui".equalsIgnoreCase(licence) ? "NOT NULL" : "NULL") : "";
+    
         String query = "SELECT C.id_Classement, C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +
                 "P.club AS Club_Equipe, D.num_dossard AS Dossard, Cat.categorie AS Catégorie, C.pos_categorie AS Classements_Catégorie, " +
                 "P.num_Licence AS Licence, P.id_Participant " +
@@ -429,12 +430,10 @@ public class BdTriSLN{
                 "JOIN PARTICIPANT P ON G.id_Participant = P.id_Participant " +
                 "JOIN DOSSARD D ON P.id_Participant = D.id_Participant " +
                 "JOIN CATEGORIE Cat ON P.idCategorie = Cat.idCategorie " +
-                "WHERE 1=1 " + genreCondition + " " + categorieCondition + " ORDER BY C.pos_generale";
-
-        System.out.println("Requête SQL générée : " + query);
-
+                "WHERE 1=1 " + genreCondition + " " + categorieCondition + " " + licenceCondition + " ORDER BY C.pos_generale";
+    
         ResultSet lesClassements = st.executeQuery(query);
-
+    
         while (lesClassements.next()) {
             int idC = lesClassements.getInt("id_Classement");
             int idP = lesClassements.getInt("id_Participant");
@@ -442,7 +441,7 @@ public class BdTriSLN{
             String prenom = "";
             String club = lesClassements.getString("Club_Equipe");
             String nomEquipe = lesClassements.getString("Club_Equipe");
-            String licence = lesClassements.getString("Licence");
+            String licenceP = lesClassements.getString("Licence");
             Integer numLicence = lesClassements.getInt("Licence");
             String categorieP = lesClassements.getString("Catégorie");
             String sousCategorieP = "";
@@ -453,16 +452,16 @@ public class BdTriSLN{
             String tel = "";
             String dateDeNaissance = "";
             int dossard = lesClassements.getInt("Dossard");
-
+    
             Participant leParticipant;
-            if (this.estUnParticipantCourseRelais(licence)) {
+            if (this.estUnParticipantCourseRelais(licenceP)) {
                 leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, numLicence, tel, dateDeNaissance, nomEquipe, certification, dossard);
-                    } else if (this.estUnParticipantLicenceIndividuel(club)) {
+            } else if (this.estUnParticipantLicenceIndividuel(club)) {
                 leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, true, tel, club, numLicence, dateDeNaissance, dossard);
             } else {
                 leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, tel, dateDeNaissance, dossard);
             }
-
+    
             int posGeneral = lesClassements.getInt("Positions");
             String posCategorie = lesClassements.getString("Classements_Catégorie");
             String temps = lesClassements.getString("Temps");
@@ -1079,7 +1078,7 @@ public class BdTriSLN{
         ps.executeUpdate();
     }
 
-    public void genererPdfClassement(String host, String user, String password, String database, String genre, String categorie) throws SQLException, IOException {
+    public void genererPdfClassement(String host, String user, String password, String database, String genre, String categorie, String licence) throws SQLException, IOException {
         String formattedGenre = genre.toLowerCase().replace(" ", "_");
         String formattedCategorie = categorie.toLowerCase().replace(" ", "_");
         String outputFile = "pdf/Classement_" + formattedGenre + "_" + formattedCategorie + ".pdf";
@@ -1094,6 +1093,7 @@ public class BdTriSLN{
 
         String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "M" : "F") + "'" : "";
         String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
+        String licenceCondition = !"tout".equalsIgnoreCase(licence) ? "AND P.num_Licence IS " + ("oui".equalsIgnoreCase(licence) ? "NOT NULL" : "NULL") : "";
 
         String query = "SELECT C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +
                 "P.club AS Club_Equipe, P.num_Licence AS Licence, D.num_dossard AS Dossard, Cat.categorie AS Catégorie," +
@@ -1103,7 +1103,8 @@ public class BdTriSLN{
                 "JOIN PARTICIPANT P ON G.id_Participant = P.id_Participant " +
                 "JOIN DOSSARD D ON P.id_Participant = D.id_Participant " +
                 "JOIN CATEGORIE Cat ON P.idCategorie = Cat.idCategorie " +
-                "WHERE 1=1 " + genreCondition + " " + categorieCondition + " ORDER BY C.pos_generale";
+                "WHERE 1=1 " + genreCondition + " " + categorieCondition + " " + licenceCondition + " ORDER BY C.pos_generale";
+    
 
         ResultSet rs = stmt.executeQuery(query);
 

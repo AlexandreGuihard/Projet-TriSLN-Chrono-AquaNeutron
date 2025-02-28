@@ -666,13 +666,13 @@ public class TriSLN extends Application{
      * @param categorieCode la catégorie du classement
      * @param genre le genre du classement
 	 */
-    public void affichePDF(String host, String user, String password, String database, String categorieCode, String genre) {
+    public void affichePDF(String host, String user, String password, String database, String categorieCode, String genre, String Licence) {
         if (host == null || user == null || password == null || database == null || categorieCode == null || genre == null) {
             return;
         }
         try {
             BdTriSLN bdTriSLN = new BdTriSLN(new ConnexionMySQL(host, database, user, password));
-            bdTriSLN.genererPdfClassement(host, user, password, database, genre, categorieCode);
+            bdTriSLN.genererPdfClassement(host, user, password, database, genre, categorieCode, Licence);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }

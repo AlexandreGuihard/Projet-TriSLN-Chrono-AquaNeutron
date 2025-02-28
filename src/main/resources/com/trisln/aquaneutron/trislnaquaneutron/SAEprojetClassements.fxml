@@ -60,6 +60,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
                   </ComboBox>
                   <ComboBox fx:id="idG" onAction="#handleComboBoxGenre"  prefHeight="26.0" prefWidth="219.0" promptText="-- Choisir un genre --" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;">
                      <items>
@@ -74,7 +77,23 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <HBox.margin>
-                        <Insets left="200.0" />
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="idL" onAction="#handleComboBoxLicence"  prefHeight="26.0" prefWidth="219.0" promptText="-- Licence --" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 15;">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="-- Licence --"/>
+                              <String fx:value="tout"/>
+                              <String fx:value="oui"/>
+                              <String fx:value="non"/>
+                        </FXCollections>
+                     </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </ComboBox>
                   <Button fx:id="btnValider" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: lightgrey; -fx-background-radius: 15;" text="Valider">
@@ -92,6 +111,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>

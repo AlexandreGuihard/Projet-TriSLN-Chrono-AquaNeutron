@@ -48,6 +48,8 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     private ComboBox<String> idG;
     @FXML
     private Button btnValider;
+    @FXML
+    private ComboBox<String> idL;
 
     /**
      * Constructeur de la classe ControleurBoutonsClassements.
@@ -87,15 +89,15 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             TableColumn<Classement, String> colCategorie = new TableColumn<>("Catégorie");
             colCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getCategorie()));
     
-            TableColumn<Classement, String> colClassementCategorie = new TableColumn<>("Clts Catégories");
+            TableColumn<Classement, String> colClassementCategorie = new TableColumn<>("Classements Catégories");
             colClassementCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosCategorie()));
     
             tableViewClassements.getColumns().setAll(colPositions, colTemps, colNomPrenom, colClubEquipe, colLicence, colDossard, colCategorie, colClassementCategorie);
         }
     }
-    
+
     /**
-     * Initialise les ComboBox de sous-catégories et de genres.
+     * Initialise le ComboBox de sous-catégories.
     
      * @param event L'événement de sélection d'une catégorie.
      */
@@ -109,11 +111,24 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     }
 
     /**
-     * Initialise les ComboBox de sous-catégories et de genres.
+     * Initialise le ComboBox de genres.
      * @param event L'événement de sélection d'un genre.
      */
     public void handleComboBoxGenre(ActionEvent event){
         if(!this.idG.getValue().equals("-- Choisir un genre --")){
+            this.btnValider.setDisable(false);
+        }
+        else{
+            this.btnValider.setDisable(true);
+        }
+    }
+
+    /**
+     * Initialise le ComboBox de sous-Licence.
+     * @param event L'événement de sélection d'un genre.
+     */
+    public void handleComboBoxLicence(ActionEvent event){
+        if(!this.idG.getValue().equals("-- Licence --")){
             this.btnValider.setDisable(false);
         }
         else{
@@ -240,26 +255,30 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
                 case "btnCompte":
                     this.vue.afficheMonCompte();
                     break;
+                    case "btnValider":
+                    String sousCategorie = idSC.getValue();
+                    String genre = idG.getValue();
+                    String licence = idL.getValue();
+                    if (sousCategorie != null && genre != null && licence != null) {
+                        List<Classement> classements = bdTriSLN.getClassements(sousCategorie, genre, licence);
+                        tableViewClassements.setItems(FXCollections.observableArrayList(classements));
+                    } else {
+                        System.err.println("Veuillez sélectionner une sous-catégorie, un genre et une licence.");
+                    }
+                    break;
                 case "genpdf":
-                    if (this.idSC.getValue() != null && !this.idSC.getValue().equals("-- Choisir une sous-catégorie --")) {
-                        if (this.idG.getValue() != null && !this.idG.getValue().equals("-- Choisir un genre --")) {
-                            this.vue.affichePDF("servinfo-maria", "guihard", "guihard", "DBguihard", this.idSC.getValue(), this.idG.getValue());
+                    if (idSC.getValue() != null && !idSC.getValue().equals("-- Choisir une sous-catégorie --")) {
+                        if (idG.getValue() != null && !idG.getValue().equals("-- Choisir un genre --")) {
+                            if (idL.getValue() != null && !idL.getValue().equals("-- Licence --")) {
+                                this.vue.affichePDF("servinfo-maria", "guihard", "guihard", "DBguihard", idSC.getValue(), idG.getValue(), idL.getValue());
+                            } else {
+                                System.err.println("Aucune sélection de licence.");
+                            }
                         } else {
                             System.err.println("Aucune sélection de genre.");
                         }
                     } else {
                         System.err.println("Aucune sélection de sous-catégorie.");
-                    }
-                    break;
-                case "btnValider":
-                    System.out.println("valider");
-                    String sousCategorie = idSC.getValue();
-                    String genre = idG.getValue();
-                    if (sousCategorie != null && genre != null) {
-                        List<Classement> classements = bdTriSLN.getClassements(sousCategorie, genre);
-                        tableViewClassements.setItems(FXCollections.observableArrayList(classements));
-                    } else {
-                        System.err.println("Veuillez sélectionner une sous-catégorie et un genre.");
                     }
                     break;
             }
