@@ -228,43 +228,25 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                             if(A.showConfirmationModifierParticipant()){
                                 System.out.println("enregistrer");
                                 int numLicence = 0;
-                                if (!textFieldNumLicence.getText().equals("null")) {
+                                if (!textFieldNumLicence.getText().equals("")) {
                                     numLicence = Integer.parseInt(textFieldNumLicence.getText());
                                 }
-                                if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                    participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
+                                if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
+                                    participant = new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected());
                                 }
-                                else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                    participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
+                                else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
+                                    participant = new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
                                 }
-                                else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                    participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
+                                else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
+                                    participant = new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
                                 }
                                 super.getVue().getBd().updateParticipant(participant);
                             }
-                        try{
-                            int numLicence = 0;
-                            if (!textFieldNumLicence.getText().equals("")) {
-                                numLicence = Integer.parseInt(textFieldNumLicence.getText());
-                            }
-                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
-                                participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected());
-                            }
-                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
-                                participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
-                            }
-                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
-                                participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
-                            }
-                            super.getVue().getBd().updateParticipant(participant);
                         }
                         catch(SQLException e){
                             e.printStackTrace();
                         }
                         super.getVue().afficheModifierP();
-                        break;
-                    case "btnSuprimerParticipant":
-                        super.getVue().afficheSupprimerP();
                         break;
                     case "btnAjouterParticipant":
                         super.getVue().afficheAjouterP();
