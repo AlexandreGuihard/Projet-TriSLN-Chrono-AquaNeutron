@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -76,11 +77,11 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     @FXML
     private TextField textFieldNumTel;
     @FXML
-    private TextField textFieldCertification;
+    private CheckBox cbCertification;
     @FXML
     private TextField textFieldNumLicence;
     @FXML
-    private TextField textFieldLicence;
+    private CheckBox cbLicence;
     @FXML
     private ComboBox<String> comboxCategorie;
     @FXML
@@ -209,17 +210,17 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                         Participant participant=null;
                         try{
                             int numLicence = 0;
-                            if (!textFieldNumLicence.getText().equals("null")) {
+                            if (!textFieldNumLicence.getText().equals("")) {
                                 numLicence = Integer.parseInt(textFieldNumLicence.getText());
                             }
-                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()));
+                            if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
+                                participant=new ParticipantCourseRelais(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldDateDeNaissance.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected());
                             }
-                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
+                            else if(TriSLN.getBd().isParticipantsLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
+                                participant=new ParticipantLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldClub.getText(), numLicence, textFieldDateDeNaissance.getText());
                             }
-                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), Boolean.parseBoolean(textFieldLicence.getText()), numLicence)){
-                                participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), Boolean.parseBoolean(textFieldCertification.getText()), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
+                            else if(TriSLN.getBd().isParticipantsNonLicenceIndiv(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
+                                participant=new ParticipantNonLicenceCourseIndiv(Integer.parseInt(textId.getText()), textFieldNom.getText(), textFieldPrenom.getText(), getCategFromComboBox(), comboxSC.getValue(), textFieldSexe.getText().charAt(0), textFieldEmail.getText(), textFieldVille.getText(), cbCertification.isSelected(), textFieldNumTel.getText(), textFieldDateDeNaissance.getText());
                             }
                             super.getVue().getBd().updateParticipant(participant);
                         }
@@ -277,10 +278,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
             Platform.runLater(()->textFieldNomEquipe.setText(""));
             Platform.runLater(()->textFieldEmail.setText(""));
             Platform.runLater(()->textFieldNumTel.setText(""));
-            Platform.runLater(()->textFieldCertification.setText(""));
+            Platform.runLater(()->cbCertification.setSelected(false));
             Platform.runLater(()->textFieldNumLicence.setText(""));
             Platform.runLater(()->textFieldVille.setText(""));
-            Platform.runLater(()->textFieldLicence.setText(""));
+            Platform.runLater(()->cbLicence.setSelected(false));
             if(!textFieldId.getText().equals("")){
                 if(checkInt(textFieldId.getText())){
                     btnEnregistrerModification.setDisable(false);
@@ -300,14 +301,14 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                         Platform.runLater(()->textFieldNomEquipe.setText(participant.getNomEquipe()));
                         Platform.runLater(()->textFieldEmail.setText(participant.getEmail()));
                         Platform.runLater(()->textFieldNumTel.setText(participant.getTel()));
-                        Platform.runLater(()->textFieldCertification.setText(participant.getCertification()+""));
+                        Platform.runLater(()->cbCertification.setSelected(participant.getCertification()));
                         if (participant.getNumLicence()==0){
                             Platform.runLater(()->textFieldNumLicence.setText(""));
                         } else {
                             Platform.runLater(()->textFieldNumLicence.setText(participant.getNumLicence()+""));
                         }
                         Platform.runLater(()->textFieldVille.setText(participant.getVille()));
-                        Platform.runLater(()->textFieldLicence.setText(participant.getLicence()+""));
+                        Platform.runLater(()->cbLicence.setSelected(participant.getLicence()));
                     }
                     else{
                         btnEnregistrerModification.setDisable(true);
