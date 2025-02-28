@@ -1,11 +1,7 @@
 package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
-
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;

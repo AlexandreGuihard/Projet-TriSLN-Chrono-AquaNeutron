@@ -13,8 +13,6 @@ import javafx.beans.property.SimpleStringProperty;
 import com.trisln.aquaneutron.modele.Classement;
 import javafx.collections.FXCollections;
 import java.util.List;
-import java.sql.SQLException;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import com.trisln.aquaneutron.bd.BdTriSLN;
 

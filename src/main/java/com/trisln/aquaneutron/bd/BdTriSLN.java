@@ -1,9 +1,7 @@
 package com.trisln.aquaneutron.bd;
 
-
 import com.trisln.aquaneutron.modele.*;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,19 +17,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.PDPageContentStream.AppendMode;
-
-import java.io.File;
-import java.io.IOException;
-
-import java.sql.*;
-import java.util.List;
-import java.util.ArrayList;
-import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
-
 import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
 
 public class BdTriSLN{
 

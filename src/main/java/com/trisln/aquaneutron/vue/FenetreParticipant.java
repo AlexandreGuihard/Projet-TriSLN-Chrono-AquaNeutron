@@ -1,26 +1,16 @@
 package com.trisln.aquaneutron.vue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import com.trisln.aquaneutron.controleurs.ControleurBoutonsParticipants;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.PreparedStatement;
 
 public class FenetreParticipant{
     private Stage stage;

@@ -8,12 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import com.trisln.aquaneutron.vue.TriSLN;
 
-
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-
 public class ControleurBoutonsPopUp implements EventHandler<ActionEvent>{
     private TriSLN vue;
 

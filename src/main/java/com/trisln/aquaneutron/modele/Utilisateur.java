@@ -1,18 +1,12 @@
 package com.trisln.aquaneutron.modele;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 import io.github.cdimascio.dotenv.Dotenv;
-
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 import com.trisln.aquaneutron.vue.TriSLN;
-
 import java.security.SecureRandom;
 import java.math.BigInteger;
-
 // Classes nécessaires pour les mails
 import javax.mail.*;
 import javax.mail.internet.MimeMessage;

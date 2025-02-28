@@ -1,24 +1,16 @@
 package com.trisln.aquaneutron.controleurs;
 
 import com.trisln.aquaneutron.vue.TriSLN;
-
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
-import com.trisln.aquaneutron.vue.*;
 import java.io.File;
-import java.io.IOException;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import com.trisln.aquaneutron.modele.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -26,8 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-
-
 
 public class ControleurBoutonsParticipants extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;

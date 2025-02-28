@@ -1,29 +1,20 @@
 package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-
 import com.trisln.aquaneutron.modele.Participant;
 import com.trisln.aquaneutron.modele.ParticipantCourseRelais;
 import com.trisln.aquaneutron.modele.ParticipantLicenceCourseIndiv;

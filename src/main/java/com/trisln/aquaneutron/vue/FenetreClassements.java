@@ -1,25 +1,14 @@
 package com.trisln.aquaneutron.vue;
 
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.util.Set;
 import javafx.fxml.FXMLLoader;
-
 import com.trisln.aquaneutron.modele.*;
-import java.util.List;
-import java.util.HashSet;
-import java.util.ArrayList;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
-
 import com.trisln.aquaneutron.bd.BdTriSLN;
 import com.trisln.aquaneutron.bd.ConnexionMySQL;
 

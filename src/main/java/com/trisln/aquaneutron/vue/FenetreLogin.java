@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import com.trisln.aquaneutron.vue.*;
 import com.trisln.aquaneutron.bd.*;
-import com.trisln.aquaneutron.controleurs.*;
-
 
 /**
  * Classe FenetreLogin.
