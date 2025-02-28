@@ -154,11 +154,9 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    System.out.println("btnClassements");
                     super.getVue().afficheClassements();
                     break;  
                 case "btnClassementsDeco":
-                    System.out.println("btnClassementsDeco");
                     super.getVue().afficheClassementsDisconnected();
                     break;
                 case "btnParticipants":
@@ -168,7 +166,6 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     super.getVue().afficheCourses();
                     break;
                 case "btnConnexion":
-                    System.out.println("Clique se connecter");
                     super.getVue().afficheLogin();
                     break;
                 default:

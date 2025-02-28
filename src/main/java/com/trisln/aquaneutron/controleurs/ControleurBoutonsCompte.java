@@ -97,7 +97,6 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
             String newBtnColor="";
             String otherStyle="";
             Button btn=(Button)event.getSource();
-            System.out.println(btn.getId());
             if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                 super.handle(btn);
             }
