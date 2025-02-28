@@ -1,24 +1,15 @@
 package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 public class ControleurBoutonsAjouterP extends ControleurBoutons implements EventHandler<ActionEvent>{
-    private TriSLN vue;
-
     // log accueil et AccConnecter
 
     @FXML
@@ -44,12 +35,19 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
 
     
 
+    /**
+     * Constructeur du controleur
+     * @param vue la classe de la vue
+     */
     public ControleurBoutonsAjouterP(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
-
+    /**
+     * Setter des boutons de la classe parente
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
         super.setBAccueil(btnAccueil);
@@ -58,6 +56,10 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
         super.setVue(vue);
     }
 
+    /**
+     * Méthode appelée lorsqu'on passe la souris sur un des boutons
+     * @param event l'évènement qui se déclenche avec la souris
+     */
     @FXML
     public void handleBtnAjouterPMouseEntered(MouseEvent event){
         try{
@@ -102,6 +104,10 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'on enlève la souris sur un des boutons
+     * @param event l'évènement qui se déclenche avec la souris
+     */
     @FXML
     public void handleBtnAjouterPMouseExited(MouseEvent event){
         try{
@@ -145,23 +151,29 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'un bouton est appuyé
+     * @param event l'évènement déclenché à l'appui
+     */
     @Override
     public void handle(ActionEvent event){
 
         try {Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                     super.handle(btn);
             }
             else{
                 switch(btn.getId()){
+                    case "btnRetour":
+                        super.getVue().afficheParticipants();
+                        break;
                     case "btnImporterCSV":
                         System.out.println("importation en cours");
                         File file = super.getVue().getFenetreParticipants().reccupererParticipant();
                         if (file != null) {
                             System.out.println(file);
                             System.out.println("lancement");
-                            List<List<String>> result =super.getVue().getFenetreParticipants().lectureFichier(file);
-                            System.out.println(result);
+                            super.getVue().getBd().lectureFichier(file);
                             System.out.println("fin");
                             
                         }

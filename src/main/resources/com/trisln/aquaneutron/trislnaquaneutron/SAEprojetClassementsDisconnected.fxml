@@ -64,9 +64,9 @@
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="-- Choisir un genre --"/>
+                           <String fx:value="mixte"/>
                            <String fx:value="homme"/>
                            <String fx:value="femme"/>
-                           <String fx:value="mixte"/>
                         </FXCollections>
                      </items>
                      <cursor>
@@ -99,7 +99,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView HBox.hgrow="ALWAYS">
+                  <TableView fx:id="tableViewClassements" HBox.hgrow="ALWAYS">
                      <columns>
                         <TableColumn reorderable="false" text="Positions" />
                         <TableColumn reorderable="false" text="Temps" />
@@ -114,7 +114,6 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <ScrollBar orientation="VERTICAL" />
                </children>
             </HBox>
          </children>
@@ -172,7 +171,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueilDisconnected" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnClassementMouseEntered" onMouseExited="#handleBtnClassementMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>

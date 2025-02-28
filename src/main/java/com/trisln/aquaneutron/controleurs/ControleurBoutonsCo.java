@@ -1,22 +1,18 @@
 package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
-
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
+/**
+ * Classe ControleurBoutonsCo.
+ * Permet de gérer les boutons de la vue AccueilConnecter.
+ */
 public class ControleurBoutonsCo extends ControleurBoutons implements EventHandler<ActionEvent>{
-    private TriSLN vue;
-
     // log accueil et AccConnecter
     @FXML
     private Button btnClassements;
@@ -33,17 +29,31 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     @FXML
     private Button btnClassementsDeco;
 
+    /**
+     * Constructeur de la classe ControleurBoutonsCo.
+     * Initialise les boutons de la vue AccueilConnecter.
+     * @param vue La vue de l'application.
+     */
     public ControleurBoutonsCo(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
+    /**
+     * Permet de définir les boutons de la vue AccueilConnecter.
+     * @param vue La vue de l'application.
+     */
     private void setBoutons(TriSLN vue){
         super.setVue(vue);
         super.setBCompte(btnCompte);
         super.setBDeconnexion(btnDeconnexion);
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue AccueilConnecter.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @FXML
     public void handleBtnAccueilMouseEntered(MouseEvent event){
         try{
@@ -86,6 +96,11 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
         }
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue AccueilConnecter.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @FXML
     public void handleBtnAccueilMouseExited(MouseEvent event){
         try{
@@ -128,17 +143,20 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
         }
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue AccueilConnecter.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @Override
     public void handle(ActionEvent event){
         try {
             Button btn=(Button) event.getSource();
             switch(btn.getId()){
                 case "btnClassements":
-                    System.out.println("btnClassements");
                     super.getVue().afficheClassements();
                     break;  
                 case "btnClassementsDeco":
-                    System.out.println("btnClassementsDeco");
                     super.getVue().afficheClassementsDisconnected();
                     break;
                 case "btnParticipants":
@@ -148,7 +166,6 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
                     super.getVue().afficheCourses();
                     break;
                 case "btnConnexion":
-                    System.out.println("Clique se connecter");
                     super.getVue().afficheLogin();
                     break;
                 default:

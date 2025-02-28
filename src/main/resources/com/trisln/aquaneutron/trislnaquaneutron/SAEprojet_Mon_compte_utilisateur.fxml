@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +30,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="textIdentifiant" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="190.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textIdentifiant" strokeType="OUTSIDE" strokeWidth="0.0" text="..." HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -51,7 +44,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="textRole" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textRole" strokeType="OUTSIDE" strokeWidth="0.0" text="..." HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -65,7 +58,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="textNom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textNom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -79,7 +72,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="textPrenom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textPrenom" strokeType="OUTSIDE" strokeWidth="0.0" text="..." HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -93,7 +86,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="textEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="141.13000106811523" HBox.hgrow="ALWAYS">
+                              <Text fx:id="textEmail" strokeType="OUTSIDE" strokeWidth="0.0" text="..." HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -116,7 +109,7 @@
                               </ImageView>
                            </graphic>
                            <cursor>
-                              <Cursor fx:constant="HAND"/>
+                              <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
                      </children>

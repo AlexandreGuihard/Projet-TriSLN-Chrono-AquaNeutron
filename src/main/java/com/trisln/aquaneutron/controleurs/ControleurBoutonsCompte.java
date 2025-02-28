@@ -1,23 +1,13 @@
 package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
-
-import java.io.IOException;
-
-
-
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 import javafx.scene.text.Text;
 import javafx.application.Platform;
-
 
 public class ControleurBoutonsCompte extends ControleurBoutons implements EventHandler<ActionEvent> {
     @FXML
@@ -107,7 +97,6 @@ public class ControleurBoutonsCompte extends ControleurBoutons implements EventH
             String newBtnColor="";
             String otherStyle="";
             Button btn=(Button)event.getSource();
-            System.out.println(btn.getId());
             if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                 super.handle(btn);
             }

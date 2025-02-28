@@ -1,11 +1,7 @@
 package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
-
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -17,9 +13,6 @@ import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 public class ControleurBoutonsAjoutBenevol extends ControleurBoutons implements EventHandler<ActionEvent> {
-    
-    private TriSLN vue;
-
     // log accueil et AccConnecter
 
     @FXML

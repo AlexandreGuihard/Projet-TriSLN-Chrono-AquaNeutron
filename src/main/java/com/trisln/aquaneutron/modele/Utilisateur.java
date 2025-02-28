@@ -1,18 +1,12 @@
 package com.trisln.aquaneutron.modele;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 import io.github.cdimascio.dotenv.Dotenv;
-
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 import com.trisln.aquaneutron.vue.TriSLN;
-
 import java.security.SecureRandom;
 import java.math.BigInteger;
-
 // Classes nécessaires pour les mails
 import javax.mail.*;
 import javax.mail.internet.MimeMessage;
@@ -80,6 +74,46 @@ public class Utilisateur {
 
     public boolean estSpectateur(){
         return this.role.equals("spectateur");
+    }
+
+    public boolean verifierMDPMinuscule(String mdp){
+        String minuscules = "abcdefghijklmnopqrstuvwxyz";
+        for (char c : minuscules.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPMajuscule(String mdp){
+        String majuscules = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (char c : majuscules.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPSpecial(String mdp){
+        String specials = "&é\"'(-è_çà)=~#{[|`\\^@]}°+^¨$£¤%ùµ*,;:!?./§";
+        for (char c : specials.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verifierMDPNombre(String mdp){
+        String nombres = "0123456789";
+        for (char c : nombres.toCharArray()) {
+            if (mdp.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void changePassword(String email, String newPassword) throws SQLException, NoSuchUserException {
