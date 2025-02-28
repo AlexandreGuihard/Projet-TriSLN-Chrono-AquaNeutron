@@ -1096,8 +1096,8 @@ public class BdTriSLN{
         String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
 
         String query = "SELECT C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +
-                "P.club AS Club_Equipe, D.num_dossard AS Dossard, Cat.categorie AS Catégorie, C.pos_categorie AS Classements_Catégorie, " +
-                "P.num_Licence AS Licence " +
+                "P.club AS Club_Equipe, P.num_Licence AS Licence, D.num_dossard AS Dossard, Cat.categorie AS Catégorie," +
+                "C.pos_categorie AS Classements_Catégorie " +
                 "FROM CLASSEMENT C " +
                 "JOIN GENERER G ON C.id_Classement = G.id_Classement " +
                 "JOIN PARTICIPANT P ON G.id_Participant = P.id_Participant " +
@@ -1128,9 +1128,10 @@ public class BdTriSLN{
         yPosition -= 25;
 
         // Définition des colonnes avec ajustement des largeurs
-        String[] headers = {"Pos", "Temps", "Nom Prénom", "Club", "Dossard", "Catégorie", "Classement Catégorie", "Licence"};
-        float[] columnWidths = {30, 50, 100, 90, 40, 60, 90, 60};
+        String[] headers = {"Positions", "Temps", "Nom Prénom", "Club/Equipe", "Licence", "Dossard", "Catégorie", "Classements Catégories"};
+        float[] columnWidths = {50, 50, 100, 70, 60, 50, 60, 100};
 
+ 
         contentStream.setFont(PDType1Font.HELVETICA_BOLD, 8);
         // Dessiner l'en-tête du tableau
         float nextX = margin;
@@ -1149,11 +1150,6 @@ public class BdTriSLN{
         contentStream.setFont(PDType1Font.HELVETICA, 6);
         while (rs.next()) {
             if (yPosition < margin + rowHeight) {
-                contentStream.close();
-                page = new PDPage(PDRectangle.A4);
-                document.addPage(page);
-                contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true, true);
-                contentStream.setFont(PDType1Font.HELVETICA, 6);
                 yPosition = yStart - rowHeight;
                 // Redessiner l'en-tête sur la nouvelle page
                 nextX = margin;
@@ -1167,18 +1163,18 @@ public class BdTriSLN{
                 dessinerBordures(contentStream, margin, yPosition, columnWidths, rowHeight);
                 yPosition -= rowHeight;
             }
-
+    
             String[] row = {
-                    rs.getString("Positions"),
-                    rs.getString("Temps"),
-                    rs.getString("Nom_Prénom"),
-                    rs.getString("Club_Equipe"),
-                    rs.getString("Dossard"),
-                    rs.getString("Catégorie"),
-                    rs.getString("Classements_Catégorie"),
-                    rs.getString("Licence")
+                rs.getString("Positions"),
+                rs.getString("Temps"),
+                rs.getString("Nom_Prénom"),
+                rs.getString("Club_Equipe"),
+                rs.getString("Licence"),
+                rs.getString("Dossard"),
+                rs.getString("Catégorie"),
+                rs.getString("Classements_Catégorie"),
             };
-
+    
             nextX = margin;
             for (int i = 0; i < row.length; i++) {
                 contentStream.beginText();
@@ -1190,15 +1186,15 @@ public class BdTriSLN{
             dessinerBordures(contentStream, margin, yPosition, columnWidths, rowHeight);
             yPosition -= rowHeight;
         }
-
+    
         contentStream.close();
         document.save(outputFile);
         document.close();
-
+    
         rs.close();
         stmt.close();
         conn.close();
-
+    
         new Thread(() -> {
             try {
                 afficherPdf(outputFile);

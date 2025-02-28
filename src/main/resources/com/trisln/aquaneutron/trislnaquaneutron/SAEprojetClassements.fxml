@@ -103,10 +103,10 @@
                         <TableColumn reorderable="false" text="Temps" />
                         <TableColumn reorderable="false" text="Nom/Prénom" />
                         <TableColumn reorderable="false" text="Club/Equipe" />
+                        <TableColumn reorderable="false" text="Licence" />
                         <TableColumn reorderable="false" text="Dossard" />
                         <TableColumn reorderable="false" text="Catégorie" />
                         <TableColumn reorderable="false" text="Classements Catégories" />
-                        <TableColumn reorderable="false" text="Licence" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

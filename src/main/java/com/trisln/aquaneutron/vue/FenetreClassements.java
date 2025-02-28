@@ -35,27 +35,33 @@ public class FenetreClassements {
      */
     public FenetreClassements(FXMLLoader loader, Stage stage){
         this.classement = new TableView<>();
-
-        TableColumn<Classement, Integer> colId = new TableColumn<>("ID");
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-
-        TableColumn<Classement, Integer> colPosGeneral = new TableColumn<>("Position Générale");
+    
+        TableColumn<Classement, Integer> colPosGeneral = new TableColumn<>("Positions");
         colPosGeneral.setCellValueFactory(new PropertyValueFactory<>("posGeneral"));
-
-        TableColumn<Classement, String> colPosCategorie = new TableColumn<>("Position Catégorie");
-        colPosCategorie.setCellValueFactory(new PropertyValueFactory<>("posCategorie"));
-
-        TableColumn<Classement, Integer> colPosClub = new TableColumn<>("Position Club");
-        colPosClub.setCellValueFactory(new PropertyValueFactory<>("posClub"));
-
+    
         TableColumn<Classement, String> colTemps = new TableColumn<>("Temps");
         colTemps.setCellValueFactory(new PropertyValueFactory<>("temps"));
-
-        TableColumn<Classement, Participant> colParticipant = new TableColumn<>("Participant");
-        colParticipant.setCellValueFactory(new PropertyValueFactory<>("participant"));
-
-        this.classement.getColumns().addAll(colId, colPosGeneral, colPosCategorie, colPosClub, colTemps, colParticipant);
-
+    
+        TableColumn<Classement, String> colNomPrenom = new TableColumn<>("Nom/Prénom");
+        colNomPrenom.setCellValueFactory(new PropertyValueFactory<>("participant.nomPrenom"));
+    
+        TableColumn<Classement, String> colClubEquipe = new TableColumn<>("Club/Equipe");
+        colClubEquipe.setCellValueFactory(new PropertyValueFactory<>("participant.club"));
+    
+        TableColumn<Classement, Integer> colLicence = new TableColumn<>("Licence");
+        colLicence.setCellValueFactory(new PropertyValueFactory<>("participant.numLicence"));
+    
+        TableColumn<Classement, Integer> colDossard = new TableColumn<>("Dossard");
+        colDossard.setCellValueFactory(new PropertyValueFactory<>("participant.dossard"));
+    
+        TableColumn<Classement, String> colCategorie = new TableColumn<>("Catégorie");
+        colCategorie.setCellValueFactory(new PropertyValueFactory<>("participant.categorie"));
+    
+        TableColumn<Classement, String> colClassementsCategorie = new TableColumn<>("Classements Catégories");
+        colClassementsCategorie.setCellValueFactory(new PropertyValueFactory<>("posCategorie"));
+    
+        this.classement.getColumns().addAll(colPosGeneral, colTemps, colNomPrenom, colClubEquipe, colLicence, colDossard, colCategorie, colClassementsCategorie);
+    
         this.souscategories = new ComboBox<>();
         this.categorieChoisie = "";
         this.genre = new ComboBox<>();

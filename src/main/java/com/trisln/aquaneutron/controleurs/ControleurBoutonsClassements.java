@@ -68,29 +68,29 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         if (this.tableViewClassements != null) {
             TableColumn<Classement, Integer> colPositions = new TableColumn<>("Positions");
             colPositions.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPosGeneral()).asObject());
-
+    
             TableColumn<Classement, String> colTemps = new TableColumn<>("Temps");
             colTemps.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTemps()));
-
+    
             TableColumn<Classement, String> colNomPrenom = new TableColumn<>("Nom/Prénom");
             colNomPrenom.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getNom() + " " + cellData.getValue().getParticipant().getPrenom()));
-
+    
             TableColumn<Classement, String> colClubEquipe = new TableColumn<>("Club/Equipe");
             colClubEquipe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomEquipe()));
-
-            TableColumn<Classement, Integer> colDossard = new TableColumn<>("Dossard");
-            colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDossard()).asObject());
-
-            TableColumn<Classement, String> colCategorie = new TableColumn<>("Catégorie");
-            colCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getCategorie()));
-
-            TableColumn<Classement, String> colClassementCategorie = new TableColumn<>("Classements Catégories");
-            colClassementCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosCategorie()));
-
+    
             TableColumn<Classement, String> colLicence = new TableColumn<>("Licence");
             colLicence.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumLicence() + ""));
-
-            tableViewClassements.getColumns().setAll(colPositions, colTemps, colNomPrenom, colClubEquipe, colDossard, colCategorie, colClassementCategorie, colLicence);
+    
+            TableColumn<Classement, Integer> colDossard = new TableColumn<>("Dossard");
+            colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDossard()).asObject());
+    
+            TableColumn<Classement, String> colCategorie = new TableColumn<>("Catégorie");
+            colCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getCategorie()));
+    
+            TableColumn<Classement, String> colClassementCategorie = new TableColumn<>("Clts Catégories");
+            colClassementCategorie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosCategorie()));
+    
+            tableViewClassements.getColumns().setAll(colPositions, colTemps, colNomPrenom, colClubEquipe, colLicence, colDossard, colCategorie, colClassementCategorie);
         }
     }
     
