@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="722.0" prefWidth="1321.0" style="-fx-border-style: solid none none none;" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +22,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" spacing="50.0">
                            <children>
@@ -43,10 +33,13 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="idNom" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard" />
+                                    <TextField fx:id="numeroDossard" onKeyReleased="#onKeyPressed" prefHeight="30.0" prefWidth="188.0" promptText="Entrez un dossard">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></TextField>
                                  </children>
                               </VBox>
-                              <Button fx:id="btnAJtCourse1" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: #2596BE;" text="Arrivé" textFill="WHITE">
+                              <Button fx:id="btnDossardArrive" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: #2596BE;" text="Arrivé" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -56,12 +49,17 @@
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
+                        <Text fx:id="infoDossardArr" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
+                           </VBox.margin>
+                        </Text>
                         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <TableView maxHeight="300.0" prefHeight="150.0" prefWidth="630.0" HBox.hgrow="ALWAYS">
+                              <TableView fx:id="tableViewArrive" maxHeight="300.0" prefHeight="150.0" prefWidth="630.0" HBox.hgrow="ALWAYS">
                                  <columns>
                                     <TableColumn reorderable="false" text="Dossards" />
                                     <TableColumn reorderable="false" text="Top départ" />
@@ -73,7 +71,6 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <ScrollBar orientation="VERTICAL" />
                            </children>
                         </HBox>
                      </children>
@@ -82,9 +79,9 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TableView maxHeight="300.0" prefWidth="367.0" HBox.hgrow="ALWAYS">
+                                    <TableView fx:id="tableViewDossards" maxHeight="60.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
                                        <columns>
                                           <TableColumn reorderable="false" text="Dossards partis" />
                                           <TableColumn reorderable="false" text="Dossards arrivés" />
@@ -94,41 +91,89 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <ScrollBar orientation="VERTICAL" />
                                  </children>
                               </HBox>
-                              <VBox alignment="CENTER" spacing="10">
-                                 <children>
-                                    <Label text="Temps différés">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="idDate" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm:ss" />
-                                 </children>
-                              </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                        <VBox alignment="CENTER_RIGHT">
                            <children>
-                              <Button fx:id="btnAJtCourse" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Top départ" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button fx:id="btnAJtCourse3" mnemonicParsing="false" onMouseEntered="#btnAJtCourseME" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Fin de course" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Button fx:id="btnTopDepart" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Start" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="btnTopStop" disable="true" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Stop" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fx:id="textChronoHeure" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="textChronoMin" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="textChronoSec" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefWidth="202.0" spacing="10">
+                                       <children>
+                                          <Label text="Temps différés">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tempsDiff" onKeyReleased="#onKeyPressed" prefHeight="30.0" prefWidth="188.0" promptText="hh:mm:ss">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="btnFinCourse" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="74.0" prefWidth="202.0" style="-fx-background-color: #2596BE;" text="Fin de course" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
                   </VBox>
                </children>
@@ -167,7 +212,7 @@
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <ButtonBar buttonMinWidth="80.0" prefHeight="155.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                <buttons>
-                  <Button fx:id="btnCompte" mnemonicParsing="false" onMouseEntered="#btnCompteME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnCompte" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -191,7 +236,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAccueil" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnAccueil" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="120.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -212,7 +257,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="deconnecter" mnemonicParsing="false" onMouseEntered="#btnAccueilME" prefHeight="120.0" prefWidth="784.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
+                  <Button fx:id="btnDeconnexion" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnDemarrerCoursesMouseEntered" onMouseExited="#handleBtnDemarrerCoursesMouseExited" prefHeight="120.0" prefWidth="784.0" style="-fx-background-radius: 15; -fx-background-color: lightgrey;">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="110.0" prefWidth="63.0">
                            <children>
@@ -242,7 +287,7 @@
       </HBox>
    </top>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onMouseEntered="#btnRetourME" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
@@ -250,7 +295,7 @@
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="btnRetour" fitHeight="75.0" fitWidth="75.0">
+            <ImageView fitHeight="75.0" fitWidth="75.0">
                <image>
                   <Image url="@img/retour.png" />
                </image>

@@ -84,6 +84,18 @@ public class Classement{
         return participant;
     }
 
+    public int getDossard() {
+        return participant.getDossard();
+    }
+
+    public int getNumLicence() {
+        return participant.getNumLicence();
+    }
+
+    public String getClub(){
+        return participant.getClub();
+    }
+
     /**
      * Setter de l'id
      * @param id l'id du classement
