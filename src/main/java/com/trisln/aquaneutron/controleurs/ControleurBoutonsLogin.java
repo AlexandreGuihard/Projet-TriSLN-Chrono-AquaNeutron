@@ -124,7 +124,6 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
         Button btn = (Button) event.getSource();
         switch (btn.getId()) {
             case "btnAccueil":
-                System.out.println("Clique accueil");
                 try {
                     super.getVue().afficheAccueil();
                 } catch (IOException e) {
@@ -132,7 +131,6 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
                 }
                 break;
             case "btnConnecter":
-                System.out.println("Clique connection");
                 try {
                     super.getVue().getUtilisateur().connecter(this.idIdentifiant.getText(), this.idMdp.getText());
                     idInfoLabel.setText("Identifié en tant que " + super.getVue().getUtilisateur().getRole());
@@ -151,7 +149,6 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
                 }
                 break;
             case "btnForgotPassword":
-                System.out.println("Clique mot de passe oublié");
                 try {
                     super.getVue().affichePopUpLogin();
                 } catch (IOException e) {
