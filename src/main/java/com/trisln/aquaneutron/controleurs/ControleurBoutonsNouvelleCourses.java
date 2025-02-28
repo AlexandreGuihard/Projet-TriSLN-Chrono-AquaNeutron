@@ -169,6 +169,9 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
                 super.getVue().afficheCourses();
                 System.out.println("Course ajoutée");
             }
+            if (btn.getId().equals("btnRetour")) {
+                super.getVue().afficheCourses();
+            }
             else{
                 super.handle(btn);
             }

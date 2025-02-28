@@ -278,6 +278,9 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         try {
             Button btn = (Button) event.getSource();
             switch (btn.getId()) {
+                case "btnRetour":
+                    super.getVue().afficheCourses();
+                    break;
                 case "btnDossardArrive":
                     if (this.chrono.estDemarrer()) {
                         enregistrerArrive();
