@@ -132,11 +132,22 @@ public class Alerter {
 
 
 
+  public void showAlertErreurBDD() {
+    Alert alert = new Alert(AlertType.ERROR);
+    alert.setTitle("Error alert");
+    alert.setHeaderText("Results: ERROR Data Base");
+    alert.setContentText("Erreur de chargement de la BDD");
+    alert.showAndWait();
+  }
 
 
-
-
-
+  public void showAlertFichier() {
+    Alert alert = new Alert(AlertType.ERROR);
+    alert.setTitle("Error alert");
+    alert.setHeaderText("Results:fichier non traiter");
+    alert.setContentText("Le fichier n'est pas pris en charge");
+    alert.showAndWait();
+  }
 
 
 
