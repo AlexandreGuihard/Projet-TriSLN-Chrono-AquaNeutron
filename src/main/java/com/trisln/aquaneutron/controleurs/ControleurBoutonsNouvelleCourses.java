@@ -11,8 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import com.trisln.aquaneutron.vue.TriSLN;
 
-import java.util.Set;
-
+/**
+ * Classe du controleur de la page de création de courses.
+ */
 public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
@@ -51,13 +52,19 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
     private ToggleGroup toggleGroup;
     @FXML
     private TextField heureCourse;
-  
 
+    /**
+     * Constructeur de la classe.
+     * @param vue la vue
+     */
     public ControleurBoutonsNouvelleCourses(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
+    /**
+     * Initialisation des radios Button dans un toggleGroup
+     */
     public void initialize() {
         this.toggleGroup = this.idMinPoussins.getToggleGroup();
 
@@ -66,6 +73,10 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         });
     }
 
+    /**
+     * Initialisation des boutons grâce à la classe parente ControleurBoutons
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue){
         super.setVue(vue);
         super.setBAccueil(btnAccueil);
@@ -74,6 +85,9 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         super.setBRetour(btnRetour);
     }
 
+    /**
+     * Vérifie que le format de l'heure de début de course est bien respecté.
+     */
     @FXML
     public void onKeyReleased(KeyEvent event) {
         KeyCode keyCode = event.getCode();
@@ -83,6 +97,10 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         }
     }
 
+    /**
+     * Gère l'affichage des boutons si la souris en survole un.
+     * @param event l'évenement de la souris qui survole un élément
+     */
     @FXML
     public void handleBtnCoursesMouseEntered(MouseEvent event){
         try{
@@ -100,6 +118,10 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         }
     }
 
+    /**
+     * Gère l'affichage des boutons si la souris quitte un élément.
+     * @param event l'évenement de la souris qui quitte un élément
+     */
     @FXML
     public void handleBtnCoursesMouseExited(MouseEvent event){
         try{
@@ -117,15 +139,27 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         }
     }
 
+    /**
+     * Appelle la méthode qui vérifie que tous les champs sont remplis.
+     * @param event l'évenement de la souris qui clique sur un radio button
+     */
     public void handleRB(ActionEvent event) {
         this.changeEtatBouton();
     }
 
+    /**
+     * Appelle la méthode qui vérifie que tous les champs sont remplis.
+     * @param event l'évenement de la souris qui clique sur le ComboBox
+     */
     @FXML
     public void handleCB(ActionEvent event) {
         this.changeEtatBouton();
     }
 
+    /**
+     * Gère l'utilisation des boutons lorsque l'on clique sur l'un d'eux.
+     * @param event l'évenement de la souris qui clique sur un bouton
+     */
     public void handle(ActionEvent event){
       try {
             Button btn=(Button) event.getSource();
@@ -182,6 +216,9 @@ public class ControleurBoutonsNouvelleCourses extends ControleurBoutons implemen
         } 
     }
 
+    /**
+     * Gère l'accessibilité du bouton d'ajout de course si tous les champs sont correctements remplis.
+     */
     private void changeEtatBouton() {
         boolean nomVide = this.nomCourse.getText().isEmpty();
         boolean formatVide = (this.formatCourse.getValue() == null);
