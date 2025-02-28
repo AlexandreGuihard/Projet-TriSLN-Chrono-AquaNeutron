@@ -21,18 +21,6 @@ begin
     return idMax+1;
 end|
 
--- Getter du format de la course à partir de l'id format
-create or replace function getFormatFromId(idDuFormat int) returns varchar(42)
-begin
-    declare idCateg int;
-    if sousCategorie is null then
-        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie limit 1;
-    else
-        select idCategorie into idCateg from CATEGORIE where CATEGORIE.categorie=categorie and CATEGORIE.sousCategorie=sousCategorie limit 1;
-    end if;
-    return idCateg;
-end|
-
 create or replace function getPositionCategorie(idParticipant int, idEpreuve int) 
 returns int
 BEGIN

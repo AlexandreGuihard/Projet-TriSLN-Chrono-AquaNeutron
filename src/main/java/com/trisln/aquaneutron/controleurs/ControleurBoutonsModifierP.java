@@ -386,7 +386,6 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         if (comboxCategorie.getValue() == null) {
             return null; // Évite NullPointerException
         }
-
         switch (comboxCategorie.getValue()) {
             case "Mini-poussin": return "MP";
             case "Poussin": return "PO";

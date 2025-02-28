@@ -25,11 +25,11 @@ insert into PARTICIPANT values
                             (1, 'Dupont', 'Carle', 1, 'F', 'x.carle@yahoo.fr', 'Paris', true, '0647882565', null, null, '2001-01-20', 'bleu', false),-- Relais
                             (2, 'Pilaf', 'Mila', 2, 'F', 'mila.Pilaf@yahoo.fr', 'Orleans', true, '0692243352', null, null, '2001-03-24', null, false),-- Non licence individuel
                             (3, 'Sparkis', 'Devoid', 8, 'M', 'devoid.Sparkis@yahoo.fr', 'Angers', false, '0695476132', null, null, '2001-02-03', 'jaune', false),-- Relais
-                            (4, 'Disney', 'Antoine', 1, 'F', 'disant@mick.fr', 'Paris', true, '0647882565', 'SQL', 2, '2001-01-18', null, true),
+                            (4, 'Disney', 'Antoine', 1, 'J', 'disant@mick.fr', 'Paris', true, '0647882565', 'SQL', 2, '2001-01-18', null, true),
                             (5, 'Dupont', 'Dupon', 1, 'F', 'x.dupon@yahoo.fr', 'Paris', true, '0647882566', 'SQL', 3, '2001-06-15', null, true),-- Licence individuel
                             (6, 'Ping', 'Alex', 8, 'M', 'ping@toto.com', 'Bourges', true, '0642693366', 'Club Bg', 1, '2005-10-03', null, true),-- Licence individuel
                             (7, 'Cable', 'Romain', 6, 'M', 'ctouche@mail.fr', 'Chateauroux', false, '0622568710', 'Club Bg', 4, '2005-04-23', null, true),-- Licence individuel
-                            (8, 'Trigger', 'Clement', 1, 'M', 'donet@test.com', 'Orleans', false, '0623891245', null, null, '2023-12-25', null, false),-- Non licence individuel
+                            (8, 'Trigger', 'Clement', 1, 'F', 'donet@test.com', 'Orleans', false, '0623891245', null, null, '2023-12-25', null, false),-- Non licence individuel
                             (9, 'Pdf', 'Amine', 6, 'M', 'gen@gmail.com', 'Orleans', true, '0638991660', null, null, '2002-01-18', 'rouge', false);-- Relais
 
 insert into EPREUVE values
@@ -61,7 +61,6 @@ insert into PARTICIPER values
 
 
 insert into CLASSEMENT values
-                           (1, 1, 2, 4, "12:00"),
                            (2, 4, 1, 3, "30:00"),
                            (3, 2, 3, 1, "15:30"),
                            (4, 3, 4, 2, "23:48");
@@ -85,7 +84,6 @@ insert into DOSSARD values
                         (9, 9);
 
 insert into GENERER values
-                        (1, 1, 2),
                         (2, 4, 1),
                         (3, 2, 3),
                         (4, 3, 4);
