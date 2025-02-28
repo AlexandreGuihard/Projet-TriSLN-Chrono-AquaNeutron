@@ -87,17 +87,27 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     @FXML
     private ComboBox<String> comboxSC;
 
+    /**
+     * Constructeur de la classe
+     * @param vue la vue
+     */
     public ControleurBoutonsModifierP(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
+    /**
+     * Méthode appelée après avoir construit l'objet, initialise certains éléments de la page
+     */
     public void initialize() {
         this.updateComboxSC();
         btnEnregistrerModification.setDisable(true);
     }
 
-
+    /**
+     * Setter des boutons de la classe parente
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
         super.setBAccueil(btnAccueil);
@@ -106,6 +116,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         super.setVue(vue);
     }
 
+    /**
+     * Méthode appelée lorsque la souris passe sur un bouton
+     * @param event l'évènement déclenché par la souris
+     */
     @FXML
     public void handleBtnModifierPMouseEntered(MouseEvent event){
         try{
@@ -150,6 +164,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    /**
+     * Méthode appelée lorsque la souris quitte sur un bouton
+     * @param event l'évènement déclenché par la souris
+     */
     @FXML
     public void handleBtnModifierPMouseExited(MouseEvent event){
         try{
@@ -193,6 +211,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'un bouton est appuyé
+     * @param event l'évènement déclenché par l'appui
+     */
     @Override
     public void handle(ActionEvent event){
 
@@ -247,6 +269,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    /**
+     * Méthode appelé lors d'un changement sur les combobox
+     * @param event l'évènement déclenché
+     */
     @FXML
     public void handleCB(ActionEvent event){
         ComboBox<?> comboBox = (ComboBox<?>) event.getSource();
@@ -255,6 +281,11 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    /**
+     * Check si le paramètre peut être transformé en un entier
+     * @param id la chaine de caractère rentré en paramètre
+     * @return true si la chaine de caractère peut être converti en un entier sinon false
+     */
     private boolean checkInt(String id){
         for(int i=0;i<id.length();i++){
             if(!Character.isDigit(id.charAt(i))){
@@ -264,6 +295,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         return true;
     }
 
+    /**
+     * Méthode appelée lorsqu'une touche du clavier est lachée
+     * @param event l'évènement déclenché
+     */
     @FXML
     public void handleKeyReleased(KeyEvent event){
         try{
@@ -327,6 +362,9 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    /**
+     * Update le combobox de la sous catégorie par rapport à la catégorie
+     */
     private void updateComboxSC() {
         String selectedCategory = this.getCategFromComboBox();
 
@@ -349,7 +387,10 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
-
+    /**
+     * Getter de la catégorie choisie dans le combobox | return null si pas de catégorie choisie
+     * @return
+     */
     private String getCategFromComboBox() {
         if (comboxCategorie.getValue() == null) {
             return null; // Évite NullPointerException
@@ -369,7 +410,11 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
-
+    /**
+     * Transforme la chaine de caractère de la catégorie du format avec deux lettres à la catégorie entière
+     * @param categorie la catégorie avec deux lettres
+     * @return la catégorie entière
+     */
     private String change(String categorie) {
         switch (categorie) {
             case "MP":

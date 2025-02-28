@@ -42,12 +42,19 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
 
     
 
+    /**
+     * Constructeur du controleur
+     * @param vue la classe de la vue
+     */
     public ControleurBoutonsAjouterP(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
-
+    /**
+     * Setter des boutons de la classe parente
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
         super.setBAccueil(btnAccueil);
@@ -56,6 +63,10 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
         super.setVue(vue);
     }
 
+    /**
+     * Méthode appelée lorsqu'on passe la souris sur un des boutons
+     * @param event l'évènement qui se déclenche avec la souris
+     */
     @FXML
     public void handleBtnAjouterPMouseEntered(MouseEvent event){
         try{
@@ -100,6 +111,10 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'on enlève la souris sur un des boutons
+     * @param event l'évènement qui se déclenche avec la souris
+     */
     @FXML
     public void handleBtnAjouterPMouseExited(MouseEvent event){
         try{
@@ -143,6 +158,10 @@ public class ControleurBoutonsAjouterP extends ControleurBoutons implements Even
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'un bouton est appuyé
+     * @param event l'évènement déclenché à l'appui
+     */
     @Override
     public void handle(ActionEvent event){
 
