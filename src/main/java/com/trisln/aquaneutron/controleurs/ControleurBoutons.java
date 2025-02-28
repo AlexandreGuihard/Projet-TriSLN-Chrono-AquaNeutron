@@ -3,6 +3,9 @@ package com.trisln.aquaneutron.controleurs;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
+import com.trisln.aquaneutron.modele.Alerter;
 import com.trisln.aquaneutron.vue.TriSLN;
 
 public abstract class ControleurBoutons {
@@ -226,7 +229,10 @@ public abstract class ControleurBoutons {
                     this.vue.afficheLogin();
                     break;    
                 case "btnDeconnexion" :
-                    this.vue.afficheAccueil();
+                    Alerter A = new Alerter();
+                    if(A.showConfirmationDeconnection()){
+                        this.vue.afficheAccueil();
+                    }
                     break;
                 
                 case "btnAccueil":

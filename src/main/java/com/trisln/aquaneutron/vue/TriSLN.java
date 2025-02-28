@@ -60,7 +60,7 @@ public class TriSLN extends Application{
      * Initialisation de la classe avec la connexion à la base de données.
      */
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("servinfo-maria", "DBguihard", "guihard", "guihard"));
+        bd = new BdTriSLN(new ConnexionMySQL("localhost", "tr", "root", "Nimolu56?"));
         this.utilisateur = new Utilisateur();
         this.connecte=false;
     }
