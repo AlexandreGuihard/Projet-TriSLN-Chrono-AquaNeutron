@@ -15,6 +15,10 @@ import javafx.fxml.FXML;
 import com.trisln.aquaneutron.vue.TriSLN;
 import com.trisln.aquaneutron.modele.Exceptions.NoSuchUserException;
 
+/**
+ * Classe ControleurBoutonsLogin.
+ * Permet de gérer les boutons de la vue Login.
+ */
 public class ControleurBoutonsLogin extends ControleurBoutons implements EventHandler<ActionEvent>{
     private TriSLN vue;
 
@@ -31,17 +35,30 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
     @FXML
     private Label idInfoLabel;
 
+    /**
+     * Constructeur de la classe ControleurBoutonsLogin.
+     * Initialise les boutons de la vue Login.
+     * @param vue La vue de l'application.
+     */
     public ControleurBoutonsLogin(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
+    /**
+     * Permet de définir les boutons de la vue Login.
+     * @param vue La vue de l'application.
+     */
     private void setBoutons(TriSLN vue){
         super.setVue(vue);
         super.setBRetour(btnRetour);
         super.setBAccueil(btnAccueil);
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue Login.
+     * @param event L'événement lié au bouton.
+     */
     @FXML
     public void onKeyTyped(KeyEvent event) {
         TextField tf = (TextField) event.getSource();
@@ -54,6 +71,11 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
         }
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue Login.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @FXML
     public void handleBtnLoginMouseEntered(MouseEvent event){
         try{
@@ -71,6 +93,11 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
         }
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue Login.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @FXML
     public void handleBtnLoginMouseExited(MouseEvent event){
         try{
@@ -88,6 +115,11 @@ public class ControleurBoutonsLogin extends ControleurBoutons implements EventHa
         }
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue Login.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @Override
     public void handle(ActionEvent event) {
         Button btn = (Button) event.getSource();

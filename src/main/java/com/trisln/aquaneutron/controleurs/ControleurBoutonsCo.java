@@ -14,6 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 
+/**
+ * Classe ControleurBoutonsCo.
+ * Permet de gérer les boutons de la vue AccueilConnecter.
+ */
 public class ControleurBoutonsCo extends ControleurBoutons implements EventHandler<ActionEvent>{
     // log accueil et AccConnecter
     @FXML
@@ -31,17 +35,31 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
     @FXML
     private Button btnClassementsDeco;
 
+    /**
+     * Constructeur de la classe ControleurBoutonsCo.
+     * Initialise les boutons de la vue AccueilConnecter.
+     * @param vue La vue de l'application.
+     */
     public ControleurBoutonsCo(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
+    /**
+     * Permet de définir les boutons de la vue AccueilConnecter.
+     * @param vue La vue de l'application.
+     */
     private void setBoutons(TriSLN vue){
         super.setVue(vue);
         super.setBCompte(btnCompte);
         super.setBDeconnexion(btnDeconnexion);
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue AccueilConnecter.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @FXML
     public void handleBtnAccueilMouseEntered(MouseEvent event){
         try{
@@ -84,6 +102,11 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
         }
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue AccueilConnecter.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @FXML
     public void handleBtnAccueilMouseExited(MouseEvent event){
         try{
@@ -126,6 +149,11 @@ public class ControleurBoutonsCo extends ControleurBoutons implements EventHandl
         }
     }
 
+    /**
+     * Permet de gérer les événements liés aux boutons de la vue AccueilConnecter.
+     * @param event L'événement lié au bouton.
+     * @throws Exception Si une erreur survient.
+     */
     @Override
     public void handle(ActionEvent event){
         try {

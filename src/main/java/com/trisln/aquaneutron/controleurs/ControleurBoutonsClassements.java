@@ -18,6 +18,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import com.trisln.aquaneutron.bd.BdTriSLN;
 
+/**
+ * Classe ControleurBoutonsClassements.
+ * Gère les événements des boutons de la page de classements.
+ */
 public class ControleurBoutonsClassements extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
     private BdTriSLN bdTriSLN;
@@ -47,12 +51,20 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
     @FXML
     private Button btnValider;
 
+    /**
+     * Constructeur de la classe ControleurBoutonsClassements.
+     * Initialise la vue et la base de données.
+     * 
+     * @param vue La vue de l'application.
+     */
     public ControleurBoutonsClassements(TriSLN vue) {
         this.vue = vue;
         this.bdTriSLN = vue.getBd();
     }
 
-
+    /**
+     * Initialise les colonnes du tableau de classements.
+     */
     @FXML
     public void initialize() {
         if (this.tableViewClassements != null) {
@@ -84,6 +96,11 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         }
     }
     
+    /**
+     * Initialise les ComboBox de sous-catégories et de genres.
+    
+     * @param event L'événement de sélection d'une catégorie.
+     */
     public void handleComboBoxCategorie(ActionEvent event){
         if(!this.idSC.getValue().equals("-- Choisir une sous-catégorie --")){
             this.btnValider.setDisable(false);
@@ -93,6 +110,10 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         }
     }
 
+    /**
+     * Initialise les ComboBox de sous-catégories et de genres.
+     * @param event L'événement de sélection d'un genre.
+     */
     public void handleComboBoxGenre(ActionEvent event){
         if(!this.idG.getValue().equals("-- Choisir un genre --")){
             this.btnValider.setDisable(false);
@@ -102,6 +123,11 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         }
     }
 
+    /**
+     * Initialise les ComboBox de sous-catégories et de genres.
+     * @param event L'événement de sélection d'une sous-catégorie.
+     * @throws Exception
+     */
     @FXML
     public void handleBtnClassementMouseEntered(MouseEvent event) {
         try {
@@ -141,6 +167,11 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         }
     }
 
+    /**
+     * Initialise les ComboBox de sous-catégories et de genres.
+     * @param event L'événement de sortie du survol d'un bouton.
+     * @throws Exception 
+     */
     @FXML
     public void handleBtnClassementMouseExited(MouseEvent event) {
         try {
@@ -180,6 +211,11 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
         }
     }
 
+    /**
+     * Initialise les ComboBox de sous-catégories et de genres.
+     * @param event L'événement de clic sur un bouton.
+     * @throws Exception 
+     */
     @Override
     public void handle(ActionEvent event) {
         try {

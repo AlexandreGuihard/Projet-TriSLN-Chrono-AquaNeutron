@@ -17,8 +17,6 @@ public class Classement{
     private String temps;
     private Participant participant;
 
-    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps, Participant participant){ 
-
     /**
      * Constructeur de la classe Classement
      * @param id l'id du classement
@@ -28,6 +26,7 @@ public class Classement{
      * @param temps le temps qu'a effectuer le participant
      * @param participant la participant
      */
+    public Classement(int id, int posGeneral, String posCategorie, int posClub, String temps, Participant participant){ 
         this.id = id;
         this.posGeneral = posGeneral;
         this.posCategorie = posCategorie;
@@ -84,18 +83,34 @@ public class Classement{
         return participant;
     }
 
+    /**
+     * Getter pour avoir le numero du dossard du participant
+     * @return le numero du dossard
+     */
     public int getDossard() {
         return participant.getDossard();
     }
 
+    /**
+     * Getter pour avoir le numero de licence du participant
+     * @return le numero de licence
+     */
     public int getNumLicence() {
         return participant.getNumLicence();
     }
 
+    /**
+     * Getter pour avoir le num du club du participant
+     * @return le nom du club
+     */
     public String getClub(){
         return participant.getClub();
     }
 
+    /**
+     * Getter pour avoir le nom de l'équipe du participant
+     * @return le nom de l'équipe
+     */
     public String getNomEquipe(){
         return participant.getNomEquipe();
     }
