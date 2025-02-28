@@ -66,12 +66,19 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
     @FXML
     private Text textVille;
 
+    /**
+     * Constructeur de la classe
+     * @param vue la vue
+     */
     public ControleurBoutonsSupprimerP(TriSLN vue){
         super();
         this.setBoutons(vue);
     }
 
-
+    /**
+     * Setter des boutons de la classe parente
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
         super.setBAccueil(btnAccueil);
@@ -80,11 +87,19 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
         super.setVue(vue);
     }
 
+    /**
+     * Méthode appelée pour initialiser le boutons de validation de la suppression d'un participant
+     */
     @FXML
     public void initialize(){
         btnSupprimerParticipantValidation.setDisable(true);
     }
 
+    /**
+     * Méthode appelée lorsqu'on passe la souris sur un bouton
+     * @param event l'évènement déclenché
+     * @throws Exception
+     */
     @FXML
     public void handleBtnSupprimerPMouseEntered(MouseEvent event){
         try{
@@ -128,6 +143,11 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'on enlève la souris sur un bouton
+     * @param event l'évènement déclenché
+     * @throws Exception
+     */
     @FXML
     public void handleBtnSupprimerPMouseExited(MouseEvent event){
         try{
@@ -172,6 +192,11 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'un bouton est appuyé
+     * @param event l'évènement déclenché
+     * @throws Exception
+     */
     @Override
     public void handle(ActionEvent event){
 
@@ -231,6 +256,11 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
         } 
     }
 
+    /**
+     * Check si l'id rentré en paramètre peut être converti en un entier
+     * @param id l'id
+     * @return true si l'id peut être converti en entier sinon false
+     */
     private boolean checkInt(String id){
         for(int i=0;i<id.length();i++){
             if(!Character.isDigit(id.charAt(i))){
@@ -240,6 +270,10 @@ public class ControleurBoutonsSupprimerP extends ControleurBoutons implements Ev
         return true;
     }
 
+    /**
+     * Méthode appelée lorsqu'une touche du clavier
+     * @param eventl'évènement déclenché
+     */
     @FXML
     public void handleKeyReleased(KeyEvent event){
         try{

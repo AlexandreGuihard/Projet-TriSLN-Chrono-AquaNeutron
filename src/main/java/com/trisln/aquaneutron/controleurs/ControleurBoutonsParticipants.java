@@ -78,6 +78,10 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
 
     private String sousCategorieChoisie;
 
+    /**
+     * Constructeur de la classe appelée lorsqu'on vient de l'accueil
+     * @param vue la vue
+     */
     public ControleurBoutonsParticipants(TriSLN vue){
         super();
         this.setBoutons(vue);
@@ -85,6 +89,12 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         this.sousCategorieChoisie=null;
     }
 
+    /**
+     * Constructeur de la classe appelée lorsqu'on vient de la page d'accueil des participants
+     * @param vue la vue
+     * @param categorieChoisie la catégorie choisie sur la page d'accueil des participants
+     * @param sousCategorieChoisie la sous catégorie choisie sur la page d'accueil des participants
+     */
     public ControleurBoutonsParticipants(TriSLN vue, String categorieChoisie, String sousCategorieChoisie){
         super();
         this.setBoutons(vue);
@@ -117,6 +127,14 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         }
     }
 
+    /**
+     * Getter des participants du sexe précisé en paramètre
+     * @param participantsRelais les participants relais
+     * @param participantLicenceCourseIndiv les participants ayant une licence
+     * @param participantsNonLicenceCourseIndividuelles les participants n'ayant pas de licence
+     * @param sexe le sexe qui filtre les listes de participants
+     * @return la liste des participants du sexe précisé en paramètre
+     */
     private List<Participant> getParticipantsDUnSexe(List<Participant> participantsRelais, List<Participant> participantLicenceCourseIndiv, List<Participant> participantsNonLicenceCourseIndividuelles, char sexe){
         List<Participant> participantsFiltres = new ArrayList<>();
         for(Participant p:participantsRelais){
@@ -137,6 +155,11 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         return participantsFiltres;
     }
 
+    /**
+     * Getter des participants de l'attribut de la sous catégorie
+     * @param participantsFiltresParSexe la liste des participants au départ
+     * @return la liste des participants filtrés par la sous catégorie
+     */
     private List<Participant> getParticipantsDUneCategorie(List<Participant> participantsFiltresParSexe){
         List<Participant> participantsFiltresParCategorie=new ArrayList<>();
         for(Participant p:participantsFiltresParSexe){
@@ -152,10 +175,18 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         return participantsFiltresParCategorie;
     }
 
+    /**
+     * Getter de la catégorie choisie
+     * @return la catégorie choisie
+     */
     public String getCategorieChoisie(){
         return categorieChoisie;
     }
 
+    /**
+     * Méthode appelée après la fin du constructeur. Initialisation des tableviews
+     * @throws Exception
+     */
     @FXML
     public void initialize() {
         if(tableViewMasculin!=null && tableViewFeminin!=null){
@@ -215,6 +246,10 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         }
     }
 
+    /**
+     * Setter des boutons de classe parente
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue){
         super.setBCompte(btnCompte);
         super.setBAccueil(btnAccueil);
@@ -223,6 +258,10 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         super.setVue(vue);
     }
 
+    /**
+     * Méthode appelée lorsque la souris passe sur un bouton
+     * @param event l'évènement déclenché par la souris
+     */
     @FXML
     public void handleBtnCategorieMouseEntered(MouseEvent event){
         boolean superButton=false;
@@ -291,6 +330,10 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         }            
         }
 
+    /**
+     * Méthode appelée lorsque la souris quitte sur un bouton
+     * @param event l'évènement déclenché par la souris
+     */
     @FXML
     public void handleBtnCategorieMouseExited(MouseEvent event){
         boolean superButton=false;
@@ -360,7 +403,11 @@ public class ControleurBoutonsParticipants extends ControleurBoutons implements 
         }
     }
 
-
+    /**
+     * Méthode appelée lorsqu'un bouton est appuyé
+     * @param event l'évènement déclenché
+     * @throws Exception
+     */
     @Override
     public void handle(ActionEvent event){
         Button btn=(Button)event.getSource();
