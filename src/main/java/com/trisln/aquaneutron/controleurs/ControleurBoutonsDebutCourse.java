@@ -1,6 +1,5 @@
 package com.trisln.aquaneutron.controleurs;
 
-import com.trisln.aquaneutron.vue.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +9,6 @@ import javafx.scene.control.TextField;
 
 import com.trisln.aquaneutron.vue.TriSLN;
 import javafx.event.EventHandler;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +30,9 @@ import com.trisln.aquaneutron.modele.Participant;
 import com.trisln.aquaneutron.modele.Exceptions.ChronoNotStartedException;
 import javafx.scene.text.Text;
 
+/**
+ * Classe du controleur de la page de lancement d'une course.
+ */
 public class ControleurBoutonsDebutCourse extends ControleurBoutons implements EventHandler<ActionEvent> {
 
     private Course course;
@@ -75,6 +76,11 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
     @FXML
     private Text textChronoSec;
 
+    /**
+     * Constructeur de la classe.
+     * @param vue la vue
+     * @param course la course à lancer
+     */
     public ControleurBoutonsDebutCourse(TriSLN vue, Course course){
         super();
         this.course = course;
@@ -85,6 +91,10 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         this.tempsDiffere = 0;
     }
 
+    /**
+     * Initialisation des boutons grâce à la classe parente ControleurBoutons
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue) {
         super.setVue(vue);
         super.setBAccueil(btnAccueil);
@@ -93,6 +103,9 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         super.setBRetour(btnRetour);
     }
 
+    /**
+     * Initialise le tableau d'affichage du nombre de dossard participant à la course et le tableau des arrivés.
+     */
     @FXML
     public void initialize() {
         if (tableViewDossards != null) {
@@ -147,10 +160,19 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         }
     }
 
+    /**
+     * Getter du nombre de dossards arrivés.
+     * @return le nombre de dossards arrivés
+     */
     public int getDossardsArrives(){
         return this.dossardsArrives;
     }
 
+    /**
+     * Convertisseur de chaîne de caractère dans le format hh:mm:ss en entier correspondant aux secondes.
+     * @param differe la chaîne de caractère du temps à convertir
+     * @return le nombre de secondes que contient le temps entré en paramètre
+     */
     public static int convertirTextToSecondes(String differe) {
         String[] textDecoupe = differe.split(":");
         int heures = Integer.parseInt(textDecoupe[0]);
@@ -160,10 +182,16 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         return secondesDiffere;
     }
 
+    /**
+     * Setter du nombre de dossards arrivés.
+     */
     public void setDossardsArrives(int lesDossardsArrives){
         this.dossardsArrives = lesDossardsArrives;
     }
 
+    /**
+     * Inscrit le dossard dans le tableau avec son temps de course et s'il il a un teamps de départ différés 
+     */
     public void enregistrerArrive() throws SQLException, ChronoNotStartedException {
         int leDossard = -1;
         if (!this.numeroDossard.getText().isEmpty()) {
@@ -197,6 +225,9 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         this.numeroDossard.setText("");
     }
 
+    /**
+     * Gère l'accessibilité du bouton Start si le format de l'heure différés est bien respecté.
+     */
     public void changerBoutonLancerChrono() {
         boolean respectRegex = this.tempsDiff.getText().matches("^([01]?\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$");
         boolean tempsDiffEmpty = this.tempsDiff.getText().isEmpty();
@@ -204,6 +235,9 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         this.btnTopDepart.setDisable(!(respectRegex || tempsDiffEmpty));
     }
 
+    /**
+     * Permet la saise d'une arrivée de dossard avec la touche entrée.
+     */
     @FXML
     public void onKeyPressed(KeyEvent event) {
         TextField tf = (TextField) event.getSource();
@@ -216,6 +250,10 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         }
     }
 
+    /**
+     * Gère l'affichage des boutons si la souris en survole un.
+     * @param event l'évenement de la souris qui survole un élément
+     */
     @FXML
     public void handleBtnDemarrerCoursesMouseEntered(MouseEvent event) {
         try {
@@ -243,8 +281,10 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         }
     }
 
-
-
+    /**
+     * Gère l'affichage des boutons si la souris quitte un élément.
+     * @param event l'évenement de la souris qui quitte un élément
+     */
     @FXML
     public void handleBtnDemarrerCoursesMouseExited(MouseEvent event) {
         try {
@@ -272,7 +312,10 @@ public class ControleurBoutonsDebutCourse extends ControleurBoutons implements E
         }
     }
 
-    
+    /**
+     * Gère l'utilisation des boutons lorsque l'on clique sur l'un d'eux.
+     * @param event l'évenement de la souris qui clique sur un bouton
+     */
     @Override
     public void handle(ActionEvent event) {
         try {

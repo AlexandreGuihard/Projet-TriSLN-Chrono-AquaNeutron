@@ -2,16 +2,11 @@ package com.trisln.aquaneutron.controleurs;
 
 import javafx.event.EventHandler;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import java.sql.SQLException;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import com.trisln.aquaneutron.vue.TriSLN;
 import java.util.List;
 import javafx.scene.control.TableView;
@@ -21,7 +16,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 
-
+/**
+ * Classe du controleur de la page d'affichage des courses.
+ */
 public class ControleurBoutonsCourses extends ControleurBoutons implements EventHandler<ActionEvent> {
     private TriSLN vue;
 
@@ -40,12 +37,19 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
     @FXML
     private TableView<Course> tableViewCourses;
 
-
+    /**
+     * Constructeur de la classe.
+     * @param vue la vue
+     */
     public ControleurBoutonsCourses(TriSLN vue) {
         super();
         this.setBoutons(vue);
     }
 
+    /**
+     * Initialisation des boutons grâce à la classe parente ControleurBoutons
+     * @param vue la vue
+     */
     private void setBoutons(TriSLN vue) {
         super.setVue(vue);
         super.setBAccueil(btnAccueil);
@@ -54,6 +58,9 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
         super.setBRetour(btnRetour);
     }
 
+    /**
+     * Initialise le tableau d'affichage des courses avec l'ensemble des courses.
+     */
     @FXML
     public void initialize() {
         if(tableViewCourses!= null){
@@ -88,6 +95,10 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
         }
     }
 
+    /**
+     * Gère l'affichage des boutons si la souris en survole un.
+     * @param event l'évenement de la souris qui survole un élément
+     */
     @FXML
     public void handleBtnCoursesMouseEntered(MouseEvent event) {
         try {
@@ -108,6 +119,10 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
         }
     }
 
+    /**
+     * Gère l'affichage des boutons si la souris quitte un élément.
+     * @param event l'évenement de la souris qui quitte un élément
+     */
     @FXML
     public void handleBtnCoursesMouseExited(MouseEvent event) {
         try {
@@ -127,6 +142,10 @@ public class ControleurBoutonsCourses extends ControleurBoutons implements Event
         }
     }
 
+    /**
+     * Gère l'utilisation des boutons lorsque l'on clique sur l'un d'eux.
+     * @param event l'évenement de la souris qui clique sur un bouton
+     */
     @Override
     public void handle(ActionEvent event) {
         try {
