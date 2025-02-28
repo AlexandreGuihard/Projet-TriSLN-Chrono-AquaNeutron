@@ -210,7 +210,7 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
                         Participant participant=null;
                         try{
                             int numLicence = 0;
-                            if (!textFieldNumLicence.getText().equals("null")) {
+                            if (!textFieldNumLicence.getText().equals("")) {
                                 numLicence = Integer.parseInt(textFieldNumLicence.getText());
                             }
                             if(TriSLN.getBd().isParticipantsRelais(textFieldClub.getText(), textFieldNomEquipe.getText(), cbLicence.isSelected(), numLicence)){
