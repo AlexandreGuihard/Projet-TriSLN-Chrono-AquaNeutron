@@ -1,7 +1,16 @@
-## Projet TriSLN
+# Projet TriSLN - Aquaneutron
 
-Alexandre GUIHARD
-Romain Voivenel
-Clément Renaudin
-Antoine Delahaye
-Mohamed-Amine Yahyaoui
+## Équipe de projet
+**Chef de projet**: Alexandre GUIHARD
+
+**Développeurs**: Romain VOIVENEL, Clément RENAUDIN, Mohamed-Amine YAHYAOUI, Antoine DELAHAYE
+
+## Technologies utilisés
+**IDE**: VS Code, Intellij IDEA
+
+**Langage**: Java
+
+**Outils**: Git, Draw.io, Discord, Scenebuilder
+
+## Lancement de l'application
+Pour lancer l'application, il faut exécuter la commande suivante dans un terminal: **"mvn clean compile javafx:run"**
