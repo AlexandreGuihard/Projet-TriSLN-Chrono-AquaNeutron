@@ -92,7 +92,7 @@ public abstract class Participant implements IParticipant{
     }
 
     public String getNomEquipe() {
-        return "";
+        return null;
     }
 
     public boolean getLicence() {
