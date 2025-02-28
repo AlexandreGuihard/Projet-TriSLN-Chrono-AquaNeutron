@@ -96,6 +96,10 @@ public class Classement{
         return participant.getClub();
     }
 
+    public String getNomEquipe(){
+        return participant.getNomEquipe();
+    }
+
     /**
      * Setter de l'id
      * @param id l'id du classement

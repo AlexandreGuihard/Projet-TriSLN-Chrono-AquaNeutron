@@ -413,7 +413,7 @@ public class BdTriSLN{
         List<Classement> classements = new ArrayList<>();
         Statement st = this.connexion.createStatement();
         
-        String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "H" : "F") + "'" : "";
+        String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "M" : "F") + "'" : "";
         String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
 
         String query = "SELECT C.id_Classement, C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +
@@ -436,7 +436,9 @@ public class BdTriSLN{
             String nom = lesClassements.getString("Nom_Prénom");
             String prenom = "";
             String club = lesClassements.getString("Club_Equipe");
+            String nomEquipe = lesClassements.getString("Club_Equipe");
             String licence = lesClassements.getString("Licence");
+            Integer numLicence = lesClassements.getInt("Licence");
             String categorieP = lesClassements.getString("Catégorie");
             String sousCategorieP = "";
             char sexe = genre.equals("homme") ? 'M' : genre.equals("femme") ? 'F' : 'M';
@@ -449,10 +451,9 @@ public class BdTriSLN{
 
             Participant leParticipant;
             if (this.estUnParticipantCourseRelais(licence)) {
-                String nomEquipe = "";
-                leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, tel, dateDeNaissance, nomEquipe, certification, dossard);
+                leParticipant = new ParticipantCourseRelais(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, numLicence, tel, dateDeNaissance, nomEquipe, certification, dossard);
                     } else if (this.estUnParticipantLicenceIndividuel(club)) {
-                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, tel, club, Integer.parseInt(licence), dateDeNaissance, dossard);
+                leParticipant = new ParticipantLicenceCourseIndiv(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, true, tel, club, numLicence, dateDeNaissance, dossard);
             } else {
                 leParticipant = new ParticipantNonLicenceCourseIndiv(idP, nom, prenom, categorieP, sousCategorieP, sexe, email, ville, certification, tel, dateDeNaissance, dossard);
             }
@@ -460,7 +461,7 @@ public class BdTriSLN{
             int posGeneral = lesClassements.getInt("Positions");
             String posCategorie = lesClassements.getString("Classements_Catégorie");
             String temps = lesClassements.getString("Temps");
-            Classement classement = new Classement(idC, posGeneral, posCategorie, 0, temps, leParticipant);
+            Classement classement = new Classement(idC, posGeneral, posCategorie, 0 , temps, leParticipant);
             classements.add(classement);
         }
         return classements;
@@ -1018,7 +1019,7 @@ public class BdTriSLN{
         Connection conn = DriverManager.getConnection("jdbc:mariadb://" + host + ":3306/" + database, user, password);
         Statement stmt = conn.createStatement();
 
-        String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "H" : "F") + "'" : "";
+        String genreCondition = !"mixte".equalsIgnoreCase(genre) ? "AND P.sexe = '" + (genre.equalsIgnoreCase("homme") ? "M" : "F") + "'" : "";
         String categorieCondition = !"toutes".equalsIgnoreCase(categorie) ? "AND Cat.categorie = '" + categorie + "'" : "";
 
         String query = "SELECT C.pos_generale AS Positions, C.temps AS Temps, CONCAT(P.nom, ' ', P.prenom) AS Nom_Prénom, " +

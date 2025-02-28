@@ -4,6 +4,7 @@ public class ParticipantCourseRelais extends Participant {
     private String nomEquipe;
     private boolean licence;
     private int dossard;
+    private Integer numLicence = 0;
 
 
     /**
@@ -36,6 +37,14 @@ public class ParticipantCourseRelais extends Participant {
         this.dossard = dossard;
     }
 
+    public ParticipantCourseRelais(int id, String nom, String prenom, String categorie, String sousCategorie, char sexe, String email, String ville, boolean certification, Integer numLicence, String numTel, String dateNaissance, String nomEquipe, boolean licence, int dossard) {
+        super(id, nom, prenom, categorie, sousCategorie, sexe, email, ville, certification, numTel, dateNaissance);
+        this.nomEquipe = nomEquipe;
+        this.licence = licence;
+        this.dossard = dossard;
+        this.numLicence = numLicence;
+    }
+
 
     /**
      * Getter du nom de l'équipe du participant
@@ -45,6 +54,12 @@ public class ParticipantCourseRelais extends Participant {
     public String getNomEquipe(){
         return this.nomEquipe;
     }
+
+    @Override
+    public Integer getNumLicence() {
+        return numLicence;
+    }
+
 
     /**
      * Getter pour savoir si le participant possède une licence

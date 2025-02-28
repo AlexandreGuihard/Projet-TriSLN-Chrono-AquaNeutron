@@ -66,7 +66,7 @@ public class ControleurBoutonsClassements extends ControleurBoutons implements E
             colNomPrenom.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParticipant().getNom() + " " + cellData.getValue().getParticipant().getPrenom()));
 
             TableColumn<Classement, String> colClubEquipe = new TableColumn<>("Club/Equipe");
-            colClubEquipe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClub()));
+            colClubEquipe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomEquipe()));
 
             TableColumn<Classement, Integer> colDossard = new TableColumn<>("Dossard");
             colDossard.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDossard()).asObject());
