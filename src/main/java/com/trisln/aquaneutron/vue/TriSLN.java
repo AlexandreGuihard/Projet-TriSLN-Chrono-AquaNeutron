@@ -71,7 +71,7 @@ public class TriSLN extends Application{
     }
 
     public void init(){
-        bd = new BdTriSLN(new ConnexionMySQL("localhost", "tr", "root", "pasdemotdepass?"));
+        bd = new BdTriSLN(new ConnexionMySQL("localhost", "tr", "root", "Nimolu56?"));
         this.utilisateur = new Utilisateur();
         this.connecte=false;
     }

@@ -525,7 +525,7 @@ public class BdTriSLN{
         boolean estPremiereLigne = false;
         boolean aImporter;
         String listerreur="";
-        int ligne = 0;
+        int ligne = 2;
         List<Integer> listIdPresent = new ArrayList<>();
         
         try {
@@ -571,6 +571,7 @@ public class BdTriSLN{
                     int numLicence = 0;
                     String dateNaissance = "";
                     String nomEquipe =  partiedecoupe.get(12);
+                    
 
                     try{
                         PreparedStatement addParticipant = this.connexion.prepareStatement("insert into PARTICIPANT values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -613,7 +614,7 @@ public class BdTriSLN{
                             idCategorie = Integer.parseInt(partiedecoupe.get(3));
                         }
 
-                        if ("null".equals(partiedecoupe.get(4)) ||  ) {
+                        if ("null".equals(partiedecoupe.get(4)) || !this.BonSexe(String.valueOf(partiedecoupe.get(4).charAt(0)))  ) {
                             System.err.println("Il manque le sexe du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n");
                             aImporter =false;
                             listerreur += "Il manque le sexe du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n";
@@ -631,6 +632,9 @@ public class BdTriSLN{
                             System.err.println("Il manque le telephone du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n");
                             aImporter =false;
                             listerreur += "Il manque le telephone du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne+"\n";
+                        }else if(partiedecoupe.get(8).length()!=9){
+                            listerreur += "le telephone du participant "+nom+" "+prenom +" id "+idParticipant+ " est trop grand a la ligne " + ligne+"\n";
+                            aImporter =false;
                         }else{
                             numTel = partiedecoupe.get(8);
                         }
@@ -647,19 +651,44 @@ public class BdTriSLN{
                             System.err.println("Il manque la date de naissance du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne +"\n");
                             aImporter =false;
                             listerreur += "Il manque la date de naissance du participant "+nom+" "+prenom +" id "+idParticipant+ " a la ligne " + ligne +"\n";
-                        else{
+                        }else{
                             dateNaissance = partiedecoupe.get(11).replace("/","-").toLowerCase();
                             String[] dateParts = dateNaissance.split("-");
-                            String jour = dateParts[1];
-                            String mois = monthMap.get(dateParts[0].toLowerCase());;
-                            if (jour.length() == 1) {
-                                jour = "0" + jour;
-                            }
-                            if (mois.length() == 1) {
-                                mois = "0" + mois;
-                            }
-                            // Retourner la date au format SQL 'YYYY-MM-DD'
-                            dateNaissance =  dateParts[2] + "-" + mois + "-" + jour;
+                            
+                            if(dateParts.length != 3){
+                                System.out.println(dateParts.length);
+                                listerreur += "la date de naissance du participant "+nom+" "+prenom +" id "+idParticipant+ " est mal realisé a la ligne " + ligne +"\n";
+                                continue;
+                            }else{
+                                String jour = dateParts[1];
+                                String mois = monthMap.get(dateParts[0].toLowerCase());
+                                if (jour.length() == 1) {
+                                    jour = "0" + jour;
+                                }
+
+                                if (mois.length() == 1) {
+                                    mois = "0" + mois;
+                                }
+                                
+                                dateParts[1] =jour;
+                                dateParts[0] = mois;
+                                System.out.println(dateParts[0]+""+dateParts[1]+""+dateParts[2]);
+
+                                for(String date :dateParts ){
+                                    for (int i = 0; i < date.length(); i++) {
+                                        System.out.println("la");
+                                        System.out.println(date);
+                                        if (!this.estUnEntier(String.valueOf(date.charAt(i)))) {
+                                            listerreur += "la date de naissance du participant "+nom+" "+prenom +" id "+idParticipant+ " est mal realisé a la ligne " + ligne +"\n";
+                                            aImporter =false;
+                                            break;
+                                        }
+
+                                    }
+                                    }
+                                // Retourner la date au format SQL 'YYYY-MM-DD'
+                                dateNaissance =  dateParts[2] + "-" + mois + "-" + jour;
+                                }
                         }
 
                         if (aImporter) {
@@ -683,11 +712,17 @@ public class BdTriSLN{
                             System.out.println("import ok");
                         }
                         ligne += 1;
-                }catch(Exception e){
+                }catch(SQLException e){
                     e.printStackTrace();
                     System.err.println("erreur");
-                    listerreur += "le participant "+nom+" "+prenom +"ne correspond à aucun type de participant connu (relais, licence individuelle, sans licence individuell a la ligne "+ligne;
+                    listerreur += "le participant "+nom+" "+prenom +"ne correspond à aucun type de participant connu (relais, licence individuelle, sans licence individuell a la ligne "+ligne +"\n";
                     ligne += 1;
+                    continue;
+                }
+                catch(Exception e){
+                    System.err.println(e);
+                    listerreur += e +"\n\n";
+                    continue;
                 }
             }
             }
@@ -699,9 +734,11 @@ public class BdTriSLN{
             }
     } 
     
-    
+
+
     public boolean estUnEntier(String chaine) {
 		try {
+            System.out.println(chaine);
 			Integer.parseInt(chaine);
 		} catch (NumberFormatException e){
 			return false;
@@ -709,9 +746,13 @@ public class BdTriSLN{
 		return true;
 	}
 
-    public boolean estUneDate(String chaine) {
+    public boolean BonSexe(String chaine) {
 		try {
-			if (chaine ==) {
+            System.out.println(chaine);
+			if ("F".equals(chaine)) {
+                return true;
+            }
+            else if ("M".equals(chaine)) {
                 return true;
             }
             else{
@@ -720,9 +761,7 @@ public class BdTriSLN{
 		} catch (NumberFormatException e){
 			return false;
 		}
-		return true;
 	}
-
 
     
 
