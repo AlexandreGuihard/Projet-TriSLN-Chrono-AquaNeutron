@@ -197,11 +197,14 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
     public void handle(ActionEvent event){
 
         try {Button btn=(Button)event.getSource();
-            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnRetour") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
+            if(btn.getId().equals("btnAccueil") || btn.getId().equals("btnCompte") || btn.getId().equals("btnDeconnexion")|| btn.getId().equals("btnConnexion")){
                 super.handle(btn);
             }
             else{
                 switch(btn.getId()){
+                    case "btnRetour":
+                        super.getVue().afficheParticipants();
+                        break;
                     case "btnEnregistrerModification":
                         System.out.println("enregistrer");
                         Participant participant=null;
@@ -252,6 +255,16 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
         }
     }
 
+    private boolean checkInt(String id){
+        for(int i=0;i<id.length();i++){
+            if(!Character.isDigit(id.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @FXML
     public void handleKeyReleased(KeyEvent event){
         try{
             Platform.runLater(()->textId.setText(""));
@@ -270,30 +283,40 @@ public class ControleurBoutonsModifierP extends ControleurBoutons implements Eve
             Platform.runLater(()->textFieldVille.setText(""));
             Platform.runLater(()->cbLicence.setSelected(false));
             if(!textFieldId.getText().equals("")){
-                btnEnregistrerModification.setDisable(false);
-                int idParticipant=Integer.parseInt(textFieldId.getText());
-                Participant participant=TriSLN.getBd().getParticipantFromId(idParticipant);
-                Platform.runLater(()->textId.setText(participant.getId()+""));
-                Platform.runLater(()->textFieldNom.setText(participant.getNom()));
-                Platform.runLater(()->textFieldPrenom.setText(participant.getPrenom()));
-                Platform.runLater(()->textFieldSexe.setText(participant.getSexe()+""));
-                Platform.runLater(()->textFieldDateDeNaissance.setText(participant.getDateNaissance()));
-                Platform.runLater(()->comboxCategorie.setValue(this.change(participant.getCategorie())));
-                if(participant.getSousCategorie()!=null){
-                    Platform.runLater(()->comboxSC.setValue(this.change(participant.getSousCategorie())));
+                if(checkInt(textFieldId.getText())){
+                    btnEnregistrerModification.setDisable(false);
+                    int idParticipant=Integer.parseInt(textFieldId.getText());
+                    Participant participant=TriSLN.getBd().getParticipantFromId(idParticipant);
+                    if(participant!=null){
+                        Platform.runLater(()->textId.setText(participant.getId()+""));
+                        Platform.runLater(()->textFieldNom.setText(participant.getNom()));
+                        Platform.runLater(()->textFieldPrenom.setText(participant.getPrenom()));
+                        Platform.runLater(()->textFieldSexe.setText(participant.getSexe()+""));
+                        Platform.runLater(()->textFieldDateDeNaissance.setText(participant.getDateNaissance()));
+                        Platform.runLater(()->comboxCategorie.setValue(this.change(participant.getCategorie())));
+                        if(participant.getSousCategorie()!=null){
+                            Platform.runLater(()->comboxSC.setValue(this.change(participant.getSousCategorie())));
+                        }
+                        Platform.runLater(()->textFieldClub.setText(participant.getClub()));
+                        Platform.runLater(()->textFieldNomEquipe.setText(participant.getNomEquipe()));
+                        Platform.runLater(()->textFieldEmail.setText(participant.getEmail()));
+                        Platform.runLater(()->textFieldNumTel.setText(participant.getTel()));
+                        Platform.runLater(()->cbCertification.setSelected(participant.getCertification()));
+                        if (participant.getNumLicence()==0){
+                            Platform.runLater(()->textFieldNumLicence.setText(""));
+                        } else {
+                            Platform.runLater(()->textFieldNumLicence.setText(participant.getNumLicence()+""));
+                        }
+                        Platform.runLater(()->textFieldVille.setText(participant.getVille()));
+                        Platform.runLater(()->cbLicence.setSelected(participant.getLicence()));
+                    }
+                    else{
+                        btnEnregistrerModification.setDisable(true);
+                    }
                 }
-                Platform.runLater(()->textFieldClub.setText(participant.getClub()));
-                Platform.runLater(()->textFieldNomEquipe.setText(participant.getNomEquipe()));
-                Platform.runLater(()->textFieldEmail.setText(participant.getEmail()));
-                Platform.runLater(()->textFieldNumTel.setText(participant.getTel()));
-                Platform.runLater(()->cbCertification.setSelected(participant.getCertification()));
-                if (participant.getNumLicence()==0){
-                    Platform.runLater(()->textFieldNumLicence.setText(""));
-                } else {
-                    Platform.runLater(()->textFieldNumLicence.setText(participant.getNumLicence()+""));
+                else{
+                    btnEnregistrerModification.setDisable(true);
                 }
-                Platform.runLater(()->textFieldVille.setText(participant.getVille()));
-                Platform.runLater(()->cbLicence.setSelected(participant.getLicence()));
             }
             else{
                 btnEnregistrerModification.setDisable(true);

@@ -552,7 +552,7 @@
       </VBox>
    </right>
    <bottom>
-      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" onMouseEntered="#handleBtnModifierPMouseEntered" onMouseExited="#handleBtnModifierPMouseExited" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#handle" prefHeight="54.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 100;" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font size="24.0" />
          </font>
